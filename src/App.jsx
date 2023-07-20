@@ -1,10 +1,10 @@
-
+import SharedLayout from "../src/shared/components/SharedLayout/SharedLayout"
 
 function App() {
 
   return (
     <div>
-      test
+      <SharedLayout/>
       </div>
   )
 }
