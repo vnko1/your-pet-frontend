@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import { useCallback, useEffect } from "react";
 
-import { ModalOverlay, ModalWrap } from "./ModalApproveAction.styled";
+import { ModalOverlay, ModalWrap } from "./Modal.styled";
 
 const modalRoot = document.querySelector("#modal-root");
 
