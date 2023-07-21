@@ -1,22 +1,30 @@
+import {
+  AddToFavorite,
+  Card,
+  Category,
+  City,
+  Gender,
+  Image,
+  ImageWrap,
+  Years,
+} from "./NoticeCategoryItem.styled";
+
+
 function NoticesCategoryItem() {
   return (
-    <div>
-      <div>
-        <img
-          style={{
-            width: 288,
-            height: 288,
-          }}
+    <Card>
+      <ImageWrap>
+        <Image   
           src="
 https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
           alt="cat"
         />
-        <p>Add f</p>
-        <p>In good hands</p>
-        <p>Lviv</p>
-        <p>1 year</p>
-        <p>female</p>
-      </div>
+        <AddToFavorite>Add f</AddToFavorite>
+        <Category>In good hands</Category>
+        <City>Lviv</City>
+        <Years>1 year</Years>
+        <Gender>female</Gender>
+      </ImageWrap>
       <div
         style={{
           display: "flex",
@@ -53,7 +61,7 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
           Learn more
         </button>
       </div>
-    </div>
+    </Card>
   );
 }
 
