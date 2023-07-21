@@ -14,6 +14,7 @@ export const StyledLogout = styled.a`
   padding-bottom: 8px;
   :hover {
     background: linear-gradient(90deg, #9bd0ff, #419ef1);
+    cursor: pointer;
   }
 `;
 

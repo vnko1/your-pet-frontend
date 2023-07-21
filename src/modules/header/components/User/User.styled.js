@@ -1,6 +1,15 @@
 import styled from "styled-components";
 
-export const StyledUserName = styled.a`
+export const StyledUser = styled.a`
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 12px;
+
+width: 113px
+`;
+
+export const StyledUserName = styled.p`
   font-size: 16px;
   line-height: 1.37;
   color: #ffc107;

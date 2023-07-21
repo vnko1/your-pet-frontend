@@ -1,14 +1,13 @@
 import userSvg from "../../../../assets/icons/avatar.svg";
-import { StyledUserName, StyledUserIcon } from "./User.styled";
+import { StyledUser, StyledUserName, StyledUserIcon } from "./User.styled";
 
 const User = () => {
-    return (
-      <div>
-        <StyledUserIcon src={userSvg} alt="user avatar" />
-        <StyledUserName>Anna</StyledUserName>
-      </div>
-    );
-    
-}
+  return (
+    <StyledUser>
+      <StyledUserIcon src={userSvg} alt="user avatar" />
+      <StyledUserName>Anna</StyledUserName>
+    </StyledUser>
+  );
+};
 
 export default User;

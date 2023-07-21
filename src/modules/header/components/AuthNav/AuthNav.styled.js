@@ -1,6 +1,11 @@
 import styled from "styled-components";
 // import { Link } from "react-router-dom";
 
+export const StyledLoginIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+`;
+
 export const StyledLogin = styled.a`
   display: flex;
   align-items: center;
@@ -11,12 +16,19 @@ export const StyledLogin = styled.a`
   background-color: #ffc107;
   color: #fef9f9;
   border-radius: 40px;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  border: 2px solid #ffc107;
+  padding-top: 5px;
+  padding-bottom: 5px;
   :hover {
     background-color: #fef9f9;
     color: #ffc107;
     border: 2px solid #ffc107;
+    cursor: pointer;
+    ${StyledLoginIcon} {
+      g {
+        fill: #ffc107;
+      }
+    }
   }
 `;
 
@@ -24,11 +36,6 @@ export const StyledLoginText = styled.p`
   font-size: 16px;
   line-height: 1.37;
   margin: 0;
-`;
-
-export const StyledLoginIcon = styled.img`
-  width: 24px;
-  height: 24px;
 `;
 
 export const StyledRegister = styled.a`
@@ -45,6 +52,6 @@ export const StyledRegister = styled.a`
   :hover {
     background-color: #ffc107;
     color: #fef9f9;
+    cursor: pointer;
   }
 `;
-
