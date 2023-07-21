@@ -1,5 +1,5 @@
-// import NoticesSearch from "../../modules/notices/components/NoticesSearch";
-// import NoticesCategoriesNav from "../../modules/notices/components/NoticesCategoriesNav";
+import NoticesSearch from "../../modules/notices/components/NoticesSearch";
+import NoticesCategoriesNav from "../../modules/notices/components/NoticesCategoriesNav";
 import NoticesCategoriesList from "../../modules/notices/components/NoticesCategoriesList";
 // import ModalNotice from "../../modules/notices/components/ModalNotice/ModalNotice";
 // import AddPetButton from "../../modules/notices/components/AddPetButton";
@@ -7,8 +7,8 @@ import NoticesCategoriesList from "../../modules/notices/components/NoticesCateg
 function NoticesPage() {
   return (
     <div>
-      {/* <NoticesSearch />
-      <NoticesCategoriesNav /> */}
+      <NoticesSearch />
+      <NoticesCategoriesNav />
       <NoticesCategoriesList />
       {/* <ModalNotice /> */}
       {/* <AddPetButton /> */}

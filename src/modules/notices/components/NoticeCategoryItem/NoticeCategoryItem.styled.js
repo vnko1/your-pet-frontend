@@ -153,6 +153,7 @@ export const LearnMoreBtn = styled.button`
   border-radius: 40px;
   border: 2px solid #54adff;
   color: #54adff;
+  background-color: #ffffff;
 
   &:hover,
   &:focus {
