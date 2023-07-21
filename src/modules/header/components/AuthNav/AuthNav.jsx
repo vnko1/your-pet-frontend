@@ -1,10 +1,21 @@
-import {StyledLogin, StyledRegister} from "./AuthNav.styled";
+import pawprintSvg from "../../../../assets/icons/pawprint.svg";
+import {
+  StyledLogin,
+  StyledRegister,
+  StyledLoginText,
+  StyledLoginIcon,
+} from "./AuthNav.styled";
 
 const AuthNav = () => {
-    return <div>
-        <StyledLogin>Log IN</StyledLogin>
+    return (
+      <div>
+        <StyledLogin>
+                <StyledLoginText>Log IN</StyledLoginText>
+                <StyledLoginIcon src={pawprintSvg} />
+        </StyledLogin>
         <StyledRegister>Registration</StyledRegister>
-    </div>
+      </div>
+    );
 }
 
 export default AuthNav;

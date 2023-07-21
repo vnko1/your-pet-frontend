@@ -1,5 +1,5 @@
 import User from "../User/User";
-import Logout from "../Logout/Logout";
+import Logout from "../../../../shared/components/Logout/Logout";
 
 const UserNav = () => {
   return (
