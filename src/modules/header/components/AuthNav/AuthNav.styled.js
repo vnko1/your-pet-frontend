@@ -1,6 +1,18 @@
 import styled from "styled-components";
 // import { Link } from "react-router-dom";
 
+export const StyledAuthNav = styled.ul`
+  list-style: none;
+  @media (min-width: 768px) {
+    display: flex;
+    gap: 20px;
+  }
+`;
+
+export const StyledAuthNavItem = styled.li`
+  margin-bottom: 12px;
+`;
+
 export const StyledLoginIcon = styled.svg`
   width: 24px;
   height: 24px;

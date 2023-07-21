@@ -1,15 +1,21 @@
-// import { NavLink } from "react-router-dom";
+import CommonNavLink from "./Nav.styled";
 
 const Nav = () => {
     return (
       <div>
         <ul>
-          {/* <li><NavLink to={'/news'}>News</NavLink></li>
-            <li><NavLink to={'/notices'}>Find pet</NavLink></li>
-            <li><NavLink to={'/friends'}>Our friends</NavLink></li> */}
-          <li><a href="">News</a></li>
-          <li><a href="">Find pet</a></li>
-          <li><a href="">Our friends</a></li>
+          {/* <li><CommonNavLink to={'/news'}>News</CommonNavLink></li>
+            <li><CommonNavLink to={'/notices'}>Find pet</CommonNavLink></li>
+            <li><CommonNavLink to={'/friends'}>Our friends</CommonNavLink></li> */}
+          <li>
+            <CommonNavLink href="">News</CommonNavLink>
+          </li>
+          <li>
+            <CommonNavLink href="">Find pet</CommonNavLink>
+          </li>
+          <li>
+            <CommonNavLink href="">Our friends</CommonNavLink>
+          </li>
         </ul>
       </div>
     );
