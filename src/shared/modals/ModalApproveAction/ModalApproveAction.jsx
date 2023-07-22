@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Modal from "../modalPort/modal";
 import {
   Button,
@@ -31,3 +32,8 @@ const ModalApproveAction = ({ onSucces, toggleModal }) => (
 );
 
 export default ModalApproveAction;
+
+ModalApproveAction.propTypes = {
+  onSucces: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+};
