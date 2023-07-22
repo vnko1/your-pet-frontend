@@ -1,5 +1,3 @@
-// import { AddPetButton } from "../../AddPetButton/AddPetButton";
-// import { NoticesFilters } from "../../NoticesFilters";
 import AddPetButton from "../AddPetButton";
 import NoticesFilters from "../NoticesFilters";
 import {
