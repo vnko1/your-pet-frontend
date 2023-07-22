@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
 import { useCallback, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import { ModalOverlay, ModalWrap } from "./Modal.styled";
 
@@ -30,3 +31,7 @@ const Modal = ({ toggleModal, children }) => {
 };
 
 export default Modal;
+
+Modal.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+};
