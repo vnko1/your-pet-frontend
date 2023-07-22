@@ -1,5 +1,3 @@
-// import { AddPetButton } from "../../AddPetButton/AddPetButton";
-// import { NoticesFilters } from "../../NoticesFilters";
 import AddPetButton from "../AddPetButton";
 import NoticesFilters from "../NoticesFilters";
 import {
@@ -36,3 +34,8 @@ function NoticesCategoriesNav() {
 }
 
 export default NoticesCategoriesNav;
+
+// "Компонент рендерить блок навіції з маршрутами:
+//   - /notices/sell -  відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з продажу
+//   - /notices/lost-found - відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з знайшов/шукаю
+//   - /notices/for-free - відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з віддам в добрі руки"
