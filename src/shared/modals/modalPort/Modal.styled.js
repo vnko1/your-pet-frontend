@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -8,10 +9,11 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(97, 97, 97, 0.6);
+  backdrop-filter: blur(4px);
   z-index: 2;
 `;
 export const ModalWrap = styled.div`
-  max-width: calc(100vw - 40px);
-  max-height: calc(100vh - 24px);
+  // max-width: calc(100vw - 40px);
+  // max-height: calc(100vh - 24px);
 `;
