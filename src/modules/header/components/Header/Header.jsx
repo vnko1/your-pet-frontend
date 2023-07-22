@@ -9,6 +9,7 @@ import {
   MobileMenu,
   MobileMenuCloseBtn,
   MenuWrap,
+  BurgerMenuWrap,
 } from "./Header.styled";
 
 const Header = () => {
@@ -19,12 +20,14 @@ const Header = () => {
       {!isMobileMenuOpen && (
         <>
           <Logo />
-          <Navigation isMobileMenuOpen={isMobileMenuOpen} />
-          <BurgerMenuBtn
-            src={burgerMenuOpen}
-            alt="open mobile menu"
-            onClick={() => setisMobileMenuOpen(true)}
-          />
+          <BurgerMenuWrap>
+            <Navigation isMobileMenuOpen={isMobileMenuOpen} />
+            <BurgerMenuBtn
+              src={burgerMenuOpen}
+              alt="open mobile menu"
+              onClick={() => setisMobileMenuOpen(true)}
+            />
+          </BurgerMenuWrap>
         </>
       )}
 
@@ -38,9 +41,7 @@ const Header = () => {
               onClick={() => setisMobileMenuOpen(false)}
             />
           </MenuWrap>
-          <Navigation
-            isMobileMenuOpen={isMobileMenuOpen}
-          />
+          <Navigation isMobileMenuOpen={isMobileMenuOpen} />
         </MobileMenu>
       )}
     </StyledHeader>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
+import SharedLayout from "./shared/components/SharedLayout/SharedLayout";
 
 export default function App() {
   const dispath = useDispatch();
@@ -15,7 +16,7 @@ export default function App() {
   return isRefreshing ? (
     <div>Вставить Спінер або щось що інформує про загрузку !</div>
   ) : (
-    <div>Тут Блок Навігації</div>
+    <div><SharedLayout/></div>
   );
 }
 

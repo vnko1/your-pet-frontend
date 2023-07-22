@@ -6,7 +6,7 @@ align-items: center;
 justify-content: center;
 gap: 12px;
 
-width: 113px
+// width: 113px
 `;
 
 export const StyledUserName = styled.p`

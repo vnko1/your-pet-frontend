@@ -12,7 +12,7 @@ import {
   LogoutDialogButton,
   LogoutDialogButtonText,
 } from "./Logout.styled";
-import Modal from "../ModalApproveAction/ModalApproveAction";
+import Modal from "../../modals/modalPort/Modal";
 
 const Logout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,9 +1,9 @@
-import CommonNavLink from "./Nav.styled";
+import { CommonNavLink, StyledNavList } from "./Nav.styled";
 
 const Nav = () => {
     return (
       <div>
-        <ul>
+        <StyledNavList>
           {/* <li><CommonNavLink to={'/news'}>News</CommonNavLink></li>
             <li><CommonNavLink to={'/notices'}>Find pet</CommonNavLink></li>
             <li><CommonNavLink to={'/friends'}>Our friends</CommonNavLink></li> */}
@@ -16,7 +16,7 @@ const Nav = () => {
           <li>
             <CommonNavLink href="">Our friends</CommonNavLink>
           </li>
-        </ul>
+        </StyledNavList>
       </div>
     );
 };
