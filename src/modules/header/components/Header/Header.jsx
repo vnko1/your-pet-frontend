@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import burgerMenuOpen from "../../../../assets/icons/burger-menu.svg";
-import Cross from "../../../../assets/icons/cross-small.svg";
+import cross from "../../../../assets/icons/cross-small.svg";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
 import {
@@ -33,7 +33,7 @@ const Header = () => {
           <MenuWrap>
             <Logo />
             <MobileMenuCloseBtn
-              src={Cross}
+              src={cross}
               alt="close mobile menu"
               onClick={() => setisMobileMenuOpen(false)}
             />

@@ -28,7 +28,9 @@ const Navigation = (props) => {
   return (
     <>
       <>
-        {isRegistered && <UserNav isMobileMenuOpen={isMobileMenuOpen} />}
+        {isRegistered && (
+          <UserNav isMobileMenuOpen={isMobileMenuOpen} isDesktop={isDesktop} />
+        )}
         {!isRegistered && !isMobileMenuOpen && <AuthNav />}
       </>
 

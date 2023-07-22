@@ -3,10 +3,10 @@ import User from "../User/User";
 import Logout from "../../../../shared/components/Logout/Logout";
 
 const UserNav = (props) => {
-  const { isMobileMenuOpen } = props;
+  const { isMobileMenuOpen, isDesktop } = props;
   return (
     <div>
-      {isMobileMenuOpen && <Logout />}
+      {(isMobileMenuOpen || isDesktop) && <Logout />}
       {!isMobileMenuOpen && <User />}
     </div>
   );
@@ -14,6 +14,7 @@ const UserNav = (props) => {
 
 UserNav.propTypes = {
   isMobileMenuOpen: PropTypes.bool,
+  isDesktop: PropTypes.bool,
 };
 
 export default UserNav;
