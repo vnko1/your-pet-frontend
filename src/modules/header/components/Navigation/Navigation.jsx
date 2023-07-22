@@ -26,7 +26,7 @@ const Navigation = (props) => {
   }, []);
 
   return (
-    <>
+    <NavWrap>
       <>
         {isRegistered && (
           <UserNav isMobileMenuOpen={isMobileMenuOpen} isDesktop={isDesktop} />
@@ -35,7 +35,7 @@ const Navigation = (props) => {
       </>
 
       {(isMobileMenuOpen || (!isMobileMenuOpen && isDesktop)) && <Nav />}
-    </>
+    </NavWrap>
   );
 };
 

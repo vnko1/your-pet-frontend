@@ -7,7 +7,7 @@ const UserNav = (props) => {
   return (
     <div>
       {(isMobileMenuOpen || isDesktop) && <Logout />}
-      {!isMobileMenuOpen && <User />}
+      <User isMobileMenuOpen={isMobileMenuOpen} isDesktop={isDesktop} />
     </div>
   );
 };

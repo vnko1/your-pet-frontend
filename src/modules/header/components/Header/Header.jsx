@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import burgerMenuOpen from "../../../../assets/icons/burger-menu.svg";
 import cross from "../../../../assets/icons/cross-small.svg";
 import Logo from "../Logo/Logo";
