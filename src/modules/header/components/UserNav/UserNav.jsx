@@ -1,13 +1,19 @@
+import PropTypes from "prop-types";
 import User from "../User/User";
 import Logout from "../../../../shared/components/Logout/Logout";
 
-const UserNav = () => {
+const UserNav = (props) => {
+  const { isMobileMenuOpen } = props;
   return (
     <div>
-      <User />
-      <Logout />
+      {isMobileMenuOpen && <Logout />}
+      {!isMobileMenuOpen && <User />}
     </div>
   );
+};
+
+UserNav.propTypes = {
+  isMobileMenuOpen: PropTypes.bool,
 };
 
 export default UserNav;

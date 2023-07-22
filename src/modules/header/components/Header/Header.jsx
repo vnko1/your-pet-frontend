@@ -1,18 +1,48 @@
-import burgerMenu from "../../../../assets/icons/burger-menu.svg";
+import { useState, useEffect } from "react";
+import burgerMenuOpen from "../../../../assets/icons/burger-menu.svg";
+import Cross from "../../../../assets/icons/cross-small.svg";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
-import { BurgerMenuBtn, StyledHeader } from "./Header.styled";
+import {
+  BurgerMenuBtn,
+  StyledHeader,
+  MobileMenu,
+  MobileMenuCloseBtn,
+  MenuWrap,
+} from "./Header.styled";
 
 const Header = () => {
+  const [isMobileMenuOpen, setisMobileMenuOpen] = useState(false);
+
   return (
     <StyledHeader>
-      <Logo />
-      <Navigation />
-      <BurgerMenuBtn
-        src={burgerMenu}
-        alt="burger menu"
-        onClick={() => console.log("burger-menu")}
-      />
+      {!isMobileMenuOpen && (
+        <>
+          <Logo />
+          <Navigation isMobileMenuOpen={isMobileMenuOpen} />
+          <BurgerMenuBtn
+            src={burgerMenuOpen}
+            alt="open mobile menu"
+            onClick={() => setisMobileMenuOpen(true)}
+          />
+        </>
+      )}
+
+      {isMobileMenuOpen && (
+        <MobileMenu>
+          <MenuWrap>
+            <Logo />
+            <MobileMenuCloseBtn
+              src={Cross}
+              alt="close mobile menu"
+              onClick={() => setisMobileMenuOpen(false)}
+            />
+          </MenuWrap>
+          <Navigation
+            isMobileMenuOpen={isMobileMenuOpen}
+          />
+        </MobileMenu>
+      )}
     </StyledHeader>
   );
 };
