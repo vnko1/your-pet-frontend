@@ -20,6 +20,11 @@ export const Section = styled.section`
   }
 `;
 export const Wrapper = styled.div`
+  &img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
   margin-bottom: 60px;
   @media screen and (min-width: 768px) {
     margin-bottom: 70px;
