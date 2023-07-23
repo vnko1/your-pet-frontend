@@ -15,11 +15,6 @@ export default function App() {
   return isRefreshing ? (
     <div>Вставить Спінер або щось що інформує про загрузку !</div>
   ) : (
-    <div>
-      Тут Блок Навігації
-      <div>
-        <NotFound />
-      </div>
-    </div>
+    <div>Тут Блок Навігації</div>
   );
 }
