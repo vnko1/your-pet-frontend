@@ -5,7 +5,7 @@ import { HashLoader } from "react-spinners";
 import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
-
+import SharedLayout from "./shared/components/SharedLayout/SharedLayout";
 export default function App() {
   const dispath = useDispatch();
   const isRefreshing = useSelector(authSelectors.selectRefreshing);

@@ -79,20 +79,37 @@ export const LogoutDialogButtonWrap = styled.div`
   }
 `;
 
+export const LogoutDialogButtonText = styled.p`
+  font-size: 16px;
+  line-height: 1.37;
+  color: ${(props) => (props.$primary ? "#FFFFFF" : "#54adff")};
+  margin: 0;
+`;
+
 export const LogoutDialogButton = styled.button`
   width: 256px;
   border: 2px solid #54adff;
   border-radius: 40px;
   padding-top: 8px;
   padding-bottom: 8px;
+  background-color: ${(props) => (props.$primary ? "#54adff" : "#FFFFFF")};
+  cursor: pointer;
+
+  :hover {
+    background: linear-gradient(90deg, #9bd0ff, #419ef1);
+    ${LogoutDialogButtonText} {
+      color: #ffffff;
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 129px;
+  }
 `;
 
-export const LogoutDialogButtonText = styled.p`
-  font-size: 16px;
-  line-height: 1.37;
-  color: #54adff;
-  margin: 0;
-`;
+
+
+
 // export const LogoutIcon = styled.svg.attrs({
 //   xmlns: "http://www.w3.org/2000/svg",
 // })``;

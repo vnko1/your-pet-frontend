@@ -50,8 +50,8 @@ const Logout = () => {
                 <LogoutDialogButtonText>Cancel</LogoutDialogButtonText>
               </LogoutDialogButton>
 
-              <LogoutDialogButton type="button" onClick={onLogoutUser}>
-                <LogoutDialogButtonText>Yes</LogoutDialogButtonText>
+              <LogoutDialogButton $primary type="button" onClick={onLogoutUser}>
+                <LogoutDialogButtonText $primary>Yes</LogoutDialogButtonText>
               </LogoutDialogButton>
             </LogoutDialogButtonWrap>
           </LogoutDialogWrap>

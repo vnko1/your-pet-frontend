@@ -62,8 +62,7 @@ export const BurgerMenuWrap = styled.div`
     gap: 38px;
   }
 
-  // @media (min-width: 1280px) {
-  //   display: flex;
-  //   gap: 329px;
-  // }
+  @media (min-width: 1280px) {
+    display: flex;
+  }
 `;
