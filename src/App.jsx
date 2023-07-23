@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { HashLoader } from "react-spinners";
+
 import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
@@ -13,7 +15,22 @@ export default function App() {
   }, [dispath]);
 
   return isRefreshing ? (
-    <div>Вставить Спінер або щось що інформує про загрузку !</div>
+    <div
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
+      <HashLoader
+        color="green"
+        loading="true"
+        size={155}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </div>
   ) : (
     <div>Тут Блок Навігації</div>
   );
