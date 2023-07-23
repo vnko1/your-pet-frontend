@@ -2,14 +2,16 @@ import styled from "styled-components";
 // import { Link } from "react-router-dom";
 
 export const StyledLogout = styled.a`
-position: absolute;
-bottom: 20px;
-left: 20px;
+  position: absolute;
+  bottom: 20px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+
   width: 135px;
+  height: 40px;
   background-color: #54adff;
   color: #fef9f9;
   border-radius: 40px;
@@ -20,7 +22,16 @@ left: 20px;
     cursor: pointer;
   }
 
+  @media (max-width: 767px) {
+    left: 20px;
+  }
+
   @media (min-width: 768px) {
+    top: 26px;
+    right: 80px;
+  }
+
+  @media (min-width: 1280px) {
     position: static;
   }
 `;

@@ -34,15 +34,15 @@ const Header = () => {
 
       {isMobileMenuOpen && (
         <MobileMenu>
-          <MenuWrap>
-            <Logo />
-            <MobileMenuCloseBtn
-              src={cross}
-              alt="close mobile menu"
-              onClick={() => setisMobileMenuOpen(false)}
-            />
-          </MenuWrap>
-          <Navigation isMobileMenuOpen={isMobileMenuOpen} />
+            <MenuWrap>
+              <Logo />
+              <MobileMenuCloseBtn
+                src={cross}
+                alt="close mobile menu"
+                onClick={() => setisMobileMenuOpen(false)}
+              />
+            </MenuWrap>
+            <Navigation isMobileMenuOpen={isMobileMenuOpen} />
         </MobileMenu>
       )}
     </StyledHeader>

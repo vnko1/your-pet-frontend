@@ -38,6 +38,12 @@ export const MobileMenu = styled.div`
   background-color: #fef9f9;
 
   z-index: 2;
+
+  padding: 20px;
+
+  @media (min-width: 768px) and (max-width: 1279px) {
+    padding: 32px;
+  }
 `;
 
 export const MenuWrap = styled.div`

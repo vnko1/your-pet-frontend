@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const StyledAuthNav = styled.ul`
   list-style: none;
+  padding: 0;
   @media (min-width: 768px) {
     display: flex;
     gap: 20px;

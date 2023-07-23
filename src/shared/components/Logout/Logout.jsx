@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../../redux/auth/auth-operations";
 import logoutSvg from "../../../assets/icons/logout.svg";
 import crossSvg from "../../../assets/icons/cross-small.svg";
 import {
@@ -16,6 +18,12 @@ import Modal from "../../modals/modalPort/Modal";
 
 const Logout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const logoutUser = useDispatch();
+
+  const onLogoutUser = () => {
+    logoutUser(logOut());
+    setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -42,7 +50,7 @@ const Logout = () => {
                 <LogoutDialogButtonText>Cancel</LogoutDialogButtonText>
               </LogoutDialogButton>
 
-              <LogoutDialogButton type="button">
+              <LogoutDialogButton type="button" onClick={onLogoutUser}>
                 <LogoutDialogButtonText>Yes</LogoutDialogButtonText>
               </LogoutDialogButton>
             </LogoutDialogButtonWrap>
