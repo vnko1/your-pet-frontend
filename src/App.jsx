@@ -29,14 +29,7 @@ const App = () => {
           <div>Вставить Спінер або щось що інформує про загрузку !</div>
         ) : (
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Suspense fallback={<div>Loading...</div>}>
-                  <SharedLayout />
-                </Suspense>
-              }
-            >
+            <Route path="/" element={<SharedLayout />}>
               <Route index element={<MainPage />} />
               <Route path="register" element={<RegisterPage />} />
               <Route path="login" element={<LoginPage />} />
