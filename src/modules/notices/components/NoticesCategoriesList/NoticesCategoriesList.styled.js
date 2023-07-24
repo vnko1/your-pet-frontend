@@ -5,7 +5,7 @@ export const CardList = styled.ul`
   gap: 24px 32px;
   margin: 0 auto;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     align-items: center;
     flex-direction: column;
     width: 280px;
