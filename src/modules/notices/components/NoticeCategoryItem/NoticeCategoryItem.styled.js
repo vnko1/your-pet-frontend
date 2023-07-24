@@ -1,19 +1,10 @@
 import styled from "styled-components";
 
 export const Card = styled.li`
+  list-style-type: none;
   margin: 0;
   padding: 0;
-  /* width: 288px; */
-  width: 280px;
-
-  @media (min-width: 768px) {
-    width: 336px;
-  }
-
-  @media (min-width: 1280px) {
-    width: 288px;
-  }
-
+  width: 288px;
   height: 456px;
   background-color: #fff;
   border-radius: 0px 0px 40px 40px;
@@ -22,24 +13,13 @@ export const Card = styled.li`
 
 export const ImageWrap = styled.div`
   position: relative;
-  /* width: 288px; */
-  /* width: 280px;
-  height: 288px; */
+  width: 288px;
+  height: 288px;
 `;
 
 export const Image = styled.img`
   display: block;
-  /* width: 288px; */
-  width: 280px;
-
-  @media (min-width: 768px) {
-    width: 336px;
-  }
-
-  @media (min-width: 1280px) {
-    width: 288px;
-  }
-
+  width: 288px;
   height: 288px;
 `;
 
@@ -138,7 +118,6 @@ export const Gender = styled.p`
 
 export const CardTextInfoWrap = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
   gap: 20px;
   padding: 20px 24px;

@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const AddPetBtn = styled.button`
   display: flex;
 
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     position: absolute;
-    bottom: -220px;
+    bottom: -130px;
     right: 0px;
     width: 80px;
     height: 80px;
@@ -14,7 +14,6 @@ export const AddPetBtn = styled.button`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    z-index: 1;
   }
 
   width: 129px;
@@ -33,7 +32,6 @@ export const AddPetBtn = styled.button`
   &:hover,
   &:focus {
     color: #fef9f9;
-    /* background: #54adff; */
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+    background: #54adff;
   }
 `;

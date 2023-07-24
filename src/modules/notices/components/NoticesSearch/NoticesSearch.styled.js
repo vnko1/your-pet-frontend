@@ -3,16 +3,6 @@ import styled from "styled-components";
 export const ContainerNoticesSearch = styled.div`
   display: flex;
   justify-content: center;
-
-  margin-bottom: 20px;
-
-  @media (min-width: 768px) {
-    margin-bottom: 40px;
-  }
-
-  @media (min-width: 1280px) {
-    margin-bottom: 43px;
-  }
 `;
 
 export const Form = styled.form`
@@ -21,8 +11,9 @@ export const Form = styled.form`
   /* Для моб */
   width: 280px;
   height: 44px;
+  margin-bottom: 20px;
 
-  /* Таб и ПК*/
+  /* Таб */
   @media (min-width: 768px) {
     width: 608px;
     height: 44px;

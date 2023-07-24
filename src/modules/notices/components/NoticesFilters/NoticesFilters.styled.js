@@ -31,11 +31,6 @@ export const FilterBtn = styled.button`
   &:hover,
   &:focus {
     color: #fef9f9;
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
-  }
-
-  &:hover svg path,
-  &:focus svg path {
-    stroke: #fef9f9;
+    background-color: #54adff;
   }
 `;
