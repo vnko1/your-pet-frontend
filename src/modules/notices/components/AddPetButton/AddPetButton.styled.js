@@ -5,7 +5,7 @@ export const AddPetBtn = styled.button`
 
   @media (max-width: 768px) {
     position: absolute;
-    bottom: -130px;
+    bottom: -210px;
     right: 0px;
     width: 80px;
     height: 80px;
@@ -14,6 +14,7 @@ export const AddPetBtn = styled.button`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+    z-index: 1;
   }
 
   width: 129px;
