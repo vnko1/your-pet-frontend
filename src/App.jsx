@@ -1,5 +1,4 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
