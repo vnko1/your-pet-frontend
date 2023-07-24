@@ -43,5 +43,11 @@ export const GlobalStyles = createGlobalStyle`
 
   button {
     cursor: pointer;
+  font-family: ${(props) => props.theme.fonts.main};
+
+}
+
+svg{
+  fill: none;
 }
 `;

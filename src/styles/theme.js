@@ -14,7 +14,7 @@ export const theme = {
 
   fonts: {
     main: "Manrope, sans-serif",
-    secondary: "Inter, sans-serif",
+    secondary: "Inter",
   },
 
   fontWeights: {
@@ -23,6 +23,11 @@ export const theme = {
     semiBold: 600,
     bold: 700,
     extraBold: 800,
+  },
+
+  shadow: {
+    normal: "3px 8px 14px rgba(136, 198, 253, 0.19)",
+    medium: "7px 13px 14px rgba(116, 177, 232, 0.24)",
   },
 
   borders: {

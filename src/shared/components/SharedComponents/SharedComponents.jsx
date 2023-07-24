@@ -1,33 +1,29 @@
-// import sprite from "./assets/icons.svg";
-// import {
-//   LearnMoreWideWhiteBtn,
-//   LearnMoreWideBlueBtn,
-//   LearnMoreSmallBlueBtn,
-//   LearnMoreSmallWhiteBtn,
-//   PawIcon,
-//   PawBlueIcon,
-//   FilterBtn,
-//   FilterIcon,
-//   LocationBtn,
-//   LocationIcon,
-//   TagsBtn,
-//   FavouriteBtn,
-//   HeartIcon,
-//   Input,
-//   InputSmall,
-//   SearchIcon,
-//   SearchBtn,
-//   SearchContainer,
-// } from "./App.styled";
-import SharedComponents from "./shared/components/SharedComponents/SharedComponents";
-import { Container } from "./styles/Container";
+import sprite from "../../../assets/icons.svg";
+import {
+  LearnMoreWideWhiteBtn,
+  LearnMoreWideBlueBtn,
+  LearnMoreSmallBlueBtn,
+  LearnMoreSmallWhiteBtn,
+  PawIcon,
+  PawBlueIcon,
+  FilterBtn,
+  FilterIcon,
+  LocationBtn,
+  LocationIcon,
+  TagsBtn,
+  FavouriteBtn,
+  HeartIcon,
+  Input,
+  InputSmall,
+  SearchIcon,
+  SearchBtn,
+  SearchContainer,
+} from "./SharedComponents.styled";
 
-function App() {
+function SharedComponents() {
   return (
-    <Container>
-      test
-      <SharedComponents />
-      {/* <LearnMoreWideWhiteBtn>Learn more</LearnMoreWideWhiteBtn>
+    <>
+      <LearnMoreWideWhiteBtn>Learn more</LearnMoreWideWhiteBtn>
       <LearnMoreWideBlueBtn>
         Learn more
         <PawIcon>
@@ -35,19 +31,18 @@ function App() {
         </PawIcon>
       </LearnMoreWideBlueBtn>
       <LearnMoreSmallBlueBtn>
-        Learn more{" "}
+        Learn more
         <PawIcon>
           <use href={sprite + "#pawprint"} />
         </PawIcon>
       </LearnMoreSmallBlueBtn>
       <LearnMoreSmallWhiteBtn>
-        Learn more{" "}
+        Learn more
         <PawBlueIcon>
           <use href={sprite + "#pawprint"} />
         </PawBlueIcon>
       </LearnMoreSmallWhiteBtn>
-      {/* <button>Add pet</button> */}
-      {/* <FilterBtn>
+      <FilterBtn>
         Filter
         <FilterIcon>
           <use href={sprite + "#filters"} />
@@ -80,9 +75,9 @@ function App() {
             <use href={sprite + "#search"} />
           </SearchIcon>
         </SearchBtn>
-      </SearchContainer> */}
-    </Container>
+      </SearchContainer>
+    </>
   );
 }
 
-export default App;
+export default SharedComponents;
