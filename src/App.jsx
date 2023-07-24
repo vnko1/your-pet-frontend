@@ -24,7 +24,6 @@ const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
@@ -48,4 +47,3 @@ const App = () => {
 };
 
 export default App;
-
