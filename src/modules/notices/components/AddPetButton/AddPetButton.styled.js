@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const AddPetBtn = styled.button`
   display: flex;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     position: absolute;
     bottom: -210px;
     right: 0px;
