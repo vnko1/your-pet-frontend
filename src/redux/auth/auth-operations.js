@@ -13,36 +13,38 @@ export const token = {
 };
 
 export const registration = createAsyncThunk(
-  "auth/registration",
-  async (credentials) => {
+  "auth/register",
+  async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post("/users/register", credentials);
-
       token.set(data.token);
       return data;
     } catch (error) {
-      // notifyErrorRegistration();
-      console.log("тут ерор регістраціон");
-      console.log(error);
+      if (error.response.status === 400) {
+        console.log("Ошибка ввода данных! Попробуйте еще раз!");
+      } else if (error.response.status === 409) {
+        console.log("Почта уже используется.");
+      } else {
+        console.log("Упс... что-то пошло не так. Перезагрузите страницу.");
+      }
+      return rejectWithValue(error);
     }
   }
 );
 
-export const logIn = createAsyncThunk("auth/logIn", async (credentials) => {
-  try {
-    const { data } = await axios.post("/users/login", credentials);
-
-    token.set(data.token);
-    // notifyFulfilledLogin();
-    console.log("тут фулфілд логін");
-
-    return data;
-  } catch (error) {
-    // notifyErrorLogin();
-    console.log("тут ерор login");
-    return;
+export const logIn = createAsyncThunk(
+  "auth/login",
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post("/users/login", credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      console.log("Невірні логін або пароль");
+      return rejectWithValue(error);
+    }
   }
-});
+);
 
 export const logOut = createAsyncThunk("auth/logOut", async () => {
   try {

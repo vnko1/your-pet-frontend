@@ -26,7 +26,7 @@ const pictures2xDesk = new URL(
   import.meta.url
 );
 
-const MainPage = () => {
+function MainPage() {
   return (
     <MainSection>
       <TttleBox>
@@ -52,5 +52,5 @@ const MainPage = () => {
       </Wrapper>
     </MainSection>
   );
-};
+}
 export default MainPage;

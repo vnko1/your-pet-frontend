@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
+import NotFound from "./pages/NotFoundPage/NotFound";
 
 const SharedLayout = lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
