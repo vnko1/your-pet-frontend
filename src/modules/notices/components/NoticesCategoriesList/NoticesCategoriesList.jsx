@@ -10,11 +10,13 @@ function NoticesCategoriesList() {
           return (
             <NoticesCategoryItem
               key={card}
-              style={{
-                width: 288,
-                height: 456,
-                backgroundColor: "gray",
-              }}
+              style={
+                {
+                  // width: 288,
+                  // height: 456,
+                  // backgroundColor: "gray",
+                }
+              }
             >
               {card}
             </NoticesCategoryItem>
