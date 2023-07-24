@@ -18,7 +18,7 @@ const NoticesPage = lazy(() => import("./pages/NoticesPage/NoticesPage"));
 const UserPage = lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = lazy(() => import("./pages/AddPetPage/AddPetPage"));
 
-export default const App = () => {
+const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(authSelectors.selectRefreshing);
 
@@ -49,4 +49,5 @@ export default const App = () => {
   );
 };
 
+export default App;
 
