@@ -1,13 +1,13 @@
-import ModalNotice from "./modules/notices/components/ModalNotice/ModalNotice";
-// import NoticesPage from "./pages/NoticesPage";
+
+import NoticesPage from "./pages/NoticesPage";
 
 function App() {
  
   return (
     <div>
       test
-      {/* <NoticesPage /> */}      
-      <ModalNotice />
+      <NoticesPage />
+      
       
 
     </div>
