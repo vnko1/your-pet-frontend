@@ -1,8 +1,12 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { HashLoader } from "react-spinners";
 import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
+import NotFound from "./pages/NotFoundPage/NotFound";
 
 const SharedLayout = lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
@@ -14,13 +18,14 @@ const NoticesPage = lazy(() => import("./pages/NoticesPage/NoticesPage"));
 const UserPage = lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = lazy(() => import("./pages/AddPetPage/AddPetPage"));
 
-const App = () => {
+export default const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(authSelectors.selectRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
 
   return (
     <Router>
@@ -44,4 +49,4 @@ const App = () => {
   );
 };
 
-export default App;
+
