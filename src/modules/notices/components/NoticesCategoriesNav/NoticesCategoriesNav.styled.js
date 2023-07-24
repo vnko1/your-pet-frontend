@@ -4,8 +4,9 @@ export const NoticesNavMainContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     position: relative;
+    width: 280px;
   }
 
   @media (min-width: 768px) {
@@ -26,14 +27,16 @@ export const NoticesNavWrap = styled.div`
   margin-bottom: 24px;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     width: 205px;
   }
 `;
 
 export const FilterAndAddPetBtnWrap = styled.div`
   display: flex;
-  gap: 12px;
+  @media (min-width: 768px) {
+    gap: 12px;
+  }
 
   @media (min-width: 1280px) {
     gap: 16px;
