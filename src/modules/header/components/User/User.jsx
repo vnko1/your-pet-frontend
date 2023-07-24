@@ -40,7 +40,7 @@ const User = (props) => {
   }, []);
 
   return (
-    <StyledUser>
+    <StyledUser to="/user">
       {((!isTablet) ||
         (isTablet && !isMobileMenuOpen)) &&
           <StyledUserIcon src={userSvg} alt="user avatar" />

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   StyledLoginIcon,
   StyledAuthNav,
@@ -5,11 +6,12 @@ import {
   StyledAuthNavButton,
 } from "./AuthNav.styled";
 
-const AuthNav = () => {
+const AuthNav = (props) => {
+  const { onCloseMobileMenu } = props;
   return (
     <StyledAuthNav>
       <StyledAuthNavItem>
-        <StyledAuthNavButton $primary>
+        <StyledAuthNavButton $primary to="/login" onClick={onCloseMobileMenu}>
           Log IN
           <StyledLoginIcon viewBox="0 0 24 24">
             <g fill="#fef9f9" clipPath="url(#a)">
@@ -24,10 +26,16 @@ const AuthNav = () => {
         </StyledAuthNavButton>
       </StyledAuthNavItem>
       <StyledAuthNavItem>
-        <StyledAuthNavButton>Registration</StyledAuthNavButton>
+        <StyledAuthNavButton to="/register" onClick={onCloseMobileMenu}>
+          Registration
+        </StyledAuthNavButton>
       </StyledAuthNavItem>
     </StyledAuthNav>
   );
+};
+
+AuthNav.propTypes = {
+  onCloseMobileMenu: PropTypes.func,
 };
 
 export default AuthNav;

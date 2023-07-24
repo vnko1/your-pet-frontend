@@ -1,24 +1,34 @@
+import PropTypes from "prop-types";
 import { CommonNavLink, StyledNavList, StyledNavItem } from "./Nav.styled";
 
-const Nav = () => {
-    return (
-      <nav>
-        <StyledNavList>
-          {/* <li><CommonNavLink to={'/news'}>News</CommonNavLink></li>
-            <li><CommonNavLink to={'/notices'}>Find pet</CommonNavLink></li>
-            <li><CommonNavLink to={'/friends'}>Our friends</CommonNavLink></li> */}
-          <StyledNavItem>
-            <CommonNavLink href="">News</CommonNavLink>
-          </StyledNavItem>
-          <StyledNavItem>
-            <CommonNavLink href="">Find pet</CommonNavLink>
-          </StyledNavItem>
-          <StyledNavItem>
-            <CommonNavLink href="">Our friends</CommonNavLink>
-          </StyledNavItem>
-        </StyledNavList>
-      </nav>
-    );
+const Nav = (props) => {
+  const { onCloseMobileMenu } = props;
+
+  return (
+    <nav>
+      <StyledNavList>
+        <StyledNavItem>
+          <CommonNavLink to={"/news"} onClick={onCloseMobileMenu}>
+            News
+          </CommonNavLink>
+        </StyledNavItem>
+        <StyledNavItem>
+          <CommonNavLink to={"/notices"} onClick={onCloseMobileMenu}>
+            Find pet
+          </CommonNavLink>
+        </StyledNavItem>
+        <StyledNavItem>
+          <CommonNavLink to={"/friends"} onClick={onCloseMobileMenu}>
+            Our friends
+          </CommonNavLink>
+        </StyledNavItem>
+      </StyledNavList>
+    </nav>
+  );
+};
+
+Nav.propTypes = {
+  onCloseMobileMenu: PropTypes.func,
 };
 
 export default Nav;

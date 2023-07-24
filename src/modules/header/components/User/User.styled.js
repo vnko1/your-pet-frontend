@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const StyledUser = styled.a`
+export const StyledUser = styled(Link)`
 display: flex;
 align-items: center;
 justify-content: center;

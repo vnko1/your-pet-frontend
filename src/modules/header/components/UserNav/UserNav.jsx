@@ -4,11 +4,17 @@ import Logout from "../../../../shared/components/Logout/Logout";
 import StyledUserNav from "./UserNav.styled";
 
 const UserNav = (props) => {
-  const { isMobileMenuOpen, isDesktop } = props;
+  const { isMobileMenuOpen, isDesktop, onCloseMobileMenu } = props;
   return (
     <StyledUserNav>
-      {(isMobileMenuOpen || isDesktop) && <Logout />}
-      <User isMobileMenuOpen={isMobileMenuOpen} isDesktop={isDesktop} />
+      {(isMobileMenuOpen || isDesktop) && (
+        <Logout onCloseMobileMenu={onCloseMobileMenu} />
+      )}
+      <User
+        isMobileMenuOpen={isMobileMenuOpen}
+        isDesktop={isDesktop}
+        onClick={onCloseMobileMenu}
+      />
     </StyledUserNav>
   );
 };
@@ -16,6 +22,7 @@ const UserNav = (props) => {
 UserNav.propTypes = {
   isMobileMenuOpen: PropTypes.bool,
   isDesktop: PropTypes.bool,
+  onCloseMobileMenu: PropTypes.func,
 };
 
 export default UserNav;

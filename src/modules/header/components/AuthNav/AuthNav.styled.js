@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const StyledAuthNav = styled.ul`
   list-style: none;
@@ -26,7 +26,7 @@ export const StyledLoginIcon = styled.svg`
   height: 24px;
 `;
 
-export const StyledAuthNavButton = styled.a`
+export const StyledAuthNavButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;

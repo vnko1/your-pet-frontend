@@ -8,7 +8,7 @@ import AuthNav from "../AuthNav/AuthNav";
 import { NavWrap } from "./Navigation.styled";
 
 const Navigation = (props) => {
-  const { isMobileMenuOpen } = props;
+  const { isMobileMenuOpen, onCloseMobileMenu } = props;
   const [isDesktop, setIsDesktop] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
@@ -43,20 +43,29 @@ const Navigation = (props) => {
     <NavWrap>
       <>
         {isLoggedIn && (
-          <UserNav isMobileMenuOpen={isMobileMenuOpen} isDesktop={isDesktop} />
+          <UserNav
+            isMobileMenuOpen={isMobileMenuOpen}
+            isDesktop={isDesktop}
+            onCloseMobileMenu={onCloseMobileMenu}
+          />
         )}
 
         {((!isLoggedIn && !isMobileMenuOpen && !isMobile) ||
-          (!isLoggedIn && isMobile && isMobileMenuOpen)) && <AuthNav />}
+          (!isLoggedIn && isMobile && isMobileMenuOpen)) && (
+          <AuthNav onCloseMobileMenu={onCloseMobileMenu} />
+        )}
       </>
 
-      {(isMobileMenuOpen || (!isMobileMenuOpen && isDesktop)) && <Nav />}
+      {(isMobileMenuOpen || (!isMobileMenuOpen && isDesktop)) && (
+        <Nav onCloseMobileMenu={onCloseMobileMenu} />
+      )}
     </NavWrap>
   );
 };
 
 Navigation.propTypes = {
   isMobileMenuOpen: PropTypes.bool,
+  onCloseMobileMenu: PropTypes.func,
 };
 
 export default Navigation;

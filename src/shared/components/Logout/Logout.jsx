@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 import { logOut } from "../../../redux/auth/auth-operations";
 import logoutSvg from "../../../assets/icons/logout.svg";
 import crossSvg from "../../../assets/icons/cross-small.svg";
@@ -16,13 +17,15 @@ import {
 } from "./Logout.styled";
 import Modal from "../../modals/modalPort/Modal";
 
-const Logout = () => {
+const Logout = (props) => {
+  const { onCloseMobileMenu } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const logoutUser = useDispatch();
 
   const onLogoutUser = () => {
     logoutUser(logOut());
     setIsModalOpen(false);
+    onCloseMobileMenu();
   };
 
   return (
@@ -50,7 +53,11 @@ const Logout = () => {
                 <LogoutDialogButtonText>Cancel</LogoutDialogButtonText>
               </LogoutDialogButton>
 
-              <LogoutDialogButton $primary type="button" onClick={onLogoutUser}>
+              <LogoutDialogButton
+                $primary
+                type="button"
+                onClick={onLogoutUser}
+              >
                 <LogoutDialogButtonText $primary>Yes</LogoutDialogButtonText>
               </LogoutDialogButton>
             </LogoutDialogButtonWrap>
@@ -59,6 +66,10 @@ const Logout = () => {
       )}
     </>
   );
+};
+
+Logout.propTypes = {
+  onCloseMobileMenu: PropTypes.func,
 };
 
 export default Logout;

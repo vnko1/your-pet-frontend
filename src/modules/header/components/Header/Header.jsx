@@ -16,13 +16,20 @@ import {
 const Header = () => {
   const [isMobileMenuOpen, setisMobileMenuOpen] = useState(false);
 
+  const onCloseMobileMenu = () => {
+    if(isMobileMenuOpen) setisMobileMenuOpen(false);
+  }
+
   return (
     <StyledHeader>
       {!isMobileMenuOpen && (
         <>
           <Logo />
           <BurgerMenuWrap>
-            <Navigation isMobileMenuOpen={isMobileMenuOpen} />
+            <Navigation
+              isMobileMenuOpen={isMobileMenuOpen}
+              onCloseMobileMenu={onCloseMobileMenu}
+            />
             <BurgerMenuBtn
               src={burgerMenuOpen}
               alt="open mobile menu"
@@ -34,15 +41,18 @@ const Header = () => {
 
       {isMobileMenuOpen && (
         <MobileMenu>
-            <MenuWrap>
-              <Logo />
-              <MobileMenuCloseBtn
-                src={cross}
-                alt="close mobile menu"
-                onClick={() => setisMobileMenuOpen(false)}
-              />
-            </MenuWrap>
-            <Navigation isMobileMenuOpen={isMobileMenuOpen} />
+          <MenuWrap>
+            <Logo />
+            <MobileMenuCloseBtn
+              src={cross}
+              alt="close mobile menu"
+              onClick={() => setisMobileMenuOpen(false)}
+            />
+          </MenuWrap>
+          <Navigation
+            isMobileMenuOpen={isMobileMenuOpen}
+            onCloseMobileMenu={onCloseMobileMenu}
+          />
         </MobileMenu>
       )}
     </StyledHeader>
