@@ -4,7 +4,7 @@ export const NoticesNavMainContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     position: relative;
     width: 280px;
   }
@@ -27,7 +27,7 @@ export const NoticesNavWrap = styled.div`
   margin-bottom: 24px;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     width: 205px;
   }
 `;

@@ -25,7 +25,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Router>
+    
       <Suspense fallback={<div>Loading...</div>}>
         {isRefreshing ? (
           <div>Вставить Спінер або щось що інформує про загрузку !</div>
@@ -42,7 +42,7 @@ const App = () => {
           </Routes>
         )}
       </Suspense>
-    </Router>
+    
   );
 };
 
