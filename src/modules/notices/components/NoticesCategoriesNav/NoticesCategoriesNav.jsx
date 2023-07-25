@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import AddPetButton from "../AddPetButton";
 // import NoticesFilters from "../NoticesFilters";
 import {
@@ -23,6 +24,8 @@ const categoryBtn = [
 function NoticesCategoriesNav() {
   // activeLink будет вибираться по url і сравниваться
 
+  const { pathname } = useLocation();
+
   return (
     <div
       style={{
@@ -34,7 +37,7 @@ function NoticesCategoriesNav() {
         <NoticesNavWrap>
           {categoryBtn.map((btn) => {
             return (
-              <LinkButton key={btn.to} to={btn.to}>
+              <LinkButton key={btn.to} to={btn.to} active={pathname}>
                 {btn.label}
               </LinkButton>
             );

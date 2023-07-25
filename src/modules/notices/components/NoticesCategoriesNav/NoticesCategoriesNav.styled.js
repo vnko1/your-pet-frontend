@@ -57,11 +57,13 @@ export const LinkButton = styled(Link)`
 
   border-radius: 40px;
   border-color: transparent;
-  color: #54adff;
-  background: #cce4fb;
+  /* color: #54adff;
+  background: #cce4fb; */
   text-decoration: none;
 
-  color: #54adff;
+  color: ${(props) => (props.active === props.to ? "#fef9f9" : "#54adff")};
+  background: ${(props) => (props.active === props.to ? "#54adff" : "#cce4fb")};
+
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;
@@ -69,9 +71,10 @@ export const LinkButton = styled(Link)`
   line-height: normal;
   letter-spacing: 0.56px;
 
-  &:hover,
+  /* &:hover,
   &:focus {
+    color: ${(props) => (props.pathname === props.to ? "#fef9f9" : "#54adff")};
     color: #fef9f9;
     background: #54adff;
-  }
+  } */
 `;

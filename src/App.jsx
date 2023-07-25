@@ -42,8 +42,11 @@ const App = () => {
           children: [
             // { index: true, element: <NoticesCategoriesList /> },
             { index: true, path: "sell", element: <NoticesCategoriesList /> },
-            // { path: "lost-found", element: <List /> },
-            // { path: "for-free", element: <List /> },
+            { path: "lost-found", element: <NoticesCategoriesList /> },
+            { path: "for-free", element: <NoticesCategoriesList /> },
+            // след 2 будет 2 приват роута
+            { path: "favorite", element: <NoticesCategoriesList /> },
+            { path: "own", element: <NoticesCategoriesList /> },
           ],
         },
         { path: "user", element: <UserPage /> },
@@ -58,9 +61,7 @@ const App = () => {
       {isRefreshing ? (
         <div>Вставить Спінер або щось що інформує про загрузку!</div>
       ) : (
-        <RouterProvider
-          router={createBrowserRouter(routes)}
-        />
+        <RouterProvider router={createBrowserRouter(routes)} />
       )}
     </React.Suspense>
   );
