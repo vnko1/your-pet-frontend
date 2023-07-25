@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import AddPetButton from "../AddPetButton";
-// import NoticesFilters from "../NoticesFilters";
+import NoticesFilters from "../NoticesFilters";
 import {
   LinkButton,
   FilterAndAddPetBtnWrap,
@@ -55,7 +55,7 @@ function NoticesCategoriesNav() {
           })}
         </NoticesNavWrap>
         <FilterAndAddPetBtnWrap>
-          {/* <NoticesFilters /> */}
+          <NoticesFilters />
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
       </NoticesNavMainContainer>
@@ -64,20 +64,3 @@ function NoticesCategoriesNav() {
 }
 
 export default NoticesCategoriesNav;
-
-// "Компонент рендерить блок навіції з маршрутами:
-//   - /notices/sell -  відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з продажу
-//   - /notices/lost-found - відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з знайшов/шукаю
-//   - /notices/for-free - відкриває на сторінці компонент NoticesCategoryList зі списком оголошеннь з віддам в добрі руки"
-
-// Авторизований ще +
-
-// "Компонент рендерить блок навігації з маршрутами:
-//   - /notices/favorite -  відкриває на сторінці компонент NoticesCategoryList зі списком оголошень, доданих до обраних
-//   - /notices/own - відкриває на сторінці компонент NoticesCategoryList зі списком оголошень, створених користувачем"
-
-// <Route path="notices/:categoryName" element={<NoticesPage />}>
-//   <Route path="sell" element={<List />} />
-//   <Route path="lost-found" element={<List />} />
-//   <Route path="for-free" element={<List />} />
-// </Route>

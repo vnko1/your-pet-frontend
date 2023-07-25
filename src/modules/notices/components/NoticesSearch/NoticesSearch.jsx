@@ -18,35 +18,48 @@ import { useSearchParams } from "react-router-dom";
 
 function NoticesSearch() {
   const [search, setSearch] = useState("");
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const fullURL = window.location.href;
-  // console.log("fullURL", fullURL);
-
-  // const searchParams2 = new URLSearchParams(window.location.search);
-
-  const queryString = searchParams.toString();
-
-  // console.log("queryString", queryString);
+  console.log("fullURL", fullURL);
 
   const searchValue = searchParams.get("search");
+  console.log("searchValue", searchValue);
 
-  // console.log("search", search);
-  // console.log("searchParams", searchParams);
-  // console.log("searchValue", searchValue);
+  // search=значение ввода
+  // console.log(searchParams.toString());
 
   useEffect(() => {
-    if (!search) {
-      return;
+    if (searchValue) {
+      setSearchParams({ search: searchValue });
+    } else {
+      setSearchParams((prevSearchParams) => {
+        const newSearchParams = new URLSearchParams(prevSearchParams);
+        newSearchParams.delete("search");
+        return newSearchParams;
+      });
     }
+  }, [searchValue, setSearchParams]);
 
-    const handleSearch = (value) => {
-      setSearchParams({ search: value });
-    };
+  const handleChange = (e) => {
+    const { value } = e.currentTarget;
+    setSearch(value);
+    setSearchParams({ search: value });
+  };
 
-    handleSearch(search);
-  }, [search, setSearchParams]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // запрос с url походу - fullURL
+  };
+
+  const resetInput = () => {
+    setSearch("");
+    setSearchParams((prevSearchParams) => {
+      const newSearchParams = new URLSearchParams(prevSearchParams);
+      newSearchParams.delete("search");
+      return newSearchParams;
+    });
+  };
 
   // useEffect(() => {
   //   if (!searchValue) {
@@ -55,20 +68,14 @@ function NoticesSearch() {
 
   //   const abortController = new AbortController();
 
-  //   // IIFE
   //   (async function fetch() {
-  //     setLoading(true);
-  //     setStatus(Status.PENDING);
 
   //     try {
   //       // тут fetch
   //       // const searchPets = await fetch(setSearchParams, abortController);
-  //       setData([...searchPets]);
-  //       setStatus(Status.RESOLVED);
-  //       setLoading(false);
+
   //     } catch (error) {
   //       console.log(error);
-  //       setStatus(Status.REJECTED);
   //     }
   //   })();
 
@@ -76,20 +83,6 @@ function NoticesSearch() {
   //     abortController.abort();
   //   };
   // }, [searchValue]);
-
-  const handleChange = (e) => {
-    // add debounce
-    const { value } = e.currentTarget;
-    setSearch(value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const resetInput = () => {
-    setSearch("");
-  };
 
   return (
     // временный контейнер
