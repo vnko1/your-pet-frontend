@@ -1,6 +1,5 @@
-
 import * as React from "react";
-import { Routes, Route } from "react-router-dom";
+// import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { refreshUser } from "./redux/auth/auth-operations";
@@ -19,6 +18,7 @@ const NoticesPage = React.lazy(() => import("./pages/NoticesPage/NoticesPage"));
 const UserPage = React.lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = React.lazy(() => import("./pages/AddPetPage/AddPetPage"));
 import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
+import { Container } from "./styles";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -57,9 +57,9 @@ const App = () => {
       {isRefreshing ? (
         <div>Вставить Спінер або щось що інформує про загрузку!</div>
       ) : (
-        <RouterProvider
-          router={createBrowserRouter(routes)}
-        />
+        <Container>
+          <RouterProvider router={createBrowserRouter(routes)} />
+        </Container>
       )}
     </React.Suspense>
   );
