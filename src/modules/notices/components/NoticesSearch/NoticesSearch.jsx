@@ -65,18 +65,17 @@ function NoticesSearch() {
   // };
 
   // =====================без хука==========================
-
+  // нуту сброса инпута при смене категории
   const [search, setSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
   const fullURL = window.location.href;
-  console.log("fullURL", fullURL);
+  // console.log("fullURL", fullURL);
 
-  // const searchValue = searchParams.get("search");
-  // console.log("searchValue", searchValue);
-
-  // search=значение ввода
-  // console.log(searchParams.toString());
+  useEffect(() => {
+    const searchValue = searchParams.get("search");
+    setSearch(searchValue || "");
+  }, [searchParams]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -96,7 +95,6 @@ function NoticesSearch() {
       return prevSearchParams;
     });
   };
-
   // ===================================================
 
   // useEffect(() => {
