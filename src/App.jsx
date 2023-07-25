@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { HashLoader } from "react-spinners";
 import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
