@@ -14,6 +14,10 @@ import {
 } from "./NoticeCategoryItem.styled";
 
 function NoticesCategoryItem() {
+  // тут бедет обрезаться текст города
+  // const truncatedText = el.textContent.slice(0, maxLength) + "...";
+  // el.textContent = truncatedText;
+
   return (
     <Card>
       <ImageWrap>
@@ -65,6 +69,7 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
               strokeLinejoin="round"
             />
           </svg>
+          {/* Ivano - Frankivsk */}
           Lviv
         </City>
         <Years>

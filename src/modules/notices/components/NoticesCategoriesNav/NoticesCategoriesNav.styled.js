@@ -30,6 +30,10 @@ export const NoticesNavWrap = styled.div`
   @media (max-width: 767px) {
     width: 205px;
   }
+
+  @media (max-width: 1279px) {
+    max-width: 320px;
+  }
 `;
 
 export const FilterAndAddPetBtnWrap = styled.div`
@@ -41,9 +45,6 @@ export const FilterAndAddPetBtnWrap = styled.div`
   @media (min-width: 1280px) {
     gap: 16px;
   }
-  /* flex-wrap: wrap; */
-  /* gap: 12px;
-  margin-bottom: 24px; */
 `;
 
 export const Button = styled.button`
