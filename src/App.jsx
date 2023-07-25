@@ -55,11 +55,7 @@ const App = () => {
       {isRefreshing ? (
         <div>Вставить Спінер або щось що інформує про загрузку!</div>
       ) : (
-        <RouterProvider
-          router={createBrowserRouter(routes, {
-            // basename: "/your-pet-frontend",
-          })}
-        />
+        <RouterProvider router={createBrowserRouter(routes)} />
       )}
     </React.Suspense>
   );
