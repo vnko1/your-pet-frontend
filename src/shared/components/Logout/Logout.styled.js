@@ -39,7 +39,9 @@ export const StyledLogout = styled.a`
 export const StyledLogoutText = styled.p`
   font-size: 16px;
   line-height: 1.37;
-  margin: 0;
+  
+
+  
 `;
 
 export const StyledLogoutIcon = styled.img`
@@ -48,18 +50,25 @@ export const StyledLogoutIcon = styled.img`
 `;
 
 export const DialogCloseBtn = styled.img`
+display: block;
   width: 24px;
   height: 24px;
+  margin-left: auto;
 `;
 
 export const LogoutDialogWrap = styled.div`
   width: 280px;
   height: 302px;
+  border-radius: 20px;
   background-color: #ffffff;
+  padding: 12px;
+  text-align: center;
 
   @media (min-width: 768px) {
     width: 608px;
     height: 354px;
+    border-radius: 40px;
+    padding: 24px;
   }
 `;
 
@@ -67,15 +76,21 @@ export const LogoutDialogText = styled.p`
   font-size: 24px;
   line-height: 1.37;
   color: #111111;
+  margin-top: 41px;
+  margin-bottom: 44px;
 
   @media (min-width: 768px) {
     font-size: 36px;
+    margin-top: 60px;
+    margin-bottom: 48px;
   }
 `;
 
 export const LogoutDialogButtonWrap = styled.div`
   @media (min-width: 768px) {
     display: flex;
+    justify-content: center;
+    gap: 17px;
   }
 `;
 
@@ -94,6 +109,7 @@ export const LogoutDialogButton = styled.button`
   padding-bottom: 8px;
   background-color: ${(props) => (props.$primary ? "#54adff" : "#FFFFFF")};
   cursor: pointer;
+  margin-bottom: 8px;
 
   :hover {
     background: linear-gradient(90deg, #9bd0ff, #419ef1);

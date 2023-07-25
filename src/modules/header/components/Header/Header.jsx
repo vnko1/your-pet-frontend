@@ -4,6 +4,7 @@ import burgerMenuOpen from "../../../../assets/icons/burger-menu.svg";
 import cross from "../../../../assets/icons/cross-small.svg";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
+// import { Container } from "../../../../styles";
 import {
   BurgerMenuBtn,
   StyledHeader,
@@ -22,39 +23,41 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      {!isMobileMenuOpen && (
-        <>
-          <Logo />
-          <BurgerMenuWrap>
+      {/* <Container> */}
+        {!isMobileMenuOpen && (
+          <>
+            <Logo />
+            <BurgerMenuWrap>
+              <Navigation
+                isMobileMenuOpen={isMobileMenuOpen}
+                onCloseMobileMenu={onCloseMobileMenu}
+              />
+              <BurgerMenuBtn
+                src={burgerMenuOpen}
+                alt="open mobile menu"
+                onClick={() => setisMobileMenuOpen(true)}
+              />
+            </BurgerMenuWrap>
+          </>
+        )}
+
+        {isMobileMenuOpen && (
+          <MobileMenu>
+            <MenuWrap>
+              <Logo />
+              <MobileMenuCloseBtn
+                src={cross}
+                alt="close mobile menu"
+                onClick={() => setisMobileMenuOpen(false)}
+              />
+            </MenuWrap>
             <Navigation
               isMobileMenuOpen={isMobileMenuOpen}
               onCloseMobileMenu={onCloseMobileMenu}
             />
-            <BurgerMenuBtn
-              src={burgerMenuOpen}
-              alt="open mobile menu"
-              onClick={() => setisMobileMenuOpen(true)}
-            />
-          </BurgerMenuWrap>
-        </>
-      )}
-
-      {isMobileMenuOpen && (
-        <MobileMenu>
-          <MenuWrap>
-            <Logo />
-            <MobileMenuCloseBtn
-              src={cross}
-              alt="close mobile menu"
-              onClick={() => setisMobileMenuOpen(false)}
-            />
-          </MenuWrap>
-          <Navigation
-            isMobileMenuOpen={isMobileMenuOpen}
-            onCloseMobileMenu={onCloseMobileMenu}
-          />
-        </MobileMenu>
-      )}
+          </MobileMenu>
+        )}
+      {/* </Container> */}
     </StyledHeader>
   );
 };
