@@ -121,7 +121,7 @@ export const Comments = styled.p`
   }
 `;
 
-export const Comments_1 = styled.span`
+export const CommentBold = styled.span`
   color: #000;
 
   font-family: Manrope;
@@ -150,8 +150,7 @@ export const AddBtn = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin: 0;
-  padding: 0;
+  
 
   border-radius: 40px;
   background: #54adff;
