@@ -35,7 +35,7 @@ const App = () => {
         { path: "register", element: <RegisterPage /> },
         { path: "login", element: <LoginPage /> },
         {
-          path: "notices/:categoryName",
+          path: "notices",
           element: <NoticesPage />,
           children: [
             { index: true, element: <NoticesCategoriesList /> },
