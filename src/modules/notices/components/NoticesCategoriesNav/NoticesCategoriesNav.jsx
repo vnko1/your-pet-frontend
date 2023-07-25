@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import AddPetButton from "../AddPetButton";
 // import NoticesFilters from "../NoticesFilters";
 import {
@@ -6,22 +7,30 @@ import {
   NoticesNavMainContainer,
   NoticesNavWrap,
 } from "./NoticesCategoriesNav.styled";
+import { useState } from "react";
 
 // import { Link } from "react-router-dom";
 
-const categoryBtn = [
+const initialCategoryBtnUrl = [
   { to: "/notices/sell", label: "sell" },
   { to: "/notices/lost-found", label: "lost/found" },
   { to: "/notices/for-free", label: "in good hands" },
-  // тут допуш в массив при авторизации
-  { to: "/notices/favorite", label: "favorite ads" },
-  { to: "/notices/own", label: "my ads" },
 ];
 
-// navigate("/notices/sell", { replace: true });
-
 function NoticesCategoriesNav() {
-  // activeLink будет вибираться по url і сравниваться
+  // тут допуш в массив при авторизации
+  const [login, setLogin] = useState(true);
+  const [categoryBtnUrl, setCategoryBtnUrl] = useState(initialCategoryBtnUrl);
+
+  if (login && categoryBtnUrl.length === 3) {
+    setCategoryBtnUrl((prevCategoryBtnUrl) => [
+      ...prevCategoryBtnUrl,
+      { to: "/notices/favorite", label: "favorite ads" },
+      { to: "/notices/own", label: "my ads" },
+    ]);
+  }
+
+  const { pathname } = useLocation();
 
   return (
     <div
@@ -32,18 +41,18 @@ function NoticesCategoriesNav() {
     >
       <NoticesNavMainContainer>
         <NoticesNavWrap>
-          {categoryBtn.map((btn) => {
+          {categoryBtnUrl.map((btn) => {
             return (
-              <LinkButton key={btn.to} to={btn.to}>
+              <LinkButton key={btn.to} to={btn.to} active={pathname}>
                 {btn.label}
               </LinkButton>
+              // <button onClick={func}></button>
+              // function fn(params) {
+              // navigate('sadadsa');
+              // searchparams reset
+              // }
             );
           })}
-          {/* <Button>sell</Button>
-          <Button>lost/found</Button>
-          <Button>in good hands</Button>
-          <Button>favorite ads</Button>
-          <Button>my ads</Button> */}
         </NoticesNavWrap>
         <FilterAndAddPetBtnWrap>
           {/* <NoticesFilters /> */}

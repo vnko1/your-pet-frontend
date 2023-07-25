@@ -22,19 +22,19 @@ function NoticesSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const fullURL = window.location.href;
-  console.log("fullURL", fullURL);
+  // console.log("fullURL", fullURL);
 
   // const searchParams2 = new URLSearchParams(window.location.search);
 
   const queryString = searchParams.toString();
 
-  console.log("queryString", queryString);
+  // console.log("queryString", queryString);
 
   const searchValue = searchParams.get("search");
 
-  console.log("search", search);
-  console.log("searchParams", searchParams);
-  console.log("searchValue", searchValue);
+  // console.log("search", search);
+  // console.log("searchParams", searchParams);
+  // console.log("searchValue", searchValue);
 
   useEffect(() => {
     if (!search) {
