@@ -23,10 +23,8 @@ function NoticesPage() {
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
-      <ModalNotice />
-      <GlobalStyles/>
-      <Container/>
-      <FontStyles/>
+      {/* <ModalNotice /> */}
+     
       {/* <AddPetButton /> */}
     </div>
   );
