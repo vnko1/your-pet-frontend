@@ -16,7 +16,6 @@ const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));
 const NoticesPage = React.lazy(() => import("./pages/NoticesPage/NoticesPage"));
 const UserPage = React.lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = React.lazy(() => import("./pages/AddPetPage/AddPetPage"));
-// import NoticesSearch from "./modules/notices/components/NoticesSearch/NoticesSearch";
 import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
 
 const App = () => {
