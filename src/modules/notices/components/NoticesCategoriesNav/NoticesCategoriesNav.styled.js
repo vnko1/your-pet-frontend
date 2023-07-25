@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const NoticesNavMainContainer = styled.div`
@@ -47,7 +48,7 @@ export const FilterAndAddPetBtnWrap = styled.div`
   }
 `;
 
-export const Button = styled.button`
+export const LinkButton = styled(Link)`
   display: flex;
   height: 35px;
   padding: 8px 16px;
@@ -58,6 +59,15 @@ export const Button = styled.button`
   border-color: transparent;
   color: #54adff;
   background: #cce4fb;
+  text-decoration: none;
+
+  color: #54adff;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.56px;
 
   &:hover,
   &:focus {

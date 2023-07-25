@@ -1,13 +1,24 @@
 import AddPetButton from "../AddPetButton";
 // import NoticesFilters from "../NoticesFilters";
 import {
-  Button,
+  LinkButton,
   FilterAndAddPetBtnWrap,
   NoticesNavMainContainer,
   NoticesNavWrap,
 } from "./NoticesCategoriesNav.styled";
 
 // import { Link } from "react-router-dom";
+
+const categoryBtn = [
+  { to: "/notices/sell", label: "sell" },
+  { to: "/notices/lost-found", label: "lost/found" },
+  { to: "/notices/for-free", label: "in good hands" },
+  // тут допуш в массив при авторизации
+  { to: "/notices/favorite", label: "favorite ads" },
+  { to: "/notices/own", label: "my ads" },
+];
+
+// navigate("/notices/sell", { replace: true });
 
 function NoticesCategoriesNav() {
   // activeLink будет вибираться по url і сравниваться
@@ -21,13 +32,18 @@ function NoticesCategoriesNav() {
     >
       <NoticesNavMainContainer>
         <NoticesNavWrap>
-          {/* <Link to={ссилка-путь}>тут буде назва путя</Link> */}
-          <Button>sell</Button>
+          {categoryBtn.map((btn) => {
+            return (
+              <LinkButton key={btn.to} to={btn.to}>
+                {btn.label}
+              </LinkButton>
+            );
+          })}
+          {/* <Button>sell</Button>
           <Button>lost/found</Button>
           <Button>in good hands</Button>
-          {/* возможно массив в каторый при логине буду допушовать еще 2 значения */}
           <Button>favorite ads</Button>
-          <Button>my ads</Button>
+          <Button>my ads</Button> */}
         </NoticesNavWrap>
         <FilterAndAddPetBtnWrap>
           {/* <NoticesFilters /> */}
