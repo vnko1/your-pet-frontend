@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Input,
   SubmitBtn,
@@ -7,9 +7,75 @@ import {
   BtnsWrap,
   ContainerNoticesSearch,
 } from "./NoticesSearch.styled";
+import { useSearchParams } from "react-router-dom";
+
+// const Status = {
+//   IDLE: "idle",
+//   PENDING: "pending",
+//   RESOLVED: "resolved",
+//   REJECTED: "rejected",
+// };
 
 function NoticesSearch() {
   const [search, setSearch] = useState("");
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const fullURL = window.location.href;
+  console.log("fullURL", fullURL);
+
+  // const searchParams2 = new URLSearchParams(window.location.search);
+
+  const queryString = searchParams.toString();
+
+  console.log("queryString", queryString);
+
+  const searchValue = searchParams.get("search");
+
+  console.log("search", search);
+  console.log("searchParams", searchParams);
+  console.log("searchValue", searchValue);
+
+  useEffect(() => {
+    if (!search) {
+      return;
+    }
+
+    const handleSearch = (value) => {
+      setSearchParams({ search: value });
+    };
+
+    handleSearch(search);
+  }, [search, setSearchParams]);
+
+  // useEffect(() => {
+  //   if (!searchValue) {
+  //     return;
+  //   }
+
+  //   const abortController = new AbortController();
+
+  //   // IIFE
+  //   (async function fetch() {
+  //     setLoading(true);
+  //     setStatus(Status.PENDING);
+
+  //     try {
+  //       // тут fetch
+  //       // const searchPets = await fetch(setSearchParams, abortController);
+  //       setData([...searchPets]);
+  //       setStatus(Status.RESOLVED);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //       setStatus(Status.REJECTED);
+  //     }
+  //   })();
+
+  //   return () => {
+  //     abortController.abort();
+  //   };
+  // }, [searchValue]);
 
   const handleChange = (e) => {
     // add debounce
@@ -17,7 +83,7 @@ function NoticesSearch() {
     setSearch(value);
   };
 
-  const handeleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
   };
 
@@ -28,7 +94,7 @@ function NoticesSearch() {
   return (
     // временный контейнер
     <ContainerNoticesSearch>
-      <Form onSubmit={handeleSubmit}>
+      <Form onSubmit={handleSubmit}>
         {/* добавить дебаунс после ввода на инпут */}
         <Input
           type="text"

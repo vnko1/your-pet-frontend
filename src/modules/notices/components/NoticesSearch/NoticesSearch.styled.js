@@ -8,12 +8,10 @@ export const ContainerNoticesSearch = styled.div`
 export const Form = styled.form`
   position: relative;
 
-  /* Для моб */
   width: 280px;
   height: 44px;
   margin-bottom: 20px;
 
-  /* Таб */
   @media (min-width: 768px) {
     width: 608px;
     height: 44px;
@@ -32,7 +30,6 @@ export const Input = styled.input`
 
   border-radius: 24px;
   border: none;
-  /* border-color: transparent; */
   outline: transparent;
   background: #fff;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);

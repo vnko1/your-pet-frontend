@@ -1,5 +1,5 @@
 import AddPetButton from "../AddPetButton";
-import NoticesFilters from "../NoticesFilters";
+// import NoticesFilters from "../NoticesFilters";
 import {
   Button,
   FilterAndAddPetBtnWrap,
@@ -10,6 +10,8 @@ import {
 // import { Link } from "react-router-dom";
 
 function NoticesCategoriesNav() {
+  // activeLink будет вибираться по url і сравниваться
+
   return (
     <div
       style={{
@@ -28,7 +30,7 @@ function NoticesCategoriesNav() {
           <Button>my ads</Button>
         </NoticesNavWrap>
         <FilterAndAddPetBtnWrap>
-          <NoticesFilters />
+          {/* <NoticesFilters /> */}
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
       </NoticesNavMainContainer>
@@ -48,3 +50,9 @@ export default NoticesCategoriesNav;
 // "Компонент рендерить блок навігації з маршрутами:
 //   - /notices/favorite -  відкриває на сторінці компонент NoticesCategoryList зі списком оголошень, доданих до обраних
 //   - /notices/own - відкриває на сторінці компонент NoticesCategoryList зі списком оголошень, створених користувачем"
+
+// <Route path="notices/:categoryName" element={<NoticesPage />}>
+//   <Route path="sell" element={<List />} />
+//   <Route path="lost-found" element={<List />} />
+//   <Route path="for-free" element={<List />} />
+// </Route>
