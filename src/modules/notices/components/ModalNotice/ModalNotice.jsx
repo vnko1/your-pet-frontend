@@ -5,14 +5,14 @@ import {
   CloseBtn,
   Title,
   ModalNoticeInfoList,
-  Comments,
-  Comments_1,
+  Comments,  
   ContactBtn,
   ModelItemInfo,
   Key,
   Value,
   AddressLink,
   AddBtn,
+  CommentsBold,
 } from "./ModalNotice.styled";
 
 const ModalNotice = () => {
@@ -60,11 +60,12 @@ const ModalNotice = () => {
         </div>
       </ModalNoticeWrap>
       <Comments>
+      <CommentsBold>
         Comments:{" "}
-        <Comments_1>
-          Rich would be the perfect addition to an active family that loves to
+        </CommentsBold>{" "}
+        Rich would be the perfect addition to an active family that loves to
           play and go on walks. I bet he would love having a doggy playmate too!
-        </Comments_1>{" "}
+      
       </Comments>
       <CloseBtn type="button">
         <svg

@@ -121,7 +121,7 @@ export const Comments = styled.p`
   }
 `;
 
-export const CommentBold = styled.span`
+export const CommentsBold = styled.span`
   color: #000;
 
   font-family: Manrope;
