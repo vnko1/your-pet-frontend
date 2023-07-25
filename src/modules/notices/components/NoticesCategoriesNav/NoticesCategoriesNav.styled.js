@@ -57,18 +57,12 @@ export const LinkButton = styled(Link)`
 
   border-radius: 40px;
   border-color: transparent;
-  /* color: #54adff;
-  background: #cce4fb; */
   text-decoration: none;
-
   color: ${(props) => (props.active === props.to ? "#fef9f9" : "#54adff")};
   background: ${(props) => (props.active === props.to ? "#54adff" : "#cce4fb")};
 
-  font-family: Manrope;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   letter-spacing: 0.56px;
 
   &:hover,

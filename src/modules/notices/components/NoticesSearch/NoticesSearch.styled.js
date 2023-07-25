@@ -37,9 +37,7 @@ export const Input = styled.input`
   color: #888;
   font-family: Inter;
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   letter-spacing: 0.56px;
 `;
 
