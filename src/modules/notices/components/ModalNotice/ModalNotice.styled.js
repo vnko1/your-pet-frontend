@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
-export const Box = styled.div`
+export const ModalNoticeBox = styled.div`
   position: relative;
   width: 681px;
   height: 540px;
   padding: 24px 31px;
   border-radius: 40px;
-  background: #5555;
+  // background: #5555;
+  background: #FFF;
 
   @media (max-width: 767px) {
-    /* width: 100%; */
     width: 280px;
     height: auto;
     border-radius: 20px;
@@ -74,7 +74,7 @@ export const Title = styled.h1`
   margin-bottom: 20px;
 
   color: #000;
-  font-family: Manrope;
+
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
@@ -97,7 +97,7 @@ export const ModalNoticeInfoList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  /* margin-bottom: 12px; */
+
 `;
 
 export const Comments = styled.p`
@@ -106,10 +106,9 @@ export const Comments = styled.p`
 
   color: #000;
 
-  font-family: Manrope;
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 24px;
   letter-spacing: 0.64px;
 
@@ -124,10 +123,9 @@ export const Comments = styled.p`
 export const CommentsBold = styled.span`
   color: #000;
 
-  font-family: Manrope;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: 0.64px;
 
@@ -139,14 +137,9 @@ export const CommentsBold = styled.span`
 `;
 
 export const AddBtn = styled.button`
-  // position: absolute;
-  // right: 177px;
-  // bottom: 24px;
-
   display: flex;
   width: 129px;
   height: 40px;
-  padding: 8px 20px;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -157,7 +150,7 @@ export const AddBtn = styled.button`
   border: 2px solid #54adff;
 
   color: #fef9f9;
-  font-family: Manrope;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -173,7 +166,7 @@ export const AddBtn = styled.button`
   @media (max-width: 767px) {
     width: 100%;
     height: 40px;
-    padding: 8px 20px;
+    // padding: 8px 20px;
     border-radius: 40px;
     border: 2px solid #54adff;
   }
@@ -199,7 +192,8 @@ export const ContactBtn = styled.button`
   border-radius: 40px;
   border: 2px solid #54adff;
   color: #54adff;
-  font-family: Manrope;
+  // color: #FEF9F9;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -213,8 +207,6 @@ export const ContactBtn = styled.button`
   }
 
   @media (max-width: 767px) {
-    // right: 12px;
-    // bottom: 64px;
     width: 100%;
     height: auto;
     padding: 8px 20px;
@@ -233,7 +225,7 @@ export const ContactBtn = styled.button`
 
 export const AddressLink = styled.a`
   color: #ffc107;
-  font-family: Manrope;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -243,12 +235,9 @@ export const AddressLink = styled.a`
 
 export const ModelItemInfo = styled.li`
   display: flex;
-  gap: 51px;
-  /* margin-bottom: 8px; */
-
+  gap:70px;
   color: #000;
 
-  font-family: Manrope;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -262,7 +251,7 @@ export const ModelItemInfo = styled.li`
 `;
 
 export const Key = styled.p`
-  width: 61px;
+  width: 70px;
 `;
 export const Value = styled.p`
   /* width: 61px; */

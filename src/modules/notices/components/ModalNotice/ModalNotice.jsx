@@ -1,5 +1,5 @@
 import {
-  Box,
+  ModalNoticeBox,
   Image,
   ModalNoticeWrap,
   CloseBtn,
@@ -17,7 +17,7 @@ import {
 
 const ModalNotice = () => {
   return (
-    <Box>
+    <ModalNoticeBox>
       <ModalNoticeWrap>
         <Image
           src=" https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
@@ -64,7 +64,7 @@ const ModalNotice = () => {
         Comments:{" "}
         </CommentsBold>{" "}
         Rich would be the perfect addition to an active family that loves to
-          play and go on walks. I bet he would love having a doggy playmate too!
+        play and go on walks. I bet he would love having a doggy playmate too!
       
       </Comments>
       <CloseBtn type="button">
@@ -105,7 +105,7 @@ const ModalNotice = () => {
           </svg>
         </AddBtn>
       </div>
-    </Box>
+    </ModalNoticeBox>
   );
 };
 
