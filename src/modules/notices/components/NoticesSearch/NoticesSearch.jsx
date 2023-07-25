@@ -55,46 +55,46 @@ const useSearch = () => {
 
 function NoticesSearch() {
   // =====================с хуком==========================
-  // const { search, handleSearchChange, resetInput } = useSearch();
-  // // const fullURL = window.location.href;
-  // // console.log("fullURL", fullURL);
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // запрос
-  // };
-
-  // =====================без хука==========================
-  // нуту сброса инпута при смене категории
-  const [search, setSearch] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const fullURL = window.location.href;
+  const { search, handleSearchChange, resetInput } = useSearch();
+  // const fullURL = window.location.href;
   // console.log("fullURL", fullURL);
-
-  useEffect(() => {
-    const searchValue = searchParams.get("search");
-    setSearch(searchValue || "");
-  }, [searchParams]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchParams({ search });
-    // запрос с url походу - fullURL
+    // запрос
   };
 
-  const handleChange = (e) => {
-    const { value } = e.currentTarget;
-    setSearch(value);
-  };
+  // =====================без хука==========================
+  // нуту сброса инпута при смене категории
+  // const [search, setSearch] = useState("");
+  // const [searchParams, setSearchParams] = useSearchParams();
 
-  const resetInput = () => {
-    setSearch("");
-    setSearchParams((prevSearchParams) => {
-      prevSearchParams.delete("search");
-      return prevSearchParams;
-    });
-  };
+  // const fullURL = window.location.href;
+  // // console.log("fullURL", fullURL);
+
+  // useEffect(() => {
+  //   const searchValue = searchParams.get("search");
+  //   setSearch(searchValue || "");
+  // }, [searchParams]);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setSearchParams({ search });
+  //   // запрос с url походу - fullURL
+  // };
+
+  // const handleChange = (e) => {
+  //   const { value } = e.currentTarget;
+  //   setSearch(value);
+  // };
+
+  // const resetInput = () => {
+  //   setSearch("");
+  //   setSearchParams((prevSearchParams) => {
+  //     prevSearchParams.delete("search");
+  //     return prevSearchParams;
+  //   });
+  // };
   // ===================================================
 
   // useEffect(() => {
@@ -126,8 +126,8 @@ function NoticesSearch() {
           type="text"
           placeholder="Search"
           value={search}
-          onChange={handleChange}
-          // onChange={(e) => handleSearchChange(e.target.value)}
+          // onChange={handleChange}
+          onChange={(e) => handleSearchChange(e.target.value)}
         />
         <BtnsWrap>
           <SubmitBtn type="submit">

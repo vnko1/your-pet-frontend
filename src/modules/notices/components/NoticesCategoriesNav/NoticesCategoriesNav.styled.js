@@ -71,10 +71,9 @@ export const LinkButton = styled(Link)`
   line-height: normal;
   letter-spacing: 0.56px;
 
-  /* &:hover,
+  &:hover,
   &:focus {
-    color: ${(props) => (props.pathname === props.to ? "#fef9f9" : "#54adff")};
     color: #fef9f9;
     background: #54adff;
-  } */
+  }
 `;

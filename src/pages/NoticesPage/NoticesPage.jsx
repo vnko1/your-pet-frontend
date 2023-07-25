@@ -17,7 +17,11 @@ function NoticesPage() {
   }, [pathname, navigate]);
 
   return (
-    <div>
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
