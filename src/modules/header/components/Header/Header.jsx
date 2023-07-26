@@ -42,11 +42,6 @@ const Header = () => {
         <MobileMenu>
           <MenuWrap>
             <Logo />
-            {/* <MobileMenuCloseBtn
-                src={cross}
-                alt="close mobile menu"
-                onClick={() => setisMobileMenuOpen(false)}
-              /> */}
             <MobileMenuCloseBtn onClick={() => setisMobileMenuOpen(false)}>
               <path
                 stroke="inherit"
