@@ -32,11 +32,14 @@ export const StyledLogoutIcon = styled.img`
   height: 24px;
 `;
 
-export const DialogCloseBtn = styled.img`
-display: block;
+export const DialogCloseBtn = styled.svg`
+  display: block;
   width: 24px;
   height: 24px;
   margin-left: auto;
+  path {
+    stroke: #54adff;
+  }
 `;
 
 export const LogoutDialogWrap = styled.div`
