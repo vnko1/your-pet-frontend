@@ -1,8 +1,8 @@
 
 import { useState } from "react";
-import burgerMenuOpen from "../../../../assets/icons/burger-menu.svg";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
+import spriteSvg from "../../../../assets/icons.svg";
 import {
   BurgerMenuBtn,
   StyledHeader,
@@ -29,11 +29,9 @@ const Header = () => {
               isMobileMenuOpen={isMobileMenuOpen}
               onCloseMobileMenu={onCloseMobileMenu}
             />
-            <BurgerMenuBtn
-              src={burgerMenuOpen}
-              alt="open mobile menu"
-              onClick={() => setisMobileMenuOpen(true)}
-            />
+            <BurgerMenuBtn onClick={() => setisMobileMenuOpen(true)}>
+              <use href={spriteSvg + "#menu-hamburger"} />
+            </BurgerMenuBtn>
           </BurgerMenuWrap>
         </>
       )}

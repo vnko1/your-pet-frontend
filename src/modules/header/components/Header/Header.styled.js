@@ -11,9 +11,10 @@ export const StyledHeader = styled.header`
   }
 `;
 
-export const BurgerMenuBtn = styled.img`
+export const BurgerMenuBtn = styled.svg`
   width: 24px;
   height: 24px;
+  stroke: #ffc107;
 
   @media (min-width: 1280px) {
     display: none;

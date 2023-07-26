@@ -50,8 +50,13 @@ const Navigation = (props) => {
           />
         )}
 
-        {((!isLoggedIn && !isMobileMenuOpen && !isMobile) ||
+        {/* {((!isLoggedIn && !isMobileMenuOpen && !isMobile) ||
           (!isLoggedIn && isMobile && isMobileMenuOpen)) && (
+          <AuthNav onCloseMobileMenu={onCloseMobileMenu} />
+        )} */}
+
+        {((!isLoggedIn && !isMobileMenuOpen && !isMobile) ||
+          (!isLoggedIn && isMobileMenuOpen)) && (
           <AuthNav onCloseMobileMenu={onCloseMobileMenu} />
         )}
       </>
