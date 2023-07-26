@@ -7,19 +7,20 @@ width: 100%;
 height: 100%;
 background: rgba(97, 97, 97, 0.60);
 backdrop-filter: blur(4px);
-
+z-index:1;
 `;
 
 export const ModalNoticeBox = styled.div`
-  position: relative;
-  top:200px;
-  left:300px;
-  width: 681px;
-  height: 540px;
-  padding: 24px 31px;
-  border-radius: 40px;
-  // background: #5555;
-  background: #FFF;
+ position: relative;
+top: 50%; /* Center vertically */
+left: 50%; /* Center horizontally */
+transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+width: 681px;
+height: 540px;
+padding: 24px 31px;
+border-radius: 40px;
+// background: #5555;
+background: #FFF;
 
   @media (max-width: 767px) {
     width: 280px;
