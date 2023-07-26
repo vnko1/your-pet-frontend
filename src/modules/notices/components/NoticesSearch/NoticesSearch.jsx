@@ -16,37 +16,86 @@ import { useSearchParams } from "react-router-dom";
 //   REJECTED: "rejected",
 // };
 
-function NoticesSearch() {
+const useSearch = () => {
   const [search, setSearch] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  useEffect(() => {
+    const searchValue = searchParams.get("search");
+    setSearch(searchValue || "");
+  }, [searchParams]);
+
+  const handleSearchChange = (value) => {
+    console.log("value", value);
+    setSearch(value);
+    if (value === "") {
+      setSearchParams((prevSearchParams) => {
+        prevSearchParams.delete("search");
+        return prevSearchParams;
+      });
+    } else {
+      setSearchParams({ search: value });
+    }
+  };
+
+  const resetInput = () => {
+    setSearch("");
+    setSearchParams((prevSearchParams) => {
+      prevSearchParams.delete("search");
+      return prevSearchParams;
+    });
+  };
+
+  return {
+    search,
+    handleSearchChange,
+    resetInput,
+  };
+};
+
+function NoticesSearch() {
+  // =====================с хуком==========================
+  // const { search, handleSearchChange, resetInput } = useSearch();
+  // // const fullURL = window.location.href;
+  // // console.log("fullURL", fullURL);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // запрос
+  // };
+
+  // =====================без хука==========================
+  // нуту сброса инпута при смене категории
+  const [search, setSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
   const fullURL = window.location.href;
-  console.log("fullURL", fullURL);
-
-  // const searchParams2 = new URLSearchParams(window.location.search);
-
-  const queryString = searchParams.toString();
-
-  console.log("queryString", queryString);
-
-  const searchValue = searchParams.get("search");
-
-  console.log("search", search);
-  console.log("searchParams", searchParams);
-  console.log("searchValue", searchValue);
+  // console.log("fullURL", fullURL);
 
   useEffect(() => {
-    if (!search) {
-      return;
-    }
+    const searchValue = searchParams.get("search");
+    setSearch(searchValue || "");
+  }, [searchParams]);
 
-    const handleSearch = (value) => {
-      setSearchParams({ search: value });
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchParams({ search });
+    // запрос с url походу - fullURL
+  };
 
-    handleSearch(search);
-  }, [search, setSearchParams]);
+  const handleChange = (e) => {
+    const { value } = e.currentTarget;
+    setSearch(value);
+  };
+
+  const resetInput = () => {
+    setSearch("");
+    setSearchParams((prevSearchParams) => {
+      prevSearchParams.delete("search");
+      return prevSearchParams;
+    });
+  };
+  // ===================================================
 
   // useEffect(() => {
   //   if (!searchValue) {
@@ -55,20 +104,12 @@ function NoticesSearch() {
 
   //   const abortController = new AbortController();
 
-  //   // IIFE
   //   (async function fetch() {
-  //     setLoading(true);
-  //     setStatus(Status.PENDING);
-
   //     try {
   //       // тут fetch
   //       // const searchPets = await fetch(setSearchParams, abortController);
-  //       setData([...searchPets]);
-  //       setStatus(Status.RESOLVED);
-  //       setLoading(false);
   //     } catch (error) {
   //       console.log(error);
-  //       setStatus(Status.REJECTED);
   //     }
   //   })();
 
@@ -77,30 +118,16 @@ function NoticesSearch() {
   //   };
   // }, [searchValue]);
 
-  const handleChange = (e) => {
-    // add debounce
-    const { value } = e.currentTarget;
-    setSearch(value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const resetInput = () => {
-    setSearch("");
-  };
-
   return (
     // временный контейнер
     <ContainerNoticesSearch>
       <Form onSubmit={handleSubmit}>
-        {/* добавить дебаунс после ввода на инпут */}
         <Input
           type="text"
           placeholder="Search"
           value={search}
           onChange={handleChange}
+          // onChange={(e) => handleSearchChange(e.target.value)}
         />
         <BtnsWrap>
           <SubmitBtn type="submit">
