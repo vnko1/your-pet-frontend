@@ -31,6 +31,7 @@ background: #FFF;
 `;
 
 export const Image = styled.img`
+display: block;
   width: 262px;
   height: 298px;
 
@@ -43,6 +44,26 @@ export const Image = styled.img`
     border-radius: 0px 0px 40px 40px;
     background: lightgray 0px -14.355px / 100% 150.131% no-repeat;
   }
+`;
+
+export const Category = styled.p`
+  position: absolute;
+  top: 44px;
+  left: 31px;
+  width: 126px;
+  height: 32px;
+  padding: 11px 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0px 16px 16px 0px;
+  background: #cce4fb;
+
+  color: #111;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
 `;
 
 export const ModalNoticeWrap = styled.div`

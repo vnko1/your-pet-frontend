@@ -14,7 +14,8 @@ import {
   AddressLink,
   AddBtn,
   CommentsBold,
-  ModalNoticeBackdrop
+  ModalNoticeBackdrop,
+  Category
 } from "./ModalNotice.styled";
 
 const ModalNotice = ({ closeModal}) => {  
@@ -27,6 +28,7 @@ const ModalNotice = ({ closeModal}) => {
           src=" https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
           alt="cat"
         />
+        <Category>In good hands</Category>
         <div>
           <Title>Сute dog looking for a home</Title>
           <ModalNoticeInfoList>
