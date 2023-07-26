@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AddToFavorite,
   Card,
@@ -12,12 +13,22 @@ import {
   Title,
   Years,
 } from "./NoticeCategoryItem.styled";
+import ModalNotice from "../ModalNotice";
+
 
 function NoticesCategoryItem() {
   // тут бедет обрезаться текст города
   // const truncatedText = el.textContent.slice(0, maxLength) + "...";
   // el.textContent = truncatedText;
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   return (
     <Card>
       <ImageWrap>
@@ -111,8 +122,9 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
       </ImageWrap>
       <CardTextInfoWrap>
         <Title>Сute dog looking for a home</Title>
-        <LearnMoreBtn>Learn more</LearnMoreBtn>
+        <LearnMoreBtn onClick={openModal}>Learn more</LearnMoreBtn>
       </CardTextInfoWrap>
+      {modalIsOpen && <ModalNotice isOpen={modalIsOpen} closeModal={closeModal}/>}
     </Card>
   );
 }

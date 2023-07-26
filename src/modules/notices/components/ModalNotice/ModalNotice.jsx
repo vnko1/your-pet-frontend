@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 import {
   ModalNoticeBox,
   Image,
@@ -13,10 +14,13 @@ import {
   AddressLink,
   AddBtn,
   CommentsBold,
+  ModalNoticeBackdrop
 } from "./ModalNotice.styled";
 
-const ModalNotice = () => {
-  return (
+const ModalNotice = ({ closeModal}) => {  
+
+  return createPortal(
+    <ModalNoticeBackdrop>
     <ModalNoticeBox>
       <ModalNoticeWrap>
         <Image
@@ -67,7 +71,7 @@ const ModalNotice = () => {
         play and go on walks. I bet he would love having a doggy playmate too!
       
       </Comments>
-      <CloseBtn type="button">
+      <CloseBtn type="button" onClick={closeModal}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -106,6 +110,8 @@ const ModalNotice = () => {
         </AddBtn>
       </div>
     </ModalNoticeBox>
+    </ModalNoticeBackdrop>,
+    document.getElementById('modal-root')
   );
 };
 

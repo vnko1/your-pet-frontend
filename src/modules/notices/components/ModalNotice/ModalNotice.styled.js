@@ -1,7 +1,19 @@
 import styled from "styled-components";
 
+export const ModalNoticeBackdrop = styled.div`
+position: fixed;
+top:0;
+width: 100%;
+height: 100%;
+background: rgba(97, 97, 97, 0.60);
+backdrop-filter: blur(4px);
+
+`;
+
 export const ModalNoticeBox = styled.div`
   position: relative;
+  top:200px;
+  left:300px;
   width: 681px;
   height: 540px;
   padding: 24px 31px;
