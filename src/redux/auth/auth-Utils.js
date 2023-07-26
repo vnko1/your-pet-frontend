@@ -31,7 +31,7 @@ export const handleRejected = (state) => {
 export const userFulfilled = (state, { payload: { token, user } }) => {
   state.isLoggedIn = true;
   state.token = token;
-  state.user = user;
+  state.user = { ...state.user, ...user };
 };
 
 export const getInitialState = (state) => {
