@@ -4,7 +4,6 @@ import burgerMenuOpen from "../../../../assets/icons/burger-menu.svg";
 import cross from "../../../../assets/icons/cross-small.svg";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
-// import { Container } from "../../../../styles";
 import {
   BurgerMenuBtn,
   StyledHeader,
@@ -23,7 +22,6 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      {/* <Container> */}
         {!isMobileMenuOpen && (
           <>
             <Logo />
@@ -57,7 +55,6 @@ const Header = () => {
             />
           </MobileMenu>
         )}
-      {/* </Container> */}
     </StyledHeader>
   );
 };

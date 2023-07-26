@@ -34,7 +34,7 @@ export const StyledNavList = styled.ul`
 
   @media (min-width: 1280px) {
     display: flex;
-    gap: 40px;
+    gap: 38px;
     margin: 0;
 
   }
