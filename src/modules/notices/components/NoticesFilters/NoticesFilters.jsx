@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FilterBtn,
   FilterItem,
@@ -6,10 +6,10 @@ import {
   FilterList,
   Label,
 } from "./NoticesFilters.styled";
-import CheckRoundSVG from "./svg-check";
-import UncheckRoundSVG from "./svg-uncheck";
-
-// const openFilter = () => {};
+import CheckRoundSVG from "./svg/svg-check";
+import UncheckRoundSVG from "./svg/svg-uncheck";
+import FilterSVG from "./svg/svg-filter";
+import ArrowSVG from "./svg/svg-arrow";
 
 function NoticesFilters() {
   const [isExpandedFilter, setExpandedFilter] = useState(false);
@@ -22,16 +22,29 @@ function NoticesFilters() {
   const [isFemale, setIsFemale] = useState(false);
   const [isMale, setIsMale] = useState(false);
 
-  const handleFilterClick = (e) => {
-    console.dir(e.target);
-    const { nodeName, textContent } = e.target;
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-    console.dir(e.target);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleFilterClick = (e) => {
+    // console.dir(e.target);
+    const { nodeName, textContent } = e.target;
+    const nodeValue = e.target.attributes.class?.nodeValue;
 
     if (
       nodeName === "DIV" ||
       (nodeName === "P" && textContent === "Filter") ||
-      nodeName === "svg"
+      nodeValue === "main-icon"
     ) {
       setExpandedFilter((prevState) => !prevState);
     }
@@ -57,25 +70,8 @@ function NoticesFilters() {
     <FilterBtn isExpandedFilter={isExpandedFilter} onClick={handleFilterClick}>
       {!isExpandedFilter ? (
         <>
-          {/* <p>Filter</p> */}
-          <svg
-            style={{
-              zIndex: 5,
-            }}
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              d="M4 4L9 12V18L15 21V12L20 4H4Z"
-              stroke="#54ADFF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          {screenWidth >= 768 && <p>Filter</p>}
+          <FilterSVG />
         </>
       ) : (
         <>
@@ -101,7 +97,13 @@ function NoticesFilters() {
                     gap: 18,
                   }}
                 >
-                  <p>By age</p>
+                  <p
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    By age
+                  </p>
                   <div>
                     <Label>
                       <input
@@ -138,24 +140,7 @@ function NoticesFilters() {
                 </div>
               ) : (
                 <>
-                  <svg
-                    style={{
-                      pointerEvents: "none",
-                    }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      d="M4 9L12 17L20 9"
-                      stroke="#54ADFF"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <ArrowSVG />
                   <p>By age</p>
                 </>
               )}
@@ -173,7 +158,13 @@ function NoticesFilters() {
                     gap: 18,
                   }}
                 >
-                  <p>By gender</p>
+                  <p
+                    style={{
+                      cursor: "pointer",
+                    }}
+                  >
+                    By gender
+                  </p>
                   <div>
                     <Label>
                       <input
@@ -197,24 +188,7 @@ function NoticesFilters() {
                 </div>
               ) : (
                 <>
-                  <svg
-                    style={{
-                      pointerEvents: "none",
-                    }}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                  >
-                    <path
-                      d="M4 9L12 17L20 9"
-                      stroke="#54ADFF"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <ArrowSVG />
                   <p>By gender</p>
                 </>
               )}

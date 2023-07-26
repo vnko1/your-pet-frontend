@@ -4,9 +4,10 @@ import styled from "styled-components";
 export const NoticesNavMainContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
 
   @media (max-width: 767px) {
-    position: relative;
+    /* position: relative; */
     width: 280px;
   }
 

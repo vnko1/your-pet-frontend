@@ -1,18 +1,22 @@
 import styled from "styled-components";
-import UncheckRoundSVG from "./svg-uncheck";
-import CheckRoundSVG from "./svg-check";
 
 export const FilterBtn = styled.div`
   display: flex;
 
   @media (max-width: 768px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+
     width: ${(props) => (props.isExpandedFilter ? "152px" : "40px")};
     height: ${(props) => (props.isExpandedFilter ? "auto" : "40px")};
     gap: 8px;
-    background: ${(props) => (props.isExpandedFilter ? "white" : "#c5dff6")};
+    background: ${(props) =>
+      props.isExpandedFilter ? "rgb(234 245 255)" : "#c5dff6"};
     color: #54adff;
     /* padding: ${(props) => (props.isExpandedFilter ? "8px" : "8px 20px")}; */
-    padding: ${(props) => props.isExpandedFilter && "8px 20px"};
+    padding: ${(props) => props.isExpandedFilter && "8px"};
     flex-direction: ${(props) => (props.isExpandedFilter ? "column" : "row")};
     align-items: ${(props) =>
       props.isExpandedFilter ? "flex-start" : "center"};
@@ -22,6 +26,11 @@ export const FilterBtn = styled.div`
   }
 
   @media (min-width: 768px) {
+    position: absolute;
+    top: 0;
+    right: 145px;
+    z-index: 1;
+
     width: 152px;
     gap: 8px;
     background: ${(props) => (props.isExpandedFilter ? "white" : "#fff")};
