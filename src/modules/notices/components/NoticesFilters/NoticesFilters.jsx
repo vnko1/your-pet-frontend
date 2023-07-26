@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { FilterBtn, FilterItem, FilterList } from "./NoticesFilters.styled";
+import {
+  FilterBtn,
+  FilterItem,
+  FilterItemGender,
+  FilterList,
+  Label,
+} from "./NoticesFilters.styled";
+import CheckRoundSVG from "./svg-check";
+import UncheckRoundSVG from "./svg-uncheck";
 
 // const openFilter = () => {};
 
@@ -8,27 +16,39 @@ function NoticesFilters() {
   const [isExpandedAge, setExpandedAge] = useState(false);
   const [isExpandedGender, setExpandedGender] = useState(false);
 
+  const [isBeforeOneYear, setIsBeforeOneYear] = useState(false);
+  const [isUpOneYear, setIsUpOneYear] = useState(false);
+  const [isUpTwoYear, setIsUpTwoYear] = useState(false);
+  const [isFemale, setIsFemale] = useState(false);
+  const [isMale, setIsMale] = useState(false);
+
   const handleFilterClick = (e) => {
     console.dir(e.target);
     const { nodeName, textContent } = e.target;
 
-    if (nodeName === "DIV" || textContent === "Filter") {
+    console.dir(e.target);
+
+    if (
+      nodeName === "DIV" ||
+      (nodeName === "P" && textContent === "Filter") ||
+      nodeName === "svg"
+    ) {
       setExpandedFilter((prevState) => !prevState);
     }
   };
 
   const handleAgeClick = (e) => {
-    const { nodeName, textContent } = e.target;
+    const { tagName, textContent } = e.target;
 
-    if (nodeName === "LI" || textContent === "By age" || nodeName === "SVG") {
+    if (tagName === "LI" || (tagName === "P" && textContent === "By age")) {
       setExpandedAge((prevState) => !prevState);
     }
   };
 
   const handleGenderClick = (e) => {
-    const { nodeName } = e.target;
+    const { tagName, textContent } = e.target;
 
-    if (nodeName === "LI") {
+    if (tagName === "LI" || (tagName === "P" && textContent === "By gender")) {
       setExpandedGender((prevState) => !prevState);
     }
   };
@@ -37,10 +57,10 @@ function NoticesFilters() {
     <FilterBtn isExpandedFilter={isExpandedFilter} onClick={handleFilterClick}>
       {!isExpandedFilter ? (
         <>
-          <p>Filter</p>
+          {/* <p>Filter</p> */}
           <svg
             style={{
-              pointerEvents: "none",
+              zIndex: 5,
             }}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -62,6 +82,7 @@ function NoticesFilters() {
           <p
             style={{
               width: "100%",
+              pointerEvents: "none",
             }}
           >
             Filter
@@ -82,57 +103,37 @@ function NoticesFilters() {
                 >
                   <p>By age</p>
                   <div>
-                    <label
-                      key={3}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 12,
-                        height: 24,
-                      }}
-                    >
-                      <input
-                        style={{
-                          borderColor: "green",
-                        }}
-                        type="checkbox"
-                        // checked={checked}
-                        // onChange={onChange}
-                      />
-                      <p>3-12 m</p>
-                    </label>
-                    <label
-                      key={4}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 12,
-                        height: 24,
-                      }}
-                    >
+                    <Label>
                       <input
                         type="checkbox"
-                        // checked={checked}
-                        // onChange={onChange}
+                        checked={isBeforeOneYear}
+                        onChange={() => setIsBeforeOneYear((prev) => !prev)}
                       />
-                      <p>up to 1 year</p>
-                    </label>
-                    <label
-                      key={5}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 12,
-                        height: 24,
-                      }}
-                    >
+                      {isBeforeOneYear ? (
+                        <CheckRoundSVG />
+                      ) : (
+                        <UncheckRoundSVG />
+                      )}
+                      <span>3-12 m</span>
+                    </Label>
+                    <Label>
                       <input
                         type="checkbox"
-                        // checked={checked}
-                        // onChange={onChange}
+                        checked={isUpOneYear}
+                        onChange={() => setIsUpOneYear((prev) => !prev)}
                       />
-                      <p>up to 2 year</p>
-                    </label>
+                      {isUpOneYear ? <CheckRoundSVG /> : <UncheckRoundSVG />}
+                      <span>up to 1 year</span>
+                    </Label>
+                    <Label>
+                      <input
+                        type="checkbox"
+                        checked={isUpTwoYear}
+                        onChange={() => setIsUpTwoYear((prev) => !prev)}
+                      />
+                      {isUpTwoYear ? <CheckRoundSVG /> : <UncheckRoundSVG />}
+                      <span>up to 2 year</span>
+                    </Label>
                   </div>
                 </div>
               ) : (
@@ -155,31 +156,69 @@ function NoticesFilters() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  By age
+                  <p>By age</p>
                 </>
               )}
             </FilterItem>
-            <FilterItem key={2} onClick={handleGenderClick}>
-              <svg
-                style={{
-                  pointerEvents: "none",
-                }}
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M4 9L12 17L20 9"
-                  stroke="#54ADFF"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              By gender
-            </FilterItem>
+            <FilterItemGender
+              key={2}
+              isExpandedGender={isExpandedGender}
+              onClick={handleGenderClick}
+            >
+              {isExpandedGender ? (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 18,
+                  }}
+                >
+                  <p>By gender</p>
+                  <div>
+                    <Label>
+                      <input
+                        type="checkbox"
+                        checked={isFemale}
+                        onChange={() => setIsFemale((prev) => !prev)}
+                      />
+                      {isFemale ? <CheckRoundSVG /> : <UncheckRoundSVG />}
+                      <span>female</span>
+                    </Label>
+                    <Label>
+                      <input
+                        type="checkbox"
+                        checked={isMale}
+                        onChange={() => setIsMale((prev) => !prev)}
+                      />
+                      {isMale ? <CheckRoundSVG /> : <UncheckRoundSVG />}
+                      <span>male</span>
+                    </Label>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <svg
+                    style={{
+                      pointerEvents: "none",
+                    }}
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M4 9L12 17L20 9"
+                      stroke="#54ADFF"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <p>By gender</p>
+                </>
+              )}
+            </FilterItemGender>
           </FilterList>
         </>
       )}
