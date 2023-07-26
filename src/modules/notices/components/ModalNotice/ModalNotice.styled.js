@@ -1,20 +1,12 @@
 import styled from "styled-components";
 
-export const ModalNoticeBackdrop = styled.div`
-position: fixed;
-top:0;
-width: 100%;
-height: 100%;
-background: rgba(97, 97, 97, 0.60);
-backdrop-filter: blur(4px);
-z-index:1;
-`;
 
 export const ModalNoticeBox = styled.div`
- position: relative;
-top: 50%; /* Center vertically */
-left: 50%; /* Center horizontally */
-transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+ position: absolute;
+
+top: 50%; 
+left: 50%; 
+transform: translate(-50%, -50%); 
 width: 681px;
 height: 540px;
 padding: 24px 31px;
@@ -30,8 +22,8 @@ background: #FFF;
   }
 `;
 
-export const Image = styled.img`
-display: block;
+export const ImageModalNotise = styled.img`
+// display: block;
   width: 262px;
   height: 298px;
 
@@ -46,7 +38,7 @@ display: block;
   }
 `;
 
-export const Category = styled.p`
+export const CategoryModalNotice = styled.p`
   position: absolute;
   top: 44px;
   left: 31px;
@@ -103,7 +95,7 @@ export const CloseBtn = styled.button`
   }
 `;
 
-export const Title = styled.h1`
+export const TitleModalNotice = styled.h1`
   width: 321px;
   margin-bottom: 20px;
 
