@@ -12,11 +12,14 @@ export const StyledLogout = styled.a`
 
   width: 135px;
   height: 40px;
-  background-color: #54adff;
+  // background-color: #54adff;
+  background: linear-gradient(90deg, #54adff, #54adff);
   color: #fef9f9;
   border-radius: 40px;
   padding-top: 8px;
   padding-bottom: 8px;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   :hover {
     background: linear-gradient(90deg, #9bd0ff, #419ef1);
     cursor: pointer;
@@ -39,9 +42,6 @@ export const StyledLogout = styled.a`
 export const StyledLogoutText = styled.p`
   font-size: 16px;
   line-height: 1.37;
-  
-
-  
 `;
 
 export const StyledLogoutIcon = styled.img`
@@ -122,10 +122,3 @@ export const LogoutDialogButton = styled.button`
     width: 129px;
   }
 `;
-
-
-
-
-// export const LogoutIcon = styled.svg.attrs({
-//   xmlns: "http://www.w3.org/2000/svg",
-// })``;

@@ -47,6 +47,9 @@ export const StyledAuthNavButton = styled(Link)`
   border: 2px solid #ffc107;
   padding-top: 8px;
   padding-bottom: 8px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   :hover {
     background-color: ${(props) => (props.$primary ? "#FEF9F9" : "#FFC107")};
     color: ${(props) => (props.$primary ? "#FFC107" : "#FEF9F9")};

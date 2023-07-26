@@ -18,6 +18,8 @@ export const CommonNavLink = styled(NavLink)`
 
   @media (min-width: 1280px) {
     font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 `;
 
@@ -36,7 +38,6 @@ export const StyledNavList = styled.ul`
     display: flex;
     gap: 38px;
     margin: 0;
-
   }
 `;
 
