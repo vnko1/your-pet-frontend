@@ -1,10 +1,6 @@
 import styled from "styled-components";
-// import { Link } from "react-router-dom";
 
 export const StyledLogout = styled.a`
-  position: absolute;
-  bottom: 20px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,19 +19,6 @@ export const StyledLogout = styled.a`
   :hover {
     background: linear-gradient(90deg, #9bd0ff, #419ef1);
     cursor: pointer;
-  }
-
-  @media (max-width: 767px) {
-    left: 20px;
-  }
-
-  @media (min-width: 768px) {
-    top: 26px;
-    right: 80px;
-  }
-
-  @media (min-width: 1280px) {
-    position: static;
   }
 `;
 

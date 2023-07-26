@@ -24,7 +24,7 @@ const Header = () => {
     <StyledHeader>
         {!isMobileMenuOpen && (
           <>
-            <Logo />
+          <Logo />
             <BurgerMenuWrap>
               <Navigation
                 isMobileMenuOpen={isMobileMenuOpen}
@@ -52,7 +52,7 @@ const Header = () => {
             <Navigation
               isMobileMenuOpen={isMobileMenuOpen}
               onCloseMobileMenu={onCloseMobileMenu}
-            />
+          />
           </MobileMenu>
         )}
     </StyledHeader>
