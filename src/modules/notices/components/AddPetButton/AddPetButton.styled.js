@@ -21,7 +21,6 @@ export const AddPetBtn = styled.button`
   &:hover,
   &:focus {
     color: #fef9f9;
-    /* background: #54adff; */
     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
   }
 

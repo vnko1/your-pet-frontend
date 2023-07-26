@@ -10,8 +10,6 @@ function NoticesPage() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  console.log("pathname", pathname);
-
   useEffect(() => {
     if (pathname === "/notices") {
       navigate("/notices/sell", { replace: true });
@@ -19,7 +17,11 @@ function NoticesPage() {
   }, [pathname, navigate]);
 
   return (
-    <div>
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
