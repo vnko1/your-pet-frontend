@@ -4,9 +4,10 @@ import styled from "styled-components";
 export const NoticesNavMainContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
 
   @media (max-width: 767px) {
-    position: relative;
+    /* position: relative; */
     width: 280px;
   }
 
@@ -57,24 +58,17 @@ export const LinkButton = styled(Link)`
 
   border-radius: 40px;
   border-color: transparent;
-  /* color: #54adff;
-  background: #cce4fb; */
   text-decoration: none;
-
   color: ${(props) => (props.active === props.to ? "#fef9f9" : "#54adff")};
   background: ${(props) => (props.active === props.to ? "#54adff" : "#cce4fb")};
 
-  font-family: Manrope;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   letter-spacing: 0.56px;
 
-  /* &:hover,
+  &:hover,
   &:focus {
-    color: ${(props) => (props.pathname === props.to ? "#fef9f9" : "#54adff")};
     color: #fef9f9;
     background: #54adff;
-  } */
+  }
 `;

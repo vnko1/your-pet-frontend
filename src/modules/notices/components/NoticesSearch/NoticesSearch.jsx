@@ -16,50 +16,86 @@ import { useSearchParams } from "react-router-dom";
 //   REJECTED: "rejected",
 // };
 
-function NoticesSearch() {
+const useSearch = () => {
   const [search, setSearch] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const fullURL = window.location.href;
-  console.log("fullURL", fullURL);
-
-  const searchValue = searchParams.get("search");
-  console.log("searchValue", searchValue);
-
-  // search=значение ввода
-  // console.log(searchParams.toString());
-
   useEffect(() => {
-    if (searchValue) {
-      setSearchParams({ search: searchValue });
-    } else {
-      setSearchParams((prevSearchParams) => {
-        const newSearchParams = new URLSearchParams(prevSearchParams);
-        newSearchParams.delete("search");
-        return newSearchParams;
-      });
-    }
-  }, [searchValue, setSearchParams]);
+    const searchValue = searchParams.get("search");
+    setSearch(searchValue || "");
+  }, [searchParams]);
 
-  const handleChange = (e) => {
-    const { value } = e.currentTarget;
+  const handleSearchChange = (value) => {
+    console.log("value", value);
     setSearch(value);
-    setSearchParams({ search: value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // запрос с url походу - fullURL
+    if (value === "") {
+      setSearchParams((prevSearchParams) => {
+        prevSearchParams.delete("search");
+        return prevSearchParams;
+      });
+    } else {
+      setSearchParams({ search: value });
+    }
   };
 
   const resetInput = () => {
     setSearch("");
     setSearchParams((prevSearchParams) => {
-      const newSearchParams = new URLSearchParams(prevSearchParams);
-      newSearchParams.delete("search");
-      return newSearchParams;
+      prevSearchParams.delete("search");
+      return prevSearchParams;
     });
   };
+
+  return {
+    search,
+    handleSearchChange,
+    resetInput,
+  };
+};
+
+function NoticesSearch() {
+  // =====================с хуком==========================
+  // const { search, handleSearchChange, resetInput } = useSearch();
+  // // const fullURL = window.location.href;
+  // // console.log("fullURL", fullURL);
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // запрос
+  // };
+
+  // =====================без хука==========================
+  // нуту сброса инпута при смене категории
+  const [search, setSearch] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const fullURL = window.location.href;
+  // console.log("fullURL", fullURL);
+
+  useEffect(() => {
+    const searchValue = searchParams.get("search");
+    setSearch(searchValue || "");
+  }, [searchParams]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchParams({ search });
+    // запрос с url походу - fullURL
+  };
+
+  const handleChange = (e) => {
+    const { value } = e.currentTarget;
+    setSearch(value);
+  };
+
+  const resetInput = () => {
+    setSearch("");
+    setSearchParams((prevSearchParams) => {
+      prevSearchParams.delete("search");
+      return prevSearchParams;
+    });
+  };
+  // ===================================================
 
   // useEffect(() => {
   //   if (!searchValue) {
@@ -69,11 +105,9 @@ function NoticesSearch() {
   //   const abortController = new AbortController();
 
   //   (async function fetch() {
-
   //     try {
   //       // тут fetch
   //       // const searchPets = await fetch(setSearchParams, abortController);
-
   //     } catch (error) {
   //       console.log(error);
   //     }
@@ -88,12 +122,12 @@ function NoticesSearch() {
     // временный контейнер
     <ContainerNoticesSearch>
       <Form onSubmit={handleSubmit}>
-        {/* добавить дебаунс после ввода на инпут */}
         <Input
           type="text"
           placeholder="Search"
           value={search}
           onChange={handleChange}
+          // onChange={(e) => handleSearchChange(e.target.value)}
         />
         <BtnsWrap>
           <SubmitBtn type="submit">

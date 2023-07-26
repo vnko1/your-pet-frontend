@@ -151,11 +151,8 @@ export const CardTextInfoWrap = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-family: Manrope;
   font-size: 24px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   color: #111;
 `;
 
@@ -167,11 +164,8 @@ export const LearnMoreBtn = styled.button`
   align-items: center;
   gap: 10px;
 
-  font-family: Manrope;
   font-size: 16px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
   letter-spacing: 0.64px;
 
   border-radius: 40px;
@@ -181,6 +175,7 @@ export const LearnMoreBtn = styled.button`
 
   &:hover,
   &:focus {
+    border: transparent;
     color: #fef9f9;
     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
   }
