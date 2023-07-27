@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { logOut } from "../../../redux/auth/auth-operations";
 import logoutSvg from "../../../assets/icons/logout.svg";
-import crossSvg from "../../../assets/icons/cross-small.svg";
 import {
   StyledLogout,
   StyledLogoutText,
@@ -38,11 +37,15 @@ const Logout = (props) => {
       {isModalOpen && (
         <Modal toggleModal={() => setIsModalOpen(false)}>
           <LogoutDialogWrap>
-            <DialogCloseBtn
-              src={crossSvg}
-              alt="close logout dialog"
-              onClick={() => setIsModalOpen(false)}
-            />
+            <DialogCloseBtn onClick={() => setIsModalOpen(false)}>
+              <path
+                stroke="inherit"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="M19 5 5 19M5 5l14 14"
+              />
+            </DialogCloseBtn>
             <LogoutDialogText>Already leaving?</LogoutDialogText>
 
             <LogoutDialogButtonWrap>
@@ -53,11 +56,7 @@ const Logout = (props) => {
                 <LogoutDialogButtonText>Cancel</LogoutDialogButtonText>
               </LogoutDialogButton>
 
-              <LogoutDialogButton
-                $primary
-                type="button"
-                onClick={onLogoutUser}
-              >
+              <LogoutDialogButton $primary type="button" onClick={onLogoutUser}>
                 <LogoutDialogButtonText $primary>Yes</LogoutDialogButtonText>
               </LogoutDialogButton>
             </LogoutDialogButtonWrap>

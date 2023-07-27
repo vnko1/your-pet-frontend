@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import authSelectors from "../../../../redux/auth/auth-selectors";
 import userSvg from "../../../../assets/icons/avatar.svg";
 import { StyledUser, StyledUserName, StyledUserIcon } from "./User.styled";
 
@@ -7,6 +9,7 @@ const User = (props) => {
   const { isMobileMenuOpen, isDesktop } = props;
   const [isTablet, setIsTablet] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const userName = useSelector(authSelectors.selectUserName);
 
   useEffect(() => {
     const onDetectTablet = function() {
@@ -41,15 +44,13 @@ const User = (props) => {
 
   return (
     <StyledUser to="/user">
-      {((!isTablet) ||
-        (isTablet && !isMobileMenuOpen)) &&
-          <StyledUserIcon src={userSvg} alt="user avatar" />
-        }
+      {(!isTablet || (isTablet && !isMobileMenuOpen)) && (
+        <StyledUserIcon src={userSvg} alt="user avatar" />
+      )}
 
       {((isMobile && isMobileMenuOpen) ||
         (isTablet && !isMobileMenuOpen) ||
-        (isDesktop)) && <StyledUserName>Anna</StyledUserName>}
-      
+        isDesktop) && <StyledUserName>{userName}</StyledUserName>}
     </StyledUser>
   );
 };
