@@ -30,7 +30,7 @@ export const MobileMenuCloseBtn = styled.svg`
 `;
 
 export const MobileMenu = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 
