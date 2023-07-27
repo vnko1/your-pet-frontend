@@ -27,9 +27,15 @@ const useNavButtons = () => {
 
     if (fullURL.includes("/notices/")) {
       const parts = fullURL.split("/");
-      console.log(parts);
       const categoryValue = parts[parts.length - 1];
-      console.log(categoryValue);
+      if (categoryValue.includes("search")) {
+        const parts = categoryValue.split("?");
+        console.log(parts);
+        const newCategoryValue = parts[0];
+        console.log(newCategoryValue);
+
+        return newCategoryValue;
+      }
 
       return categoryValue;
     } else {
@@ -67,9 +73,8 @@ function NoticesCategoriesNav() {
       ? `${baseUrl}?page=1&limit=9&category=${activeButton}&filter=${search}`
       : `${baseUrl}?page=1&limit=9&category=${activeButton}`;
 
-    // fetch(url)
-    //   .then((data) => data.json())
-    //   .then(console.log);
+    // ?search=cat&date=0.5%2C1%2C2&sex=male%2Cfemale
+
     dispatch(fetchNotices(url));
   }, [activeButton, dispatch, search]);
 
