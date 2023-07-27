@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddPetButton from "../AddPetButton";
 import NoticesFilters from "../NoticesFilters";
@@ -8,43 +8,87 @@ import {
   NoticesNavMainContainer,
   NoticesNavWrap,
 } from "./NoticesCategoriesNav.styled";
+import useSearch from "../NoticesSearch/hook/useSearch";
+import { useDispatch } from "react-redux";
+// import { fetchNotices } from "redux/notices/notices-operations";
+import { fetchNotices } from "../../../../redux/notices/notices-operations";
 
 const initialCategoryBtnUrl = [
-  { to: "/notices/sell", label: "sell" },
-  { to: "/notices/lost-found", label: "lost/found" },
-  { to: "/notices/for-free", label: "in good hands" },
+  { to: "sell", label: "sell" },
+  { to: "lost-found", label: "lost-found" },
+  { to: "for-free", label: "in good hands" },
 ];
 
-const useLoggedInButtons = () => {
+const useNavButtons = () => {
   const [login, setLogin] = useState(true);
-  // const [login, setLogin] = useState(false);
-  const [categoryBtnUrl, setCategoryBtnUrl] = useState(initialCategoryBtnUrl);
+  const [categoryBtnsUrl, setCategoryBtnsUrl] = useState(initialCategoryBtnUrl);
+  const [activeButton, setActiveButton] = useState(() => {
+    const fullURL = window.location.href;
 
-  if (login && categoryBtnUrl.length === 3) {
-    setCategoryBtnUrl((prevCategoryBtnUrl) => [
+    if (fullURL.includes("/notices/")) {
+      const parts = fullURL.split("/");
+      console.log(parts);
+      const categoryValue = parts[parts.length - 1];
+      console.log(categoryValue);
+
+      return categoryValue;
+    } else {
+      return "sell";
+    }
+  });
+
+  if (login && categoryBtnsUrl.length === 3) {
+    setCategoryBtnsUrl((prevCategoryBtnUrl) => [
       ...prevCategoryBtnUrl,
-      { to: "/notices/favorite", label: "favorite ads" },
-      { to: "/notices/own", label: "my ads" },
+      { to: "favorite", label: "favorite ads" },
+      { to: "own", label: "my ads" },
     ]);
   }
 
   return {
     login,
     setLogin,
-    categoryBtnUrl,
+    categoryBtnsUrl,
+    activeButton,
+    setActiveButton,
   };
 };
 
 function NoticesCategoriesNav() {
-  const { login, setLogin, categoryBtnUrl } = useLoggedInButtons();
-  const { pathname } = useLocation();
+  const { login, setLogin, categoryBtnsUrl, activeButton, setActiveButton } =
+    useNavButtons();
+  const { search, resetInput } = useSearch();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
+    const url = search
+      ? `${baseUrl}?page=1&limit=9&category=${activeButton}&filter=${search}`
+      : `${baseUrl}?page=1&limit=9&category=${activeButton}`;
+
+    // fetch(url)
+    //   .then((data) => data.json())
+    //   .then(console.log);
+    dispatch(fetchNotices(url));
+  }, [activeButton, dispatch, search]);
+
+  const resetSearchQuery = (btn) => {
+    resetInput();
+    setActiveButton(btn);
+  };
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <NoticesNavMainContainer>
         <NoticesNavWrap>
-          {categoryBtnUrl.map((btn) => (
-            <LinkButton key={btn.to} to={btn.to} active={pathname}>
+          {categoryBtnsUrl.map((btn) => (
+            <LinkButton
+              key={btn.to}
+              to={btn.to}
+              active={activeButton}
+              onClick={() => resetSearchQuery(btn.to)}
+            >
               {btn.label}
             </LinkButton>
           ))}

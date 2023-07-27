@@ -1,14 +1,23 @@
+import { useSelector } from "react-redux";
+import { noticesList } from "../../../../redux/notices/notices-selectors";
 import NoticesCategoryItem from "../NoticeCategoryItem/NoticeCategoryItem";
 import { CardList } from "./NoticesCategoriesList.styled";
 
 function NoticesCategoriesList() {
-  const arr = [1, 2, 3, 4, 5, 6];
+  const list = useSelector(noticesList);
+
+  console.log("list", list);
 
   return (
     <CardList>
-      {arr &&
-        arr.map((card) => {
-          return <NoticesCategoryItem key={card}>{card}</NoticesCategoryItem>;
+      {list &&
+        list.map((card) => {
+          return (
+            <NoticesCategoryItem
+              key={card._id}
+              card={card}
+            ></NoticesCategoryItem>
+          );
         })}
     </CardList>
   );

@@ -16,6 +16,8 @@ function NoticesPage() {
     }
   }, [pathname, navigate]);
 
+  console.log("NoticesPage");
+
   return (
     <div
       style={{
@@ -26,7 +28,7 @@ function NoticesPage() {
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
       {/* <ModalNotice /> */}
-     
+
       {/* <AddPetButton /> */}
     </div>
   );

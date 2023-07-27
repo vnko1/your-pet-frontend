@@ -15,12 +15,52 @@ import {
 } from "./NoticeCategoryItem.styled";
 import ModalNotice from "../ModalNotice";
 
+function NoticesCategoryItem(props) {
+  const {
+    card: { category, comments, date, fileUrl, location, name, sex, title },
+  } = props;
+  // category: "sell";
+  // comments: "Good Klop";
+  // date: "2021-11-10T22:00:00.000Z";
+  // fileId: "file/file_FMAFCld14OtXTQGZdu_DO_pdp5ty";
+  // fileUrl: "https://res.cloudinary.com/de2bdafop/image/upload/v1690359225/file/file_FMAFCld14OtXTQGZdu_DO_pdp5ty.png";
+  // location: "UnderEarth";
+  // name: "Klop";
+  // owner: "64c0d4e5a594175f6cf5c083";
+  // price: 175;
+  // sex: "male";
+  // title: "Good price fo good Klop";
+  // type: "Klop";
+  // _id: "64c0d5b7a594175f6cf5c088";
 
-function NoticesCategoryItem() {
   // тут бедет обрезаться текст города
-  // const truncatedText = el.textContent.slice(0, maxLength) + "...";
-  // el.textContent = truncatedText;
+  const sliceLocation = (location) => {
+    if (location.length > 4) {
+      return location.slice(0, 4) + "...";
+    } else {
+      return location;
+    }
+  };
+
+  const makeAge = (petDate) => {
+    const date = new Date(petDate);
+    const currentDate = new Date();
+
+    const yearDifference = currentDate.getFullYear() - date.getFullYear();
+    const monthDifference = currentDate.getMonth() + 1 - (date.getMonth() + 1);
+
+    let result;
+
+    if (yearDifference >= 1) {
+      return (result = yearDifference + " year");
+    } else {
+      return (result = monthDifference + " month");
+    }
+  };
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  console.log(category);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -32,11 +72,7 @@ function NoticesCategoryItem() {
   return (
     <Card>
       <ImageWrap>
-        <Image
-          src="
-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
-          alt="cat"
-        />
+        <Image src={`${fileUrl}`} alt={`${name}`} />
         <AddToFavorite>
           <HeartIconWrap>
             <svg
@@ -56,7 +92,7 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
             </svg>
           </HeartIconWrap>
         </AddToFavorite>
-        <Category>In good hands</Category>
+        <Category>{category}</Category>
         <City>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -80,8 +116,7 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
               strokeLinejoin="round"
             />
           </svg>
-          {/* Ivano - Frankivsk */}
-          Lviv
+          {sliceLocation(location)}
         </City>
         <Years>
           <svg
@@ -99,7 +134,7 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
               strokeLinejoin="round"
             />
           </svg>
-          1 year
+          {makeAge(date)}
         </Years>
         <Gender>
           <svg
@@ -117,14 +152,16 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
               strokeLinejoin="round"
             />
           </svg>
-          female
+          {sex}
         </Gender>
       </ImageWrap>
       <CardTextInfoWrap>
-        <Title>Сute dog looking for a home</Title>
+        <Title>{title}</Title>
         <LearnMoreBtn onClick={openModal}>Learn more</LearnMoreBtn>
       </CardTextInfoWrap>
-      {modalIsOpen && <ModalNotice isOpen={modalIsOpen} closeModal={closeModal}/>}
+      {modalIsOpen && (
+        <ModalNotice isOpen={modalIsOpen} closeModal={closeModal} />
+      )}
     </Card>
   );
 }
