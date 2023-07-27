@@ -10,19 +10,73 @@ import CheckRoundSVG from "./svg/svg-check";
 import UncheckRoundSVG from "./svg/svg-uncheck";
 import FilterSVG from "./svg/svg-filter";
 import ArrowSVG from "./svg/svg-arrow";
+// import { useSearchParams } from "react-router-dom";
+import initialFilterValue from "./initialFilterValue";
+import useSearch from "../NoticesSearch/hook/useSearch";
 
 function NoticesFilters() {
   const [isExpandedFilter, setExpandedFilter] = useState(false);
   const [isExpandedAge, setExpandedAge] = useState(false);
   const [isExpandedGender, setExpandedGender] = useState(false);
 
-  const [isBeforeOneYear, setIsBeforeOneYear] = useState(false);
-  const [isUpOneYear, setIsUpOneYear] = useState(false);
-  const [isUpTwoYear, setIsUpTwoYear] = useState(false);
-  const [isFemale, setIsFemale] = useState(false);
-  const [isMale, setIsMale] = useState(false);
+  const [isBeforeOneYear, setIsBeforeOneYear] = useState(
+    initialFilterValue("0.5")
+  );
+  const [isUpOneYear, setIsUpOneYear] = useState(initialFilterValue("1"));
+  const [isUpTwoYear, setIsUpTwoYear] = useState(initialFilterValue("2"));
+  const [isFemale, setIsFemale] = useState(initialFilterValue("female"));
+  const [isMale, setIsMale] = useState(initialFilterValue("male"));
+
+  console.log(isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale);
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const { setSearchParams } = useSearch();
+
+  useEffect(() => {
+    const dateArray = [];
+    const sexArray = [];
+
+    if (isBeforeOneYear || isUpOneYear || isUpTwoYear) {
+      if (isBeforeOneYear) dateArray.push("0.5");
+      if (isUpOneYear) dateArray.push("1");
+      if (isUpTwoYear) dateArray.push("2");
+    }
+
+    if (isFemale || isMale) {
+      if (isMale) sexArray.push("male");
+      if (isFemale) sexArray.push("female");
+    }
+
+    setSearchParams((prevSearchParams) => {
+      // Создаем новый объект URLSearchParams на основе текущих параметров
+      const newSearchParams = new URLSearchParams(prevSearchParams);
+
+      // Устанавливаем параметр 'date'
+      if (dateArray.length > 0) {
+        newSearchParams.set("date", dateArray.join(","));
+      } else {
+        newSearchParams.delete("date");
+      }
+
+      // Устанавливаем параметр 'sex'
+      if (sexArray.length > 0) {
+        newSearchParams.set("sex", sexArray.join(","));
+      } else {
+        newSearchParams.delete("sex");
+      }
+
+      return newSearchParams;
+    });
+  }, [
+    isBeforeOneYear,
+    isFemale,
+    isMale,
+    isUpOneYear,
+    isUpTwoYear,
+    setSearchParams,
+  ]);
 
   useEffect(() => {
     const handleResize = () => {

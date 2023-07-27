@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   AddToFavorite,
   Card,
@@ -15,52 +16,36 @@ import {
 } from "./NoticeCategoryItem.styled";
 import ModalNotice from "../ModalNotice";
 
-function NoticesCategoryItem(props) {
-  const {
-    card: { category, comments, date, fileUrl, location, name, sex, title },
-  } = props;
-  // category: "sell";
-  // comments: "Good Klop";
-  // date: "2021-11-10T22:00:00.000Z";
-  // fileId: "file/file_FMAFCld14OtXTQGZdu_DO_pdp5ty";
-  // fileUrl: "https://res.cloudinary.com/de2bdafop/image/upload/v1690359225/file/file_FMAFCld14OtXTQGZdu_DO_pdp5ty.png";
-  // location: "UnderEarth";
-  // name: "Klop";
-  // owner: "64c0d4e5a594175f6cf5c083";
-  // price: 175;
-  // sex: "male";
-  // title: "Good price fo good Klop";
-  // type: "Klop";
-  // _id: "64c0d5b7a594175f6cf5c088";
+// тут бедет обрезаться текст города
+const sliceLocation = (location) => {
+  if (location.length > 4) {
+    return location.slice(0, 4) + "...";
+  } else {
+    return location;
+  }
+};
 
-  // тут бедет обрезаться текст города
-  const sliceLocation = (location) => {
-    if (location.length > 4) {
-      return location.slice(0, 4) + "...";
-    } else {
-      return location;
-    }
-  };
+// тут форматируеться возраст
+const makeAge = (petDate) => {
+  const date = new Date(petDate);
+  const currentDate = new Date();
 
-  const makeAge = (petDate) => {
-    const date = new Date(petDate);
-    const currentDate = new Date();
+  const yearDifference = currentDate.getFullYear() - date.getFullYear();
+  const monthDifference = currentDate.getMonth() + 1 - (date.getMonth() + 1);
 
-    const yearDifference = currentDate.getFullYear() - date.getFullYear();
-    const monthDifference = currentDate.getMonth() + 1 - (date.getMonth() + 1);
+  let result;
 
-    let result;
+  if (yearDifference >= 1) {
+    return (result = yearDifference + " year");
+  } else {
+    return (result = monthDifference + " month");
+  }
+};
 
-    if (yearDifference >= 1) {
-      return (result = yearDifference + " year");
-    } else {
-      return (result = monthDifference + " month");
-    }
-  };
-
+function NoticesCategoryItem({
+  card: { category, date, fileUrl, location, name, sex, title },
+}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  console.log(category);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -69,6 +54,7 @@ function NoticesCategoryItem(props) {
   const closeModal = () => {
     setModalIsOpen(false);
   };
+
   return (
     <Card>
       <ImageWrap>
@@ -167,3 +153,16 @@ function NoticesCategoryItem(props) {
 }
 
 export default NoticesCategoryItem;
+
+NoticesCategoryItem.propTypes = {
+  card: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    // fileUrl: PropTypes.string.isRequired,
+    fileUrl: PropTypes.string,
+    location: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    sex: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};

@@ -3,8 +3,6 @@ import NoticesCategoriesNav from "../../modules/notices/components/NoticesCatego
 import NoticesCategoriesList from "../../modules/notices/components/NoticesCategoriesList";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-// import ModalNotice from "../../modules/notices/components/ModalNotice/ModalNotice";
-// import AddPetButton from "../../modules/notices/components/AddPetButton";
 
 function NoticesPage() {
   const { pathname } = useLocation();
@@ -27,9 +25,6 @@ function NoticesPage() {
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
-      {/* <ModalNotice /> */}
-
-      {/* <AddPetButton /> */}
     </div>
   );
 }
