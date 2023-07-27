@@ -5,16 +5,27 @@ export const UserPetsBody = styled.div`
 `;
 
 export const UserPetsHead = styled.div`
-  margin-bottom: 24px;
-  display: flex;
-  justify-content: space-between;
+  font-style: normal;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 20px;
+  line-height: 1.35;
+  margin-bottom: 18px;
+  color: #000000;
+
+  @media (${(props) => props.theme.media.tablet}) {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
 `;
 
 export const NoUserPets = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   padding: 20px;
   text-align: center;
+
+  @media (${(props) => props.theme.media.tablet}) {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
 `;
