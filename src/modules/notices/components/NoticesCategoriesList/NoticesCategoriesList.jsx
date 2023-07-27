@@ -6,8 +6,6 @@ import { CardList } from "./NoticesCategoriesList.styled";
 function NoticesCategoriesList() {
   const list = useSelector(noticesList);
 
-  console.log("list", list);
-
   return (
     <CardList>
       {list &&
