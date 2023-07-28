@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Form, Field } from "formik";
 
 export const UserImgBox = styled.div`
   margin-bottom: 32px;
@@ -27,7 +28,7 @@ export const UserImgInput = styled.input`
   z-index: -1;
 `;
 
-export const UserFormBody = styled.div`
+export const UserFormBody = styled(Form)`
   padding-right: 0;
 
   @media screen and (min-width: 768px) {
@@ -57,7 +58,7 @@ export const UserFormLabel = styled.label`
   }
 `;
 
-export const UserFormInput = styled.input`
+export const UserFormInput = styled(Field)`
   height: 28px;
   font-weight: 400;
   font-size: 12px;

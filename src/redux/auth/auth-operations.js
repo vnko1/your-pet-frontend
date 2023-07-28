@@ -85,6 +85,7 @@ export const getCurrentUser = createAsyncThunk(
 
       // notifyFulfilledLogin();
       console.log("тут фулфілд логін");
+      console.log(data);
 
       return data;
     } catch (error) {
