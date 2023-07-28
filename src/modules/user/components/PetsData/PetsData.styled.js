@@ -33,11 +33,15 @@ export const UserPetsTitleWrap = styled.div`
 `;
 
 export const UserPetsTitle = styled.h2`
+=======
+  flex: 1 1 65%;
+`;
+
+export const UserPetsHead = styled.div`
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.35;
-
   color: #000000;
 
   @media screen and (min-width: 768px) {
@@ -77,6 +81,12 @@ export const UserPetsNavBtn = styled.button`
     line-height: 22px;
     letter-spacing: 0.04em;
     color: #fef9f9;
+  margin-bottom: 18px;
+  color: #000000;
+
+  @media (${(props) => props.theme.media.tablet}) {
+    font-size: 28px;
+    margin-bottom: 24px;
   }
 `;
 
@@ -216,3 +226,4 @@ export const UserPetsBtn = styled.button`
     right: 20px;
   }
 `;
+

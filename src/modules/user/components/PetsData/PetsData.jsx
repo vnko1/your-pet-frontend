@@ -1,3 +1,4 @@
+
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import { deletePet } from "./../../../../redux/pets/pets-operation";
@@ -84,5 +85,6 @@ const PetsData = () => {
     </UserPetsBody>
   );
 };
+
 
 export default PetsData;
