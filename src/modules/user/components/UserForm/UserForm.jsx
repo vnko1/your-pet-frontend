@@ -23,7 +23,7 @@ const initialValues = {
   birthday: null,
   phone: null,
   city: null,
-
+};
 
 
 const UserForm = () => {
