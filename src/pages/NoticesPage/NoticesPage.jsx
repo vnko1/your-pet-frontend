@@ -14,8 +14,6 @@ function NoticesPage() {
     }
   }, [pathname, navigate]);
 
-  console.log("NoticesPage");
-
   return (
     <div
       style={{

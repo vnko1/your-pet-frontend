@@ -1,4 +1,3 @@
-import { useLocation, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AddPetButton from "../AddPetButton";
 import NoticesFilters from "../NoticesFilters";
@@ -10,8 +9,8 @@ import {
 } from "./NoticesCategoriesNav.styled";
 import useSearch from "../NoticesSearch/hook/useSearch";
 import { useDispatch } from "react-redux";
-// import { fetchNotices } from "redux/notices/notices-operations";
 import { fetchNotices } from "../../../../redux/notices/notices-operations";
+import useFilter from "../NoticesFilters/useFilter";
 
 const initialCategoryBtnUrl = [
   { to: "sell", label: "sell" },
@@ -62,6 +61,8 @@ function NoticesCategoriesNav() {
     useNavButtons();
   const { search, resetInput } = useSearch();
 
+  const { filterState, setFilterState, resetFilter } = useFilter();
+
   const dispatch = useDispatch();
 
   const url = window.location.href;
@@ -70,7 +71,7 @@ function NoticesCategoriesNav() {
     const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
 
     if (url.includes("date") || url.includes("sex")) {
-      console.log("renderNav");
+      // console.log("renderNav");
       const newArr = url.split("?");
       newArr.shift();
       const query = newArr.map((query) => query.replace(/%2C/g, ","));
@@ -78,7 +79,7 @@ function NoticesCategoriesNav() {
 
       const fetchUrl = `${baseUrl}?page=1&limit=9&category=${activeButton}&${filterQuery}`;
 
-      console.log("fetchUrl", fetchUrl);
+      // console.log("fetchUrl", fetchUrl);
 
       dispatch(fetchNotices(fetchUrl));
     } else {
@@ -89,7 +90,8 @@ function NoticesCategoriesNav() {
     }
   }, [activeButton, dispatch, search, url]);
 
-  const resetSearchQuery = (btn) => {
+  const resetAllSearchQuery = (btn) => {
+    resetFilter();
     resetInput();
     setActiveButton(btn);
   };
@@ -103,14 +105,17 @@ function NoticesCategoriesNav() {
               key={btn.to}
               to={btn.to}
               active={activeButton}
-              onClick={() => resetSearchQuery(btn.to)}
+              onClick={() => resetAllSearchQuery(btn.to)}
             >
               {btn.label}
             </LinkButton>
           ))}
         </NoticesNavWrap>
         <FilterAndAddPetBtnWrap>
-          <NoticesFilters />
+          <NoticesFilters
+            filterState={filterState}
+            setFilterState={setFilterState}
+          />
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
       </NoticesNavMainContainer>

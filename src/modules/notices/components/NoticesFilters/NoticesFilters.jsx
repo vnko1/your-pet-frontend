@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
 import {
   FilterBtn,
   FilterItem,
@@ -10,29 +12,26 @@ import CheckRoundSVG from "./svg/svg-check";
 import UncheckRoundSVG from "./svg/svg-uncheck";
 import FilterSVG from "./svg/svg-filter";
 import ArrowSVG from "./svg/svg-arrow";
-// import { useSearchParams } from "react-router-dom";
-import initialFilterValue from "./initialFilterValue";
-import useSearch from "../NoticesSearch/hook/useSearch";
 
-function NoticesFilters() {
+import { useSearchParams } from "react-router-dom";
+
+function NoticesFilters({
+  filterState: { isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale },
+  setFilterState: {
+    setIsBeforeOneYear,
+    setIsUpOneYear,
+    setIsUpTwoYear,
+    setIsFemale,
+    setIsMale,
+  },
+}) {
   const [isExpandedFilter, setExpandedFilter] = useState(false);
   const [isExpandedAge, setExpandedAge] = useState(false);
   const [isExpandedGender, setExpandedGender] = useState(false);
 
-  const [isBeforeOneYear, setIsBeforeOneYear] = useState(
-    initialFilterValue("0.5")
-  );
-  const [isUpOneYear, setIsUpOneYear] = useState(initialFilterValue("1"));
-  const [isUpTwoYear, setIsUpTwoYear] = useState(initialFilterValue("2"));
-  const [isFemale, setIsFemale] = useState(initialFilterValue("female"));
-  const [isMale, setIsMale] = useState(initialFilterValue("male"));
-
-  console.log(isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale);
-
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  // const [searchParams, setSearchParams] = useSearchParams();
-  const { setSearchParams } = useSearch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     const dateArray = [];
@@ -122,6 +121,7 @@ function NoticesFilters() {
 
   return (
     <FilterBtn isExpandedFilter={isExpandedFilter} onClick={handleFilterClick}>
+      {/* <button onClick={() => resetFilter()}>СБРОС</button> */}
       {!isExpandedFilter ? (
         <>
           {screenWidth >= 768 && <p>Filter</p>}
@@ -255,3 +255,20 @@ function NoticesFilters() {
 }
 
 export default NoticesFilters;
+
+NoticesFilters.propTypes = {
+  filterState: PropTypes.shape({
+    isBeforeOneYear: PropTypes.bool.isRequired,
+    isUpOneYear: PropTypes.bool.isRequired,
+    isUpTwoYear: PropTypes.bool.isRequired,
+    isFemale: PropTypes.bool.isRequired,
+    isMale: PropTypes.bool.isRequired,
+  }).isRequired,
+  setFilterState: PropTypes.shape({
+    setIsBeforeOneYear: PropTypes.func.isRequired,
+    setIsUpOneYear: PropTypes.func.isRequired,
+    setIsUpTwoYear: PropTypes.func.isRequired,
+    setIsFemale: PropTypes.func.isRequired,
+    setIsMale: PropTypes.func.isRequired,
+  }).isRequired,
+};
