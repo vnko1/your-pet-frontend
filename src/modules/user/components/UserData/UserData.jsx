@@ -15,8 +15,14 @@ import {
 } from "./UserData.styled";
 import { Form } from "react-router-dom";
 
+import { avatarSchema } from "./../../../../schemas/avatarSchema";
+
 import avatar from "./../../../../images/avatarDefault-image/Avatar.png";
 import user from "./../../../../assets/icons.svg#check ";
+
+const initialValues = {
+  image: null,
+};
 
 const UserData = () => {
   return (
@@ -27,7 +33,7 @@ const UserData = () => {
           <UserBtnPen>
             <IconShown src={user} />
           </UserBtnPen>
-          <Formik>
+          <Formik initialValues={initialValues} validationSchema={avatarSchema}>
             <Form>
               <UserInputWrapper>
                 <UserInput>
