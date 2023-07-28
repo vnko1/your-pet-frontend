@@ -62,21 +62,19 @@ export const UserFormBox = styled.div`
 
 export const UserBtnPen = styled.button`
   position: absolute;
-  top: 8%;
-  right: 5%;
-
-  transform: translateY(-50%);
+  top: 24px;
+  right: 24px;
 
   width: 24px;
   height: 24px;
 
-  background-color: transparent;
-  border: 2px solid rgb(84, 173, 255);
-  border-radius: 4px;
-
-  transition: border 250ms ease-in-out;
-
+  background-color: inherit;
   cursor: pointer;
+  border: none;
+
+  * {
+    stroke: ${({ theme: { colors } }) => colors.primary};
+  }
 `;
 
 export const IconShown = styled.img`
@@ -91,20 +89,6 @@ export const UserInputWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-export const UserInput = styled.div`
-  width: 182px;
-  height: 182px;
-  margin-bottom: 14px;
-  border-radius: 40px;
-  overflow: hidden;
-`;
-
-export const UserImg = styled.img`
-  width: 182px;
-  height: 182px;
-  object-fit: cover;
 `;
 
 export const UserInputFile = styled.input`

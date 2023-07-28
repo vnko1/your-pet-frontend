@@ -1,8 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-
-import { selectPets } from "./../../../../redux/pets/pets-selectors";
-import { postPet } from "./../../../../redux/pets/pets-operation";
 import { deletePet } from "./../../../../redux/pets/pets-operation";
 
 import {
@@ -19,21 +16,16 @@ import {
   UserPetsTitleWrap,
   UserPetsBtnDell,
 } from "./PetsData.styled";
-import { useEffect } from "react";
+
+import authSelectors from "../../../../redux/auth/auth-selectors";
 
 const PetsData = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const pets = useSelector(selectPets);
-
-  useEffect(() => {
-    dispatch(postPet());
-  }, [dispatch]);
+  const { pets } = useSelector(authSelectors.selectUser);
 
   const handelDellPets = (id) => {
     dispatch(deletePet(id));
-
-    dispatch(postPet());
   };
 
   return (
@@ -52,7 +44,7 @@ const PetsData = () => {
           </NoUserPets>
         ) : (
           <>
-            {pets.map(({ _id, petsURL, name, birthday, type, comments }) => {
+            {pets.map(({ _id, petsURL, name, birthday, type, comments }) => (
               <UserPetsInfo key={_id}>
                 <UserPetsImg src={petsURL} alt="pet_image" />
                 <UserPetsBtnDell>
@@ -84,8 +76,8 @@ const PetsData = () => {
                 >
                   <svg />
                 </UserPetsBtn>
-              </UserPetsInfo>;
-            })}
+              </UserPetsInfo>
+            ))}
           </>
         )}
       </div>
