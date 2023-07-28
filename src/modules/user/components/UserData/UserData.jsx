@@ -14,7 +14,6 @@ import {
   Icon,
 } from "./UserData.styled";
 import { Form } from "react-router-dom";
-
 import { avatarSchema } from "./../../../../schemas/avatarSchema";
 
 import avatar from "./../../../../images/avatarDefault-image/Avatar.png";
@@ -23,6 +22,7 @@ import sprite from "../../../../assets/icons.svg";
 const initialValues = {
   image: null,
 };
+
 
 const UserData = () => {
   return (

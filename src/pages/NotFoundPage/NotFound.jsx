@@ -1,5 +1,5 @@
-import { Section, Title, Wrapper } from "./NotFound.styled";
-
+import { LinkBtn, Section, Title, Wrapper } from "./NotFound.styled";
+import { ReactComponent as Pawnprint } from "../../assets/icons/pawprint.svg";
 const notFoundMobile1x = new URL(
   "../../images/notFound-images/not-found-mobile1x.png",
   import.meta.url
@@ -49,7 +49,10 @@ function NotFound() {
           />
         </picture>
       </Wrapper>
-      <button>Back to main page</button>{" "}
+      <LinkBtn to="/">
+        Back to main
+        <Pawnprint />
+      </LinkBtn>
     </Section>
   );
 }
