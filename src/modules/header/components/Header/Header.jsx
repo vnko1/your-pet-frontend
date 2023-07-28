@@ -41,13 +41,7 @@ const Header = () => {
           <MenuWrap>
             <Logo />
             <MobileMenuCloseBtn onClick={() => setisMobileMenuOpen(false)}>
-              <path
-                stroke="inherit"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M19 5 5 19M5 5l14 14"
-              />
+              <use href={spriteSvg + "#cross"} />
             </MobileMenuCloseBtn>
           </MenuWrap>
           <Navigation

@@ -24,9 +24,7 @@ export const BurgerMenuBtn = styled.svg`
 export const MobileMenuCloseBtn = styled.svg`
   width: 24px;
   height: 24px;
-  path {
-    stroke: #ffc107;
-  }
+  stroke: #ffc107;
 `;
 
 export const MobileMenu = styled.div`

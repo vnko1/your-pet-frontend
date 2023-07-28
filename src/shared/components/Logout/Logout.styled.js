@@ -27,19 +27,12 @@ export const StyledLogoutText = styled.p`
   line-height: 1.37;
 `;
 
-export const StyledLogoutIcon = styled.img`
-  width: 24px;
-  height: 24px;
-`;
-
 export const DialogCloseBtn = styled.svg`
   display: block;
   width: 24px;
   height: 24px;
   margin-left: auto;
-  path {
-    stroke: #54adff;
-  }
+  stroke: #54adff;
 `;
 
 export const LogoutDialogWrap = styled.div`
@@ -88,6 +81,9 @@ export const LogoutDialogButtonText = styled.p`
 `;
 
 export const LogoutDialogButton = styled.button`
+  display: flex;
+  justify-content: center;
+  gap: 8px;
   width: 256px;
   border: 2px solid #54adff;
   border-radius: 40px;
@@ -107,4 +103,10 @@ export const LogoutDialogButton = styled.button`
   @media (min-width: 768px) {
     width: 129px;
   }
+`;
+
+export const LogoutIcon = styled.svg`
+  width: 24px;
+  height: 24px;
+  stroke: #fef9f9;
 `;

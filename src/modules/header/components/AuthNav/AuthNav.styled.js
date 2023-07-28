@@ -27,6 +27,7 @@ export const StyledAuthNavItem = styled.li`
 export const StyledLoginIcon = styled.svg`
   width: 24px;
   height: 24px;
+  fill: #fef9f9;
 `;
 
 export const StyledAuthNavButton = styled(Link)`
@@ -56,17 +57,15 @@ export const StyledAuthNavButton = styled(Link)`
     border: 2px solid #ffc107;
     cursor: pointer;
     ${StyledLoginIcon} {
-      g {
-        fill: #ffc107;
-      }
+      fill: #ffc107;
     }
   }
 `;
 
 export const StyledAuthNavMobileMenuTalet = styled.div`
-@media (min-width: 768px) and (max-width: 1279px) {
-  // position: absolute;
-  top: 0;
-  left: 0;
-}
+  @media (min-width: 768px) and (max-width: 1279px) {
+    // position: absolute;
+    top: 0;
+    left: 0;
+  }
 `;
