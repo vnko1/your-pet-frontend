@@ -1,4 +1,5 @@
 import { Formik } from "formik";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { userSchema } from "./../../../../schemas/userSchema";
@@ -22,12 +23,14 @@ const initialValues = {
   birthday: null,
   phone: null,
   city: null,
-};
+
+
 
 const UserForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(authSelectors.selectUser);
   const [users, setUsers] = useState(() => user);
+
 
   const handleSubmit = (values) => {
     dispatch(
@@ -40,6 +43,7 @@ const UserForm = () => {
       })
     );
   };
+
 
   const handleChange = (e) => {
     setUsers((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -63,6 +67,7 @@ const UserForm = () => {
               placeholder={"Anna"}
               value={users.name || ""}
               onChange={(e) => handleChange(e)}
+
             />
           </UserFormItem>
           <UserFormItem>
@@ -109,12 +114,19 @@ const UserForm = () => {
               id="city"
               autoComplete="off"
               placeholder={"Kiev"}
+
               value={users.city || ""}
               onChange={(e) => handleChange(e)}
             />
           </UserFormItem>
           {/* <UserFormBtn>Log Out</UserFormBtn> */}
           <Btn type="submit">Save</Btn>
+
+            />
+          </UserFormItem>
+          {/* <UserFormBtn>Log Out</UserFormBtn> */}
+          <Btn>Save</Btn>
+
         </UserFormBody>
       </Formik>
     </>
