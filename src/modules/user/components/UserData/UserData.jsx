@@ -34,7 +34,6 @@ const UserData = () => {
             <IconShown src={user} />
           </UserBtnPen>
           <Formik initialValues={initialValues} validationSchema={avatarSchema}>
-          <Formik>
             <Form>
               <UserInputWrapper>
                 <UserInput>
