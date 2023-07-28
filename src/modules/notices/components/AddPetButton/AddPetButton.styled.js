@@ -28,6 +28,7 @@ export const AddPetBtn = styled.button`
     padding: 0;
     position: absolute;
     bottom: -210px;
+    /* bottom: 0px; */
     right: 0px;
     width: 80px;
     height: 80px;

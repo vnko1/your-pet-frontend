@@ -1,4 +1,4 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchNotices = createAsyncThunk(
@@ -6,7 +6,6 @@ export const fetchNotices = createAsyncThunk(
   async (url, thunkAPI) => {
     try {
       const response = await axios.get(url);
-      // console.log(response);
       return response.data.data;
     } catch (error) {
       console.log(error);
@@ -33,7 +32,6 @@ export const fetchAddFavorite = createAsyncThunk(
   async (url, thunkAPI) => {
     try {
       const response = await axios.patch(url);
-      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       console.log(error);
@@ -47,7 +45,6 @@ export const fetchDeleteFavorite = createAsyncThunk(
   async (url, thunkAPI) => {
     try {
       const response = await axios.patch(url);
-      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       console.log(error);
@@ -55,3 +52,5 @@ export const fetchDeleteFavorite = createAsyncThunk(
     }
   }
 );
+
+export const resetNotices = createAction("notices/resetFavorite");

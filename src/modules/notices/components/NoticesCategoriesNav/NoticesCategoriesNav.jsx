@@ -6,12 +6,77 @@ import {
   FilterAndAddPetBtnWrap,
   NoticesNavMainContainer,
   NoticesNavWrap,
+  FilterCategoryBtn,
+  FilterCategoryWrap,
 } from "./NoticesCategoriesNav.styled";
 import useSearch from "../NoticesSearch/hook/useSearch";
 import { useDispatch } from "react-redux";
 import { fetchNotices } from "../../../../redux/notices/notices-operations";
-import useFilter from "../NoticesFilters/useFilter";
-import useNavButtons from "./hook/useNavButtons";
+import useFilter from "./hooks/useFilter";
+import useNavButtons from "./hooks/useNavButtons";
+
+// useEffect(() => {
+//   const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
+
+//   if (
+//     url.includes("/notices/sell") ||
+//     url.includes("/notices/lost-found") ||
+//     url.includes("/notices/for-free")
+//   ) {
+//     if (url.includes("date") || url.includes("sex")) {
+//       const newArr = url.split("?");
+//       newArr.shift();
+//       const query = newArr.map((query) => query.replace(/%2C/g, ","));
+//       const filterQuery = query.join("&");
+
+//       const fetchUrl = `${baseUrl}?page=1&limit=9&category=${activeButton}&${filterQuery}`;
+
+//       dispatch(fetchNotices(fetchUrl));
+//     } else {
+//       const fetchUrl = search
+//         ? `${baseUrl}?page=1&limit=9&category=${activeButton}&filter=${search}`
+//         : `${baseUrl}?page=1&limit=9&category=${activeButton}`;
+//       dispatch(fetchNotices(fetchUrl));
+//     }
+//   } else if (
+//     url.includes("/notices/favorite") ||
+//     url.includes("/notices/own")
+//   ) {
+//     const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/";
+//     if (url.includes("date") || url.includes("sex")) {
+//       console.log(12345);
+//       // console.log("renderNav");
+//       const newArr = url.split("?");
+//       newArr.shift();
+//       const query = newArr.map((query) => query.replace(/%2C/g, ","));
+//       const filterQuery = query.join("&");
+
+//       if (url.includes("/notices/favorite")) {
+//         const fetchUrl = search
+//           ? `${baseUrl}owner/favorite?page=1&limit=9&filter=${search}&${filterQuery}`
+//           : `${baseUrl}owner/favorite?page=1&limit=9&${filterQuery}`;
+//         dispatch(fetchNotices(fetchUrl));
+//       } else if (url.includes("/notices/own")) {
+//         const fetchUrl = search
+//           ? `${baseUrl}owner?page=1&limit=9&filter=${search}&${filterQuery}`
+//           : `${baseUrl}owner?page=1&limit=9&${filterQuery}`;
+//         dispatch(fetchNotices(fetchUrl));
+//       }
+//     } else {
+//       if (url.includes("/notices/favorite")) {
+//         const fetchUrl = search
+//           ? `${baseUrl}owner/favorite?page=1&limit=9&filter=${search}`
+//           : `${baseUrl}owner/favorite?page=1&limit=9`;
+//         dispatch(fetchNotices(fetchUrl));
+//       } else if (url.includes("/notices/own")) {
+//         const fetchUrl = search
+//           ? `${baseUrl}owner?page=1&limit=9&filter=${search}`
+//           : `${baseUrl}owner?page=1&limit=9`;
+//         dispatch(fetchNotices(fetchUrl));
+//       }
+//     }
+//   }
+// }, [activeButton, dispatch, search, url]);
 
 // useEffect(() => {
 //   const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
@@ -82,6 +147,16 @@ function NoticesCategoriesNav() {
 
   const { filterState, setFilterState, resetFilter } = useFilter();
 
+  const { isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale } =
+    filterState;
+  const {
+    setIsBeforeOneYear,
+    setIsUpOneYear,
+    setIsUpTwoYear,
+    setIsFemale,
+    setIsMale,
+  } = setFilterState;
+
   const dispatch = useDispatch();
 
   const url = window.location.href;
@@ -101,9 +176,9 @@ function NoticesCategoriesNav() {
       url.includes("/notices/lost-found") ||
       url.includes("/notices/for-free")
     ) {
-      fetchUrl = `${baseUrl}searchQuery?category=${activeButton}&page=1&limit=9${commonParams}`;
+      fetchUrl = `${baseUrl}?category=${activeButton}&page=1&limit=9${commonParams}`;
     } else if (url.includes("/notices/favorite")) {
-      fetchUrl = `${baseUrl}owner/favorite?page=1&limit=9${commonParams}`;
+      fetchUrl = `${baseUrl}favorites?page=1&limit=9${commonParams}`;
     } else if (url.includes("/notices/own")) {
       fetchUrl = `${baseUrl}owner?page=1&limit=9${commonParams}`;
     }
@@ -120,7 +195,19 @@ function NoticesCategoriesNav() {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        gap:
+          isBeforeOneYear || isUpOneYear || isUpTwoYear || isFemale || isMale
+            ? 8
+            : 0,
+        marginBottom: 24,
+      }}
+    >
       <NoticesNavMainContainer>
         <NoticesNavWrap>
           {categoryBtnsUrl.map((btn) => (
@@ -141,7 +228,62 @@ function NoticesCategoriesNav() {
           />
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
+        {/* <FilterCategoryWrap>
+          {isBeforeOneYear && (
+            <FilterCategoryBtn onClick={() => setIsBeforeOneYear(false)}>
+              3-12m
+            </FilterCategoryBtn>
+          )}
+          {isUpOneYear && (
+            <FilterCategoryBtn onClick={() => setIsUpOneYear(false)}>
+              1 year
+            </FilterCategoryBtn>
+          )}
+          {isUpTwoYear && (
+            <FilterCategoryBtn onClick={() => setIsUpTwoYear(false)}>
+              2 year
+            </FilterCategoryBtn>
+          )}
+          {isFemale && (
+            <FilterCategoryBtn onClick={() => setIsFemale(false)}>
+              female
+            </FilterCategoryBtn>
+          )}
+          {isMale && (
+            <FilterCategoryBtn onClick={() => setIsMale(false)}>
+              male
+            </FilterCategoryBtn>
+          )}
+        </FilterCategoryWrap> */}
       </NoticesNavMainContainer>
+      {/* тут будет по условию кнопки сброса фильтра */}
+      <FilterCategoryWrap>
+        {isBeforeOneYear && (
+          <FilterCategoryBtn onClick={() => setIsBeforeOneYear(false)}>
+            3-12m
+          </FilterCategoryBtn>
+        )}
+        {isUpOneYear && (
+          <FilterCategoryBtn onClick={() => setIsUpOneYear(false)}>
+            1 year
+          </FilterCategoryBtn>
+        )}
+        {isUpTwoYear && (
+          <FilterCategoryBtn onClick={() => setIsUpTwoYear(false)}>
+            2 year
+          </FilterCategoryBtn>
+        )}
+        {isFemale && (
+          <FilterCategoryBtn onClick={() => setIsFemale(false)}>
+            female
+          </FilterCategoryBtn>
+        )}
+        {isMale && (
+          <FilterCategoryBtn onClick={() => setIsMale(false)}>
+            male
+          </FilterCategoryBtn>
+        )}
+      </FilterCategoryWrap>
     </div>
   );
 }

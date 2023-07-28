@@ -12,6 +12,7 @@ import authReducer from "./auth/auth-slice";
 import { petsReducer } from "./pets/pets-slice";
 import { newsReducer } from "./news/news-slice";
 import { noticesReducer } from "./notices/notices-slice";
+import handleNotificationsNoticePage from "./utils/handleNotificationsNoticePage";
 
 export const store = configureStore({
   reducer: {
@@ -25,7 +26,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(handleNotificationsNoticePage),
 });
 
 export const persistor = persistStore(store);
