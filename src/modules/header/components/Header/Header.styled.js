@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
+position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media (min-width: 1280px) {
-    justify-content: start;
-    gap: 159px;
+    // justify-content: start;
+    // gap: 159px;
   }
 `;
 
@@ -48,9 +49,19 @@ export const MobileMenu = styled.div`
   }
 `;
 
+export const MobileMenuContainer = styled.div`
+  position: relative;
+  height: 100%;
+`;
+
 export const MenuWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 92px;
+  }
 `;
 
 export const BurgerMenuWrap = styled.div`
@@ -64,7 +75,7 @@ export const BurgerMenuWrap = styled.div`
     gap: 38px;
   }
 
-  @media (min-width: 1280px) {
-    display: flex;
-  }
+  // @media (min-width: 1280px) {
+  //   display: flex;
+  // }
 `;

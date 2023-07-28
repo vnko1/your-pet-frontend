@@ -10,6 +10,7 @@ import {
   MobileMenuCloseBtn,
   MenuWrap,
   BurgerMenuWrap,
+  MobileMenuContainer,
 } from "./Header.styled";
 
 const Header = () => {
@@ -38,16 +39,18 @@ const Header = () => {
 
       {isMobileMenuOpen && (
         <MobileMenu>
-          <MenuWrap>
-            <Logo />
-            <MobileMenuCloseBtn onClick={() => setisMobileMenuOpen(false)}>
-              <use href={spriteSvg + "#cross"} />
-            </MobileMenuCloseBtn>
-          </MenuWrap>
-          <Navigation
-            isMobileMenuOpen={isMobileMenuOpen}
-            onCloseMobileMenu={onCloseMobileMenu}
-          />
+          <MobileMenuContainer>
+            <MenuWrap>
+              <Logo />
+              <MobileMenuCloseBtn onClick={() => setisMobileMenuOpen(false)}>
+                <use href={spriteSvg + "#cross"} />
+              </MobileMenuCloseBtn>
+            </MenuWrap>
+            <Navigation
+              isMobileMenuOpen={isMobileMenuOpen}
+              onCloseMobileMenu={onCloseMobileMenu}
+            />
+          </MobileMenuContainer>
         </MobileMenu>
       )}
     </StyledHeader>

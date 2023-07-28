@@ -25,6 +25,7 @@ export const StyledLogout = styled.a`
 export const StyledLogoutText = styled.p`
   font-size: 16px;
   line-height: 1.37;
+  font-weight: 700;
 `;
 
 export const DialogCloseBtn = styled.svg`
