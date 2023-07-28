@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   AddToFavorite,
@@ -15,6 +15,12 @@ import {
   Years,
 } from "./NoticeCategoryItem.styled";
 import ModalNotice from "../ModalNotice";
+import { useDispatch, useSelector } from "react-redux";
+import { noticesFavoriteList } from "../../../../redux/notices/notices-selectors";
+import {
+  fetchAddFavorite,
+  fetchDeleteFavorite,
+} from "../../../../redux/notices/notices-operations";
 
 // тут бедет обрезаться текст города
 const sliceLocation = (location) => {
@@ -33,19 +39,47 @@ const makeAge = (petDate) => {
   const yearDifference = currentDate.getFullYear() - date.getFullYear();
   const monthDifference = currentDate.getMonth() + 1 - (date.getMonth() + 1);
 
-  let result;
-
   if (yearDifference >= 1) {
-    return (result = yearDifference + " year");
+    return yearDifference + " year";
   } else {
-    return (result = monthDifference + " month");
+    return monthDifference + " month";
   }
 };
 
 function NoticesCategoryItem({
-  card: { category, date, fileUrl, location, name, sex, title },
+  card: { _id, category, date, fileUrl, location, name, sex, title },
 }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const favList = useSelector(noticesFavoriteList);
+  useEffect(() => {
+    if (favList && favList.length > 0) {
+      setIsFavorite(favList.some((item) => item === _id) ? true : false);
+    }
+  }, [favList, _id]);
+
+  console.log(isFavorite, _id);
+
+  const dispatch = useDispatch();
+
+  const handleClickHeart = () => {
+    if (isFavorite) {
+      setIsFavorite((prev) => !prev);
+      dispatch(
+        fetchDeleteFavorite(
+          `https://my-pet-app-8sz1.onrender.com/notices/${_id}/delFavorite`
+        )
+      );
+    } else {
+      setIsFavorite((prev) => !prev);
+      dispatch(
+        fetchAddFavorite(
+          `https://my-pet-app-8sz1.onrender.com/notices/${_id}/addFavorite`
+        )
+      );
+    }
+  };
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -59,8 +93,8 @@ function NoticesCategoryItem({
     <Card>
       <ImageWrap>
         <Image src={`${fileUrl}`} alt={`${name}`} />
-        <AddToFavorite>
-          <HeartIconWrap>
+        <AddToFavorite onClick={() => handleClickHeart()}>
+          <HeartIconWrap isFavorite={isFavorite}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -156,6 +190,7 @@ export default NoticesCategoryItem;
 
 NoticesCategoryItem.propTypes = {
   card: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     // fileUrl: PropTypes.string.isRequired,
