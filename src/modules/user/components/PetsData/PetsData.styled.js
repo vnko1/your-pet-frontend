@@ -117,24 +117,6 @@ export const UserPetsInfo = styled.div`
     padding: 20px;
   }
 `;
-export const UserPetsBtnDell = styled.button`
-  position: absolute;
-  top: 10%;
-  right: 5%;
-
-  transform: translateY(-50%);
-
-  width: 24px;
-  height: 24px;
-
-  background-color: transparent;
-  border: 2px solid rgb(84, 173, 255);
-  border-radius: 4px;
-
-  transition: border 250ms ease-in-out;
-
-  cursor: pointer;
-`;
 
 export const UserPetsImg = styled.img`
   width: 240px;
@@ -215,4 +197,11 @@ export const UserPetsBtn = styled.button`
     top: 20px;
     right: 20px;
   }
+`;
+
+export const Icon = styled.svg`
+  width: 20px;
+  height: 20px;
+
+  fill: ${(props) => props.theme.colors.primary};
 `;

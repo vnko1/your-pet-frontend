@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
-import { selectPets } from "./../../../../redux/pets/pets-selectors";
-import { postPet } from "./../../../../redux/pets/pets-operation";
-import { deletePet } from "./../../../../redux/pets/pets-operation";
+import authSelectors from "../../../../redux/auth/auth-selectors";
+import { getCurrentUser } from "../../../../redux/auth/auth-operations";
+import { deletePet } from "../../../../redux/pets/pets-operation";
+
+import sprite from "../../../../assets/icons.svg";
 
 import {
   UserPetsBody,
@@ -17,23 +20,22 @@ import {
   UserPetsNavBtn,
   UserPetsTitle,
   UserPetsTitleWrap,
-  UserPetsBtnDell,
+  Icon,
 } from "./PetsData.styled";
-import { useEffect } from "react";
 
 const PetsData = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const pets = useSelector(selectPets);
+  const { pets } = useSelector(authSelectors.selectUser);
 
   useEffect(() => {
-    dispatch(postPet());
+    dispatch(getCurrentUser());
   }, [dispatch]);
 
   const handelDellPets = (id) => {
     dispatch(deletePet(id));
 
-    dispatch(postPet());
+    dispatch(getCurrentUser());
   };
 
   return (
@@ -47,17 +49,15 @@ const PetsData = () => {
         </UserPetsTitleWrap>
         {pets.length === 0 ? (
           <NoUserPets>
-            You havenot added a pet yet, you have the option to add your furry
+            You have not added a pet yet, you have the option to add your furry
             friend!
           </NoUserPets>
         ) : (
           <>
-            {pets.map(({ _id, petsURL, name, birthday, type, comments }) => {
+            {pets.map(({ _id, petsURL, name, birthday, type, comments }) => (
               <UserPetsInfo key={_id}>
                 <UserPetsImg src={petsURL} alt="pet_image" />
-                <UserPetsBtnDell>
-                  <svg />
-                </UserPetsBtnDell>
+
                 <UserPetsList>
                   <UserPetsItem>
                     Name:{""}
@@ -79,13 +79,15 @@ const PetsData = () => {
                 <UserPetsBtn
                   type="button"
                   onClick={() => {
-                    handelDellPets(_id);
+                    handelDellPets();
                   }}
                 >
-                  <svg />
+                  <Icon>
+                    <use href={sprite + "#icon-delete"} />
+                  </Icon>
                 </UserPetsBtn>
-              </UserPetsInfo>;
-            })}
+              </UserPetsInfo>
+            ))}
           </>
         )}
       </div>

@@ -71,19 +71,15 @@ export const UserBtnPen = styled.button`
   height: 24px;
 
   background-color: transparent;
-  border: 2px solid rgb(84, 173, 255);
-  border-radius: 4px;
-
-  transition: border 250ms ease-in-out;
-
+  border: none;
   cursor: pointer;
 `;
 
-export const IconShown = styled.img`
-  width: 100%;
-  height: 100%;
+export const Icon = styled.svg`
+  width: 24px;
+  height: 24px;
 
-  transition: fill 250ms ease-in-out;
+  fill: ${(props) => props.theme.colors.primary};
 `;
 
 export const UserInputWrapper = styled.div`
