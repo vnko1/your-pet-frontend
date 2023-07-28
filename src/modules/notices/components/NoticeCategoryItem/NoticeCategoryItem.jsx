@@ -59,7 +59,7 @@ function NoticesCategoryItem({
     }
   }, [favList, _id]);
 
-  console.log(isFavorite, _id);
+  // console.log(isFavorite, _id);
 
   const dispatch = useDispatch();
 

@@ -10,8 +10,8 @@ import {
 import useSearch from "../NoticesSearch/hook/useSearch";
 import { useDispatch } from "react-redux";
 import { fetchNotices } from "../../../../redux/notices/notices-operations";
-import useFilter from "../NoticesFilters/useFilter";
-import useNavButtons from "./hook/useNavButtons";
+import useFilter from "./hooks/useFilter";
+import useNavButtons from "./hooks/useNavButtons";
 
 // useEffect(() => {
 //   const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
@@ -82,6 +82,16 @@ function NoticesCategoriesNav() {
 
   const { filterState, setFilterState, resetFilter } = useFilter();
 
+  const { isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale } =
+    filterState;
+  const {
+    setIsBeforeOneYear,
+    setIsUpOneYear,
+    setIsUpTwoYear,
+    setIsFemale,
+    setIsMale,
+  } = setFilterState;
+
   const dispatch = useDispatch();
 
   const url = window.location.href;
@@ -131,7 +141,13 @@ function NoticesCategoriesNav() {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
       <NoticesNavMainContainer>
         <NoticesNavWrap>
           {categoryBtnsUrl.map((btn) => (
@@ -153,6 +169,26 @@ function NoticesCategoriesNav() {
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
       </NoticesNavMainContainer>
+      {/* тут будет по условию кнопки сброса фильтра */}
+      <div
+        style={{
+          display: "flex",
+          gap: 8,
+          marginLeft: "auto",
+        }}
+      >
+        {isBeforeOneYear && (
+          <button onClick={() => setIsBeforeOneYear(false)}>3-12m</button>
+        )}
+        {isUpOneYear && (
+          <button onClick={() => setIsUpOneYear(false)}>1 year</button>
+        )}
+        {isUpTwoYear && (
+          <button onClick={() => setIsUpTwoYear(false)}>2 year</button>
+        )}
+        {isFemale && <button onClick={() => setIsFemale(false)}>female</button>}
+        {isMale && <button onClick={() => setIsMale(false)}>male</button>}
+      </div>
     </div>
   );
 }
