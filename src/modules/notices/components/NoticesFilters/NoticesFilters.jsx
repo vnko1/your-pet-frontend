@@ -10,12 +10,9 @@ import CheckRoundSVG from "./svg/svg-check";
 import UncheckRoundSVG from "./svg/svg-uncheck";
 import FilterSVG from "./svg/svg-filter";
 import ArrowSVG from "./svg/svg-arrow";
-import { useSearchParams } from "react-router-dom";
-
-const initialFilterValue = (value) => {
-  const url = window.location.href;
-  return url.includes(value) ? true : false;
-};
+// import { useSearchParams } from "react-router-dom";
+import initialFilterValue from "./initialFilterValue";
+import useSearch from "../NoticesSearch/hook/useSearch";
 
 function NoticesFilters() {
   const [isExpandedFilter, setExpandedFilter] = useState(false);
@@ -30,9 +27,12 @@ function NoticesFilters() {
   const [isFemale, setIsFemale] = useState(initialFilterValue("female"));
   const [isMale, setIsMale] = useState(initialFilterValue("male"));
 
+  console.log(isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale);
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const { setSearchParams } = useSearch();
 
   useEffect(() => {
     const dateArray = [];

@@ -26,18 +26,15 @@ const useNavButtons = () => {
     const fullURL = window.location.href;
 
     if (fullURL.includes("/notices/")) {
-      const parts = fullURL.split("/");
-      const categoryValue = parts[parts.length - 1];
-      if (categoryValue.includes("search")) {
-        const parts = categoryValue.split("?");
-        console.log(parts);
-        const newCategoryValue = parts[0];
-        console.log(newCategoryValue);
+      const hasLostFound = fullURL.includes("lost-found")
+        ? "lost-found"
+        : false;
+      const hasSell = fullURL.includes("sell") ? "sell" : false;
+      const hasForFree = fullURL.includes("for-free") ? "for-free" : false;
+      const hasFavorite = fullURL.includes("favorite") ? "favorite" : false;
+      const hasOwn = fullURL.includes("own") ? "own" : false;
 
-        return newCategoryValue;
-      }
-
-      return categoryValue;
+      return hasLostFound || hasSell || hasForFree || hasFavorite || hasOwn;
     } else {
       return "sell";
     }
@@ -67,16 +64,30 @@ function NoticesCategoriesNav() {
 
   const dispatch = useDispatch();
 
+  const url = window.location.href;
+
   useEffect(() => {
     const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
-    const url = search
-      ? `${baseUrl}?page=1&limit=9&category=${activeButton}&filter=${search}`
-      : `${baseUrl}?page=1&limit=9&category=${activeButton}`;
 
-    // ?search=cat&date=0.5%2C1%2C2&sex=male%2Cfemale
+    if (url.includes("date") || url.includes("sex")) {
+      console.log("renderNav");
+      const newArr = url.split("?");
+      newArr.shift();
+      const query = newArr.map((query) => query.replace(/%2C/g, ","));
+      const filterQuery = query.join("&");
 
-    dispatch(fetchNotices(url));
-  }, [activeButton, dispatch, search]);
+      const fetchUrl = `${baseUrl}?page=1&limit=9&category=${activeButton}&${filterQuery}`;
+
+      console.log("fetchUrl", fetchUrl);
+
+      dispatch(fetchNotices(fetchUrl));
+    } else {
+      const fetchUrl = search
+        ? `${baseUrl}?page=1&limit=9&category=${activeButton}&filter=${search}`
+        : `${baseUrl}?page=1&limit=9&category=${activeButton}`;
+      dispatch(fetchNotices(fetchUrl));
+    }
+  }, [activeButton, dispatch, search, url]);
 
   const resetSearchQuery = (btn) => {
     resetInput();
