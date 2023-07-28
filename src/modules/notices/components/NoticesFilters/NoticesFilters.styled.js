@@ -7,7 +7,7 @@ export const FilterBtn = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 2;
+    z-index: 1;
 
     width: ${(props) => (props.isExpandedFilter ? "152px" : "40px")};
     height: ${(props) => (props.isExpandedFilter ? "auto" : "40px")};
