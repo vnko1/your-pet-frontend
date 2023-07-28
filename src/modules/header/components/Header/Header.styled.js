@@ -20,9 +20,12 @@ export const BurgerMenuBtn = styled.img`
   }
 `;
 
-export const MobileMenuCloseBtn = styled.img`
+export const MobileMenuCloseBtn = styled.svg`
   width: 24px;
   height: 24px;
+  path {
+    stroke: #ffc107;
+  }
 `;
 
 export const MobileMenu = styled.div`
