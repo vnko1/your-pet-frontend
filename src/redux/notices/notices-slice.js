@@ -4,6 +4,7 @@ import {
   fetchFavorite,
   fetchAddFavorite,
   fetchDeleteFavorite,
+  resetNotices,
 } from "./notices-operations";
 
 // FetchNotices
@@ -30,12 +31,11 @@ const handlePendingFetchNoticesFavorite = (state, action) => {
   state.error = null;
 };
 const handleFulfilledFetchNoticesFavorite = (state, action) => {
-  const { total, notices } = action.payload;
+  const { notices } = action.payload;
 
   const newArrOfString = notices.map((item) => item._id);
 
   state.favorite = [...newArrOfString];
-  // state.total = total;
   state.isLoading = false;
   state.error = null;
 };
@@ -57,21 +57,25 @@ const handleFulfilledFetchNoticesDeleteFavorite = (state, action) => {
   const url = window.location.href;
   const { favorites } = action.payload;
 
-  const total = favorites.length;
-  // console.log(action.payload);
-
   if (url.includes("/notices/favorite")) {
     state.items = state.items.filter((item) =>
       favorites.some((favItem) => favItem === item._id)
     );
+
+    const total = favorites.length;
     state.total = total;
   }
-
-  // массив тотал по идее можно по длинее если не получиться
 
   state.favorite = [...favorites];
   state.isLoading = false;
   state.error = null;
+};
+
+const handleResetFavoriteList = (state) => {
+  return {
+    ...state,
+    favorite: [],
+  };
 };
 
 export const noticesSlice = createSlice({
@@ -105,7 +109,9 @@ export const noticesSlice = createSlice({
         fetchDeleteFavorite.fulfilled,
         handleFulfilledFetchNoticesDeleteFavorite
       )
-      .addCase(fetchDeleteFavorite.rejected, handlePendingFetchNoticesFavorite);
+      .addCase(fetchDeleteFavorite.rejected, handlePendingFetchNoticesFavorite)
+      // =============
+      .addCase(resetNotices, handleResetFavoriteList);
   },
 });
 

@@ -7,6 +7,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import "./index.css";
 import { GlobalStyles, theme } from "./styles";
 import { ThemeProvider } from "styled-components";
+import { Toaster } from "react-hot-toast";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
           <GlobalStyles />
+          <Toaster />
           <App />
         </ThemeProvider>
       </PersistGate>
