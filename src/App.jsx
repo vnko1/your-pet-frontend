@@ -9,7 +9,9 @@ import NotFound from "./pages/NotFoundPage/NotFound";
 const SharedLayout = React.lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
 );
-const MainPage = React.lazy(() => import("./pages/MainPage/MainPage"));
+// const MainPage = React.lazy(() => import("./pages/MainPage/MainPage"));
+const MainPage = React.lazy(() => import("./pages/NewsPage/NewsPage"));
+
 const RegisterPage = React.lazy(() =>
   import("./pages/RegisterPage/RegisterPage")
 );
