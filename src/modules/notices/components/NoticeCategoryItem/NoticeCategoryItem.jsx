@@ -16,11 +16,15 @@ import {
 } from "./NoticeCategoryItem.styled";
 import ModalNotice from "../ModalNotice";
 import { useDispatch, useSelector } from "react-redux";
-import { noticesFavoriteList } from "../../../../redux/notices/notices-selectors";
+import {
+  isLogin,
+  noticesFavoriteList,
+} from "../../../../redux/notices/notices-selectors";
 import {
   fetchAddFavorite,
   fetchDeleteFavorite,
 } from "../../../../redux/notices/notices-operations";
+import { toast } from "react-hot-toast";
 
 // тут бедет обрезаться текст города
 const sliceLocation = (location) => {
@@ -53,33 +57,42 @@ function NoticesCategoryItem({
   const [isFavorite, setIsFavorite] = useState(false);
 
   const favList = useSelector(noticesFavoriteList);
+  const isLoggedIn = useSelector(isLogin);
+
   useEffect(() => {
     if (favList && favList.length > 0) {
       setIsFavorite(favList.some((item) => item === _id) ? true : false);
+    } else {
+      setIsFavorite(false);
     }
   }, [favList, _id]);
-
-  // console.log(isFavorite, _id);
 
   const dispatch = useDispatch();
 
   const handleClickHeart = () => {
-    if (isFavorite) {
-      setIsFavorite((prev) => !prev);
-      // /addFavorite/:noticeId
-      // /delFavorite/:noticeId
-      dispatch(
-        fetchDeleteFavorite(
-          `https://my-pet-app-8sz1.onrender.com/notices/favorites/delFavorite/${_id}`
-        )
-      );
+    if (!isLoggedIn) {
+      toast.error("You need to log in to use this functionality!", {
+        duration: 4000,
+        position: "top-right",
+      });
+      return;
     } else {
-      setIsFavorite((prev) => !prev);
-      dispatch(
-        fetchAddFavorite(
-          `https://my-pet-app-8sz1.onrender.com/notices/favorites/addFavorite/${_id}`
-        )
-      );
+      if (isFavorite) {
+        setIsFavorite((prev) => !prev);
+
+        dispatch(
+          fetchDeleteFavorite(
+            `https://my-pet-app-8sz1.onrender.com/notices/favorites/delFavorite/${_id}`
+          )
+        );
+      } else {
+        setIsFavorite((prev) => !prev);
+        dispatch(
+          fetchAddFavorite(
+            `https://my-pet-app-8sz1.onrender.com/notices/favorites/addFavorite/${_id}`
+          )
+        );
+      }
     }
   };
 

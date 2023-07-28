@@ -6,6 +6,8 @@ import {
   FilterAndAddPetBtnWrap,
   NoticesNavMainContainer,
   NoticesNavWrap,
+  FilterCategoryBtn,
+  FilterCategoryWrap,
 } from "./NoticesCategoriesNav.styled";
 import useSearch from "../NoticesSearch/hook/useSearch";
 import { useDispatch } from "react-redux";
@@ -106,17 +108,6 @@ function NoticesCategoriesNav() {
 
     const commonParams = filterQuery ? `&${filterQuery}` : "";
 
-    // if (
-    //   url.includes("/notices/sell") ||
-    //   url.includes("/notices/lost-found") ||
-    //   url.includes("/notices/for-free")
-    // ) {
-    //   fetchUrl = `${baseUrl}searchQuery?category=${activeButton}&page=1&limit=9${commonParams}`;
-    // } else if (url.includes("/notices/favorite")) {
-    //   fetchUrl = `${baseUrl}owner/favorite?page=1&limit=9${commonParams}`;
-    // } else if (url.includes("/notices/own")) {
-    //   fetchUrl = `${baseUrl}owner?page=1&limit=9${commonParams}`;
-    // }
     if (
       url.includes("/notices/sell") ||
       url.includes("/notices/lost-found") ||
@@ -143,9 +134,15 @@ function NoticesCategoriesNav() {
   return (
     <div
       style={{
+        position: "relative",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        gap:
+          isBeforeOneYear || isUpOneYear || isUpTwoYear || isFemale || isMale
+            ? 8
+            : 0,
+        marginBottom: 24,
       }}
     >
       <NoticesNavMainContainer>
@@ -168,27 +165,62 @@ function NoticesCategoriesNav() {
           />
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
+        {/* <FilterCategoryWrap>
+          {isBeforeOneYear && (
+            <FilterCategoryBtn onClick={() => setIsBeforeOneYear(false)}>
+              3-12m
+            </FilterCategoryBtn>
+          )}
+          {isUpOneYear && (
+            <FilterCategoryBtn onClick={() => setIsUpOneYear(false)}>
+              1 year
+            </FilterCategoryBtn>
+          )}
+          {isUpTwoYear && (
+            <FilterCategoryBtn onClick={() => setIsUpTwoYear(false)}>
+              2 year
+            </FilterCategoryBtn>
+          )}
+          {isFemale && (
+            <FilterCategoryBtn onClick={() => setIsFemale(false)}>
+              female
+            </FilterCategoryBtn>
+          )}
+          {isMale && (
+            <FilterCategoryBtn onClick={() => setIsMale(false)}>
+              male
+            </FilterCategoryBtn>
+          )}
+        </FilterCategoryWrap> */}
       </NoticesNavMainContainer>
       {/* тут будет по условию кнопки сброса фильтра */}
-      <div
-        style={{
-          display: "flex",
-          gap: 8,
-          marginLeft: "auto",
-        }}
-      >
+      <FilterCategoryWrap>
         {isBeforeOneYear && (
-          <button onClick={() => setIsBeforeOneYear(false)}>3-12m</button>
+          <FilterCategoryBtn onClick={() => setIsBeforeOneYear(false)}>
+            3-12m
+          </FilterCategoryBtn>
         )}
         {isUpOneYear && (
-          <button onClick={() => setIsUpOneYear(false)}>1 year</button>
+          <FilterCategoryBtn onClick={() => setIsUpOneYear(false)}>
+            1 year
+          </FilterCategoryBtn>
         )}
         {isUpTwoYear && (
-          <button onClick={() => setIsUpTwoYear(false)}>2 year</button>
+          <FilterCategoryBtn onClick={() => setIsUpTwoYear(false)}>
+            2 year
+          </FilterCategoryBtn>
         )}
-        {isFemale && <button onClick={() => setIsFemale(false)}>female</button>}
-        {isMale && <button onClick={() => setIsMale(false)}>male</button>}
-      </div>
+        {isFemale && (
+          <FilterCategoryBtn onClick={() => setIsFemale(false)}>
+            female
+          </FilterCategoryBtn>
+        )}
+        {isMale && (
+          <FilterCategoryBtn onClick={() => setIsMale(false)}>
+            male
+          </FilterCategoryBtn>
+        )}
+      </FilterCategoryWrap>
     </div>
   );
 }
