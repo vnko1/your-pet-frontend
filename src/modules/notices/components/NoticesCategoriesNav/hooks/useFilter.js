@@ -1,5 +1,5 @@
 import { useState } from "react";
-import initialFilterValue from "./initialFilterValue";
+import initialFilterValue from "../../NoticesFilters/initialFilterValue";
 
 const useFilter = () => {
   const [isBeforeOneYear, setIsBeforeOneYear] = useState(
