@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { isLogin } from "../../../../../redux/notices/notices-selectors";
 
 const initialCategoryBtnUrl = [
   { to: "sell", label: "sell" },
@@ -7,7 +9,7 @@ const initialCategoryBtnUrl = [
 ];
 
 const useNavButtons = () => {
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useState(false);
   const [categoryBtnsUrl, setCategoryBtnsUrl] = useState(initialCategoryBtnUrl);
   const [activeButton, setActiveButton] = useState(() => {
     const fullURL = window.location.href;
@@ -27,12 +29,24 @@ const useNavButtons = () => {
     }
   });
 
+  const isLoggedIn = useSelector(isLogin);
+
+  useEffect(() => {
+    setLogin(isLoggedIn);
+  }, [isLoggedIn]);
+
   if (login && categoryBtnsUrl.length === 3) {
     setCategoryBtnsUrl((prevCategoryBtnUrl) => [
       ...prevCategoryBtnUrl,
       { to: "favorite", label: "favorite ads" },
       { to: "own", label: "my ads" },
     ]);
+  } else if (!login && categoryBtnsUrl.length === 5) {
+    setCategoryBtnsUrl((prevCategoryBtnUrl) =>
+      prevCategoryBtnUrl.filter(
+        (item) => item.to !== "favorite" && item.to !== "own"
+      )
+    );
   }
 
   return {

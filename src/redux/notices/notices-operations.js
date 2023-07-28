@@ -14,3 +14,44 @@ export const fetchNotices = createAsyncThunk(
     }
   }
 );
+
+export const fetchFavorite = createAsyncThunk(
+  "notices/favorite",
+  async (url, thunkAPI) => {
+    try {
+      const response = await axios.get(url);
+      return response.data.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchAddFavorite = createAsyncThunk(
+  "notices/addFavorite",
+  async (url, thunkAPI) => {
+    try {
+      const response = await axios.patch(url);
+      console.log(response.data.data);
+      return response.data.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchDeleteFavorite = createAsyncThunk(
+  "notices/deleteFavorite",
+  async (url, thunkAPI) => {
+    try {
+      const response = await axios.patch(url);
+      console.log(response.data.data);
+      return response.data.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

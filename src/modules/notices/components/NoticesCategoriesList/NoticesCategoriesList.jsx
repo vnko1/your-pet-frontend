@@ -8,7 +8,7 @@ function NoticesCategoriesList() {
 
   return (
     <CardList>
-      {list &&
+      {list.length > 0 &&
         list.map((card) => {
           return (
             <NoticesCategoryItem

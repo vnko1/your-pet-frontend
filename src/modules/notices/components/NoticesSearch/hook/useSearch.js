@@ -12,7 +12,14 @@ const useSearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchParams({ search });
+    if (search) {
+      setSearchParams({ search });
+    } else {
+      setSearchParams((prevSearchParams) => {
+        prevSearchParams.delete("search");
+        return prevSearchParams;
+      });
+    }
   };
 
   const handleChange = (e) => {

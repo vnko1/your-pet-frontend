@@ -54,9 +54,13 @@ export const HeartIconWrap = styled.div`
   justify-content: center;
   align-items: center;
 
+  svg path {
+    fill: ${(props) => (props.isFavorite ? "#54ADFF" : "none")};
+  }
+
   &:hover svg path,
   &:focus svg path {
-    fill: #54adff;
+    fill: yellow;
   }
 `;
 
