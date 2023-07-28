@@ -78,6 +78,7 @@ export const UserBtnPen = styled.button`
 
   cursor: pointer;
 `;
+
 export const IconShown = styled.img`
   width: 100%;
   height: 100%;

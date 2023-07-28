@@ -6,5 +6,6 @@ export const UserPageBody = styled.div`
 
   @media screen and (min-width: 1280px) {
     display: flex;
+    gap: 25px;
   }
 `;

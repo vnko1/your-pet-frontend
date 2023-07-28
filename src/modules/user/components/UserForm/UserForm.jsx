@@ -1,4 +1,6 @@
 import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+
 import { userSchema } from "./../../../../schemas/userSchema";
 
 import {
@@ -11,18 +13,21 @@ import {
 } from "./UserForm.styled";
 
 import { updateUser } from "./../../../../redux/auth/auth-operations";
-import { useDispatch } from "react-redux";
+import authSelectors from "./../../../../redux/auth/auth-selectors";
+import { useState } from "react";
 
 const initialValues = {
-  name: "",
-  email: "",
-  birthday: "",
-  phone: "",
-  city: "",
+  name: null,
+  email: null,
+  birthday: null,
+  phone: null,
+  city: null,
 };
 
 const UserForm = () => {
   const dispatch = useDispatch();
+  const user = useSelector(authSelectors.selectUser);
+  const [users, setUsers] = useState(() => user);
 
   const handleSubmit = (values) => {
     dispatch(
@@ -35,6 +40,11 @@ const UserForm = () => {
       })
     );
   };
+
+  const handleChange = (e) => {
+    setUsers((state) => ({ ...state, [e.target.name]: e.target.value }));
+  };
+
   return (
     <>
       <Formik
@@ -51,6 +61,8 @@ const UserForm = () => {
               id="name"
               autoComplete="off"
               placeholder={"Anna"}
+              value={users.name || ""}
+              onChange={(e) => handleChange(e)}
             />
           </UserFormItem>
           <UserFormItem>
@@ -61,6 +73,8 @@ const UserForm = () => {
               id="email"
               autoComplete="off"
               placeholder={"anna00@gmail.com|"}
+              value={users.email || ""}
+              onChange={(e) => handleChange(e)}
             />
           </UserFormItem>
           <UserFormItem>
@@ -71,6 +85,8 @@ const UserForm = () => {
               id="birthDate"
               autoComplete="off"
               placeholder={"00.00.0000"}
+              value={users.birthDate || ""}
+              onChange={(e) => handleChange(e)}
             />
           </UserFormItem>
           <UserFormItem>
@@ -81,6 +97,8 @@ const UserForm = () => {
               id="phone"
               autoComplete="off"
               placeholder={"+38000000000"}
+              value={users.phone || ""}
+              onChange={(e) => handleChange(e)}
             />
           </UserFormItem>
           <UserFormItem>
@@ -91,10 +109,12 @@ const UserForm = () => {
               id="city"
               autoComplete="off"
               placeholder={"Kiev"}
+              value={users.city || ""}
+              onChange={(e) => handleChange(e)}
             />
           </UserFormItem>
           {/* <UserFormBtn>Log Out</UserFormBtn> */}
-          <Btn>Save</Btn>
+          <Btn type="submit">Save</Btn>
         </UserFormBody>
       </Formik>
     </>
