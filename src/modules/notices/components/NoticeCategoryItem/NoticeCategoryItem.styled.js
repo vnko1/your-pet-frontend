@@ -53,17 +53,13 @@ export const HeartIconWrap = styled.svg`
   display: flex;
   justify-content: center;
   align-items: center;
-  width:24px;
-  height:24px;
+  width: 24px;
+  height: 24px;
 
-
-  svg {
-    fill: ${(props) => (props.isFavorite ? "#54ADFF" : "none")};
-  }
-
-  &:hover,
-  &:focus {
-    fill: yellow;
+  &:hover use,
+  &:focus use {
+    stroke: #377ac8;
+    transform: scale(1.05);
   }
 `;
 
@@ -110,10 +106,7 @@ export const City = styled.p`
 export const CitySvg = styled.svg`
   width: 24px;
   height: 24px;
-  
 `;
-
-
 
 export const Years = styled.p`
   position: absolute;
@@ -138,7 +131,6 @@ export const Years = styled.p`
 export const YearsSvg = styled.svg`
   width: 24px;
   height: 24px;
-  
 `;
 
 export const Gender = styled.p`
@@ -164,7 +156,7 @@ export const Gender = styled.p`
 
 export const GenderSvg = styled.svg`
   width: 24px;
-  height: 24px;  
+  height: 24px;
 `;
 
 export const CardTextInfoWrap = styled.div`
