@@ -25,7 +25,9 @@ import {
 } from "../../../../redux/notices/notices-selectors";
 import {
   fetchAddFavorite,
+  fetchCardById,
   fetchDeleteFavorite,
+  resetCardById,
 } from "../../../../redux/notices/notices-operations";
 import { toast } from "react-hot-toast";
 
@@ -113,8 +115,20 @@ function NoticesCategoryItem({
     }
   };
 
+  const openModalAndFetchCard = () => {
+    dispatch(
+      fetchCardById(`https://my-pet-app-8sz1.onrender.com/notices/${_id}`)
+    );
+
+    toggleModal();
+  };
+
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
+
+    if (isModalOpen) {
+      dispatch(resetCardById());
+    }
   };
 
   return (
@@ -208,7 +222,9 @@ function NoticesCategoryItem({
       </ImageWrap>
       <CardTextInfoWrap>
         <Title>{title}</Title>
-        <LearnMoreBtn onClick={toggleModal}>Learn more</LearnMoreBtn>
+        <LearnMoreBtn onClick={() => openModalAndFetchCard()}>
+          Learn more
+        </LearnMoreBtn>
       </CardTextInfoWrap>
       {isModalOpen && (
         <Modal toggleModal={toggleModal}>

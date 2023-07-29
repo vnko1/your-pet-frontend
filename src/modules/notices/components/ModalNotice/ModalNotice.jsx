@@ -16,6 +16,17 @@ import {
   Category,
   ContactLink,
 } from "./ModalNotice.styled";
+import { useSelector } from "react-redux";
+import { noticesCardById } from "../../../../redux/notices/notices-selectors";
+
+function formatDate(inputDate) {
+  const dateObj = new Date(inputDate);
+  const day = String(dateObj.getDate()).padStart(2, "0");
+  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const year = dateObj.getFullYear();
+
+  return `${day}.${month}.${year}`;
+}
 
 const ModalNotice = ({
   handleClickHeart,
@@ -23,54 +34,61 @@ const ModalNotice = ({
   isFavorite,
   isDisabledBtn,
 }) => {
+  const {
+    name,
+    category,
+    date,
+    fileUrl,
+    comments,
+    title,
+    sex,
+    location,
+    type,
+    email = "user@qwe.qwe",
+    phone = "+380971234567",
+  } = useSelector(noticesCardById);
+
   return (
     <ModalNoticeBox>
       <ModalNoticeWrap>
-        <Image
-          src=" https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
-          alt="cat"
-        />
-        <Category>In good hands</Category>
+        <Image src={fileUrl} alt={name} />
+        <Category>{category}</Category>
         <div>
-          <Title>Сute dog looking for a home</Title>
+          <Title>{title}</Title>
           <ModalNoticeInfoList>
             <ModelItemInfo>
               <Key>Name:</Key>
-              <Value>Rich</Value>
+              <Value>{name}</Value>
             </ModelItemInfo>
             <ModelItemInfo>
               <Key>Birthday:</Key>
-              <Value>21.09.2020</Value>
+              <Value>{formatDate(date)}</Value>
             </ModelItemInfo>
             <ModelItemInfo>
               <Key>Type:</Key>
-              <Value>Pomeranian</Value>
+              <Value>{type}</Value>
             </ModelItemInfo>
             <ModelItemInfo>
               <Key>Place:</Key>
-              <Value>Lviv</Value>
+              <Value>{location}</Value>
             </ModelItemInfo>
             <ModelItemInfo>
               <Key>The sex:</Key>
-              <Value>male</Value>
+              <Value>{sex}</Value>
             </ModelItemInfo>
             <ModelItemInfo>
               <Key>Email:</Key>
-              <AddressLink href="mailto:user@mail.com">
-                user@mail.com
-              </AddressLink>
+              <AddressLink href={email}>{email}</AddressLink>
             </ModelItemInfo>
             <ModelItemInfo>
               <Key>Phone:</Key>
-              <AddressLink href="tel:+380971234567">+380971234567</AddressLink>
+              <AddressLink href={phone}>{phone}</AddressLink>
             </ModelItemInfo>
           </ModalNoticeInfoList>
         </div>
       </ModalNoticeWrap>
       <Comments>
-        <CommentsBold>Comments: </CommentsBold> Rich would be the perfect
-        addition to an active family that loves to play and go on walks. I bet
-        he would love having a doggy playmate too!
+        <CommentsBold>Comments: </CommentsBold> {comments}
       </Comments>
       <CloseBtn type="button" onClick={toggleModal}>
         <svg

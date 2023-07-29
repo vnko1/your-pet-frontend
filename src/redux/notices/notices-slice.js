@@ -5,6 +5,8 @@ import {
   fetchAddFavorite,
   fetchDeleteFavorite,
   resetNotices,
+  fetchCardById,
+  resetCardById,
 } from "./notices-operations";
 
 // FetchNotices
@@ -107,11 +109,37 @@ const handleResetFavoriteList = (state) => {
   };
 };
 
+// ==============================================
+// fetchCardById
+const handlePendingFetchCardById = (state) => {
+  state.isLoading = true;
+  state.error = null;
+};
+
+const handleFulfilledFetchCardById = (state, action) => {
+  state.cardById = action.payload;
+  state.isLoading = false;
+  state.error = null;
+};
+
+const handleRejectedFetchCardById = (state) => {
+  state.isLoading = false;
+  state.error = true;
+};
+
+const handleResetCardById = (state) => {
+  return {
+    ...state,
+    cardById: {},
+  };
+};
+// ==============================================
 export const noticesSlice = createSlice({
   name: "notices",
   initialState: {
     items: [],
     favorite: [],
+    cardById: {},
     total: 0,
     isLoading: false,
     isLoadingFavorite: false,
@@ -122,11 +150,11 @@ export const noticesSlice = createSlice({
       .addCase(fetchNotices.pending, handlePendingFetchNotices)
       .addCase(fetchNotices.fulfilled, handleFulfilledFetchNotices)
       .addCase(fetchNotices.rejected, handleRejectedFetchNotices)
-      // =============
+      // ==========================================
       .addCase(fetchFavorite.pending, handlePendingFetchNoticesFavorite)
       .addCase(fetchFavorite.fulfilled, handleFulfilledFetchNoticesFavorite)
       .addCase(fetchFavorite.rejected, handleRejectedFetchNoticesFavorite)
-      // =============
+      // ==========================================
       // .addCase(fetchAddFavorite.pending, handlePendingFetchNoticesFavorite)
       .addCase(fetchAddFavorite.pending, handlePendingFetchNoticesAddFavorite)
       .addCase(
@@ -134,7 +162,7 @@ export const noticesSlice = createSlice({
         handleFulfilledFetchNoticesAddFavorite
       )
       .addCase(fetchAddFavorite.rejected, handleRejectedFetchNoticesAddFavorite)
-      // =============
+      // ==========================================
       // .addCase(fetchDeleteFavorite.pending, handlePendingFetchNoticesFavorite)
       .addCase(
         fetchDeleteFavorite.pending,
@@ -148,8 +176,13 @@ export const noticesSlice = createSlice({
         fetchDeleteFavorite.rejected,
         handleRejectedFetchNoticesDeleteFavorite
       )
-      // =============
-      .addCase(resetNotices, handleResetFavoriteList);
+      // ===========================================
+      .addCase(fetchCardById.pending, handlePendingFetchCardById)
+      .addCase(fetchCardById.fulfilled, handleFulfilledFetchCardById)
+      .addCase(fetchCardById.rejected, handleRejectedFetchCardById)
+      // ===========================================
+      .addCase(resetNotices, handleResetFavoriteList)
+      .addCase(resetCardById, handleResetCardById);
   },
 });
 
