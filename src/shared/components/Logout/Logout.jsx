@@ -2,18 +2,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { logOut } from "../../../redux/auth/auth-operations";
-import logoutSvg from "../../../assets/icons/logout.svg";
-import crossSvg from "../../../assets/icons/cross-small.svg";
+import spriteSvg from "../../../assets/icons.svg";
 import {
   StyledLogout,
   StyledLogoutText,
-  StyledLogoutIcon,
   DialogCloseBtn,
   LogoutDialogWrap,
   LogoutDialogText,
   LogoutDialogButtonWrap,
   LogoutDialogButton,
   LogoutDialogButtonText,
+  LogoutIcon,
 } from "./Logout.styled";
 import Modal from "../../modals/modalPort/Modal";
 
@@ -32,17 +31,17 @@ const Logout = (props) => {
     <>
       <StyledLogout onClick={() => setIsModalOpen(true)}>
         <StyledLogoutText>Log out</StyledLogoutText>
-        <StyledLogoutIcon src={logoutSvg} alt="logout button" />
+        <LogoutIcon>
+          <use href={spriteSvg + "#logout"} />
+        </LogoutIcon>
       </StyledLogout>
 
       {isModalOpen && (
         <Modal toggleModal={() => setIsModalOpen(false)}>
           <LogoutDialogWrap>
-            <DialogCloseBtn
-              src={crossSvg}
-              alt="close logout dialog"
-              onClick={() => setIsModalOpen(false)}
-            />
+            <DialogCloseBtn onClick={() => setIsModalOpen(false)}>
+              <use href={spriteSvg + "#cross"} />
+            </DialogCloseBtn>
             <LogoutDialogText>Already leaving?</LogoutDialogText>
 
             <LogoutDialogButtonWrap>
@@ -53,12 +52,11 @@ const Logout = (props) => {
                 <LogoutDialogButtonText>Cancel</LogoutDialogButtonText>
               </LogoutDialogButton>
 
-              <LogoutDialogButton
-                $primary
-                type="button"
-                onClick={onLogoutUser}
-              >
+              <LogoutDialogButton $primary type="button" onClick={onLogoutUser}>
                 <LogoutDialogButtonText $primary>Yes</LogoutDialogButtonText>
+                <LogoutIcon>
+                  <use href={spriteSvg + "#logout"} />
+                </LogoutIcon>
               </LogoutDialogButton>
             </LogoutDialogButtonWrap>
           </LogoutDialogWrap>

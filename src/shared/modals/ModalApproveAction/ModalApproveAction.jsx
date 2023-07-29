@@ -1,13 +1,16 @@
 import PropTypes from "prop-types";
 import Modal from "../modalPort/modal";
 import {
-  Button,
   ButtonlWrap,
+  CancelButton,
   CloseButton,
   ModalWrap,
+  SuccesButton,
   Text,
   Title,
 } from "./ModalApproveAction.styled";
+import { ReactComponent as CloseSvg } from "../../../assets/icons/cross-small.svg";
+import { ReactComponent as DeletteSvg } from "../../../assets/icons/shape.svg";
 
 const ModalApproveAction = ({ onSucces, toggleModal }) => (
   <Modal toggleModal={toggleModal}>
@@ -19,14 +22,18 @@ const ModalApproveAction = ({ onSucces, toggleModal }) => (
         <br /> You can`t undo this action.
       </Text>
       <ButtonlWrap>
-        <Button type="button" onClick={toggleModal}>
+        <CancelButton type="button" onClick={toggleModal}>
           Cancel
-        </Button>
-        <Button type="button" onClick={onSucces}>
+        </CancelButton>
+        <SuccesButton type="button" onClick={onSucces}>
           Yes
-        </Button>
+          <DeletteSvg />
+        </SuccesButton>
       </ButtonlWrap>
-      <CloseButton onClick={toggleModal} />
+
+      <CloseButton onClick={toggleModal}>
+        <CloseSvg />
+      </CloseButton>
     </ModalWrap>
   </Modal>
 );

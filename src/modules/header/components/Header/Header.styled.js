@@ -1,32 +1,48 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media (min-width: 1280px) {
-    justify-content: start;
-    gap: 159px;
-  }
 `;
 
-export const BurgerMenuBtn = styled.img`
+export const BurgerMenuBtn = styled.svg`
   width: 24px;
   height: 24px;
+  stroke: #ffc107;
 
   @media (min-width: 1280px) {
     display: none;
   }
 `;
 
-export const MobileMenuCloseBtn = styled.img`
+export const MobileMenuCloseBtn = styled.svg`
   width: 24px;
   height: 24px;
+  stroke: #ffc107;
 `;
 
 export const MobileMenu = styled.div`
-  position: absolute;
+  &.fade-enter {
+   transform: translateY(-100%);
+  }
+
+  &.fade-enter-active {
+    transform: translateY(0%);
+    transition: transform 250ms;
+  }
+
+  &.fade-exit {
+    transform: translateY(0%);
+  }
+
+  &.fade-exit-active {
+    transform: translateY(-100%);
+    transition: transform 250ms;
+  }
+
+  position: fixed;
   top: 0;
   left: 0;
 
@@ -46,9 +62,19 @@ export const MobileMenu = styled.div`
   }
 `;
 
+export const MobileMenuContainer = styled.div`
+  position: relative;
+  height: 100%;
+`;
+
 export const MenuWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 40px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 92px;
+  }
 `;
 
 export const BurgerMenuWrap = styled.div`
@@ -62,7 +88,7 @@ export const BurgerMenuWrap = styled.div`
     gap: 38px;
   }
 
-  @media (min-width: 1280px) {
-    display: flex;
-  }
+  // @media (min-width: 1280px) {
+  //   display: flex;
+  // }
 `;

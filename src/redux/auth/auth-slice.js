@@ -19,15 +19,17 @@ import {
   handlefulfilled,
   userFulfilled,
   userUpdateFulfilled,
+  userRefreshFulfilled,
+  userRefreshRejected,
 } from "./auth-Utils";
 
 const initialState = {
   user: {
-    name: null,
-    email: null,
-    birthday: null,
-    city: null,
-    phone: null,
+    name: "",
+    email: "",
+    birthday: "",
+    city: "",
+    phone: "",
     isNewUser: false,
   },
   token: null,
@@ -63,15 +65,9 @@ const authSlice = createSlice({
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.fulfilled, (state, { payload: { user } }) => {
-        state.isRefreshing = false;
-        state.user = user;
-        state.isLoggedIn = true;
-      })
-      .addCase(refreshUser.rejected, (state) => {
-        state.isRefreshing = false;
-        state.isLoggedIn = false;
-      })
+      .addCase(refreshUser.fulfilled, userRefreshFulfilled)
+
+      .addCase(refreshUser.rejected, userRefreshRejected)
 
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)

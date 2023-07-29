@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 axios.defaults.baseURL = "https://my-pet-app-8sz1.onrender.com";
 
 export const token = {
@@ -21,11 +20,11 @@ export const registration = createAsyncThunk(
       return data;
     } catch (error) {
       if (error.response.status === 400) {
-        console.log("Ошибка ввода данных! Попробуйте еще раз!");
+        console.log("Невірно введені дані! Спробуйте ще раз!");
       } else if (error.response.status === 409) {
-        console.log("Почта уже используется.");
+        console.log("Пошта вже використовується");
       } else {
-        console.log("Упс... что-то пошло не так. Перезагрузите страницу.");
+        console.log("Упс... щось пішло не так. Перезавантажте сторінку.");
       }
       return rejectWithValue(error);
     }
@@ -40,7 +39,7 @@ export const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      console.log("Невірні логін або пароль");
+      console.log("Невірно введені дані");
       return rejectWithValue(error);
     }
   }
@@ -83,9 +82,9 @@ export const getCurrentUser = createAsyncThunk(
     try {
       const { data } = await axios.post("/users/current");
 
-      console.log("current - operation=>>>>>>>>>>>", data);
       // notifyFulfilledLogin();
       console.log("тут фулфілд логін");
+      console.log(data);
 
       return data;
     } catch (error) {
@@ -113,6 +112,7 @@ export const refreshUser = createAsyncThunk(
       // If there is a token, add it to the HTTP header and perform the request
       token.set(persistedToken);
       const { data } = await axios.post("/users/current");
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

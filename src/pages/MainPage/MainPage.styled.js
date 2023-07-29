@@ -12,32 +12,32 @@ export const MainSection = styled.section`
   padding-top: 60px;
   background-size: cover;
   background-position: center;
-  background-image: url(${bgMobile});
+  /* background-image: url(${bgMobile}); */
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(${bgMobile2x});
+    /* background-image: url(${bgMobile2x}); */
   }
   @media screen and (min-width: 768px) {
     padding-top: 80px;
     background-blend-mode: multiply;
     background-position: center;
     background-size: cover;
-    background-image: url(${bgTablet});
+    /* background-image: url(${bgTablet}); */
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${bgTablet2x});
+      /* background-image: url(${bgTablet2x}); */
     }
   }
   @media screen and (min-width: 1280px) {
-    background-image: url(${bgDesk});
+    /* background-image: url(${bgDesk}); */
     display: flex;
     padding-top: 20px;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${bgDesk2x});
+      /* background-image: url(${bgDesk2x}); */
     }
   }
 `;
