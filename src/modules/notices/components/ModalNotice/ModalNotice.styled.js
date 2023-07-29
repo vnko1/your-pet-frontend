@@ -81,6 +81,7 @@ export const CloseBtn = styled.button`
   right: 26px;
   background-color: transparent;
   border: transparent;
+  stroke:#54ADFF;
 
   width: 24px;
   height: 24px;
@@ -91,8 +92,8 @@ export const CloseBtn = styled.button`
     right: 12px;
   }
 
-  :hover svg path,
-  :focus svg path {
+  :hover ,
+  :focus  {
     stroke: rgb(255, 193, 7);
   }
 `;

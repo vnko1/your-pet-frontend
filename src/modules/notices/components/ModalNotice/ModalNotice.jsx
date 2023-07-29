@@ -18,6 +18,7 @@ import {
 } from "./ModalNotice.styled";
 import { useSelector } from "react-redux";
 import { noticesCardById } from "../../../../redux/notices/notices-selectors";
+import icons from "../../../../assets/icons.svg";
 
 function formatDate(inputDate) {
   const dateObj = new Date(inputDate);
@@ -91,7 +92,10 @@ const ModalNotice = ({
         <CommentsBold>Comments: </CommentsBold> {comments}
       </Comments>
       <CloseBtn type="button" onClick={toggleModal}>
-        <svg
+      <svg width="24" height="24">
+            <use href={ icons + "#cross-small"} />
+          </svg>
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -105,13 +109,16 @@ const ModalNotice = ({
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-        </svg>
+        </svg> */}
       </CloseBtn>
       <div>
         <ContactLink href="tel:+380971234567">Contact</ContactLink>
         <AddBtn disabled={isDisabledBtn} onClick={() => handleClickHeart()}>
           Add to
-          <svg
+          <svg width="24" height="24">
+            <use href={ icons + "#heart"} stroke="#FEF9F9"/>
+          </svg>
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -124,8 +131,8 @@ const ModalNotice = ({
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
-            />
-          </svg>
+            /> */}
+          {/* </svg> */}
         </AddBtn>
       </div>
     </ModalNoticeBox>
