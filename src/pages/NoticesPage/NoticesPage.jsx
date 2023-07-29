@@ -29,7 +29,6 @@ function NoticesPage() {
     }
   }, [dispatch, isLoggedIn]);
 
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(

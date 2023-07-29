@@ -25,8 +25,8 @@ function NoticesSearch() {
         />
         <BtnsWrap>
           <SubmitBtn type="submit">
-          <svg viewBox="0 0 24 24" style={{fill:"#54ADFF"}}>
-              <use xlinkHref={icons + "#search"}  />
+          <svg viewBox="0 0 24 24" >
+              <use xlinkHref={icons + "#search" }  fill="#54ADFF"/>
             </svg>
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
