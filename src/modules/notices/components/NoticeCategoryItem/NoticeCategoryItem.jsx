@@ -13,6 +13,9 @@ import {
   LearnMoreBtn,
   Title,
   Years,
+  CitySvg,
+  YearsSvg,
+  GenderSvg
 } from "./NoticeCategoryItem.styled";
 
 import Modal from "../../../../shared/modals/modalPort/Modal";
@@ -30,6 +33,7 @@ import {
   resetCardById,
 } from "../../../../redux/notices/notices-operations";
 import { toast } from "react-hot-toast";
+import icons from "../../../../assets/icons.svg";
 
 // тут бедет обрезаться текст города
 const sliceLocation = (location) => {
@@ -135,12 +139,12 @@ function NoticesCategoryItem({
     <Card>
       <ImageWrap>
         <Image src={`${fileUrl}`} alt={`${name}`} />
-        <AddToFavorite
-          disabled={isDisabledBtn}
-          onClick={() => handleClickHeart()}
-        >
-          <HeartIconWrap isDisabledBtn={isDisabledBtn} isFavorite={isFavorite}>
-            <svg
+        <AddToFavorite onClick={() => handleClickHeart()}>
+          <div>
+            <HeartIconWrap isFavorite={isFavorite} > 
+              <use href={icons + "#heart"}  stroke="#54ADFF"/>
+            </HeartIconWrap>
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -154,12 +158,15 @@ function NoticesCategoryItem({
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
-            </svg>
-          </HeartIconWrap>
+            </svg> */}
+          </div>
         </AddToFavorite>
         <Category>{category}</Category>
         <City>
-          <svg
+          <CitySvg>
+            <use href={icons + "#location"} stroke="#54ADFF"/>
+          </CitySvg>
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -180,11 +187,14 @@ function NoticesCategoryItem({
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-          </svg>
+          </svg> */}
           {sliceLocation(location)}
         </City>
         <Years>
-          <svg
+        <YearsSvg>
+            <use href={icons + "#clock"} stroke="#54ADFF"/>
+          </YearsSvg>
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"
             height="24"
@@ -198,11 +208,14 @@ function NoticesCategoryItem({
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-          </svg>
+          </svg> */}
           {makeAge(date)}
         </Years>
         <Gender>
-          <svg
+        <GenderSvg>
+            <use href={icons + "#female"} stroke="#54ADFF"/>
+          </GenderSvg>
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -216,7 +229,7 @@ function NoticesCategoryItem({
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-          </svg>
+          </svg> */}
           {sex}
         </Gender>
       </ImageWrap>

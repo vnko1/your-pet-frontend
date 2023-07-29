@@ -8,12 +8,13 @@ import {
   FilterList,
   Label,
 } from "./NoticesFilters.styled";
-import CheckRoundSVG from "./svg/svg-check";
-import UncheckRoundSVG from "./svg/svg-uncheck";
-import FilterSVG from "./svg/svg-filter";
-import ArrowSVG from "./svg/svg-arrow";
+// import CheckRoundSVG from "./svg/svg-check";
+// import UncheckRoundSVG from "./svg/svg-uncheck";
+// import FilterSVG from "./svg/svg-filter";
+// import ArrowSVG from "./svg/svg-arrow";
 
 import { useSearchParams } from "react-router-dom";
+import icons from "../../../../assets/icons.svg";
 
 function NoticesFilters({
   filterState: { isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale },
@@ -125,7 +126,11 @@ function NoticesFilters({
       {!isExpandedFilter ? (
         <>
           {screenWidth >= 768 && <p>Filter</p>}
-          <FilterSVG />
+          <svg width="24" height="24">
+            <use href={icons + "#filters"}   />
+          </svg>
+          {/* stroke="#54ADFF" */}
+          {/* <FilterSVG /> */}
         </>
       ) : (
         <>
@@ -166,9 +171,15 @@ function NoticesFilters({
                         onChange={() => setIsBeforeOneYear((prev) => !prev)}
                       />
                       {isBeforeOneYear ? (
-                        <CheckRoundSVG />
+                        <svg width="24" height="24">
+                          <use  href={icons + "#check-round"}/>
+                        </svg>
+                        // <CheckRoundSVG />
                       ) : (
-                        <UncheckRoundSVG />
+                        <svg width="24" height="24">
+                        <use  href={icons + "#round"} />
+                      </svg>
+                        // <UncheckRoundSVG />
                       )}
                       <span>3-12 m</span>
                     </Label>
@@ -178,7 +189,11 @@ function NoticesFilters({
                         checked={isUpOneYear}
                         onChange={() => setIsUpOneYear((prev) => !prev)}
                       />
-                      {isUpOneYear ? <CheckRoundSVG /> : <UncheckRoundSVG />}
+                      {isUpOneYear ? <svg width="24" height="24">
+                          <use  href={icons + "#check-round"} />
+                        </svg> :  <svg width="24" height="24">
+                        <use  href={icons + "#round"} />
+                      </svg>}
                       <span>up to 1 year</span>
                     </Label>
                     <Label>
@@ -187,14 +202,20 @@ function NoticesFilters({
                         checked={isUpTwoYear}
                         onChange={() => setIsUpTwoYear((prev) => !prev)}
                       />
-                      {isUpTwoYear ? <CheckRoundSVG /> : <UncheckRoundSVG />}
+                      {isUpTwoYear ? <svg width="24" height="24">
+                          <use  href={icons + "#check-round"} />
+                        </svg> :                         <svg width="24" height="24">
+                        <use  href={icons + "#round"} />
+                      </svg>}
                       <span>up to 2 year</span>
                     </Label>
                   </div>
                 </div>
               ) : (
                 <>
-                  <ArrowSVG />
+                   <svg width="24" height="24" style={{pointerEvents: "none"}}>
+                    <use  href={icons + "#chevron-down"} />
+                    </svg>
                   <p>By age</p>
                 </>
               )}
@@ -226,7 +247,11 @@ function NoticesFilters({
                         checked={isFemale}
                         onChange={() => setIsFemale((prev) => !prev)}
                       />
-                      {isFemale ? <CheckRoundSVG /> : <UncheckRoundSVG />}
+                      {isFemale ? <svg width="24" height="24">
+                          <use  href={icons + "#check-round"} />
+                        </svg> : <svg width="24" height="24">
+                        <use  href={icons + "#round"} />
+                      </svg>}
                       <span>female</span>
                     </Label>
                     <Label>
@@ -235,14 +260,20 @@ function NoticesFilters({
                         checked={isMale}
                         onChange={() => setIsMale((prev) => !prev)}
                       />
-                      {isMale ? <CheckRoundSVG /> : <UncheckRoundSVG />}
+                      {isMale ? <svg width="24" height="24">
+                          <use  href={icons + "#check-round"} />
+                        </svg>:<svg width="24" height="24">
+                        <use  href={icons + "#round"} />
+                      </svg>}
                       <span>male</span>
                     </Label>
                   </div>
                 </div>
               ) : (
                 <>
-                  <ArrowSVG />
+                  <svg width="24" height="24" style={{pointerEvents: "none"}}>
+                  <use  href={icons + "#chevron-down"} />
+                  </svg>
                   <p>By gender</p>
                 </>
               )}

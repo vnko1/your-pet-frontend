@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const FilterBtn = styled.div`
   display: flex;
+  stroke: #54adff;
 
   @media (max-width: 768px) {
     position: absolute;
@@ -46,18 +47,21 @@ export const FilterBtn = styled.div`
       props.isExpandedFilter ? "none" : "2px solid #54adff"};
   }
 
-  &:hover,
+  &:hover ,
   &:focus {
     color: ${(props) => !props.isExpandedFilter && "#fef9f9"};
     background: ${(props) =>
       !props.isExpandedFilter &&
       "linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)"};
+      stroke: ${(props) => !props.isExpandedFilter && "#fef9f9"};       
   }
 
-  &:hover svg path,
-  &:focus svg path {
-    stroke: ${(props) => !props.isExpandedFilter && "#fef9f9"};
-  }
+  // &:hover,
+  // &:focus {   
+  //   stroke: ${(props) => !props.isExpandedFilter && "#fef9f9"};
+  // ;
+  // }
+ 
 `;
 
 export const FilterList = styled.ul`
@@ -122,10 +126,11 @@ export const Label = styled.label`
 
   &:hover {
     color: white;
+   
   }
 
-  &:hover svg path,
-  &:focus svg path {
+  &:hover ,
+  &:focus  {
     stroke: white;
   }
 `;

@@ -40,3 +40,25 @@ export const AddPetBtn = styled.button`
     z-index: 1;
   }
 `;
+
+export const IconMobile = styled.svg`
+@media (max-width: 767px) {
+  IconMobile {
+    display: inline-block; /* Показуємо іконку для мобільного на малих екранах */
+  }
+}
+
+`;
+
+export const IconDesktop = styled.svg`
+display: none;
+@media (min-width: 768px) {
+  IconDesktop {
+    display: inline-block; /* Показуємо іконку для десктопа на великих екранах */
+  }
+}
+`;
+
+
+  
+

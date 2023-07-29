@@ -1,11 +1,47 @@
-import { AddPetBtn } from "./AddPetButton.styled";
+import { AddPetBtn, IconDesktop, IconMobile } from "./AddPetButton.styled";
+import icons from "../../../../assets/icons.svg";
+import { useEffect, useState } from "react";
 
 function AddPetButton() {
   // тут 2 разних + в свг для разный екранов
+  // const [isDesktop, setIsDesktop] = useState(true); // По замовчуванню вважаємо, що це десктоп
+
+  // const handleResize = () => {
+  //   // При зміні розміру вікна браузера перевіряємо, чи потрібно відобразити десктоп або мобільну іконку
+  //   if (window.innerWidth < 768) {
+  //     setIsDesktop(false); // Встановлюємо стан для відображення мобільної іконки
+  //   } else {
+  //     setIsDesktop(true); // Встановлюємо стан для відображення десктопної іконки
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   // Додаємо обробник події resize для вікна браузера
+  //   window.addEventListener('resize', handleResize);
+  //   // Перевіряємо при завантаженні сторінки
+  //   handleResize();
+
+  //   return () => {
+  //     // Прибираємо обробник події при розмонтуванні компонента
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
+
   return (
     <div>
       <AddPetBtn>
         Add pet
+      
+          {/* // Десктоп
+          <IconDesktop width="24" height="24">
+            <use href={icons + "#plus-small"} stroke="#FEF9F9" />
+          </IconDesktop> */}
+        
+          {/* // Мобільний екран */}
+          <IconMobile width="24" height="24">
+            <use href={icons + "#plus"} stroke="#FEF9F9" />
+          </IconMobile>
+        
         {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -21,7 +57,7 @@ function AddPetButton() {
             strokeLinejoin="round"
           />
         </svg> */}
-        <svg
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -34,7 +70,7 @@ function AddPetButton() {
             strokeWidth="2"
             strokeLinecap="round"
           />
-        </svg>
+        </svg> */}
       </AddPetBtn>
     </div>
   );
