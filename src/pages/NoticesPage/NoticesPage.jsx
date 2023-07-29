@@ -29,7 +29,6 @@ function NoticesPage() {
     }
   }, [dispatch, isLoggedIn]);
 
-
   useEffect(() => {
     if (pathname === "/notices") {
       navigate("/notices/sell", { replace: true });
