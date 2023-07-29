@@ -49,19 +49,21 @@ export const AddToFavorite = styled.button`
   border: none;
 `;
 
-export const HeartIconWrap = styled.div`
+export const HeartIconWrap = styled.svg`
   display: flex;
   justify-content: center;
   align-items: center;
+  width:24px;
+  height:24px;
 
-  svg path {
+
+  svg {
     fill: ${(props) => (props.isFavorite ? "#54ADFF" : "none")};
   }
 
-  &:hover svg path,
-  &:focus svg path {
-    stroke: #377ac8;
-    transform: scale(1.05);
+  &:hover,
+  &:focus {
+    fill: yellow;
   }
 `;
 
@@ -105,6 +107,13 @@ export const City = styled.p`
   font-weight: 600;
   letter-spacing: 0.48px;
 `;
+export const CitySvg = styled.svg`
+  width: 24px;
+  height: 24px;
+  
+`;
+
+
 
 export const Years = styled.p`
   position: absolute;
@@ -126,6 +135,12 @@ export const Years = styled.p`
   letter-spacing: 0.48px;
 `;
 
+export const YearsSvg = styled.svg`
+  width: 24px;
+  height: 24px;
+  
+`;
+
 export const Gender = styled.p`
   position: absolute;
   bottom: 12px;
@@ -145,6 +160,11 @@ export const Gender = styled.p`
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.48px;
+`;
+
+export const GenderSvg = styled.svg`
+  width: 24px;
+  height: 24px;  
 `;
 
 export const CardTextInfoWrap = styled.div`

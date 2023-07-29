@@ -29,6 +29,15 @@ function NoticesPage() {
     }
   }, [dispatch, isLoggedIn]);
 
+
+  useEffect(() => {
+    dispatch(
+      fetchFavorite(
+        "https://my-pet-app-8sz1.onrender.com/notices/owner/favorite"
+      )
+    );
+  }, [dispatch]);
+
   useEffect(() => {
     if (pathname === "/notices") {
       navigate("/notices/sell", { replace: true });
