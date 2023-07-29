@@ -60,7 +60,8 @@ export const HeartIconWrap = styled.div`
 
   &:hover svg path,
   &:focus svg path {
-    fill: yellow;
+    stroke: #377ac8;
+    transform: scale(1.05);
   }
 `;
 

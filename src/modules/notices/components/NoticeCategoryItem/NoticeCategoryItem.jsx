@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   isLogin,
   noticesFavoriteList,
+  noticesIsLoadingFavorite,
 } from "../../../../redux/notices/notices-selectors";
 import {
   fetchAddFavorite,
@@ -55,9 +56,17 @@ function NoticesCategoryItem({
 }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isDisabledBtn, setIsDisabledBtn] = useState(false);
 
   const favList = useSelector(noticesFavoriteList);
+  const isLoadingFavorite = useSelector(noticesIsLoadingFavorite);
   const isLoggedIn = useSelector(isLogin);
+
+  useEffect(() => {
+    if (isLoadingFavorite === false) {
+      setIsDisabledBtn(false);
+    }
+  }, [isLoadingFavorite]);
 
   useEffect(() => {
     if (favList && favList.length > 0) {
@@ -70,6 +79,8 @@ function NoticesCategoryItem({
   const dispatch = useDispatch();
 
   const handleClickHeart = () => {
+    // setIsDisabledBtn(true);
+
     if (!isLoggedIn) {
       toast.error("You need to log in to use this functionality!", {
         duration: 4000,
@@ -78,6 +89,7 @@ function NoticesCategoryItem({
       return;
     } else {
       if (isFavorite) {
+        setIsDisabledBtn(true);
         setIsFavorite((prev) => !prev);
 
         dispatch(
@@ -86,7 +98,9 @@ function NoticesCategoryItem({
           )
         );
       } else {
+        setIsDisabledBtn(true);
         setIsFavorite((prev) => !prev);
+
         dispatch(
           fetchAddFavorite(
             `https://my-pet-app-8sz1.onrender.com/notices/favorites/addFavorite/${_id}`
@@ -108,8 +122,11 @@ function NoticesCategoryItem({
     <Card>
       <ImageWrap>
         <Image src={`${fileUrl}`} alt={`${name}`} />
-        <AddToFavorite onClick={() => handleClickHeart()}>
-          <HeartIconWrap isFavorite={isFavorite}>
+        <AddToFavorite
+          disabled={isDisabledBtn}
+          onClick={() => handleClickHeart()}
+        >
+          <HeartIconWrap isDisabledBtn={isDisabledBtn} isFavorite={isFavorite}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

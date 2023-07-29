@@ -8,7 +8,7 @@ import {
 } from "./notices-operations";
 
 // FetchNotices
-const handlePendingFetchNotices = (state, action) => {
+const handlePendingFetchNotices = (state) => {
   state.isLoading = true;
   state.error = null;
 };
@@ -20,13 +20,13 @@ const handleFulfilledFetchNotices = (state, action) => {
   state.isLoading = false;
   state.error = null;
 };
-const handleRejectedFetchNotices = (state, action) => {
+const handleRejectedFetchNotices = (state) => {
   state.isLoading = false;
   state.error = true;
 };
 // =====================================================
 // FetchNoticesFavorite
-const handlePendingFetchNoticesFavorite = (state, action) => {
+const handlePendingFetchNoticesFavorite = (state) => {
   state.isLoading = true;
   state.error = null;
 };
@@ -39,9 +39,16 @@ const handleFulfilledFetchNoticesFavorite = (state, action) => {
   state.isLoading = false;
   state.error = null;
 };
-const handleRejectedFetchNoticesFavorite = (state, action) => {
+const handleRejectedFetchNoticesFavorite = (state) => {
   state.isLoading = false;
   state.error = true;
+};
+// ========================================
+// Add favorite
+const handlePendingFetchNoticesAddFavorite = (state) => {
+  // state.isLoading = true;
+  state.isLoadingFavorite = true;
+  state.error = null;
 };
 
 const handleFulfilledFetchNoticesAddFavorite = (state, action) => {
@@ -49,7 +56,21 @@ const handleFulfilledFetchNoticesAddFavorite = (state, action) => {
 
   state.favorite = [...favorites];
   state.total = total;
-  state.isLoading = false;
+  // state.isLoading = false;
+  state.isLoadingFavorite = false;
+  state.error = null;
+};
+
+const handleRejectedFetchNoticesAddFavorite = (state) => {
+  // state.isLoading = false;
+  state.isLoadingFavorite = false;
+  state.error = true;
+};
+// ========================================
+// Delete favorite
+
+const handlePendingFetchNoticesDeleteFavorite = (state) => {
+  state.isLoadingFavorite = true;
   state.error = null;
 };
 
@@ -67,9 +88,17 @@ const handleFulfilledFetchNoticesDeleteFavorite = (state, action) => {
   }
 
   state.favorite = [...favorites];
-  state.isLoading = false;
+  // state.isLoading = false;
+  state.isLoadingFavorite = false;
   state.error = null;
 };
+
+const handleRejectedFetchNoticesDeleteFavorite = (state) => {
+  // state.isLoading = false;
+  state.isLoadingFavorite = false;
+  state.error = true;
+};
+// =============================================
 
 const handleResetFavoriteList = (state) => {
   return {
@@ -85,6 +114,7 @@ export const noticesSlice = createSlice({
     favorite: [],
     total: 0,
     isLoading: false,
+    isLoadingFavorite: false,
     error: null,
   },
   extraReducers: (builder) => {
@@ -97,19 +127,27 @@ export const noticesSlice = createSlice({
       .addCase(fetchFavorite.fulfilled, handleFulfilledFetchNoticesFavorite)
       .addCase(fetchFavorite.rejected, handleRejectedFetchNoticesFavorite)
       // =============
-      .addCase(fetchAddFavorite.pending, handlePendingFetchNoticesFavorite)
+      // .addCase(fetchAddFavorite.pending, handlePendingFetchNoticesFavorite)
+      .addCase(fetchAddFavorite.pending, handlePendingFetchNoticesAddFavorite)
       .addCase(
         fetchAddFavorite.fulfilled,
         handleFulfilledFetchNoticesAddFavorite
       )
-      .addCase(fetchAddFavorite.rejected, handleRejectedFetchNoticesFavorite)
+      .addCase(fetchAddFavorite.rejected, handleRejectedFetchNoticesAddFavorite)
       // =============
-      .addCase(fetchDeleteFavorite.pending, handlePendingFetchNoticesFavorite)
+      // .addCase(fetchDeleteFavorite.pending, handlePendingFetchNoticesFavorite)
+      .addCase(
+        fetchDeleteFavorite.pending,
+        handlePendingFetchNoticesDeleteFavorite
+      )
       .addCase(
         fetchDeleteFavorite.fulfilled,
         handleFulfilledFetchNoticesDeleteFavorite
       )
-      .addCase(fetchDeleteFavorite.rejected, handlePendingFetchNoticesFavorite)
+      .addCase(
+        fetchDeleteFavorite.rejected,
+        handleRejectedFetchNoticesDeleteFavorite
+      )
       // =============
       .addCase(resetNotices, handleResetFavoriteList);
   },
