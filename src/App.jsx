@@ -44,9 +44,13 @@ const App = () => {
           path: "notices",
           element: <NoticesPage />,
           children: [
-            { index: true, element: <NoticesCategoriesList /> },
-            // { path: "lost-found", element: <List /> },
-            // { path: "for-free", element: <List /> },
+            // { index: true, element: <NoticesCategoriesList /> },
+            { index: true, path: "sell", element: <NoticesCategoriesList /> },
+            { path: "lost-found", element: <NoticesCategoriesList /> },
+            { path: "for-free", element: <NoticesCategoriesList /> },
+            // след 2 будет 2 приват роута
+            { path: "favorite", element: <NoticesCategoriesList /> },
+            { path: "own", element: <NoticesCategoriesList /> },
           ],
         },
         { path: "user", element: <UserPage /> },

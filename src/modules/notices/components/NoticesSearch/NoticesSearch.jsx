@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Input,
   SubmitBtn,
@@ -7,29 +6,15 @@ import {
   BtnsWrap,
   ContainerNoticesSearch,
 } from "./NoticesSearch.styled";
+import useSearch from "./hook/useSearch";
 
 function NoticesSearch() {
-  const [search, setSearch] = useState("");
-
-  const handleChange = (e) => {
-    // add debounce
-    const { value } = e.currentTarget;
-    setSearch(value);
-  };
-
-  const handeleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const resetInput = () => {
-    setSearch("");
-  };
+  const { search, handleSubmit, handleChange, resetInput } = useSearch();
 
   return (
     // временный контейнер
     <ContainerNoticesSearch>
-      <Form onSubmit={handeleSubmit}>
-        {/* добавить дебаунс после ввода на инпут */}
+      <Form onSubmit={handleSubmit}>
         <Input
           type="text"
           placeholder="Search"

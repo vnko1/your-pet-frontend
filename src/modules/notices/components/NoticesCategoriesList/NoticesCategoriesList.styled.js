@@ -20,7 +20,4 @@ export const CardList = styled.ul`
     flex-wrap: wrap;
     width: 1248px;
   }
-
-  /* gap: 24px 32px; */
-  /* width: 280px; */
 `;
