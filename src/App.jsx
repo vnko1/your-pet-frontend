@@ -1,13 +1,9 @@
 import * as React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { refreshUser } from "./redux/auth/auth-operations";
+ import { useDispatch, useSelector } from "react-redux";
+ import { createBrowserRouter, RouterProvider } from "react-router-dom";
+ import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
-
-import { Container } from "./styles";
-import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
-
 const SharedLayout = React.lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
 );
@@ -24,19 +20,12 @@ import { Container } from "./styles";
 const OurFriends = React.lazy(() =>
   import("./pages/OurFriendsPage/OurFriendsPage")
 );
-
-import { RestrictedRoute } from "./protected routers/RestricdetRoute";
-import { PrivateRoute } from "./protected routers/PrivateRoute";
-
-
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(authSelectors.selectRefreshing);
-
   React.useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
   const routes = [
     {
       path: "/",
@@ -47,50 +36,20 @@ const App = () => {
         { path: "login", element: <LoginPage /> },
         { path: "friends", element: <OurFriends /> },
         {
-          path: "register",
-          element: <RestrictedRoute component={RegisterPage} />,
-        },
-        { path: "login", element: <RestrictedRoute component={LoginPage} /> },
-        {
-          path: "notices",
+          path: "notices/:categoryName",
           element: <NoticesPage />,
           children: [
-            // { index: true, element: <NoticesCategoriesList /> },
-            { index: true, path: "sell", element: <NoticesCategoriesList /> },
-            { path: "lost-found", element: <NoticesCategoriesList /> },
-            { path: "for-free", element: <NoticesCategoriesList /> },
-            // след 2 будет 2 приват роута
-            {
-              path: "favorite",
-              element: (
-                <PrivateRoute
-                  component={NoticesCategoriesList}
-                  redirectTo="/login"
-                />
-              ),
-            },
-            {
-              path: "own",
-              element: (
-                <PrivateRoute
-                  component={NoticesCategoriesList}
-                  redirectTo="/login"
-                />
-              ),
-            },
+            { index: true, element: <NoticesCategoriesList /> },
+            // { path: "lost-found", element: <List /> },
+            // { path: "for-free", element: <List /> },
           ],
         },
-        {
-          path: "user",
-          element: <PrivateRoute component={UserPage} redirectTo="/login" />,
-        },
-
+        { path: "user", element: <UserPage /> },
         { path: "add-pet", element: <AddPetPage /> },
         { path: "*", element: <NotFound /> }, // Not Found Route
       ],
     },
   ];
-
   return (
     <React.Suspense fallback={<div>Loading...</div>}>
       {isRefreshing ? (
@@ -103,5 +62,4 @@ const App = () => {
     </React.Suspense>
   );
 };
-
 export default App;
