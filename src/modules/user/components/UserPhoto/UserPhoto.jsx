@@ -65,9 +65,9 @@ const AddPhoto = ({ isUserUpdate }) => {
                 />
               </UserPhotoWrapper>
             ) : (
-              <PhotoWrap>
-                <Img
-                  src={user?.avatarUrl || avatar}
+              <UserPhotoWrapper>
+                <PhotoContainer
+                  src={user.avatarUrl || avatar}
                   alt="Default avatar"
                   style={{ maxWidth: "300px" }}
                 />
