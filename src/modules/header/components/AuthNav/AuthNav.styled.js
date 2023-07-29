@@ -5,20 +5,23 @@ export const StyledAuthNav = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 
   @media (min-width: 768px) {
-    display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 20px;
   }
 `;
 
 export const StyledAuthNavItem = styled.li`
-  margin-bottom: 12px;
+  // margin-bottom: 12px;
 
-  @media (min-width: 768px) {
-    margin-bottom: 0;
-  }
+  // @media (min-width: 768px) {
+  //   margin-bottom: 0;
+  // }
 `;
 
 export const StyledLoginIcon = styled.svg`
@@ -36,6 +39,7 @@ export const StyledAuthNavButton = styled(Link)`
 
   font-size: 16px;
   line-height: 1.37;
+  text-decoration: none;
 
   background-color: ${(props) => (props.$primary ? "#FFC107" : "#FEF9F9")};
   color: ${(props) => (props.$primary ? "#FEF9F9" : "#FFC107")};
@@ -43,6 +47,9 @@ export const StyledAuthNavButton = styled(Link)`
   border: 2px solid #ffc107;
   padding-top: 8px;
   padding-bottom: 8px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   :hover {
     background-color: ${(props) => (props.$primary ? "#FEF9F9" : "#FFC107")};
     color: ${(props) => (props.$primary ? "#FFC107" : "#FEF9F9")};

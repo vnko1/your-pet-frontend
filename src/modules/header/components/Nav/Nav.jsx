@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import { CommonNavLink, StyledNavList, StyledNavItem } from "./Nav.styled";
 
 const Nav = (props) => {
-  const { onCloseMobileMenu } = props;
+  const { onCloseMobileMenu, isLoggedIn } = props;
 
   return (
     <nav>
-      <StyledNavList>
+      <StyledNavList marginBottom={isLoggedIn ? '84px' : '40px'}>
         <StyledNavItem>
           <CommonNavLink to={"/news"} onClick={onCloseMobileMenu}>
             News
@@ -29,6 +29,7 @@ const Nav = (props) => {
 
 Nav.propTypes = {
   onCloseMobileMenu: PropTypes.func,
+  isLoggedIn: PropTypes.bool,
 };
 
 export default Nav;

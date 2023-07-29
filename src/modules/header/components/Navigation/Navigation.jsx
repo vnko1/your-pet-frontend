@@ -57,7 +57,7 @@ const Navigation = (props) => {
       </>
 
       {(isMobileMenuOpen || (!isMobileMenuOpen && isDesktop)) && (
-        <Nav onCloseMobileMenu={onCloseMobileMenu} />
+        <Nav onCloseMobileMenu={onCloseMobileMenu} isLoggedIn={isLoggedIn} />
       )}
     </NavWrap>
   );
