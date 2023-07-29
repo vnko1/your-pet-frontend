@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import {
@@ -11,6 +11,8 @@ import {
 
 import { useSearchParams } from "react-router-dom";
 import icons from "../../../../assets/icons.svg";
+import useScreenWidth from "./hooks/useScreenWidth";
+import useOpenFilter from "./hooks/useOpenFilter";
 
 function NoticesFilters({
   filterState: { isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale },
@@ -22,13 +24,16 @@ function NoticesFilters({
     setIsMale,
   },
 }) {
-  const [isExpandedFilter, setExpandedFilter] = useState(false);
-  const [isExpandedAge, setExpandedAge] = useState(false);
-  const [isExpandedGender, setExpandedGender] = useState(false);
-
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  const [searchParams, setSearchParams] = useSearchParams();
+  const {
+    isExpandedFilter,
+    isExpandedAge,
+    isExpandedGender,
+    handleFilterClick,
+    handleAgeClick,
+    handleGenderClick,
+  } = useOpenFilter();
+  const [, setSearchParams] = useSearchParams();
+  const screenWidth = useScreenWidth();
 
   useEffect(() => {
     const dateArray = [];
@@ -47,23 +52,21 @@ function NoticesFilters({
 
     setSearchParams((prevSearchParams) => {
       // Создаем новый объект URLSearchParams на основе текущих параметров
-      const newSearchParams = new URLSearchParams(prevSearchParams);
-
+      // const newSearchParams = new URLSearchParams(prevSearchParams);
       // Устанавливаем параметр 'date'
       if (dateArray.length > 0) {
-        newSearchParams.set("date", dateArray.join(","));
+        prevSearchParams.set("date", dateArray.join(","));
       } else {
-        newSearchParams.delete("date");
+        prevSearchParams.delete("date");
       }
-
       // Устанавливаем параметр 'sex'
       if (sexArray.length > 0) {
-        newSearchParams.set("sex", sexArray.join(","));
+        prevSearchParams.set("sex", sexArray.join(","));
       } else {
-        newSearchParams.delete("sex");
+        prevSearchParams.delete("sex");
       }
 
-      return newSearchParams;
+      return prevSearchParams;
     });
   }, [
     isBeforeOneYear,
@@ -74,53 +77,12 @@ function NoticesFilters({
     setSearchParams,
   ]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleFilterClick = (e) => {
-    const { nodeName, textContent } = e.target;
-    const nodeValue = e.target.attributes.class?.nodeValue;
-
-    if (
-      nodeName === "DIV" ||
-      (nodeName === "P" && textContent === "Filter") ||
-      nodeValue === "main-icon"
-    ) {
-      setExpandedFilter((prevState) => !prevState);
-    }
-  };
-
-  const handleAgeClick = (e) => {
-    const { tagName, textContent } = e.target;
-
-    if (tagName === "LI" || (tagName === "P" && textContent === "By age")) {
-      setExpandedAge((prevState) => !prevState);
-    }
-  };
-
-  const handleGenderClick = (e) => {
-    const { tagName, textContent } = e.target;
-
-    if (tagName === "LI" || (tagName === "P" && textContent === "By gender")) {
-      setExpandedGender((prevState) => !prevState);
-    }
-  };
-
   return (
     <FilterBtn isExpandedFilter={isExpandedFilter} onClick={handleFilterClick}>
       {!isExpandedFilter ? (
         <>
           {screenWidth >= 768 && <p>Filter</p>}
-          <svg width="24" height="24">
+          <svg className="main-icon" width="24" height="24">
             <use href={icons + "#filters"} />
           </svg>
         </>

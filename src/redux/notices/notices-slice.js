@@ -54,11 +54,10 @@ const handlePendingFetchNoticesAddFavorite = (state) => {
 };
 
 const handleFulfilledFetchNoticesAddFavorite = (state, action) => {
-  const { total, favorites } = action.payload;
+  const { favorites } = action.payload;
 
   state.favorite = [...favorites];
-  state.total = total;
-  // state.isLoading = false;
+  // state.total = total;
   state.isLoadingFavorite = false;
   state.error = null;
 };

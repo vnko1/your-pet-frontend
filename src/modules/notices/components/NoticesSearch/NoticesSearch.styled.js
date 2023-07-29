@@ -63,6 +63,12 @@ export const SubmitBtn = styled.button`
   border: none;
   background-color: #fff;
   padding: 0;
+
+  &:hover svg use,
+  &:focus svg use {
+    fill: #377ac8;
+    transform: scale(1.05);
+  }
 `;
 
 export const ResetBtn = styled.button`
@@ -72,4 +78,10 @@ export const ResetBtn = styled.button`
   border: none;
   background-color: #fff;
   padding: 0;
+
+  &:hover svg use,
+  &:focus svg use {
+    stroke: red;
+    transform: scale(1.05);
+  }
 `;

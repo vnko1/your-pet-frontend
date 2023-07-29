@@ -77,6 +77,7 @@ export const CloseBtn = styled.button`
   right: 26px;
   background-color: transparent;
   border: transparent;
+  stroke: #54adff;
 
   width: 24px;
   height: 24px;
@@ -87,8 +88,8 @@ export const CloseBtn = styled.button`
     right: 12px;
   }
 
-  :hover svg path,
-  :focus svg path {
+  :hover,
+  :focus {
     stroke: rgb(255, 193, 7);
   }
 `;
@@ -252,6 +253,11 @@ export const AddressLink = styled.a`
   font-weight: 500;
   line-height: normal;
   text-decoration-line: underline;
+
+  :hover,
+  :focus {
+    color: rgb(84, 173, 255);
+  }
 `;
 
 export const ModelItemInfo = styled.li`

@@ -8,12 +8,14 @@ import {
   NoticesNavWrap,
   FilterCategoryBtn,
   FilterCategoryWrap,
+  FilterCategoryText,
 } from "./NoticesCategoriesNav.styled";
 import useSearch from "../NoticesSearch/hook/useSearch";
 import { useDispatch } from "react-redux";
 import { fetchNotices } from "../../../../redux/notices/notices-operations";
 import useFilter from "./hooks/useFilter";
 import useNavButtons from "./hooks/useNavButtons";
+import icons from "../../../../assets/icons.svg";
 
 // useEffect(() => {
 //   const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
@@ -228,59 +230,47 @@ function NoticesCategoriesNav() {
           />
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
-        {/* <FilterCategoryWrap>
-          {isBeforeOneYear && (
-            <FilterCategoryBtn onClick={() => setIsBeforeOneYear(false)}>
-              3-12m
-            </FilterCategoryBtn>
-          )}
-          {isUpOneYear && (
-            <FilterCategoryBtn onClick={() => setIsUpOneYear(false)}>
-              1 year
-            </FilterCategoryBtn>
-          )}
-          {isUpTwoYear && (
-            <FilterCategoryBtn onClick={() => setIsUpTwoYear(false)}>
-              2 year
-            </FilterCategoryBtn>
-          )}
-          {isFemale && (
-            <FilterCategoryBtn onClick={() => setIsFemale(false)}>
-              female
-            </FilterCategoryBtn>
-          )}
-          {isMale && (
-            <FilterCategoryBtn onClick={() => setIsMale(false)}>
-              male
-            </FilterCategoryBtn>
-          )}
-        </FilterCategoryWrap> */}
       </NoticesNavMainContainer>
       {/* тут будет по условию кнопки сброса фильтра */}
       <FilterCategoryWrap>
         {isBeforeOneYear && (
           <FilterCategoryBtn onClick={() => setIsBeforeOneYear(false)}>
-            3-12m
+            <FilterCategoryText>3-12m</FilterCategoryText>
+            <svg width="16" height="16">
+              <use href={icons + "#cross-small"} stroke="#54ADFF" />
+            </svg>
           </FilterCategoryBtn>
         )}
         {isUpOneYear && (
           <FilterCategoryBtn onClick={() => setIsUpOneYear(false)}>
-            1 year
+            <FilterCategoryText>1 year</FilterCategoryText>
+            <svg width="16" height="16">
+              <use href={icons + "#cross-small"} stroke="#54ADFF" />
+            </svg>
           </FilterCategoryBtn>
         )}
         {isUpTwoYear && (
           <FilterCategoryBtn onClick={() => setIsUpTwoYear(false)}>
-            2 year
+            <FilterCategoryText>2 year</FilterCategoryText>
+            <svg width="16" height="16">
+              <use href={icons + "#cross-small"} stroke="#54ADFF" />
+            </svg>
           </FilterCategoryBtn>
         )}
         {isFemale && (
           <FilterCategoryBtn onClick={() => setIsFemale(false)}>
-            female
+            <FilterCategoryText>female</FilterCategoryText>
+            <svg width="16" height="16">
+              <use href={icons + "#cross-small"} stroke="#54ADFF" />
+            </svg>
           </FilterCategoryBtn>
         )}
         {isMale && (
           <FilterCategoryBtn onClick={() => setIsMale(false)}>
-            male
+            <FilterCategoryText>male</FilterCategoryText>
+            <svg width="16" height="16">
+              <use href={icons + "#cross-small"} stroke="#54ADFF" />
+            </svg>
           </FilterCategoryBtn>
         )}
       </FilterCategoryWrap>

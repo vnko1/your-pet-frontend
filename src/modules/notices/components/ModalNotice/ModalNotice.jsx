@@ -18,6 +18,7 @@ import {
 } from "./ModalNotice.styled";
 import { useSelector } from "react-redux";
 import { noticesCardById } from "../../../../redux/notices/notices-selectors";
+import icons from "../../../../assets/icons.svg";
 
 function formatDate(inputDate) {
   const dateObj = new Date(inputDate);
@@ -91,39 +92,19 @@ const ModalNotice = ({
         <CommentsBold>Comments: </CommentsBold> {comments}
       </Comments>
       <CloseBtn type="button" onClick={toggleModal}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M19 5L5 19M5.00004 5L19 19"
-            stroke="#54ADFF"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+        <svg width="24" height="24">
+          <use href={icons + "#cross"} />
         </svg>
       </CloseBtn>
       <div>
         <ContactLink href="tel:+380971234567">Contact</ContactLink>
         <AddBtn disabled={isDisabledBtn} onClick={() => handleClickHeart()}>
           Add to
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill={isFavorite ? "white" : "green"}
-          >
-            <path
-              d="M4.3314 12.0474L12 20L19.6686 12.0474C20.5211 11.1633 21 9.96429 21 8.71405C21 6.11055 18.9648 4 16.4543 4C15.2487 4 14.0925 4.49666 13.24 5.38071L12 6.66667L10.76 5.38071C9.90749 4.49666 8.75128 4 7.54569 4C5.03517 4 3 6.11055 3 8.71405C3 9.96429 3.47892 11.1633 4.3314 12.0474Z"
-              stroke={isFavorite ? "white" : "green"}
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          <svg width="24" height="24">
+            <use
+              href={icons + "#heart"}
+              stroke="#FEF9F9"
+              fill={isFavorite ? "white" : "none"}
             />
           </svg>
         </AddBtn>

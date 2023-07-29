@@ -10,6 +10,7 @@ import {
 } from "../../redux/notices/notices-operations";
 import { isLogin } from "../../redux/notices/notices-selectors";
 import { NoticesContainer } from "./NoticesPage.styled";
+import Pagination from "./Pagination/Pagination";
 
 function NoticesPage() {
   const { pathname } = useLocation();
@@ -40,6 +41,7 @@ function NoticesPage() {
       <NoticesSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
+      <Pagination />
     </NoticesContainer>
   );
 }

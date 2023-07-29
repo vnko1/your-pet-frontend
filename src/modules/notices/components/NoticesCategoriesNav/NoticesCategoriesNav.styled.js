@@ -90,6 +90,7 @@ export const FilterCategoryWrap = styled.div`
 
 export const FilterCategoryBtn = styled.button`
   display: inline-flex;
+  height: 32px;
   padding: 8px 16px;
   justify-content: center;
   align-items: center;
@@ -101,6 +102,20 @@ export const FilterCategoryBtn = styled.button`
   color: #54adff;
   font-family: Inter;
   font-size: 12px;
+  font-weight: 400;
+  line-height: 120%;
+
+  &:hover svg use,
+  &:focus svg use {
+    stroke: rgb(255, 193, 7);
+  }
+`;
+
+export const FilterCategoryText = styled.p`
+  color: #54adff;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
   font-weight: 400;
   line-height: 120%;
 `;

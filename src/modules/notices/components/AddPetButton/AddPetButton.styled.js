@@ -28,7 +28,6 @@ export const AddPetBtn = styled.button`
     padding: 0;
     position: absolute;
     bottom: -210px;
-    /* bottom: 0px; */
     right: 0px;
     width: 80px;
     height: 80px;
@@ -41,24 +40,14 @@ export const AddPetBtn = styled.button`
   }
 `;
 
-export const IconMobile = styled.svg`
-@media (max-width: 767px) {
-  IconMobile {
-    display: inline-block; /* Показуємо іконку для мобільного на малих екранах */
+// export const Text = styled.span`
+//   font-size: 12px;
+//   font-weight: 600;
+// `;
+
+export const IconPlus = styled.svg`
+  @media (min-width: 768px) {
+    width: 16px;
+    height: 16px;
   }
-}
-
 `;
-
-export const IconDesktop = styled.svg`
-display: none;
-@media (min-width: 768px) {
-  IconDesktop {
-    display: inline-block; /* Показуємо іконку для десктопа на великих екранах */
-  }
-}
-`;
-
-
-  
-
