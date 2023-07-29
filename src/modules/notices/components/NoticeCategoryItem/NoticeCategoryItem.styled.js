@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const Card = styled.li`
-  margin: 0;
-  padding: 0;
-  /* width: 288px; */
   width: 280px;
 
   @media (min-width: 768px) {
@@ -22,14 +19,10 @@ export const Card = styled.li`
 
 export const ImageWrap = styled.div`
   position: relative;
-  /* width: 288px; */
-  /* width: 280px;
-  height: 288px; */
 `;
 
 export const Image = styled.img`
   display: block;
-  /* width: 288px; */
   width: 280px;
 
   @media (min-width: 768px) {
@@ -68,9 +61,6 @@ export const HeartIconWrap = styled.div`
 `;
 
 export const Category = styled.p`
-  margin: 0;
-  padding: 0;
-
   position: absolute;
   top: 12px;
   left: 0px;
@@ -80,14 +70,17 @@ export const Category = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
+
   border-radius: 0px 16px 16px 0px;
   background: #cce4fb;
+
+  color: #111;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
 `;
 
 export const City = styled.p`
-  margin: 0;
-  padding: 0;
-
   position: absolute;
   bottom: 12px;
   left: 12px;
@@ -97,14 +90,18 @@ export const City = styled.p`
   justify-content: center;
   align-items: center;
   gap: 4px;
+
   border-radius: 16px;
   background: #cce4fb;
+
+  overflow: hidden;
+  color: #111;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.48px;
 `;
 
 export const Years = styled.p`
-  margin: 0;
-  padding: 0;
-
   position: absolute;
   bottom: 12px;
   left: 50%;
@@ -115,14 +112,16 @@ export const Years = styled.p`
   justify-content: center;
   align-items: center;
   gap: 4px;
+
   border-radius: 16px;
   background: #cce4fb;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.48px;
 `;
 
 export const Gender = styled.p`
-  margin: 0;
-  padding: 0;
-
   position: absolute;
   bottom: 12px;
   right: 12px;
@@ -132,8 +131,15 @@ export const Gender = styled.p`
   justify-content: center;
   align-items: center;
   gap: 4px;
+
   border-radius: 16px;
   background: #cce4fb;
+
+  overflow: hidden;
+  color: #111;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.48px;
 `;
 
 export const CardTextInfoWrap = styled.div`
@@ -145,14 +151,8 @@ export const CardTextInfoWrap = styled.div`
 `;
 
 export const Title = styled.h2`
-  margin: 0;
-  padding: 0;
-
-  font-family: Manrope;
   font-size: 24px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   color: #111;
 `;
 
@@ -164,11 +164,8 @@ export const LearnMoreBtn = styled.button`
   align-items: center;
   gap: 10px;
 
-  font-family: Manrope;
   font-size: 16px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
   letter-spacing: 0.64px;
 
   border-radius: 40px;
@@ -178,6 +175,7 @@ export const LearnMoreBtn = styled.button`
 
   &:hover,
   &:focus {
+    border: transparent;
     color: #fef9f9;
     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
   }
