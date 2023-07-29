@@ -19,16 +19,17 @@ import {
   handlefulfilled,
   userFulfilled,
   userUpdateFulfilled,
+  userRefreshFulfilled,
+  userRefreshRejected,
 } from "./auth-Utils";
-import { formatDate } from "../../shared/utils/formatDate";
 
 const initialState = {
   user: {
-    name: null,
-    email: null,
-    birthday: null,
-    city: null,
-    phone: null,
+    name: "",
+    email: "",
+    birthday: "",
+    city: "",
+    phone: "",
     isNewUser: false,
   },
   token: null,
@@ -64,20 +65,9 @@ const authSlice = createSlice({
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.fulfilled, (state, { payload: { user } }) => {
-        let birthday = "";
-        if (user.birthday) {
-          birthday = formatDate(user.birthday);
-        }
+      .addCase(refreshUser.fulfilled, userRefreshFulfilled)
 
-        state.isRefreshing = false;
-        state.user = { ...state.user, ...user, birthday };
-        state.isLoggedIn = true;
-      })
-      .addCase(refreshUser.rejected, (state) => {
-        state.isRefreshing = false;
-        state.isLoggedIn = false;
-      })
+      .addCase(refreshUser.rejected, userRefreshRejected)
 
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)
