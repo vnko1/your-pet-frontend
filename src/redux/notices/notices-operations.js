@@ -53,4 +53,18 @@ export const fetchDeleteFavorite = createAsyncThunk(
   }
 );
 
+export const fetchCardById = createAsyncThunk(
+  "notices/getCardById",
+  async (url, thunkAPI) => {
+    try {
+      const response = await axios.get(url);
+      return response.data.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const resetNotices = createAction("notices/resetFavorite");
+export const resetCardById = createAction("notices/resetCardById");

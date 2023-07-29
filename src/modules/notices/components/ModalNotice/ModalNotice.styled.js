@@ -205,7 +205,7 @@ export const AddBtn = styled.button`
   }
 `;
 
-export const ContactBtn = styled.button`
+export const ContactLink = styled.a`
   display: flex;
   width: 129px;
   height: 40px;
@@ -218,7 +218,6 @@ export const ContactBtn = styled.button`
   border-radius: 40px;
   border: 2px solid #54adff;
   color: #54adff;
-  // color: #FEF9F9;
 
   font-size: 16px;
   font-style: normal;
