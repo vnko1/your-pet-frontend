@@ -19,6 +19,9 @@ const UserPage = React.lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = React.lazy(() => import("./pages/AddPetPage/AddPetPage"));
 import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
 import { Container } from "./styles";
+const OurFriends = React.lazy(() =>
+  import("./pages/OurFriendsPage/OurFriendsPage")
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -36,6 +39,8 @@ const App = () => {
         { index: true, element: <MainPage /> },
         { path: "register", element: <RegisterPage /> },
         { path: "login", element: <LoginPage /> },
+        { path: "friends", element: <OurFriends /> },
+
         {
           path: "notices/:categoryName",
           element: <NoticesPage />,

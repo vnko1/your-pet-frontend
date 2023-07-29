@@ -11,12 +11,13 @@ import {
 import authReducer from "./auth/auth-slice";
 import { petsReducer } from "./pets/pets-slice";
 import { newsReducer } from "./news/news-slice";
-
+import { friendsReducer } from "./ourFriends/ourFriends-slice";
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     pets: petsReducer,
     news: newsReducer,
+    friends: friendsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
