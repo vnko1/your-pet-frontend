@@ -19,6 +19,7 @@ const UserPage = React.lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = React.lazy(() => import("./pages/AddPetPage/AddPetPage"));
 import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
 import { Container } from "./styles";
+import { RestrictedRoute } from "./RestricdetRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,8 +35,11 @@ const App = () => {
       element: <SharedLayout />,
       children: [
         { index: true, element: <MainPage /> },
-        { path: "register", element: <RegisterPage /> },
-        { path: "login", element: <LoginPage /> },
+        {
+          path: "register",
+          element: <RestrictedRoute component={RegisterPage} />,
+        },
+        { path: "login", element: <RestrictedRoute component={LoginPage} /> },
         {
           path: "notices",
           element: <NoticesPage />,
