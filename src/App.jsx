@@ -1,5 +1,4 @@
 import * as React from "react";
-// import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { refreshUser } from "./redux/auth/auth-operations";

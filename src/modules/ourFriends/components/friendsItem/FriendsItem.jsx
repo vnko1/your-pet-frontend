@@ -1,4 +1,4 @@
-import Dropdown from "../dropdown/dropdown";
+import Dropdown from "../dropdown/Dropdown";
 import pawPrint from "../../../../images/ourFriends-default/pngwing.png";
 
 import {
