@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
   AddToFavorite,
   Card,
@@ -16,9 +17,101 @@ import {
 
 import Modal from "../../../../shared/modals/modalPort/Modal";
 import ModalNotice from "../ModalNotice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  isLogin,
+  noticesFavoriteList,
+  noticesIsLoadingFavorite,
+} from "../../../../redux/notices/notices-selectors";
+import {
+  fetchAddFavorite,
+  fetchDeleteFavorite,
+} from "../../../../redux/notices/notices-operations";
+import { toast } from "react-hot-toast";
 
-function NoticesCategoryItem() {
+// тут бедет обрезаться текст города
+const sliceLocation = (location) => {
+  if (location.length > 4) {
+    return location.slice(0, 4) + "...";
+  } else {
+    return location;
+  }
+};
+
+// тут форматируеться возраст
+const makeAge = (petDate) => {
+  const date = new Date(petDate);
+  const currentDate = new Date();
+
+  const yearDifference = currentDate.getFullYear() - date.getFullYear();
+  const monthDifference = currentDate.getMonth() + 1 - (date.getMonth() + 1);
+
+  if (yearDifference >= 1) {
+    return yearDifference + " year";
+  } else {
+    return monthDifference + " month";
+  }
+};
+
+function NoticesCategoryItem({
+  card: { _id, category, date, fileUrl, location, name, sex, title },
+}) {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isDisabledBtn, setIsDisabledBtn] = useState(false);
+
   const [isModalOpen, setModalOpen] = useState(false);
+
+  const favList = useSelector(noticesFavoriteList);
+  const isLoadingFavorite = useSelector(noticesIsLoadingFavorite);
+  const isLoggedIn = useSelector(isLogin);
+
+  useEffect(() => {
+    if (isLoadingFavorite === false) {
+      setIsDisabledBtn(false);
+    }
+  }, [isLoadingFavorite]);
+
+  useEffect(() => {
+    if (favList && favList.length > 0) {
+      setIsFavorite(favList.some((item) => item === _id) ? true : false);
+    } else {
+      setIsFavorite(false);
+    }
+  }, [favList, _id]);
+
+  const dispatch = useDispatch();
+
+  const handleClickHeart = () => {
+    // setIsDisabledBtn(true);
+
+    if (!isLoggedIn) {
+      toast.error("You need to log in to use this functionality!", {
+        duration: 4000,
+        position: "top-right",
+      });
+      return;
+    } else {
+      if (isFavorite) {
+        setIsDisabledBtn(true);
+        setIsFavorite((prev) => !prev);
+
+        dispatch(
+          fetchDeleteFavorite(
+            `https://my-pet-app-8sz1.onrender.com/notices/favorites/delFavorite/${_id}`
+          )
+        );
+      } else {
+        setIsDisabledBtn(true);
+        setIsFavorite((prev) => !prev);
+
+        dispatch(
+          fetchAddFavorite(
+            `https://my-pet-app-8sz1.onrender.com/notices/favorites/addFavorite/${_id}`
+          )
+        );
+      }
+    }
+  };
 
   const toggleModal = () => {
     setModalOpen((prev) => !prev);
@@ -27,13 +120,12 @@ function NoticesCategoryItem() {
   return (
     <Card>
       <ImageWrap>
-        <Image
-          src="
-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
-          alt="cat"
-        />
-        <AddToFavorite>
-          <HeartIconWrap>
+        <Image src={`${fileUrl}`} alt={`${name}`} />
+        <AddToFavorite
+          disabled={isDisabledBtn}
+          onClick={() => handleClickHeart()}
+        >
+          <HeartIconWrap isDisabledBtn={isDisabledBtn} isFavorite={isFavorite}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -51,7 +143,7 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
             </svg>
           </HeartIconWrap>
         </AddToFavorite>
-        <Category>In good hands</Category>
+        <Category>{category}</Category>
         <City>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +167,7 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
               strokeLinejoin="round"
             />
           </svg>
-          Lviv
+          {sliceLocation(location)}
         </City>
         <Years>
           <svg
@@ -93,7 +185,7 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
               strokeLinejoin="round"
             />
           </svg>
-          1 year
+          {makeAge(date)}
         </Years>
         <Gender>
           <svg
@@ -111,16 +203,21 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
               strokeLinejoin="round"
             />
           </svg>
-          female
+          {sex}
         </Gender>
       </ImageWrap>
       <CardTextInfoWrap>
-        <Title>Сute dog looking for a home</Title>
+        <Title>{title}</Title>
         <LearnMoreBtn onClick={toggleModal}>Learn more</LearnMoreBtn>
       </CardTextInfoWrap>
       {isModalOpen && (
         <Modal toggleModal={toggleModal}>
-          <ModalNotice toggleModal={toggleModal} />
+          <ModalNotice
+            isDisabledBtn={isDisabledBtn}
+            isFavorite={isFavorite}
+            handleClickHeart={handleClickHeart}
+            toggleModal={toggleModal}
+          />
         </Modal>
       )}
     </Card>
@@ -128,3 +225,17 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
 }
 
 export default NoticesCategoryItem;
+
+NoticesCategoryItem.propTypes = {
+  card: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    // fileUrl: PropTypes.string.isRequired,
+    fileUrl: PropTypes.string,
+    location: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    sex: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};

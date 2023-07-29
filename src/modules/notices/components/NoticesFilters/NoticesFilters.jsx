@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
 import {
   FilterBtn,
   FilterItem,
@@ -11,18 +13,69 @@ import UncheckRoundSVG from "./svg/svg-uncheck";
 import FilterSVG from "./svg/svg-filter";
 import ArrowSVG from "./svg/svg-arrow";
 
-function NoticesFilters() {
+import { useSearchParams } from "react-router-dom";
+
+function NoticesFilters({
+  filterState: { isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale },
+  setFilterState: {
+    setIsBeforeOneYear,
+    setIsUpOneYear,
+    setIsUpTwoYear,
+    setIsFemale,
+    setIsMale,
+  },
+}) {
   const [isExpandedFilter, setExpandedFilter] = useState(false);
   const [isExpandedAge, setExpandedAge] = useState(false);
   const [isExpandedGender, setExpandedGender] = useState(false);
 
-  const [isBeforeOneYear, setIsBeforeOneYear] = useState(false);
-  const [isUpOneYear, setIsUpOneYear] = useState(false);
-  const [isUpTwoYear, setIsUpTwoYear] = useState(false);
-  const [isFemale, setIsFemale] = useState(false);
-  const [isMale, setIsMale] = useState(false);
-
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const dateArray = [];
+    const sexArray = [];
+
+    if (isBeforeOneYear || isUpOneYear || isUpTwoYear) {
+      if (isBeforeOneYear) dateArray.push("0.5");
+      if (isUpOneYear) dateArray.push("1");
+      if (isUpTwoYear) dateArray.push("2");
+    }
+
+    if (isFemale || isMale) {
+      if (isMale) sexArray.push("male");
+      if (isFemale) sexArray.push("female");
+    }
+
+    setSearchParams((prevSearchParams) => {
+      // Создаем новый объект URLSearchParams на основе текущих параметров
+      const newSearchParams = new URLSearchParams(prevSearchParams);
+
+      // Устанавливаем параметр 'date'
+      if (dateArray.length > 0) {
+        newSearchParams.set("date", dateArray.join(","));
+      } else {
+        newSearchParams.delete("date");
+      }
+
+      // Устанавливаем параметр 'sex'
+      if (sexArray.length > 0) {
+        newSearchParams.set("sex", sexArray.join(","));
+      } else {
+        newSearchParams.delete("sex");
+      }
+
+      return newSearchParams;
+    });
+  }, [
+    isBeforeOneYear,
+    isFemale,
+    isMale,
+    isUpOneYear,
+    isUpTwoYear,
+    setSearchParams,
+  ]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -68,6 +121,7 @@ function NoticesFilters() {
 
   return (
     <FilterBtn isExpandedFilter={isExpandedFilter} onClick={handleFilterClick}>
+      {/* <button onClick={() => resetFilter()}>СБРОС</button> */}
       {!isExpandedFilter ? (
         <>
           {screenWidth >= 768 && <p>Filter</p>}
@@ -201,3 +255,20 @@ function NoticesFilters() {
 }
 
 export default NoticesFilters;
+
+NoticesFilters.propTypes = {
+  filterState: PropTypes.shape({
+    isBeforeOneYear: PropTypes.bool.isRequired,
+    isUpOneYear: PropTypes.bool.isRequired,
+    isUpTwoYear: PropTypes.bool.isRequired,
+    isFemale: PropTypes.bool.isRequired,
+    isMale: PropTypes.bool.isRequired,
+  }).isRequired,
+  setFilterState: PropTypes.shape({
+    setIsBeforeOneYear: PropTypes.func.isRequired,
+    setIsUpOneYear: PropTypes.func.isRequired,
+    setIsUpTwoYear: PropTypes.func.isRequired,
+    setIsFemale: PropTypes.func.isRequired,
+    setIsMale: PropTypes.func.isRequired,
+  }).isRequired,
+};
