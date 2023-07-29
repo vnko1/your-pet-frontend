@@ -1,18 +1,17 @@
 import styled from "styled-components";
 
-
 export const ModalNoticeBox = styled.div`
- position: absolute;
+  position: absolute;
 
-top: 50%; 
-left: 50%; 
-transform: translate(-50%, -50%); 
-width: 681px;
-height: 540px;
-padding: 24px 31px;
-border-radius: 40px;
-// background: #5555;
-background: #FFF;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 681px;
+  height: 540px;
+  padding: 24px 31px;
+  border-radius: 40px;
+  // background: #5555;
+  background: #fff;
 
   @media (max-width: 767px) {
     width: 280px;
@@ -22,8 +21,11 @@ background: #FFF;
   }
 `;
 
-export const ImageModalNotise = styled.img`
-// display: block;
+// export const Category = styled.p``;
+// export const Image = styled.img``;
+
+export const Image = styled.img`
+  // display: block;
   width: 262px;
   height: 298px;
 
@@ -38,7 +40,7 @@ export const ImageModalNotise = styled.img`
   }
 `;
 
-export const CategoryModalNotice = styled.p`
+export const Category = styled.p`
   position: absolute;
   top: 44px;
   left: 31px;
@@ -95,7 +97,7 @@ export const CloseBtn = styled.button`
   }
 `;
 
-export const TitleModalNotice = styled.h1`
+export const Title = styled.h1`
   width: 321px;
   margin-bottom: 20px;
 
@@ -123,7 +125,6 @@ export const ModalNoticeInfoList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
-
 `;
 
 export const Comments = styled.p`
@@ -169,7 +170,6 @@ export const AddBtn = styled.button`
   justify-content: center;
   align-items: center;
   gap: 8px;
-  
 
   border-radius: 40px;
   background: #54adff;
@@ -261,7 +261,7 @@ export const AddressLink = styled.a`
 
 export const ModelItemInfo = styled.li`
   display: flex;
-  gap:70px;
+  gap: 70px;
   color: #000;
 
   font-size: 16px;
