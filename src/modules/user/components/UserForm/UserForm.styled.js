@@ -59,7 +59,25 @@ export const UserFormLabel = styled.label`
 `;
 
 export const UserFormInput = styled(Field)`
+  outline: 0;
+  background: none;
+
+  flex: 1 1 auto;
+
+  width: 255px;
   height: 28px;
+  padding: 4px 12px;
+  background: blue;
+  background: none;
+
+  border: 1px solid #54adff;
+  border-radius: 40px;
+
+  @media screen and (min-width: 320px) {
+    font-size: 12px;
+  }
+
+  /* height: 28px;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
@@ -74,7 +92,7 @@ export const UserFormInput = styled(Field)`
 
   @media screen and (min-width: 768px) {
     width: 255px;
-  }
+  } */
 `;
 
 export const UserFormBtn = styled.button`

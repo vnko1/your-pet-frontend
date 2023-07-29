@@ -55,7 +55,6 @@ export const UserFormBox = styled.div`
     flex-direction: column;
     padding: 20px 24px 20px 16px;
     border-radius: 40px;
-
     gap: 0;
   }
 `;

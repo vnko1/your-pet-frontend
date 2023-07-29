@@ -19,7 +19,7 @@ import {
 
 import authSelectors from "../../../../redux/auth/auth-selectors";
 
-import sprite from "../../../../assets/icons/icons.svg";
+import sprite from "../../../../assets/icons.svg";
 
 const PetsData = () => {
   const dispatch = useDispatch();
