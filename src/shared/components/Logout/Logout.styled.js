@@ -55,6 +55,7 @@ export const LogoutDialogWrap = styled.div`
 export const LogoutDialogText = styled.p`
   font-size: 24px;
   line-height: 1.37;
+  font-weight: 500;
   color: #111111;
   margin-top: 41px;
   margin-bottom: 44px;
@@ -77,6 +78,7 @@ export const LogoutDialogButtonWrap = styled.div`
 export const LogoutDialogButtonText = styled.p`
   font-size: 16px;
   line-height: 1.37;
+  font-weight: 700;
   color: ${(props) => (props.$primary ? "#FFFFFF" : "#54adff")};
   margin: 0;
 `;

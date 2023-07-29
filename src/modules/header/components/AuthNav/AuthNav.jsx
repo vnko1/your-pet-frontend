@@ -5,7 +5,7 @@ import {
   StyledAuthNav,
   StyledAuthNavItem,
   StyledAuthNavButton,
-  StyledAuthNavMobileMenuTalet,
+  // StyledAuthNavMobileMenuTalet,
 } from "./AuthNav.styled";
 
 const AuthNav = (props) => {

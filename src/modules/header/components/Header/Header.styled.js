@@ -29,6 +29,24 @@ export const MobileMenuCloseBtn = styled.svg`
 `;
 
 export const MobileMenu = styled.div`
+  &.fade-enter {
+   transform: translateY(-100%);
+  }
+
+  &.fade-enter-active {
+    transform: translateY(0%);
+    transition: transform 250ms;
+  }
+
+  &.fade-exit {
+    transform: translateY(0%);
+  }
+
+  &.fade-exit-active {
+    transform: translateY(-100%);
+    transition: transform 250ms;
+  }
+
   position: fixed;
   top: 0;
   left: 0;

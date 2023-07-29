@@ -3,6 +3,7 @@ import { useState } from "react";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
 import spriteSvg from "../../../../assets/icons.svg";
+import { CSSTransition } from "react-transition-group";
 import {
   BurgerMenuBtn,
   StyledHeader,
@@ -37,7 +38,13 @@ const Header = () => {
         </>
       )}
 
-      {isMobileMenuOpen && (
+      {/* {isMobileMenuOpen && ( */}
+      <CSSTransition
+        in={isMobileMenuOpen}
+        classNames="fade"
+        timeout={250}
+        unmountOnExit
+      >
         <MobileMenu>
           <MobileMenuContainer>
             <MenuWrap>
@@ -52,7 +59,8 @@ const Header = () => {
             />
           </MobileMenuContainer>
         </MobileMenu>
-      )}
+      </CSSTransition>
+      {/* )} */}
     </StyledHeader>
   );
 };

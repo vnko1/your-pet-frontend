@@ -20,6 +20,7 @@ export const StyledUser = styled(Link)`
 export const StyledUserName = styled.p`
   font-size: 16px;
   line-height: 1.37;
+  font-weight: 500;
   color: #ffc107;
 `;
 export const StyledUserIcon = styled.img`
