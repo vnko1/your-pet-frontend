@@ -111,6 +111,6 @@ const ModalNotice = ({ toggleModal }) => {
 
 export default ModalNotice;
 
-// ModalNotice.propTypes = {
-//   toggleModal: PropTypes.func.isRequired,
-// };
+ModalNotice.propTypes = {
+  toggleModal: PropTypes.func.isRequired,
+};

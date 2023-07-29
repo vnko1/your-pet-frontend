@@ -1,14 +1,16 @@
 import PropTypes from "prop-types";
 import User from "../User/User";
 import Logout from "../../../../shared/components/Logout/Logout";
-import StyledUserNav from "./UserNav.styled";
+import { StyledUserNav, StyledLogout } from "./UserNav.styled";
 
 const UserNav = (props) => {
   const { isMobileMenuOpen, isDesktop, onCloseMobileMenu } = props;
   return (
     <StyledUserNav>
       {(isMobileMenuOpen || isDesktop) && (
-        <Logout onCloseMobileMenu={onCloseMobileMenu} />
+        <StyledLogout>
+          <Logout onCloseMobileMenu={onCloseMobileMenu} />
+        </StyledLogout>
       )}
       <User
         isMobileMenuOpen={isMobileMenuOpen}
