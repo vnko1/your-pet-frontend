@@ -55,34 +55,34 @@ export const UserFormBox = styled.div`
     flex-direction: column;
     padding: 20px 24px 20px 16px;
     border-radius: 40px;
-
     gap: 0;
   }
 `;
 
 export const UserBtnPen = styled.button`
   position: absolute;
-  top: 8%;
-  right: 5%;
-
-  transform: translateY(-50%);
+  top: 24px;
+  right: 24px;
 
   width: 24px;
   height: 24px;
 
+  background-color: inherit;
   background-color: transparent;
-  border: 2px solid rgb(84, 173, 255);
-  border-radius: 4px;
-
-  transition: border 250ms ease-in-out;
-
+  border: none;
   cursor: pointer;
-`;
-export const IconShown = styled.img`
-  width: 100%;
-  height: 100%;
+  border: none;
 
-  transition: fill 250ms ease-in-out;
+  * {
+    stroke: ${({ theme: { colors } }) => colors.primary};
+  }
+`;
+
+export const Icon = styled.svg`
+  width: 24px;
+  height: 24px;
+
+  fill: ${(props) => props.theme.colors.primary};
 `;
 
 export const UserInputWrapper = styled.div`
@@ -90,20 +90,6 @@ export const UserInputWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-export const UserInput = styled.div`
-  width: 182px;
-  height: 182px;
-  margin-bottom: 14px;
-  border-radius: 40px;
-  overflow: hidden;
-`;
-
-export const UserImg = styled.img`
-  width: 182px;
-  height: 182px;
-  object-fit: cover;
 `;
 
 export const UserInputFile = styled.input`

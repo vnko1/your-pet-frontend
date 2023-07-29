@@ -1,15 +1,5 @@
 import styled from "styled-components";
-import { Form, Field, ErrorMessage } from "formik";
-import iconCross from "./../../../../assets/icons.svg#cross-small";
-import iconCheck from "./../../../../assets/icons.svg#check";
-// import {
-//   colors,
-//   fonts,
-//   fontWeights,
-//   shadow,
-//   borders,
-//   media,
-// } from "styles/theme";
+import { Form, Field } from "formik";
 
 export const FormContainer = styled(Form)`
   display: flex;
@@ -30,6 +20,12 @@ export const FormContainer = styled(Form)`
     height: 480px;
     border-radius: 50px;
   }
+
+  @media (min-width: 768px) {
+    width: 600px;
+    height: 480px;
+    border-radius: 50px;
+  }
 `;
 
 export const LoginHeader = styled.h1`
@@ -40,11 +36,15 @@ export const LoginHeader = styled.h1`
   @media (min-width: 1280px) {
     font-size: 36px;
   }
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+  }
 `;
 
 export const InputWrapper = styled.div`
   max-width: 100%;
-  width: 460px;
+  width: 256px;
   height: 50px;
 
   display: flex;
@@ -53,14 +53,23 @@ export const InputWrapper = styled.div`
   gap: 5px;
 
   @media (min-width: 1280px) {
+    width: 460px;
+    padding-bottom: 15px;
+    margin-bottom: 60px;
+  }
+
+  @media (min-width: 768px) {
+    width: 460px;
     padding-bottom: 15px;
     margin-bottom: 60px;
   }
 `;
 
 export const Input = styled(Field)`
+  position: relative;
   padding-left: 12px;
   padding-right: 12px;
+  padding-right: 55px;
   width: 100%;
 
   font-size: 16px;
@@ -75,30 +84,37 @@ export const Input = styled(Field)`
   outline: none;
 
   &:first-child {
-    padding-bottom: 15px;
-    padding-top: 20px;
+    padding-bottom: 12px;
+    padding-top: 12px;
   }
 
-  &:not(:placeholder-shown)[data-error="false"] {
-    border: 1px solid #f43f5e;
+  &.default {
+    border-color: #54adff;
   }
-
-  &[data-error="true"] {
-    border: 1px solid #00c3ad;
+  &.success {
+    border-color: #00c3ad;
+  }
+  &.error {
+    border-color: #f43f5e;
   }
 
   @media (min-width: 1280px) {
     border-radius: 25px;
     font-size: 16px;
   }
+
+  @media (min-width: 768px) {
+    border-radius: 25px;
+    font-size: 16px;
+  }
 `;
 
 export const Btn = styled.button`
-  width: 460px;
+  width: 256px;
   height: 50px;
   padding: 16px 32px;
   z-index: 10;
-  margin-top: auto;
+  margin-top: 170px;
 
   font-weight: 500;
   font-size: 20px;
@@ -112,25 +128,19 @@ export const Btn = styled.button`
   transition: all 250ms ease-in-out;
 
   cursor: pointer;
-`;
 
-export const ErrorMsg = styled(ErrorMessage)`
-  position: absolute;
-  bottom: -10%;
-  left: 15px;
-
-  transform: translateY(100%);
-
-  font-size: 14px;
-  color: #f43f5e;
-  font-family: Manrope, sans-serif;
-
-  &:not(:placeholder-shown)[data-error="false"] {
-    color: #f43f5e;
+  @media (min-width: 1280px) {
+    width: 460px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-top: 100px;
   }
 
-  &[data-error="true"] {
-    color: #00c3ad;
+  @media (min-width: 768px) {
+    width: 460px;
+    border-radius: 25px;
+    font-size: 16px;
+    margin-top: 100px;
   }
 `;
 
@@ -150,11 +160,14 @@ export const Text = styled.p`
 export const PassWrapper = styled.div`
   position: relative;
   width: 100%;
+  &:first-child {
+    margin-bottom: 32px;
+  }
 `;
 
 export const ShowPassBtn = styled.button`
   position: absolute;
-  top: 50%;
+  top: 34%;
   right: 15px;
 
   transform: translateY(-50%);
@@ -172,30 +185,34 @@ export const ShowPassBtn = styled.button`
   cursor: pointer;
 `;
 
-export const IconHidden = styled.img`
-  width: 100%;
-  height: 100%;
-
-  transition: fill 250ms ease-in-out;
+export const IconHidden = styled.svg`
+  width: 24px;
+  height: 24px;
 `;
 
-export const IconShown = styled.img`
-  width: 100%;
-  height: 100%;
-
-  transition: fill 250ms ease-in-out;
+export const IconShown = styled.svg`
+  width: 24px;
+  height: 24px;
 `;
 
-export const IconCross = styled(iconCross)`
-  width: 100%;
-  height: 100%;
-
-  transition: fill 250ms ease-in-out;
+export const WrapperCheckCross = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  width: 24px;
+  height: 24px;
+  z-index: 1000;
+  * {
+    stroke: #00c3ad;
+  }
 `;
 
-export const IconCheck = styled(iconCheck)`
+export const IconCross = styled.svg`
   width: 100%;
   height: 100%;
+`;
 
-  transition: fill 250ms ease-in-out;
+export const IconCheck = styled.svg`
+  width: 100%;
+  height: 100%;
 `;

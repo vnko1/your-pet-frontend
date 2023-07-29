@@ -1,3 +1,5 @@
+import { notifyError, notifySucces } from "../../shared/toasters/Toasters";
+import { formatDate } from "../../shared/utils/formatDate";
 import {
   logIn,
   registration,
@@ -29,22 +31,64 @@ export const handleRejected = (state) => {
 };
 
 export const userFulfilled = (state, { payload: { token, user } }) => {
+  let birthday = "";
+  if (user.birthday) {
+    birthday = formatDate(user.birthday);
+  }
+
   state.isLoggedIn = true;
   state.token = token;
-  state.user = { ...state.user, ...user };
+  state.user = { ...state.user, ...user, birthday };
+
+  if (user.isNewUser) {
+    notifySucces(
+      `congratulations ${user.name} registration successfully completed`
+    );
+  } else {
+    notifySucces(`Welcome ${user.name}`);
+  }
 };
 
 export const getInitialState = (state) => {
+  notifySucces(`Goodbye ${state.user.name}`);
+
   state.isLoggedIn = false;
   state.token = "";
   state.user = { name: null, email: null };
 };
 
 export const getUserFulfilled = (state, { payload: { user } }) => {
-  state.user = user;
+  let birthday = "";
+  if (user.birthday) {
+    birthday = formatDate(user.birthday);
+  }
+
+  state.user = { ...user, birthday };
 };
 
 export const userUpdateFulfilled = (state, { payload: { token, user } }) => {
+  let birthday = "";
+  if (user.birthday) {
+    birthday = formatDate(user.birthday);
+  }
+
   state.token = token;
-  state.user = user;
+  state.user = { ...user, birthday };
+};
+
+export const userRefreshFulfilled = (state, { payload: { user } }) => {
+  let birthday = "";
+  if (user.birthday) {
+    birthday = formatDate(user.birthday);
+  }
+
+  state.isRefreshing = false;
+  state.user = { ...state.user, ...user, birthday };
+  state.isLoggedIn = true;
+  notifySucces(`Welcome ${user.name}`);
+};
+
+export const userRefreshRejected = (state) => {
+  state.isRefreshing = false;
+  state.isLoggedIn = false;
 };
