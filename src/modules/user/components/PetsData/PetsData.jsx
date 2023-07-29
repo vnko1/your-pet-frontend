@@ -1,7 +1,6 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-import { deletePet } from "./../../../../redux/pets/pets-operation";
+import { deletePet } from "../../../../redux/pets/pets-operation";
 
 import {
   UserPetsBody,
@@ -15,10 +14,12 @@ import {
   UserPetsNavBtn,
   UserPetsTitle,
   UserPetsTitleWrap,
-  UserPetsBtnDell,
+  UserPetsSvg,
 } from "./PetsData.styled";
 
 import authSelectors from "../../../../redux/auth/auth-selectors";
+
+import sprite from "../../../../assets/icons.svg";
 
 const PetsData = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const PetsData = () => {
         </UserPetsTitleWrap>
         {pets.length === 0 ? (
           <NoUserPets>
-            You havenot added a pet yet, you have the option to add your furry
+            You have not added a pet yet, you have the option to add your furry
             friend!
           </NoUserPets>
         ) : (
@@ -48,9 +49,7 @@ const PetsData = () => {
             {pets.map(({ _id, petsURL, name, birthday, type, comments }) => (
               <UserPetsInfo key={_id}>
                 <UserPetsImg src={petsURL} alt="pet_image" />
-                <UserPetsBtnDell>
-                  <svg />
-                </UserPetsBtnDell>
+
                 <UserPetsList>
                   <UserPetsItem>
                     Name:{""}
@@ -72,10 +71,12 @@ const PetsData = () => {
                 <UserPetsBtn
                   type="button"
                   onClick={() => {
-                    handelDellPets(_id);
+                    handelDellPets();
                   }}
                 >
-                  <svg />
+                  <UserPetsSvg>
+                    <use href={sprite + "#icon-delete"} />
+                  </UserPetsSvg>
                 </UserPetsBtn>
               </UserPetsInfo>
             ))}
@@ -85,6 +86,5 @@ const PetsData = () => {
     </UserPetsBody>
   );
 };
-
 
 export default PetsData;
