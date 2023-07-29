@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const FilterBtn = styled.div`
   display: flex;
   stroke: #54adff;
+  cursor: ${(props) => (props.isExpandedFilter ? "default" : "pointer")};
 
   @media (max-width: 768px) {
     position: absolute;
@@ -16,7 +17,6 @@ export const FilterBtn = styled.div`
     background: ${(props) =>
       props.isExpandedFilter ? "rgb(234 245 255)" : "#c5dff6"};
     color: #54adff;
-    /* padding: ${(props) => (props.isExpandedFilter ? "8px" : "8px 20px")}; */
     padding: ${(props) => props.isExpandedFilter && "8px"};
     flex-direction: ${(props) => (props.isExpandedFilter ? "column" : "row")};
     align-items: ${(props) =>
@@ -47,21 +47,14 @@ export const FilterBtn = styled.div`
       props.isExpandedFilter ? "none" : "2px solid #54adff"};
   }
 
-  &:hover ,
+  &:hover,
   &:focus {
     color: ${(props) => !props.isExpandedFilter && "#fef9f9"};
     background: ${(props) =>
       !props.isExpandedFilter &&
       "linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%)"};
-      stroke: ${(props) => !props.isExpandedFilter && "#fef9f9"};       
+    stroke: ${(props) => !props.isExpandedFilter && "#fef9f9"};
   }
-
-  // &:hover,
-  // &:focus {   
-  //   stroke: ${(props) => !props.isExpandedFilter && "#fef9f9"};
-  // ;
-  // }
- 
 `;
 
 export const FilterList = styled.ul`
@@ -73,11 +66,8 @@ export const FilterList = styled.ul`
 
 export const FilterItem = styled.li`
   display: flex;
-  /* align-items: center; */
   gap: 10px;
   width: 136px;
-  /* height: 32px; */
-  /* padding: 4px 8px; */
   border-radius: 20px;
   background-color: #cce4fb;
   font-family: "Inter";
@@ -85,6 +75,7 @@ export const FilterItem = styled.li`
   font-weight: 400;
   line-height: 130%;
   overflow: hidden;
+  cursor: ${(props) => (props.isExpandedAge ? "default" : "pointer")};
 
   flex-direction: ${(props) => (props.isExpandedAge ? "column" : "row")};
   padding: ${(props) => (props.isExpandedAge ? "14px" : "4px 8px")};
@@ -103,6 +94,7 @@ export const FilterItemGender = styled.li`
   font-size: 14px;
   font-weight: 400;
   line-height: 130%;
+  cursor: ${(props) => (props.isExpandedGender ? "default" : "pointer")};
 
   flex-direction: ${(props) => (props.isExpandedGender ? "column" : "row")};
   padding: ${(props) => (props.isExpandedGender ? "14px" : "4px 8px")};
@@ -126,11 +118,10 @@ export const Label = styled.label`
 
   &:hover {
     color: white;
-   
   }
 
-  &:hover ,
-  &:focus  {
+  &:hover,
+  &:focus {
     stroke: white;
   }
 `;

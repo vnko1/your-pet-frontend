@@ -8,10 +8,6 @@ import {
   FilterList,
   Label,
 } from "./NoticesFilters.styled";
-// import CheckRoundSVG from "./svg/svg-check";
-// import UncheckRoundSVG from "./svg/svg-uncheck";
-// import FilterSVG from "./svg/svg-filter";
-// import ArrowSVG from "./svg/svg-arrow";
 
 import { useSearchParams } from "react-router-dom";
 import icons from "../../../../assets/icons.svg";
@@ -91,7 +87,6 @@ function NoticesFilters({
   }, []);
 
   const handleFilterClick = (e) => {
-    // console.dir(e.target);
     const { nodeName, textContent } = e.target;
     const nodeValue = e.target.attributes.class?.nodeValue;
 
@@ -122,22 +117,19 @@ function NoticesFilters({
 
   return (
     <FilterBtn isExpandedFilter={isExpandedFilter} onClick={handleFilterClick}>
-      {/* <button onClick={() => resetFilter()}>СБРОС</button> */}
       {!isExpandedFilter ? (
         <>
           {screenWidth >= 768 && <p>Filter</p>}
           <svg width="24" height="24">
-            <use href={icons + "#filters"}   />
+            <use href={icons + "#filters"} />
           </svg>
-          {/* stroke="#54ADFF" */}
-          {/* <FilterSVG /> */}
         </>
       ) : (
         <>
           <p
             style={{
               width: "100%",
-              pointerEvents: "none",
+              cursor: "pointer",
             }}
           >
             Filter
@@ -172,14 +164,12 @@ function NoticesFilters({
                       />
                       {isBeforeOneYear ? (
                         <svg width="24" height="24">
-                          <use  href={icons + "#check-round"}/>
+                          <use href={icons + "#check-round"} />
                         </svg>
-                        // <CheckRoundSVG />
                       ) : (
                         <svg width="24" height="24">
-                        <use  href={icons + "#round"} />
-                      </svg>
-                        // <UncheckRoundSVG />
+                          <use href={icons + "#round"} />
+                        </svg>
                       )}
                       <span>3-12 m</span>
                     </Label>
@@ -189,11 +179,15 @@ function NoticesFilters({
                         checked={isUpOneYear}
                         onChange={() => setIsUpOneYear((prev) => !prev)}
                       />
-                      {isUpOneYear ? <svg width="24" height="24">
-                          <use  href={icons + "#check-round"} />
-                        </svg> :  <svg width="24" height="24">
-                        <use  href={icons + "#round"} />
-                      </svg>}
+                      {isUpOneYear ? (
+                        <svg width="24" height="24">
+                          <use href={icons + "#check-round"} />
+                        </svg>
+                      ) : (
+                        <svg width="24" height="24">
+                          <use href={icons + "#round"} />
+                        </svg>
+                      )}
                       <span>up to 1 year</span>
                     </Label>
                     <Label>
@@ -202,20 +196,24 @@ function NoticesFilters({
                         checked={isUpTwoYear}
                         onChange={() => setIsUpTwoYear((prev) => !prev)}
                       />
-                      {isUpTwoYear ? <svg width="24" height="24">
-                          <use  href={icons + "#check-round"} />
-                        </svg> :                         <svg width="24" height="24">
-                        <use  href={icons + "#round"} />
-                      </svg>}
+                      {isUpTwoYear ? (
+                        <svg width="24" height="24">
+                          <use href={icons + "#check-round"} />
+                        </svg>
+                      ) : (
+                        <svg width="24" height="24">
+                          <use href={icons + "#round"} />
+                        </svg>
+                      )}
                       <span>up to 2 year</span>
                     </Label>
                   </div>
                 </div>
               ) : (
                 <>
-                   <svg width="24" height="24" style={{pointerEvents: "none"}}>
-                    <use  href={icons + "#chevron-down"} />
-                    </svg>
+                  <svg width="24" height="24" style={{ pointerEvents: "none" }}>
+                    <use href={icons + "#chevron-down"} />
+                  </svg>
                   <p>By age</p>
                 </>
               )}
@@ -247,11 +245,15 @@ function NoticesFilters({
                         checked={isFemale}
                         onChange={() => setIsFemale((prev) => !prev)}
                       />
-                      {isFemale ? <svg width="24" height="24">
-                          <use  href={icons + "#check-round"} />
-                        </svg> : <svg width="24" height="24">
-                        <use  href={icons + "#round"} />
-                      </svg>}
+                      {isFemale ? (
+                        <svg width="24" height="24">
+                          <use href={icons + "#check-round"} />
+                        </svg>
+                      ) : (
+                        <svg width="24" height="24">
+                          <use href={icons + "#round"} />
+                        </svg>
+                      )}
                       <span>female</span>
                     </Label>
                     <Label>
@@ -260,19 +262,23 @@ function NoticesFilters({
                         checked={isMale}
                         onChange={() => setIsMale((prev) => !prev)}
                       />
-                      {isMale ? <svg width="24" height="24">
-                          <use  href={icons + "#check-round"} />
-                        </svg>:<svg width="24" height="24">
-                        <use  href={icons + "#round"} />
-                      </svg>}
+                      {isMale ? (
+                        <svg width="24" height="24">
+                          <use href={icons + "#check-round"} />
+                        </svg>
+                      ) : (
+                        <svg width="24" height="24">
+                          <use href={icons + "#round"} />
+                        </svg>
+                      )}
                       <span>male</span>
                     </Label>
                   </div>
                 </div>
               ) : (
                 <>
-                  <svg width="24" height="24" style={{pointerEvents: "none"}}>
-                  <use  href={icons + "#chevron-down"} />
+                  <svg width="24" height="24" style={{ pointerEvents: "none" }}>
+                    <use href={icons + "#chevron-down"} />
                   </svg>
                   <p>By gender</p>
                 </>

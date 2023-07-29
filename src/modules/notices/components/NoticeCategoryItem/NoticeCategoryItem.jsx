@@ -15,7 +15,7 @@ import {
   Years,
   CitySvg,
   YearsSvg,
-  GenderSvg
+  GenderSvg,
 } from "./NoticeCategoryItem.styled";
 
 import Modal from "../../../../shared/modals/modalPort/Modal";
@@ -141,8 +141,12 @@ function NoticesCategoryItem({
         <Image src={`${fileUrl}`} alt={`${name}`} />
         <AddToFavorite onClick={() => handleClickHeart()}>
           <div>
-            <HeartIconWrap isFavorite={isFavorite} > 
-              <use href={icons + "#heart"}  stroke="#54ADFF"/>
+            <HeartIconWrap>
+              <use
+                href={icons + "#heart"}
+                stroke="#54ADFF"
+                fill={isFavorite ? "#54ADFF" : "none"}
+              />
             </HeartIconWrap>
             {/* <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -164,7 +168,7 @@ function NoticesCategoryItem({
         <Category>{category}</Category>
         <City>
           <CitySvg>
-            <use href={icons + "#location"} stroke="#54ADFF"/>
+            <use href={icons + "#location"} stroke="#54ADFF" />
           </CitySvg>
           {/* <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -191,8 +195,8 @@ function NoticesCategoryItem({
           {sliceLocation(location)}
         </City>
         <Years>
-        <YearsSvg>
-            <use href={icons + "#clock"} stroke="#54ADFF"/>
+          <YearsSvg>
+            <use href={icons + "#clock"} stroke="#54ADFF" />
           </YearsSvg>
           {/* <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -212,8 +216,8 @@ function NoticesCategoryItem({
           {makeAge(date)}
         </Years>
         <Gender>
-        <GenderSvg>
-            <use href={icons + "#female"} stroke="#54ADFF"/>
+          <GenderSvg>
+            <use href={icons + "#female"} stroke="#54ADFF" />
           </GenderSvg>
           {/* <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -10,7 +10,6 @@ export const ModalNoticeBox = styled.div`
   height: 540px;
   padding: 24px 31px;
   border-radius: 40px;
-  // background: #5555;
   background: #fff;
 
   @media (max-width: 767px) {
@@ -20,9 +19,6 @@ export const ModalNoticeBox = styled.div`
     padding: 44px 20px 16px 20px;
   }
 `;
-
-// export const Category = styled.p``;
-// export const Image = styled.img``;
 
 export const Image = styled.img`
   // display: block;
