@@ -1,15 +1,10 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-position: relative;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  @media (min-width: 1280px) {
-    // justify-content: start;
-    // gap: 159px;
-  }
 `;
 
 export const BurgerMenuBtn = styled.svg`
