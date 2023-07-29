@@ -9,15 +9,18 @@ export const CardList = styled.ul`
     align-items: center;
     flex-direction: column;
     width: 280px;
+    margin-bottom: 40px;
   }
 
   @media (min-width: 768px) {
     flex-wrap: wrap;
     width: 704px;
+    margin-bottom: 60px;
   }
 
   @media (min-width: 1280px) {
     flex-wrap: wrap;
     width: 1248px;
+    margin-bottom: 68px;
   }
 `;

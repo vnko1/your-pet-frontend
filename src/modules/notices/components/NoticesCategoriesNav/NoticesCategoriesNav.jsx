@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import AddPetButton from "../AddPetButton";
 import NoticesFilters from "../NoticesFilters";
 import {
@@ -143,7 +144,7 @@ import icons from "../../../../assets/icons.svg";
 //   }
 // }, [activeButton, dispatch, search, url]);
 
-function NoticesCategoriesNav() {
+function NoticesCategoriesNav({ currentPage }) {
   const { categoryBtnsUrl, activeButton, setActiveButton } = useNavButtons();
   const { search, resetInput } = useSearch();
 
@@ -178,17 +179,17 @@ function NoticesCategoriesNav() {
       url.includes("/notices/lost-found") ||
       url.includes("/notices/for-free")
     ) {
-      fetchUrl = `${baseUrl}?category=${activeButton}&page=1&limit=9${commonParams}`;
+      fetchUrl = `${baseUrl}?category=${activeButton}&page=${currentPage}&limit=9${commonParams}`;
     } else if (url.includes("/notices/favorite")) {
-      fetchUrl = `${baseUrl}favorites?page=1&limit=9${commonParams}`;
+      fetchUrl = `${baseUrl}favorites?page=${currentPage}&limit=9${commonParams}`;
     } else if (url.includes("/notices/own")) {
-      fetchUrl = `${baseUrl}owner?page=1&limit=9${commonParams}`;
+      fetchUrl = `${baseUrl}owner?page=${currentPage}&limit=9${commonParams}`;
     }
 
     if (fetchUrl) {
       dispatch(fetchNotices(fetchUrl));
     }
-  }, [activeButton, dispatch, search, url]);
+  }, [activeButton, currentPage, dispatch, search, url]);
 
   const resetAllSearchQuery = (btn) => {
     resetFilter();
@@ -231,7 +232,6 @@ function NoticesCategoriesNav() {
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
       </NoticesNavMainContainer>
-      {/* тут будет по условию кнопки сброса фильтра */}
       <FilterCategoryWrap>
         {isBeforeOneYear && (
           <FilterCategoryBtn onClick={() => setIsBeforeOneYear(false)}>
@@ -279,3 +279,7 @@ function NoticesCategoriesNav() {
 }
 
 export default NoticesCategoriesNav;
+
+NoticesCategoriesNav.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+};

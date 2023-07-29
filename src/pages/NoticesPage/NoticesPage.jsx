@@ -2,20 +2,29 @@ import NoticesSearch from "../../modules/notices/components/NoticesSearch";
 import NoticesCategoriesNav from "../../modules/notices/components/NoticesCategoriesNav";
 import NoticesCategoriesList from "../../modules/notices/components/NoticesCategoriesList";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchFavorite,
   resetNotices,
 } from "../../redux/notices/notices-operations";
-import { isLogin } from "../../redux/notices/notices-selectors";
+import { isLogin, noticesTotal } from "../../redux/notices/notices-selectors";
 import { NoticesContainer } from "./NoticesPage.styled";
-import Pagination from "./Pagination/Pagination";
+import Pagination from "./Pagination";
 
 function NoticesPage() {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(isLogin);
+  const totalPages = useSelector(noticesTotal);
+
+  // const countPages = Math.ceil(totalPages/9)
+
+  console.log("currentPage", currentPage);
+  // console.log("totalPages", totalPages)
+  // console.log("countPages", countPages)
 
   const dispatch = useDispatch();
 
@@ -39,9 +48,13 @@ function NoticesPage() {
   return (
     <NoticesContainer>
       <NoticesSearch />
-      <NoticesCategoriesNav />
+      <NoticesCategoriesNav currentPage={currentPage} />
       <NoticesCategoriesList />
-      <Pagination />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </NoticesContainer>
   );
 }
