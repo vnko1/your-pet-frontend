@@ -15,6 +15,18 @@ export const UserPetsBody = styled.div`
   }
 `;
 
+export const UserPetsTitle = styled.h2`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.35;
+
+  color: #000000;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
+`;
 export const UserPetsTitleWrap = styled.div`
   display: flex;
   flex-direction: row;
@@ -196,4 +208,10 @@ export const UserPetsBtn = styled.button`
     top: 20px;
     right: 20px;
   }
+`;
+export const UserPetsSvg = styled.svg`
+  width: 20px;
+  height: 20px;
+
+  fill: ${(props) => props.theme.colors.primary};
 `;

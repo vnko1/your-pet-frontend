@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect } from "react";
@@ -21,7 +20,7 @@ import {
   UserPetsNavBtn,
   UserPetsTitle,
   UserPetsTitleWrap,
-  Icon,
+  UserPetsSvg,
 } from "./PetsData.styled";
 
 const PetsData = () => {
@@ -83,9 +82,9 @@ const PetsData = () => {
                     handelDellPets();
                   }}
                 >
-                  <Icon>
+                  <UserPetsSvg>
                     <use href={sprite + "#icon-delete"} />
-                  </Icon>
+                  </UserPetsSvg>
                 </UserPetsBtn>
               </UserPetsInfo>
             ))}
@@ -95,6 +94,5 @@ const PetsData = () => {
     </UserPetsBody>
   );
 };
-
 
 export default PetsData;
