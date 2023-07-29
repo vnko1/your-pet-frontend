@@ -1,3 +1,4 @@
+import { formatDate } from "../../shared/utils/formatDate";
 import {
   logIn,
   registration,
@@ -29,9 +30,14 @@ export const handleRejected = (state) => {
 };
 
 export const userFulfilled = (state, { payload: { token, user } }) => {
+  let birthday = "";
+  if (user.birthday) {
+    birthday = formatDate(user.birthday);
+  }
+
   state.isLoggedIn = true;
   state.token = token;
-  state.user = { ...state.user, ...user };
+  state.user = { ...state.user, ...user, birthday };
 };
 
 export const getInitialState = (state) => {
@@ -41,10 +47,20 @@ export const getInitialState = (state) => {
 };
 
 export const getUserFulfilled = (state, { payload: { user } }) => {
-  state.user = user;
+  let birthday = "";
+  if (user.birthday) {
+    birthday = formatDate(user.birthday);
+  }
+
+  state.user = { ...user, birthday };
 };
 
 export const userUpdateFulfilled = (state, { payload: { token, user } }) => {
+  let birthday = "";
+  if (user.birthday) {
+    birthday = formatDate(user.birthday);
+  }
+
   state.token = token;
-  state.user = user;
+  state.user = { ...user, birthday };
 };

@@ -1,4 +1,3 @@
-import { ErrorMessage, Formik } from "formik";
 import UserForm from "../UserForm/UserForm";
 
 import {
@@ -6,48 +5,35 @@ import {
   UserPageItem,
   UserFormTitle,
   UserFormBox,
-  UserInputWrapper,
-  UserInput,
-  UserImg,
-  UserInputFile,
   UserBtnPen,
-  Icon,
 } from "./UserData.styled";
-import { Form } from "react-router-dom";
-import { avatarSchema } from "./../../../../schemas/avatarSchema";
+import { ReactComponent as CloseSvg } from "../../../../assets/icons/cross-small.svg";
+import { ReactComponent as UpdateUserSvg } from "../../../../assets/icons/edit-2.svg";
 
-import avatar from "./../../../../images/avatarDefault-image/Avatar.png";
-import sprite from "../../../../assets/icons.svg";
-
-const initialValues = {
-  image: null,
-};
-
+import { useState } from "react";
 
 const UserData = () => {
+  const [isUserUpdate, setIsUserUpdate] = useState(true);
+
   return (
     <UserPage>
       <UserPageItem>
         <UserFormTitle>My information:</UserFormTitle>
         <UserFormBox>
-          <UserBtnPen>
-            <Icon>
-              <use href={sprite + "#edit"} />
-            </Icon>
-          </UserBtnPen>
-          <Formik initialValues={initialValues} validationSchema={avatarSchema}>
-            <Form>
-              <UserInputWrapper>
-                <UserInput>
-                  <UserImg src={avatar} alt="Default" />
-                </UserInput>
+          {isUserUpdate ? (
+            <UserBtnPen onClick={() => setIsUserUpdate((state) => !state)}>
+              <UpdateUserSvg />
+            </UserBtnPen>
+          ) : (
+            <UserBtnPen onClick={() => setIsUserUpdate((state) => !state)}>
+              <CloseSvg />
+            </UserBtnPen>
+          )}
 
-                <UserInputFile id="#$%^&file" type="file" name="image" hidden />
-                <ErrorMessage name="image" />
-              </UserInputWrapper>
-            </Form>
-          </Formik>
-          <UserForm />
+          <UserForm
+            isUserUpdate={isUserUpdate}
+            setIsUserUpdate={setIsUserUpdate}
+          />
         </UserFormBox>
       </UserPageItem>
     </UserPage>

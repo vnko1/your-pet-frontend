@@ -20,6 +20,7 @@ import {
   userFulfilled,
   userUpdateFulfilled,
 } from "./auth-Utils";
+import { formatDate } from "../../shared/utils/formatDate";
 
 const initialState = {
   user: {
@@ -64,8 +65,13 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, { payload: { user } }) => {
+        let birthday = "";
+        if (user.birthday) {
+          birthday = formatDate(user.birthday);
+        }
+
         state.isRefreshing = false;
-        state.user = { ...state.user, ...user };
+        state.user = { ...state.user, ...user, birthday };
         state.isLoggedIn = true;
       })
       .addCase(refreshUser.rejected, (state) => {

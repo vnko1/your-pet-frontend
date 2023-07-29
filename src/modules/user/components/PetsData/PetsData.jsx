@@ -1,12 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-
-import authSelectors from "../../../../redux/auth/auth-selectors";
-import { getCurrentUser } from "../../../../redux/auth/auth-operations";
 import { deletePet } from "../../../../redux/pets/pets-operation";
-
-import sprite from "../../../../assets/icons.svg";
 
 import {
   UserPetsBody,
@@ -23,19 +17,17 @@ import {
   UserPetsSvg,
 } from "./PetsData.styled";
 
+import authSelectors from "../../../../redux/auth/auth-selectors";
+
+import sprite from "../../../../assets/icons/icons.svg";
+
 const PetsData = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { pets } = useSelector(authSelectors.selectUser);
 
-  useEffect(() => {
-    dispatch(getCurrentUser());
-  }, [dispatch]);
-
   const handelDellPets = (id) => {
     dispatch(deletePet(id));
-
-    dispatch(getCurrentUser());
   };
 
   return (
