@@ -32,7 +32,13 @@ const AddPhoto = ({ isUserUpdate }) => {
     setSelectedFile(acceptedFiles[0]);
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      "image/jpeg": [],
+      "image/png": [],
+    },
+  });
 
   const formData = new FormData();
   formData.append("avatar", selectedFile);

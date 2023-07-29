@@ -5,21 +5,21 @@ export const StyledUserNav = styled.div`
   @media (min-width: 1280px) {
     display: flex;
     gap: 24px;
-    margin-left: 59px;
   }
 `;
 
 export const StyledLogout = styled.div`
   position: absolute;
-  bottom: 20px;
+  bottom: 0;
 
   @media (max-width: 767px) {
-    left: 20px;
+    left: 0;
   }
 
   @media (min-width: 768px) {
-    top: 26px;
-    right: 80px;
+    position: static;
+    // top: 26px;
+    // right: 80px;
   }
 
   @media (min-width: 1280px) {

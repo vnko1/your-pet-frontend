@@ -28,15 +28,15 @@ export const StyledNavList = styled.ul`
   text-align: center;
   padding: 0;
   // margin: 0;
-  margin-top: ${(props) => props.marginBottom};
+  // margin-top: ${(props) => props.marginBottom};
 
-  @media (min-width: 768px) {
-    margin-top: 92px;
+  @media (max-width: 767px) {
+    margin-top: 40px;
   }
 
   @media (min-width: 1280px) {
     display: flex;
-    gap: 38px;
+    gap: 40px;
     margin: 0;
   }
 `;

@@ -5,7 +5,7 @@ import authSelectors from "../../../../redux/auth/auth-selectors";
 import Nav from "../Nav/Nav";
 import UserNav from "../UserNav/UserNav";
 import AuthNav from "../AuthNav/AuthNav";
-import { NavWrap } from "./Navigation.styled";
+import { NavWrap, W } from "./Navigation.styled";
 
 const Navigation = (props) => {
   const { isMobileMenuOpen, onCloseMobileMenu } = props;
@@ -41,7 +41,7 @@ const Navigation = (props) => {
 
   return (
     <NavWrap>
-      <>
+      <W>
         {isLoggedIn && (
           <UserNav
             isMobileMenuOpen={isMobileMenuOpen}
@@ -50,11 +50,16 @@ const Navigation = (props) => {
           />
         )}
 
-        {((!isLoggedIn && !isMobileMenuOpen && !isMobile) ||
+        {/* {((!isLoggedIn && !isMobileMenuOpen && !isMobile) ||
           (!isLoggedIn && isMobile && isMobileMenuOpen)) && (
           <AuthNav onCloseMobileMenu={onCloseMobileMenu} />
+        )} */}
+
+        {((!isLoggedIn && !isMobileMenuOpen && !isMobile) ||
+          (!isLoggedIn && isMobileMenuOpen)) && (
+          <AuthNav onCloseMobileMenu={onCloseMobileMenu} />
         )}
-      </>
+      </W>
 
       {(isMobileMenuOpen || (!isMobileMenuOpen && isDesktop)) && (
         <Nav onCloseMobileMenu={onCloseMobileMenu} isLoggedIn={isLoggedIn} />
