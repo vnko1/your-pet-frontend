@@ -6,6 +6,9 @@ import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
 
+import { Container } from "./styles";
+import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
+
 const SharedLayout = React.lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
 );
@@ -17,8 +20,8 @@ const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));
 const NoticesPage = React.lazy(() => import("./pages/NoticesPage/NoticesPage"));
 const UserPage = React.lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = React.lazy(() => import("./pages/AddPetPage/AddPetPage"));
-import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
-import { Container } from "./styles";
+import { RestrictedRoute } from "./protected routers/RestricdetRoute";
+import { PrivateRoute } from "./protected routers/PrivateRoute";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -34,10 +37,12 @@ const App = () => {
       element: <SharedLayout />,
       children: [
         { index: true, element: <MainPage /> },
-        { path: "register", element: <RegisterPage /> },
-        { path: "login", element: <LoginPage /> },
         {
-          // path: "notices/:categoryName",
+          path: "register",
+          element: <RestrictedRoute component={RegisterPage} />,
+        },
+        { path: "login", element: <RestrictedRoute component={LoginPage} /> },
+        {
           path: "notices",
           element: <NoticesPage />,
           children: [
@@ -46,11 +51,31 @@ const App = () => {
             { path: "lost-found", element: <NoticesCategoriesList /> },
             { path: "for-free", element: <NoticesCategoriesList /> },
             // след 2 будет 2 приват роута
-            { path: "favorite", element: <NoticesCategoriesList /> },
-            { path: "own", element: <NoticesCategoriesList /> },
+            {
+              path: "favorite",
+              element: (
+                <PrivateRoute
+                  component={NoticesCategoriesList}
+                  redirectTo="/login"
+                />
+              ),
+            },
+            {
+              path: "own",
+              element: (
+                <PrivateRoute
+                  component={NoticesCategoriesList}
+                  redirectTo="/login"
+                />
+              ),
+            },
           ],
         },
-        { path: "user", element: <UserPage /> },
+        {
+          path: "user",
+          element: <PrivateRoute component={UserPage} redirectTo="/login" />,
+        },
+
         { path: "add-pet", element: <AddPetPage /> },
         { path: "*", element: <NotFound /> }, // Not Found Route
       ],
