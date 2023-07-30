@@ -1,8 +1,9 @@
 
 import { useState } from "react";
-import burgerMenuOpen from "../../../../assets/icons/burger-menu.svg";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
+import spriteSvg from "../../../../assets/icons.svg";
+import { CSSTransition } from "react-transition-group";
 import {
   BurgerMenuBtn,
   StyledHeader,
@@ -10,6 +11,7 @@ import {
   MobileMenuCloseBtn,
   MenuWrap,
   BurgerMenuWrap,
+  MobileMenuContainer,
 } from "./Header.styled";
 
 const Header = () => {
@@ -29,35 +31,36 @@ const Header = () => {
               isMobileMenuOpen={isMobileMenuOpen}
               onCloseMobileMenu={onCloseMobileMenu}
             />
-            <BurgerMenuBtn
-              src={burgerMenuOpen}
-              alt="open mobile menu"
-              onClick={() => setisMobileMenuOpen(true)}
-            />
+            <BurgerMenuBtn onClick={() => setisMobileMenuOpen(true)}>
+              <use href={spriteSvg + "#menu-hamburger"} />
+            </BurgerMenuBtn>
           </BurgerMenuWrap>
         </>
       )}
 
-      {isMobileMenuOpen && (
+      {/* {isMobileMenuOpen && ( */}
+      <CSSTransition
+        in={isMobileMenuOpen}
+        classNames="fade"
+        timeout={250}
+        unmountOnExit
+      >
         <MobileMenu>
-          <MenuWrap>
-            <Logo />
-            <MobileMenuCloseBtn onClick={() => setisMobileMenuOpen(false)}>
-              <path
-                stroke="inherit"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.5"
-                d="M19 5 5 19M5 5l14 14"
-              />
-            </MobileMenuCloseBtn>
-          </MenuWrap>
-          <Navigation
-            isMobileMenuOpen={isMobileMenuOpen}
-            onCloseMobileMenu={onCloseMobileMenu}
-          />
+          <MobileMenuContainer>
+            <MenuWrap>
+              <Logo />
+              <MobileMenuCloseBtn onClick={() => setisMobileMenuOpen(false)}>
+                <use href={spriteSvg + "#cross"} />
+              </MobileMenuCloseBtn>
+            </MenuWrap>
+            <Navigation
+              isMobileMenuOpen={isMobileMenuOpen}
+              onCloseMobileMenu={onCloseMobileMenu}
+            />
+          </MobileMenuContainer>
         </MobileMenu>
-      )}
+      </CSSTransition>
+      {/* )} */}
     </StyledHeader>
   );
 };

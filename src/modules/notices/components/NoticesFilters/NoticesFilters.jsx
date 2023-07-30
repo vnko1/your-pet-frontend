@@ -52,6 +52,50 @@ function NoticesFilters({
 
     setSearchParams((prevSearchParams) => {
       // Создаем новый объект URLSearchParams на основе текущих параметров
+      const newSearchParams = new URLSearchParams(prevSearchParams);
+
+      // Устанавливаем параметр 'date'
+      if (dateArray.length > 0) {
+        newSearchParams.set("date", dateArray.join(","));
+      } else {
+        newSearchParams.delete("date");
+      }
+
+      // Устанавливаем параметр 'sex'
+      if (sexArray.length > 0) {
+        newSearchParams.set("sex", sexArray.join(","));
+      } else {
+        newSearchParams.delete("sex");
+      }
+
+      return newSearchParams;
+    });
+  }, [
+    isBeforeOneYear,
+    isFemale,
+    isMale,
+    isUpOneYear,
+    isUpTwoYear,
+    setSearchParams,
+  ]);
+
+  useEffect(() => {
+    const dateArray = [];
+    const sexArray = [];
+
+    if (isBeforeOneYear || isUpOneYear || isUpTwoYear) {
+      if (isBeforeOneYear) dateArray.push("0.5");
+      if (isUpOneYear) dateArray.push("1");
+      if (isUpTwoYear) dateArray.push("2");
+    }
+
+    if (isFemale || isMale) {
+      if (isMale) sexArray.push("male");
+      if (isFemale) sexArray.push("female");
+    }
+
+    setSearchParams((prevSearchParams) => {
+      // Создаем новый объект URLSearchParams на основе текущих параметров
       // const newSearchParams = new URLSearchParams(prevSearchParams);
       // Устанавливаем параметр 'date'
       if (dateArray.length > 0) {

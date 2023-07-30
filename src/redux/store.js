@@ -11,6 +11,7 @@ import {
 import authReducer from "./auth/auth-slice";
 import { petsReducer } from "./pets/pets-slice";
 import { newsReducer } from "./news/news-slice";
+import { friendsReducer } from "./ourFriends/ourFriends-slice";
 import { noticesReducer } from "./notices/notices-slice";
 import handleNotificationsNoticePage from "./utils/handleNotificationsNoticePage";
 
@@ -20,6 +21,8 @@ export const store = configureStore({
     pets: petsReducer,
     notices: noticesReducer,
     news: newsReducer,
+    friends: friendsReducer,
+    sponsors: sponsorsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
