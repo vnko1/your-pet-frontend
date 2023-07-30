@@ -9,22 +9,10 @@ import { selectPetsIsLoading } from "../../../../redux/pets/pets-selectors";
 import { HashLoader } from "react-spinners";
 import {
   UserPetsBody,
-  NoUserPets,
-  UserPetsNavBtn,
-  UserPetsTitle,
   UserPetsTitleWrap,
-  UserPetsBody,
-  UserPetsBtn,
-  NoUserPets,
-  UserPetsImg,
-  UserPetsInfo,
-  UserPetsItem,
-  UserPetsItemSpan,
-  UserPetsList,
-  UserPetsNavBtn,
   UserPetsTitle,
-  UserPetsTitleWrap,
-  UserPetsSvg,
+  UserPetsNavBtn,
+  NoUserPets,
 } from "./PetsData.styled";
 
 const PetsData = () => {
