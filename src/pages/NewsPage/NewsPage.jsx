@@ -17,15 +17,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectNews } from "../../redux/news/news-selectors";
 import { useEffect } from "react";
 import { getNews } from "../../redux/news/news-operation";
+import Pagination from "@mui/material/Pagination";
+// import { changePage } from "../../redux/news/news-slice";
 
 export const NewsPage = () => {
   const dispatch = useDispatch();
+  // const page = useSelector((state) => state.news.page);
   const news = useSelector(selectNews);
 
   useEffect(() => {
-    dispatch(getNews());
+    dispatch(getNews({ page: 1 }));
   }, [dispatch]);
 
+  const handleChange = (e, p) => {
+    // dispatch(changePage(p));
+    dispatch(getNews({ page: p }));
+  };
   return (
     <Wrap>
       <Title>News</Title>
@@ -50,6 +57,9 @@ export const NewsPage = () => {
           </NewsItem>
         ))}
       </NewsList>
+      <div>
+        <Pagination count={5} onChange={handleChange} />
+      </div>
     </Wrap>
   );
 };

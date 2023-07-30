@@ -10,16 +10,12 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 // import { selectNews } from "../../../redux/news/news-selectors";
 import { getNews } from "../../../redux/news/news-operation";
+// import { changePage } from "../../../redux/news/news-slice";
 
 function SearchBar() {
   const [searchRequest, setSearchRequest] = useState("");
 
   const dispatch = useDispatch();
-  // const news = useSelector(selectNews);
-
-  // useEffect(() => {
-  //   dispatch(getNews());
-  // }, [dispatch]);
 
   const inputChange = ({ target: { value } }) => {
     return setSearchRequest(value);
@@ -27,9 +23,8 @@ function SearchBar() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log("searchRequest", searchRequest);
-    // dispatch(getNews({ filter: searchRequest }));
-    dispatch(getNews(searchRequest));
+    // dispatch(changePage(1));
+    dispatch(getNews({ filter: searchRequest, page: 1 }));
   };
 
   return (
