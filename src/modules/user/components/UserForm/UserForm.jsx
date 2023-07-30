@@ -22,7 +22,8 @@ import authSelectors from "./../../../../redux/auth/auth-selectors";
 import AddPhoto from "../UserPhoto/UserPhoto";
 import { compareObjects } from "../../../../shared/utils/compareObjects";
 import ModalLogOut from "../../../../shared/modals/ModalLogout/ModalLogOut";
-import { useState } from "react";
+import { ModalCongrats } from "../ModalCongrats/ ModalCongrats";
+import { useEffect, useState } from "react";
 
 const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
   const [isShowModal, setIsShowModal] = useState(false);

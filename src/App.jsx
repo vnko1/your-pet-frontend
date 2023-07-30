@@ -41,7 +41,7 @@ const App = () => {
         },
         { path: "login", element: <LoginPage/> },
         {
-          path: "notices",
+          // path: "notices",
           path: "notices/:categoryName",
           element: <NoticesPage />,
           children: [
