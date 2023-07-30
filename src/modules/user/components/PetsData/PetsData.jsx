@@ -71,7 +71,7 @@ const PetsData = () => {
                 <UserPetsBtn
                   type="button"
                   onClick={() => {
-                    handelDellPets();
+                    handelDellPets(_id);
                   }}
                 >
                   <UserPetsSvg>

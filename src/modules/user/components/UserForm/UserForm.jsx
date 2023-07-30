@@ -11,6 +11,8 @@ import {
   Btn,
 } from "./UserForm.styled";
 
+import sprite from "../../../../assets/icons.svg";
+
 import { updateUser } from "./../../../../redux/auth/auth-operations";
 import authSelectors from "./../../../../redux/auth/auth-selectors";
 import AddPhoto from "../UserPhoto/UserPhoto";
@@ -87,7 +89,10 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
         </UserFormItem>
         {isUserUpdate ? (
           <UserFormBtn type="button" onClick={() => console.log("logout")}>
-            svg + Log Out
+            <svg>
+              <use href={sprite + "#logout"} />
+              Log Out
+            </svg>
           </UserFormBtn>
         ) : (
           <Btn type="submit">Save</Btn>
