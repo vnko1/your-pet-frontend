@@ -29,32 +29,39 @@ export const UserImgInput = styled.input`
 `;
 
 export const UserFormBody = styled(Form)`
-  padding-right: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 21px;
 
-  @media screen and (min-width: 768px) {
-    margin-bottom: 10px;
-    flex: 1 1 auto;
-  }
 `;
 
-export const UserFormItem = styled.div`
+export const UserFormList = styled.ul`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+`;
 
-  &:not(:last-child) {
+export const UserFormItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  /* &:not(:last-child) {
     margin-bottom: 15px;
-  }
+  } */
 `;
 
 export const UserFormLabel = styled.label`
   font-weight: 500;
   font-size: 16px;
   line-height: 1, 112;
-  flex: 0 0 85px;
+  /* flex: 0 0 85px; */
 
   @media screen and (min-width: 320px) {
     font-size: 14px;
-    flex: 0 0 60px;
+    /* flex: 0 0 60px; */
   }
 `;
 
@@ -64,7 +71,7 @@ export const UserFormInput = styled(Field)`
 
   flex: 1 1 auto;
 
-  width: 255px;
+  max-width: 190px;
   height: 28px;
   padding: 4px 12px;
   background: blue;
@@ -96,16 +103,21 @@ export const UserFormInput = styled(Field)`
 `;
 
 export const UserFormBtn = styled.button`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 31px;
+  width: 100%;
+  
+  border: none;
+
   background: white;
   color: rgba(136, 136, 136, 1);
-  border: none;
-  display: flex;
-  align-items: center;
   font-size: 18px;
 `;
 
 export const Btn = styled.button`
-  width: 255px;
+  max-width: 248px;
   flex: 1 1 auto;
 
   border-radius: 40px;
