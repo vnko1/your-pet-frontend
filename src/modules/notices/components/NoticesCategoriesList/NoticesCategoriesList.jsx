@@ -1,23 +1,20 @@
+import { useSelector } from "react-redux";
+import { noticesList } from "../../../../redux/notices/notices-selectors";
 import NoticesCategoryItem from "../NoticeCategoryItem/NoticeCategoryItem";
 import { CardList } from "./NoticesCategoriesList.styled";
 
 function NoticesCategoriesList() {
-  const arr = [1, 2, 3, 4, 5, 6];
+  const list = useSelector(noticesList);
+
   return (
     <CardList>
-      {arr &&
-        arr.map((card) => {
+      {list &&
+        list.map((card) => {
           return (
             <NoticesCategoryItem
-              key={card}
-              style={{
-                width: 288,
-                height: 456,
-                backgroundColor: "gray",
-              }}
-            >
-              {card}
-            </NoticesCategoryItem>
+              key={card._id}
+              card={card}
+            ></NoticesCategoryItem>
           );
         })}
     </CardList>

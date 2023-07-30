@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 axios.defaults.baseURL = "https://my-pet-app-8sz1.onrender.com";
 
 export const token = {
@@ -113,6 +112,7 @@ export const refreshUser = createAsyncThunk(
       // If there is a token, add it to the HTTP header and perform the request
       token.set(persistedToken);
       const { data } = await axios.post("/users/current");
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
