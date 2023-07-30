@@ -35,6 +35,12 @@ align-items: center;
 gap: 21px;
 
 `;
+export const UserFormInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  width: 100%;
+`;
 
 export const UserFormList = styled.ul`
   display: flex;
@@ -141,4 +147,9 @@ export const Btn = styled.button`
     width: 100%;
     margin: 0, auto;
   }
+`;
+export const BtnText = styled.p`
+display: flex;
+flex-direction: row;
+margin-right: auto;
 `;

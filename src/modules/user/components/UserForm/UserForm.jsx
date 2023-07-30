@@ -10,6 +10,8 @@ import {
 	UserFormBtn,
 	Btn,
 	UserFormList,
+	UserFormInfo,
+	BtnText,
 } from "./UserForm.styled";
 
 import { updateUser } from "./../../../../redux/auth/auth-operations";
@@ -39,72 +41,74 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
 			<Formik initialValues={user} onSubmit={handleSubmit}>
 				<UserFormBody>
 					<AddPhoto isUserUpdate={isUserUpdate} />
-					<UserFormList>
-						<UserFormItem>
-							<UserFormLabel htmlFor={`name`}>Name:</UserFormLabel>
-							<UserFormInput
-								type="text"
-								name="name"
-								id="name"
-								autoComplete="off"
-								placeholder={"Anna"}
-								disabled={isUserUpdate}
-							/>
-						</UserFormItem>
-						<UserFormItem>
-							<UserFormLabel htmlFor={`email`}>Email:</UserFormLabel>
-							<UserFormInput
-								type="text"
-								name="email"
-								id="email"
-								autoComplete="off"
-								placeholder={"anna00@gmail.com|"}
-								disabled={isUserUpdate}
-							/>
-						</UserFormItem>
-						<UserFormItem>
-							<UserFormLabel htmlFor={`birthDate`}>Birthday:</UserFormLabel>
-							<UserFormInput
-								type="text"
-								name="birthday"
-								id="birthday"
-								autoComplete="off"
-								placeholder={"00.00.0000"}
-								disabled={isUserUpdate}
-							/>
-						</UserFormItem>
-						<UserFormItem>
-							<UserFormLabel htmlFor={`phone`}>Phone:</UserFormLabel>
-							<UserFormInput
-								type="text"
-								name="phone"
-								id="phone"
-								autoComplete="off"
-								placeholder={"+38000000000"}
-								disabled={isUserUpdate}
-							/>
-						</UserFormItem>
-						<UserFormItem>
-							<UserFormLabel htmlFor={`city`}>City:</UserFormLabel>
-							<UserFormInput
-								type="text"
-								name="city"
-								id="city"
-								autoComplete="off"
-								placeholder={"Kiev"}
-								disabled={isUserUpdate}
-							/>
-						</UserFormItem>
-					</UserFormList>
-					{isUserUpdate ? (
-						<UserFormBtn type="button" onClick={toggleModal}>
-							svg + Log Out
-						</UserFormBtn>
-					) : (
-						<UserFormBtn>
-							<Btn type="submit">Save</Btn>
-						</UserFormBtn>
-					)}
+					<UserFormInfo>
+						<UserFormList>
+							<UserFormItem>
+								<UserFormLabel htmlFor={`name`}>Name:</UserFormLabel>
+								<UserFormInput
+									type="text"
+									name="name"
+									id="name"
+									autoComplete="off"
+									placeholder={"Anna"}
+									disabled={isUserUpdate}
+								/>
+							</UserFormItem>
+							<UserFormItem>
+								<UserFormLabel htmlFor={`email`}>Email:</UserFormLabel>
+								<UserFormInput
+									type="text"
+									name="email"
+									id="email"
+									autoComplete="off"
+									placeholder={"anna00@gmail.com|"}
+									disabled={isUserUpdate}
+								/>
+							</UserFormItem>
+							<UserFormItem>
+								<UserFormLabel htmlFor={`birthDate`}>Birthday:</UserFormLabel>
+								<UserFormInput
+									type="text"
+									name="birthday"
+									id="birthday"
+									autoComplete="off"
+									placeholder={"00.00.0000"}
+									disabled={isUserUpdate}
+								/>
+							</UserFormItem>
+							<UserFormItem>
+								<UserFormLabel htmlFor={`phone`}>Phone:</UserFormLabel>
+								<UserFormInput
+									type="text"
+									name="phone"
+									id="phone"
+									autoComplete="off"
+									placeholder={"+38000000000"}
+									disabled={isUserUpdate}
+								/>
+							</UserFormItem>
+							<UserFormItem>
+								<UserFormLabel htmlFor={`city`}>City:</UserFormLabel>
+								<UserFormInput
+									type="text"
+									name="city"
+									id="city"
+									autoComplete="off"
+									placeholder={"Kiev"}
+									disabled={isUserUpdate}
+								/>
+							</UserFormItem>
+						</UserFormList>
+						{isUserUpdate ? (
+							<UserFormBtn type="button" onClick={toggleModal}>
+								<BtnText> svg + Log Out</BtnText>
+							</UserFormBtn>
+						) : (
+							<UserFormBtn>
+								<Btn type="submit">Save</Btn>
+							</UserFormBtn>
+						)}
+					</UserFormInfo>
 				</UserFormBody>
 			</Formik>
 			{isShowModal && <ModalLogOut toggleModal={toggleModal} />}
