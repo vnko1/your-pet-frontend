@@ -3,10 +3,13 @@ import styled from "styled-components";
 export const UserPageBody = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 40px;
 
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    gap: 25px;
+
+  @media ${(props) => props.theme.media.desktop} {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
   }
 `;

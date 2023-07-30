@@ -13,6 +13,18 @@ import {
   UserPetsNavBtn,
   UserPetsTitle,
   UserPetsTitleWrap,
+  UserPetsBody,
+  UserPetsBtn,
+  NoUserPets,
+  UserPetsImg,
+  UserPetsInfo,
+  UserPetsItem,
+  UserPetsItemSpan,
+  UserPetsList,
+  UserPetsNavBtn,
+  UserPetsTitle,
+  UserPetsTitleWrap,
+  UserPetsSvg,
 } from "./PetsData.styled";
 
 const PetsData = () => {
