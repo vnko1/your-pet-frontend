@@ -9,6 +9,7 @@ export const UserPageBody = styled.div`
 
   @media ${(props) => props.theme.media.desktop} {
     flex-direction: row;
+    align-items: flex-start;
     gap: 32px;
   }
 `;
