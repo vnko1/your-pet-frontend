@@ -22,7 +22,8 @@ import {
   userUpdateFulfilled,
   userRefreshFulfilled,
   userRefreshRejected,
-} from "./auth-Utils";
+  refreshTokenFullfilled,
+} from "./auth-utils";
 
 const initialState = {
   user: {
@@ -71,9 +72,8 @@ const authSlice = createSlice({
       .addCase(refreshUser.fulfilled, userRefreshFulfilled)
 
       .addCase(refreshUser.rejected, userRefreshRejected)
-      .addCase(refreshToken.fulfilled, (state, action) => {
-        console.log(action);
-      })
+
+      .addCase(refreshToken.fulfilled, refreshTokenFullfilled)
 
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)
@@ -84,7 +84,7 @@ const authSlice = createSlice({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["token"],
+  whitelist: ["token", "tokenLifeTime", "refreshToken"],
 };
 
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);

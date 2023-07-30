@@ -1,13 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-axios.defaults.baseURL = "https://my-pet-app-8sz1.onrender.com";
+import { axiosPublic, axiosPrivate } from "../../utils/axiosConfig";
 
 export const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axiosPrivate.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = "";
+    axiosPrivate.defaults.headers.common.Authorization = "";
   },
 };
 
@@ -15,7 +14,7 @@ export const registration = createAsyncThunk(
   "auth/register",
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post("/users/register", credentials);
+      const { data } = await axiosPublic.post("/users/register", credentials);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -35,7 +34,7 @@ export const logIn = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post("/users/login", credentials);
+      const { data } = await axiosPublic.post("/users/login", credentials);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -47,7 +46,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk("auth/logOut", async () => {
   try {
-    const { data } = await axios.post("/users/logout");
+    const { data } = await axiosPrivate.post("/users/logout");
     token.unset();
 
     return data;
@@ -60,7 +59,7 @@ export const updateUser = createAsyncThunk(
   "auth/updateUser",
   async (credentials) => {
     try {
-      const { data } = await axios.put("/users/update", credentials);
+      const { data } = await axiosPrivate.put("/users/update", credentials);
 
       token.set(data.token);
       // notifyFulfilledLogin();
@@ -80,7 +79,7 @@ export const getCurrentUser = createAsyncThunk(
   "auth/getCurrentUser",
   async () => {
     try {
-      const { data } = await axios.post("/users/current");
+      const { data } = await axiosPrivate.get("/users/current");
 
       // notifyFulfilledLogin();
       console.log("тут фулфілд логін");
@@ -111,7 +110,7 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       token.set(persistedToken);
-      const { data } = await axios.post("/users/current");
+      const { data } = await axiosPrivate.get("/users/current");
 
       return data;
     } catch (error) {
@@ -125,7 +124,9 @@ export const refreshToken = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const refreshToken = state.auth.refreshToken;
-    const { data } = await axios.post("/users/refresh", { refreshToken });
+
+    const { data } = await axiosPublic.post("/users/refresh", { refreshToken });
+
     return data;
   }
 );

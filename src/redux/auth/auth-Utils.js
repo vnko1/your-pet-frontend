@@ -1,4 +1,4 @@
-import { notifyError, notifySucces } from "../../shared/toasters/Toasters";
+import { notifySucces } from "../../shared/toasters/Toasters";
 import { formatDate } from "../../shared/utils/formatDate";
 import {
   logIn,
@@ -59,6 +59,8 @@ export const getInitialState = (state) => {
 
   state.isLoggedIn = false;
   state.token = "";
+  state.tokenLifeTime = null;
+  state.refreshToken = null;
   state.user = { name: null, email: null };
 };
 
@@ -86,25 +88,24 @@ export const userUpdateFulfilled = (
   state.user = { ...user, birthday };
 };
 
-export const userRefreshFulfilled = (
-  state,
-  { payload: { token, tokenLifeTime, refreshToken, user } }
-) => {
-  if (token) {
-  } else {
-    let birthday = "";
-    if (user.birthday) {
-      birthday = formatDate(user.birthday);
-    }
-
-    state.isRefreshing = false;
-    state.user = { ...state.user, ...user, birthday };
-    state.isLoggedIn = true;
-    notifySucces(`Welcome ${user.name}`);
+export const userRefreshFulfilled = (state, { payload: { user } }) => {
+  let birthday = "";
+  if (user.birthday) {
+    birthday = formatDate(user.birthday);
   }
+  state.isRefreshing = false;
+  state.user = { ...state.user, ...user, birthday };
+  state.isLoggedIn = true;
+  notifySucces(`Welcome ${user.name}`);
 };
 
 export const userRefreshRejected = (state) => {
   state.isRefreshing = false;
   state.isLoggedIn = false;
+};
+
+export const refreshTokenFullfilled = (state, { payload }) => {
+  state.token = payload.token;
+  state.tokenLifeTime = payload.tokenLifeTime;
+  state.refreshToken = payload.refreshToken;
 };

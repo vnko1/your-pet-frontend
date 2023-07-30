@@ -1,12 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { axiosPublic, axiosPrivate } from "../../utils/axiosConfig";
 
 export const fetchNotices = createAsyncThunk(
   "notices/fetchNotices",
-  async (url, thunkAPI) => {
+  async ({ url, privateRoute = false }, thunkAPI) => {
     try {
-      const response = await axios.get(url);
-      // console.log(response);
+      const response = privateRoute
+        ? await axiosPrivate.get(url)
+        : await axiosPublic.get(url);
+
       return response.data.data;
     } catch (error) {
       console.log(error);
