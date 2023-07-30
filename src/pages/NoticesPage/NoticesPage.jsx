@@ -22,21 +22,26 @@ function NoticesPage() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(isLogin);
-  const totalPages = useSelector(noticesTotal);
-  console.log("totalPages", totalPages);
-  console.log("currentPage", currentPage);
+  const totalNoticesItems = useSelector(noticesTotal);
   const noticesListInPagination = useSelector(noticesList);
+
   const dispatch = useDispatch();
 
   const isPagination = noticesListInPagination.length > 0 ? true : false;
 
-  // useEffect(() => {
-  //   if (totalPages <= 9) {
-  //     setCurrentPage(1);
-  //   } else {
-  //     setCurrentPage(Math.ceil(totalPages / 9));
-  //   }
-  // }, [setCurrentPage, totalPages]);
+  useEffect(() => {
+    if (
+      totalNoticesItems > 0 &&
+      noticesListInPagination.length === 0 &&
+      currentPage !== 1
+    ) {
+      console.log("Есть условие");
+      setCurrentPage((prev) => (prev -= 1));
+    }
+    // else if (totalNoticesItems > 9 && noticesListInPagination.length !== 9) {
+    //
+    // }
+  }, [currentPage, noticesListInPagination.length, totalNoticesItems]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -65,7 +70,7 @@ function NoticesPage() {
       <NoticesCategoriesList />
       {isPagination && (
         <Pagination
-          totalPages={totalPages}
+          totalItems={totalNoticesItems}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />

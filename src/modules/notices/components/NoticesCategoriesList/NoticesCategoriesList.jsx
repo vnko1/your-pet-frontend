@@ -8,7 +8,7 @@ function NoticesCategoriesList() {
 
   const isOwnPage = () => {
     const url = window.location.href;
-    console.log(url);
+    // console.log(url);
     return url.includes("/notices/own") ? true : false;
   };
 

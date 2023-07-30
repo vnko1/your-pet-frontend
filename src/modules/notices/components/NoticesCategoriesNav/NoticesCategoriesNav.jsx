@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import AddPetButton from "../AddPetButton";
 import NoticesFilters from "../NoticesFilters";
@@ -12,143 +12,21 @@ import {
   FilterCategoryText,
 } from "./NoticesCategoriesNav.styled";
 import useSearch from "../NoticesSearch/hook/useSearch";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchNotices } from "../../../../redux/notices/notices-operations";
 import useFilter from "./hooks/useFilter";
 import useNavButtons from "./hooks/useNavButtons";
 import icons from "../../../../assets/icons.svg";
-
-// useEffect(() => {
-//   const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
-
-//   if (
-//     url.includes("/notices/sell") ||
-//     url.includes("/notices/lost-found") ||
-//     url.includes("/notices/for-free")
-//   ) {
-//     if (url.includes("date") || url.includes("sex")) {
-//       const newArr = url.split("?");
-//       newArr.shift();
-//       const query = newArr.map((query) => query.replace(/%2C/g, ","));
-//       const filterQuery = query.join("&");
-
-//       const fetchUrl = `${baseUrl}?page=1&limit=9&category=${activeButton}&${filterQuery}`;
-
-//       dispatch(fetchNotices(fetchUrl));
-//     } else {
-//       const fetchUrl = search
-//         ? `${baseUrl}?page=1&limit=9&category=${activeButton}&filter=${search}`
-//         : `${baseUrl}?page=1&limit=9&category=${activeButton}`;
-//       dispatch(fetchNotices(fetchUrl));
-//     }
-//   } else if (
-//     url.includes("/notices/favorite") ||
-//     url.includes("/notices/own")
-//   ) {
-//     const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/";
-//     if (url.includes("date") || url.includes("sex")) {
-//       console.log(12345);
-//       // console.log("renderNav");
-//       const newArr = url.split("?");
-//       newArr.shift();
-//       const query = newArr.map((query) => query.replace(/%2C/g, ","));
-//       const filterQuery = query.join("&");
-
-//       if (url.includes("/notices/favorite")) {
-//         const fetchUrl = search
-//           ? `${baseUrl}owner/favorite?page=1&limit=9&filter=${search}&${filterQuery}`
-//           : `${baseUrl}owner/favorite?page=1&limit=9&${filterQuery}`;
-//         dispatch(fetchNotices(fetchUrl));
-//       } else if (url.includes("/notices/own")) {
-//         const fetchUrl = search
-//           ? `${baseUrl}owner?page=1&limit=9&filter=${search}&${filterQuery}`
-//           : `${baseUrl}owner?page=1&limit=9&${filterQuery}`;
-//         dispatch(fetchNotices(fetchUrl));
-//       }
-//     } else {
-//       if (url.includes("/notices/favorite")) {
-//         const fetchUrl = search
-//           ? `${baseUrl}owner/favorite?page=1&limit=9&filter=${search}`
-//           : `${baseUrl}owner/favorite?page=1&limit=9`;
-//         dispatch(fetchNotices(fetchUrl));
-//       } else if (url.includes("/notices/own")) {
-//         const fetchUrl = search
-//           ? `${baseUrl}owner?page=1&limit=9&filter=${search}`
-//           : `${baseUrl}owner?page=1&limit=9`;
-//         dispatch(fetchNotices(fetchUrl));
-//       }
-//     }
-//   }
-// }, [activeButton, dispatch, search, url]);
-
-// useEffect(() => {
-//   const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
-
-//   if (
-//     url.includes("/notices/sell") ||
-//     url.includes("/notices/lost-found") ||
-//     url.includes("/notices/for-free")
-//   ) {
-//     if (url.includes("date") || url.includes("sex")) {
-//       const newArr = url.split("?");
-//       newArr.shift();
-//       const query = newArr.map((query) => query.replace(/%2C/g, ","));
-//       const filterQuery = query.join("&");
-
-//       const fetchUrl = `${baseUrl}?page=1&limit=9&category=${activeButton}&${filterQuery}`;
-
-//       dispatch(fetchNotices(fetchUrl));
-//     } else {
-//       const fetchUrl = search
-//         ? `${baseUrl}?page=1&limit=9&category=${activeButton}&filter=${search}`
-//         : `${baseUrl}?page=1&limit=9&category=${activeButton}`;
-//       dispatch(fetchNotices(fetchUrl));
-//     }
-//   } else if (
-//     url.includes("/notices/favorite") ||
-//     url.includes("/notices/own")
-//   ) {
-//     const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/";
-//     if (url.includes("date") || url.includes("sex")) {
-//       console.log(12345);
-//       // console.log("renderNav");
-//       const newArr = url.split("?");
-//       newArr.shift();
-//       const query = newArr.map((query) => query.replace(/%2C/g, ","));
-//       const filterQuery = query.join("&");
-
-//       if (url.includes("/notices/favorite")) {
-//         const fetchUrl = search
-//           ? `${baseUrl}owner/favorite?page=1&limit=9&filter=${search}&${filterQuery}`
-//           : `${baseUrl}owner/favorite?page=1&limit=9&${filterQuery}`;
-//         dispatch(fetchNotices(fetchUrl));
-//       } else if (url.includes("/notices/own")) {
-//         const fetchUrl = search
-//           ? `${baseUrl}owner?page=1&limit=9&filter=${search}&${filterQuery}`
-//           : `${baseUrl}owner?page=1&limit=9&${filterQuery}`;
-//         dispatch(fetchNotices(fetchUrl));
-//       }
-//     } else {
-//       if (url.includes("/notices/favorite")) {
-//         const fetchUrl = search
-//           ? `${baseUrl}owner/favorite?page=1&limit=9&filter=${search}`
-//           : `${baseUrl}owner/favorite?page=1&limit=9`;
-//         dispatch(fetchNotices(fetchUrl));
-//       } else if (url.includes("/notices/own")) {
-//         const fetchUrl = search
-//           ? `${baseUrl}owner?page=1&limit=9&filter=${search}`
-//           : `${baseUrl}owner?page=1&limit=9`;
-//         dispatch(fetchNotices(fetchUrl));
-//       }
-//     }
-//   }
-// }, [activeButton, dispatch, search, url]);
+import { noticesList } from "../../../../redux/notices/notices-selectors";
 
 function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
   const { categoryBtnsUrl, activeButton, setActiveButton } = useNavButtons();
   const { search, resetInput } = useSearch();
-
   const { filterState, setFilterState, resetFilter } = useFilter();
+  const dispatch = useDispatch();
+  const ref = useRef();
+
+  const list = useSelector(noticesList);
 
   const { isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale } =
     filterState;
@@ -159,8 +37,6 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
     setIsFemale,
     setIsMale,
   } = setFilterState;
-
-  const dispatch = useDispatch();
 
   const url = window.location.href;
 
@@ -186,10 +62,19 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
       fetchUrl = `${baseUrl}owner?page=${currentPage}&limit=9${commonParams}`;
     }
 
+    ref.current = fetchUrl;
+
     if (fetchUrl) {
       dispatch(fetchNotices(fetchUrl));
     }
   }, [activeButton, currentPage, dispatch, search, url]);
+
+  useEffect(() => {
+    // короче в идеале не последняя пейджа должна быть еще
+    if (list.length === 8) {
+      dispatch(fetchNotices(ref.current));
+    }
+  }, [dispatch, list.length]);
 
   const resetAllSearchQuery = (btn) => {
     resetFilter();

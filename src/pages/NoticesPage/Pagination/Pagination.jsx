@@ -6,10 +6,9 @@ import {
   NumItem,
   NumbersContainer,
 } from "./Pagination.styled";
-import icons from "../../../assets/icons.svg";
 
-const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
-  const count = Math.ceil(totalPages / 9);
+const Pagination = ({ totalItems, currentPage, setCurrentPage }) => {
+  const count = Math.ceil(totalItems / 9);
 
   const handleGoToPage = (page) => {
     setCurrentPage(Math.min(Math.max(page, 1), count));
@@ -20,7 +19,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
       return Array.from({ length: count }, (_, index) => index + 1);
     } else {
       const pageNumbers = [];
-      const maxButtons = 6; // Maximum number of buttons to display
+      const maxButtons = 6;
 
       const middlePage = Math.ceil(maxButtons / 2);
 
@@ -131,7 +130,7 @@ const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
 export default Pagination;
 
 Pagination.propTypes = {
-  totalPages: PropTypes.number.isRequired,
+  totalItems: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   setCurrentPage: PropTypes.func.isRequired,
 };

@@ -1,7 +1,7 @@
 import { toast } from "react-hot-toast";
 
 const handleNotificationsNoticePage = (store) => (next) => (action) => {
-  console.log("actionType", action.type);
+  // console.log("actionType", action.type);
   if (action.type === "notices/addFavorite/fulfilled") {
     toast.success("Successfuly add to favorite", {
       duration: 4000,
