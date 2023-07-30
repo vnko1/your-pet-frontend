@@ -9,7 +9,13 @@ export const UserPageItem = styled.div`
 
 	@media (${(props) => props.theme.media.tablet}) {
 		max-width: 704px;
-}
+	}
+
+	@media (${(props) => props.theme.media.desktop}) {
+		max-width: 395px;
+
+	}
+
 `;
 
 export const UserFormTitle = styled.h2`
@@ -43,12 +49,8 @@ export const UserFormBox = styled.div`
 	}
 
 	@media (${(props) => props.theme.media.desktop}) {
-		/* width: 395px;
-    height: 520px;
-    flex-direction: column;
     padding: 20px 24px 20px 16px;
     border-radius: 40px;
-    gap: 0; */
 	}
 `;
 

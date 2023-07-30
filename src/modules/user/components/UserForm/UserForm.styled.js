@@ -40,6 +40,9 @@ export const UserFormBody = styled(Form)`
 	}
 
 	@media ${(props) => props.theme.media.desktop} {
+		flex-direction: column;
+		gap: 25px;
+
 	}
 `;
 export const UserFormInfo = styled.div`
