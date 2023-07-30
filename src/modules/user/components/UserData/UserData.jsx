@@ -1,7 +1,6 @@
 import UserForm from "../UserForm/UserForm";
 
 import {
-  UserPage,
   UserPageItem,
   UserFormTitle,
   UserFormBox,
@@ -16,7 +15,7 @@ const UserData = () => {
   const [isUserUpdate, setIsUserUpdate] = useState(true);
 
   return (
-    <UserPage>
+    <>
       <UserPageItem>
         <UserFormTitle>My information:</UserFormTitle>
         <UserFormBox>
@@ -36,7 +35,7 @@ const UserData = () => {
           />
         </UserFormBox>
       </UserPageItem>
-    </UserPage>
+    </>
   );
 };
 
