@@ -30,7 +30,10 @@ export const handleRejected = (state) => {
   state.isLoader = false;
 };
 
-export const userFulfilled = (state, { payload: { token, user } }) => {
+export const userFulfilled = (
+  state,
+  { payload: { token, tokenLifeTime, refreshToken, user } }
+) => {
   let birthday = "";
   if (user.birthday) {
     birthday = formatDate(user.birthday);
@@ -38,6 +41,8 @@ export const userFulfilled = (state, { payload: { token, user } }) => {
 
   state.isLoggedIn = true;
   state.token = token;
+  state.tokenLifeTime = tokenLifeTime;
+  state.refreshToken = refreshToken;
   state.user = { ...state.user, ...user, birthday };
 
   if (user.isNewUser) {
@@ -66,26 +71,37 @@ export const getUserFulfilled = (state, { payload: { user } }) => {
   state.user = { ...user, birthday };
 };
 
-export const userUpdateFulfilled = (state, { payload: { token, user } }) => {
+export const userUpdateFulfilled = (
+  state,
+  { payload: { token, tokenLifeTime, refreshToken, user } }
+) => {
   let birthday = "";
   if (user.birthday) {
     birthday = formatDate(user.birthday);
   }
 
   state.token = token;
+  state.tokenLifeTime = tokenLifeTime;
+  state.refreshToken = refreshToken;
   state.user = { ...user, birthday };
 };
 
-export const userRefreshFulfilled = (state, { payload: { user } }) => {
-  let birthday = "";
-  if (user.birthday) {
-    birthday = formatDate(user.birthday);
-  }
+export const userRefreshFulfilled = (
+  state,
+  { payload: { token, tokenLifeTime, refreshToken, user } }
+) => {
+  if (token) {
+  } else {
+    let birthday = "";
+    if (user.birthday) {
+      birthday = formatDate(user.birthday);
+    }
 
-  state.isRefreshing = false;
-  state.user = { ...state.user, ...user, birthday };
-  state.isLoggedIn = true;
-  notifySucces(`Welcome ${user.name}`);
+    state.isRefreshing = false;
+    state.user = { ...state.user, ...user, birthday };
+    state.isLoggedIn = true;
+    notifySucces(`Welcome ${user.name}`);
+  }
 };
 
 export const userRefreshRejected = (state) => {

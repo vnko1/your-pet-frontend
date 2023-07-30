@@ -7,6 +7,7 @@ import {
   refreshUser,
   registration,
   updateUser,
+  refreshToken,
 } from "./auth-operations";
 
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
@@ -33,6 +34,8 @@ const initialState = {
     isNewUser: false,
   },
   token: null,
+  tokenLifeTime: null,
+  refreshToken: null,
   isLoggedIn: false,
   isLoader: false,
   isRefreshing: false,
@@ -68,6 +71,9 @@ const authSlice = createSlice({
       .addCase(refreshUser.fulfilled, userRefreshFulfilled)
 
       .addCase(refreshUser.rejected, userRefreshRejected)
+      .addCase(refreshToken.fulfilled, (state, action) => {
+        console.log(action);
+      })
 
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)

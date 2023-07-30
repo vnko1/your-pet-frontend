@@ -120,6 +120,16 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
+export const refreshToken = createAsyncThunk(
+  "auth/refreshToken",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const refreshToken = state.auth.refreshToken;
+    const { data } = await axios.post("/users/refresh", { refreshToken });
+    return data;
+  }
+);
+
 //зареєстрований акк
 // Viacheslav
 // slav@na.com
