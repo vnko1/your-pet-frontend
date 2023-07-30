@@ -1,7 +1,7 @@
 import * as React from "react";
- import { useDispatch, useSelector } from "react-redux";
- import { createBrowserRouter, RouterProvider } from "react-router-dom";
- import { refreshUser } from "./redux/auth/auth-operations";
+import { useDispatch, useSelector } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
 const SharedLayout = React.lazy(() =>
@@ -37,9 +37,9 @@ const App = () => {
         { path: "friends", element: <OurFriends /> },
         {
           path: "register",
-          element: <RegisterPage/>,
+          element: <RegisterPage />,
         },
-        { path: "login", element: <LoginPage/> },
+        { path: "login", element: <LoginPage /> },
         {
           path: "notices",
           path: "notices/:categoryName",

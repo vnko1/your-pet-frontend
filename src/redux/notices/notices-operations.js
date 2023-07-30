@@ -6,8 +6,8 @@ export const fetchNotices = createAsyncThunk(
   async ({ url, privateRoute = false }, thunkAPI) => {
     try {
       const response = privateRoute
-        ? await axiosPrivate.get(url)
-        : await axiosPublic.get(url);
+        ? await axiosPrivate.get(`/notices/${url}`)
+        : await axiosPublic.get(`/notices/${url}`);
 
       return response.data.data;
     } catch (error) {
