@@ -3,8 +3,22 @@ import { sexOptions } from "../../helpers/helpers";
 
 
 
-const ThirdStep = () => {
-    const currentRadioChecked = "your-pet";
+const ThirdStep = ({currentRadioChecked, handleSex, setAvatarFile, avatarFile, fileIsLoaded, setFileIsLoaded, avatarPreview, setAvatarPreview}) => {
+
+    const handleAvatarLoad = e => {
+        const avatar = e.currentTarget.files[0];
+
+        if (!avatar) {
+            setAvatarFile(null);
+            setFileIsLoaded(false);
+            setAvatarPreview(null);
+            return
+        }
+
+        setAvatarFile(avatar);
+        setAvatarPreview(URL.createObjectURL(avatar));
+        setFileIsLoaded(true);
+    }
 
     return (
         <>
@@ -15,7 +29,7 @@ const ThirdStep = () => {
                             <>
                                 <label key={value}>
                                     {label}
-                                    <input type="radio" name="sex" value={value} />
+                                    <Field type="radio" name="sex" value={value} onChange={handleSex}/>
                                 </label>
                             </>
                         )
@@ -26,7 +40,7 @@ const ThirdStep = () => {
                 <p>
                     Load the pet’s image:
                 </p>
-                <input type="file" id="avatar" name='avatar' />
+                <Field type="file" id="avatar" name='avatar' accept="image/*" onChange={handleAvatarLoad}/>
             </div>
             {currentRadioChecked !== "your-pet" &&
                 <div>
@@ -34,7 +48,7 @@ const ThirdStep = () => {
                     <Field type="text" name="location" id="location" autoComplete="off" placeholder="Type of location" />
                 </div>
             }
-            {currentRadioChecked !== "sell" &&
+            {currentRadioChecked === "sell" &&
                 <div>
                     <label htmlFor="price">Price</label>
                     <Field type="text" name="price" id="price" autoComplete="off" placeholder="Type of price" />
@@ -42,7 +56,7 @@ const ThirdStep = () => {
             }
             <div>
                 <p>Comments</p>
-                <textarea name="comments" id="comments"></textarea>
+                <textarea name="comments" id="comments" placeholder="Type of pet"></textarea>
             </div>
         </>
     )

@@ -3,8 +3,7 @@ import { fields } from "../../helpers/helpers";
 
 
 
-const SecondStep = () => {
-    const currentRadioChecked = "your-pet";
+const SecondStep = ({currentRadioChecked}) => {
     return (
         <>
             {currentRadioChecked !== "your-pet" &&

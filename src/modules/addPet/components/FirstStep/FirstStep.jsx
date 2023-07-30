@@ -1,6 +1,7 @@
+import { Field } from "formik";
 import { options } from "../../helpers/helpers";
 
-const FirstStep = () => {
+const FirstStep = ({handleCategories}) => {
     return (
         <>
             {options.map(({ value, label }) => {
@@ -8,7 +9,7 @@ const FirstStep = () => {
                     <>
                         <label key={value}>
                             {label}
-                            <input type="radio" name="categories" value={value} />
+                            <Field type="radio" name="categories" value={value} onChange={handleCategories} />
                         </label>
                     </>
                 )

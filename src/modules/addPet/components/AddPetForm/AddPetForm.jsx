@@ -8,14 +8,17 @@ import ChangeStepBtn from "../ChangeStepBtn/ChangeStepBtn";
 import FirstStep from "../FirstStep/FirstStep";
 import SecondStep from "../SecondStep/SecondStep";
 import ThirdStep from "../ThirdStep/ThirdStep";
+import { AddPetFormTitle, Steps, StepTitle, TitleBox } from "./AddPetForm.styled";
 
 
 
 const AddPetForm = () => {
     const { currentStep, handleNextStep, handleBackStep, isFirstStep, isLastStep } = useMultistepForm(1);
     const [currentRadioChecked, setCurremtRadioChecked] = useState("your-pet");
-    const [avatarFile, setAvavatarFile] = useState("");
+    const [avatarFile, setAvatarFile] = useState("");
     const [selectedSex, setSelectedSex] = useState("");
+    const [fileIsLoaded, setFileIsLoaded] = useState(false);
+    const [avatarPreview, setAvatarPreview] = useState("")
     const dispatch = useDispatch();
 
     const initialValues = {
@@ -46,23 +49,33 @@ const AddPetForm = () => {
                 return (
                     <Form>
                         <div>
-                            <div>
-                                <h2>{currentStep !== 1 ? titleChange(currentRadioChecked) : "Add pet"}</h2>
-                            </div>
-                            <div>
-                                <h3>Choose  option</h3>
-                                <h3>Personal details</h3>
-                                <h3>More info</h3>
-                            </div>
+                            <TitleBox>
+                                <AddPetFormTitle>{currentStep !== 1 ? titleChange(currentRadioChecked) : "Add pet"}</AddPetFormTitle>
+                            </TitleBox>
+                            <Steps>
+                                <StepTitle>Choose  option</StepTitle>
+                                <StepTitle>Personal details</StepTitle>
+                                <StepTitle>More info</StepTitle>
+                            </Steps>
 
                             {currentStep === 1 && (
-                                <FirstStep />
+                                <FirstStep handleCategories={handleCategories} currentRadioChecked={currentRadioChecked}/>
                             )}
                             {currentStep === 2 && (
-                                <SecondStep />
+                                <SecondStep currentRadioChecked={currentRadioChecked} />
                             )}
                             {currentStep === 3 && (
-                                <ThirdStep />
+                                <ThirdStep
+                                    currentRadioChecked={currentRadioChecked}
+                                    handleSex={handleSex}
+                                    avatarFile={avatarFile}
+                                    setAvavatarFile={setAvatarFile}
+                                    fileIsLoaded={fileIsLoaded}
+                                    setFileIsLoaded={setFileIsLoaded}
+                                    avatarPreview={avatarPreview}
+                                    setAvatarPreview={setAvatarPreview}
+
+                                />
                             )}
                         </div>
                         <div>
