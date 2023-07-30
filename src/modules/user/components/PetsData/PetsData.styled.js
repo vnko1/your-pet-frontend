@@ -4,7 +4,7 @@ export const UserPetsBody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  gap: 24px;
 
   @media screen and (min-width: 768px) {
     flex-direction: column;

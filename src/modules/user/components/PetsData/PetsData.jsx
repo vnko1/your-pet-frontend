@@ -32,7 +32,6 @@ const PetsData = () => {
 
   return (
     <UserPetsBody>
-      <div>
         <UserPetsTitleWrap>
           <UserPetsTitle>My pets:</UserPetsTitle>
           <NavLink to={`add-pet`} state={location.pathname}>
@@ -45,7 +44,7 @@ const PetsData = () => {
             friend!
           </NoUserPets>
         ) : (
-          <>
+          <div>
             {pets.map(({ _id, petsURL, name, birthday, type, comments }) => (
               <UserPetsInfo key={_id}>
                 <UserPetsImg src={petsURL} alt="pet_image" />
@@ -80,9 +79,8 @@ const PetsData = () => {
                 </UserPetsBtn>
               </UserPetsInfo>
             ))}
-          </>
+          </div>
         )}
-      </div>
     </UserPetsBody>
   );
 };

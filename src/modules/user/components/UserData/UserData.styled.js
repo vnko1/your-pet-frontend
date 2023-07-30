@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
-export const UserPage = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+// export const UserPage = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   gap: 20px;
+// `;
 
 export const UserPageItem = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 18px;
 `;
 
 export const UserFormTitle = styled.h2`
@@ -15,7 +18,6 @@ export const UserFormTitle = styled.h2`
   font-weight: 500;
   font-size: 20px;
   line-height: 1.35;
-  margin-bottom: 18px;
   color: #000000;
 
   @media (${(props) => props.theme.media.tablet}) {
@@ -30,12 +32,13 @@ export const UserFormBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 280px;
-  height: 517px;
+  width: 100%;
+  /* height: 517px; */
   margin-left: auto;
   margin-right: auto;
+  
 
-  padding: 20px 8px 4px 8px;
+  /* padding: 20px 8px 4px 8px; */
   background-color: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
   border-radius: 20px;

@@ -39,9 +39,9 @@ const App = () => {
         { index: true, element: <MainPage /> },
         {
           path: "register",
-          element: <RestrictedRoute component={RegisterPage} />,
+          element: <RegisterPage/>,
         },
-        { path: "login", element: <RestrictedRoute component={LoginPage} /> },
+        { path: "login", element: <LoginPage/> },
         {
           path: "notices",
           element: <NoticesPage />,
