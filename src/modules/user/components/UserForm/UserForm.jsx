@@ -11,8 +11,6 @@ import {
   Btn,
 } from "./UserForm.styled";
 
-import sprite from "../../../../assets/icons.svg";
-
 import { updateUser } from "./../../../../redux/auth/auth-operations";
 import authSelectors from "./../../../../redux/auth/auth-selectors";
 import AddPhoto from "../UserPhoto/UserPhoto";
