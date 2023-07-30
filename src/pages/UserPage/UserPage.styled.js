@@ -5,7 +5,7 @@ export const UserPageBody = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 40px;
-
+  margin-top: 100px;
 
   @media ${(props) => props.theme.media.desktop} {
     flex-direction: row;
