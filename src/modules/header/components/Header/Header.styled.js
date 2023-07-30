@@ -20,12 +20,12 @@ export const BurgerMenuBtn = styled.svg`
 export const MobileMenuCloseBtn = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: #ffc107;
+  stroke: ${(props) => props.theme.colors.secondary};
 `;
 
 export const MobileMenu = styled.div`
   &.fade-enter {
-   transform: translateY(-100%);
+    transform: translateY(-100%);
   }
 
   &.fade-enter-active {
@@ -51,7 +51,7 @@ export const MobileMenu = styled.div`
 
   width: 100%;
   height: 100%;
-  background-color: #fef9f9;
+  background-color: ${(props) => props.theme.colors.background};
 
   z-index: 2;
 
@@ -87,8 +87,4 @@ export const BurgerMenuWrap = styled.div`
   @media ((min-width: 768px) and (max-width: 1279px)) {
     gap: 38px;
   }
-
-  // @media (min-width: 1280px) {
-  //   display: flex;
-  // }
 `;

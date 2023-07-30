@@ -14,10 +14,6 @@ export const StyledAuthNav = styled.ul`
     align-items: center;
     gap: 20px;
   }
-
-  // @media (min-width: 768px) and (max-width: 1279px) {
-  //   position: absolute;
-  // }
 `;
 
 export const StyledAuthNavItem = styled.li`
@@ -29,7 +25,7 @@ export const StyledAuthNavItem = styled.li`
 export const StyledLoginIcon = styled.svg`
   width: 24px;
   height: 24px;
-  fill: #fef9f9;
+  fill: ${(props) => props.theme.colors.background};
 `;
 
 export const StyledAuthNavButton = styled(Link)`
@@ -38,7 +34,6 @@ export const StyledAuthNavButton = styled(Link)`
   justify-content: center;
   gap: 8px;
 
-  // max-width: 300px;
   @media (max-width: 767px) {
     min-width: 165px;
     margin-left: auto;
@@ -68,7 +63,7 @@ export const StyledAuthNavButton = styled(Link)`
     border: 2px solid #ffc107;
     cursor: pointer;
     ${StyledLoginIcon} {
-      fill: #ffc107;
+      fill: ${(props) => props.theme.colors.secondary};
     }
   }
 `;

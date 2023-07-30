@@ -15,7 +15,7 @@ const UserNav = (props) => {
       <User
         isMobileMenuOpen={isMobileMenuOpen}
         isDesktop={isDesktop}
-        onClick={onCloseMobileMenu}
+        onCloseMobileMenu={onCloseMobileMenu}
       />
     </StyledUserNav>
   );

@@ -8,9 +8,8 @@ export const StyledLogout = styled.a`
 
   width: 135px;
   height: 40px;
-  // background-color: #54adff;
   background: linear-gradient(90deg, #54adff, #54adff);
-  color: #fef9f9;
+  color: ${(props) => props.theme.colors.background};
   border-radius: 40px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -25,7 +24,7 @@ export const StyledLogout = styled.a`
 export const StyledLogoutText = styled.p`
   font-size: 16px;
   line-height: 1.37;
-  font-weight: 700;
+  font-weight: ${(props) => props.theme.fontWeights.bold};
 `;
 
 export const DialogCloseBtn = styled.svg`
@@ -33,14 +32,14 @@ export const DialogCloseBtn = styled.svg`
   width: 24px;
   height: 24px;
   margin-left: auto;
-  stroke: #54adff;
+  stroke: ${(props) => props.theme.colors.primary};
 `;
 
 export const LogoutDialogWrap = styled.div`
   width: 280px;
   height: 302px;
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.colors.white};
   padding: 12px;
   text-align: center;
 
@@ -55,7 +54,7 @@ export const LogoutDialogWrap = styled.div`
 export const LogoutDialogText = styled.p`
   font-size: 24px;
   line-height: 1.37;
-  font-weight: 500;
+  font-weight: ${(props) => props.theme.fontWeights.medium};
   color: #111111;
   margin-top: 41px;
   margin-bottom: 44px;
@@ -78,7 +77,7 @@ export const LogoutDialogButtonWrap = styled.div`
 export const LogoutDialogButtonText = styled.p`
   font-size: 16px;
   line-height: 1.37;
-  font-weight: 700;
+  font-weight: ${(props) => props.theme.fontWeights.bold};
   color: ${(props) => (props.$primary ? "#FFFFFF" : "#54adff")};
   margin: 0;
 `;
@@ -86,6 +85,7 @@ export const LogoutDialogButtonText = styled.p`
 export const LogoutDialogButton = styled.button`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 8px;
   width: 256px;
   border: 2px solid #54adff;
@@ -99,7 +99,7 @@ export const LogoutDialogButton = styled.button`
   :hover {
     background: linear-gradient(90deg, #9bd0ff, #419ef1);
     ${LogoutDialogButtonText} {
-      color: #ffffff;
+      color: ${(props) => props.theme.colors.white};
     }
   }
 
@@ -111,5 +111,5 @@ export const LogoutDialogButton = styled.button`
 export const LogoutIcon = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: #fef9f9;
+  stroke: ${(props) => props.theme.colors.background};
 `;

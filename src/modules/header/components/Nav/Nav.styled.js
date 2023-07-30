@@ -4,15 +4,15 @@ import { NavLink } from "react-router-dom";
 export const CommonNavLink = styled(NavLink)`
   font-size: 32px;
   line-height: 1.37;
-  font-weight: 500;
+  font-weight: ${(props) => props.theme.fontWeights.medium};
   color: #111111;
   text-decoration: none;
   &.active {
-    color: #ffc107;
-    font-weight: 700;
+    color: ${(props) => props.theme.colors.secondary};
+    font-weight: ${(props) => props.theme.fontWeights.bold};
   }
 
-  @media (min-width: 728px) {
+  @media (min-width: 768px) {
     font-size: 48px;
   }
 
@@ -27,8 +27,6 @@ export const StyledNavList = styled.ul`
   list-style: none;
   text-align: center;
   padding: 0;
-  // margin: 0;
-  // margin-top: ${(props) => props.marginBottom};
 
   @media (max-width: 767px) {
     margin-top: 40px;

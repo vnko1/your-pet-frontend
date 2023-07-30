@@ -18,8 +18,6 @@ export const StyledLogout = styled.div`
 
   @media (min-width: 768px) {
     position: static;
-    // top: 26px;
-    // right: 80px;
   }
 
   @media (min-width: 1280px) {
