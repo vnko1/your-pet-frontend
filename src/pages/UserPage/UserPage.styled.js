@@ -5,8 +5,8 @@ export const UserPageBody = styled.div`
   flex-direction: column;
   gap: 40px;
 
-  @media screen and (min-width: 1280px) {
-    display: flex;
-    gap: 25px;
+  @media ${(props) => props.theme.media.desktop} {
+    flex-direction: row;
+    gap: 32px;
   }
 `;
