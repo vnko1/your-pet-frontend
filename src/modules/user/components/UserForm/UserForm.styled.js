@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Form, Field } from "formik";
 
 export const UserImgBox = styled.div`
   margin-bottom: 32px;
@@ -27,7 +28,7 @@ export const UserImgInput = styled.input`
   z-index: -1;
 `;
 
-export const UserFormBody = styled.div`
+export const UserFormBody = styled(Form)`
   padding-right: 0;
 
   @media screen and (min-width: 768px) {
@@ -57,8 +58,26 @@ export const UserFormLabel = styled.label`
   }
 `;
 
-export const UserFormInput = styled.input`
+export const UserFormInput = styled(Field)`
+  outline: 0;
+  background: none;
+
+  flex: 1 1 auto;
+
+  width: 255px;
   height: 28px;
+  padding: 4px 12px;
+  background: blue;
+  background: none;
+
+  border: 1px solid #54adff;
+  border-radius: 40px;
+
+  @media screen and (min-width: 320px) {
+    font-size: 12px;
+  }
+
+  /* height: 28px;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.33;
@@ -73,7 +92,7 @@ export const UserFormInput = styled.input`
 
   @media screen and (min-width: 768px) {
     width: 255px;
-  }
+  } */
 `;
 
 export const UserFormBtn = styled.button`

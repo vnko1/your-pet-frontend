@@ -1,10 +1,6 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
-
-import { selectPets } from "./../../../../redux/pets/pets-selectors";
-import { postPet } from "./../../../../redux/pets/pets-operation";
-import { deletePet } from "./../../../../redux/pets/pets-operation";
+import { deletePet } from "../../../../redux/pets/pets-operation";
 
 import {
   UserPetsBody,
@@ -18,23 +14,20 @@ import {
   UserPetsNavBtn,
   UserPetsTitle,
   UserPetsTitleWrap,
-  UserPetsBtnDell,
+  UserPetsSvg,
 } from "./PetsData.styled";
-import { useEffect } from "react";
+
+import authSelectors from "../../../../redux/auth/auth-selectors";
+
+import sprite from "../../../../assets/icons.svg";
 
 const PetsData = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const pets = useSelector(selectPets);
-
-  useEffect(() => {
-    dispatch(postPet());
-  }, [dispatch]);
+  const { pets } = useSelector(authSelectors.selectUser);
 
   const handelDellPets = (id) => {
     dispatch(deletePet(id));
-
-    dispatch(postPet());
   };
 
   return (
@@ -48,17 +41,15 @@ const PetsData = () => {
         </UserPetsTitleWrap>
         {pets.length === 0 ? (
           <NoUserPets>
-            You havenot added a pet yet, you have the option to add your furry
+            You have not added a pet yet, you have the option to add your furry
             friend!
           </NoUserPets>
         ) : (
           <>
-            {pets.map(({ _id, petsURL, name, birthday, type, comments }) => {
+            {pets.map(({ _id, petsURL, name, birthday, type, comments }) => (
               <UserPetsInfo key={_id}>
                 <UserPetsImg src={petsURL} alt="pet_image" />
-                <UserPetsBtnDell>
-                  <svg />
-                </UserPetsBtnDell>
+
                 <UserPetsList>
                   <UserPetsItem>
                     Name:{""}
@@ -80,19 +71,20 @@ const PetsData = () => {
                 <UserPetsBtn
                   type="button"
                   onClick={() => {
-                    handelDellPets(_id);
+                    handelDellPets();
                   }}
                 >
-                  <svg />
+                  <UserPetsSvg>
+                    <use href={sprite + "#icon-delete"} />
+                  </UserPetsSvg>
                 </UserPetsBtn>
-              </UserPetsInfo>;
-            })}
+              </UserPetsInfo>
+            ))}
           </>
         )}
       </div>
     </UserPetsBody>
   );
 };
-
 
 export default PetsData;

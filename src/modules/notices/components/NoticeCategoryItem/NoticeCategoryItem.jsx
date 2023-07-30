@@ -1,3 +1,5 @@
+import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   AddToFavorite,
   Card,
@@ -12,16 +14,51 @@ import {
   Title,
   Years,
 } from "./NoticeCategoryItem.styled";
+import ModalNotice from "../ModalNotice";
 
-function NoticesCategoryItem() {
+// тут бедет обрезаться текст города
+const sliceLocation = (location) => {
+  if (location.length > 4) {
+    return location.slice(0, 4) + "...";
+  } else {
+    return location;
+  }
+};
+
+// тут форматируеться возраст
+const makeAge = (petDate) => {
+  const date = new Date(petDate);
+  const currentDate = new Date();
+
+  const yearDifference = currentDate.getFullYear() - date.getFullYear();
+  const monthDifference = currentDate.getMonth() + 1 - (date.getMonth() + 1);
+
+  let result;
+
+  if (yearDifference >= 1) {
+    return (result = yearDifference + " year");
+  } else {
+    return (result = monthDifference + " month");
+  }
+};
+
+function NoticesCategoryItem({
+  card: { category, date, fileUrl, location, name, sex, title },
+}) {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <Card>
       <ImageWrap>
-        <Image
-          src="
-https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
-          alt="cat"
-        />
+        <Image src={`${fileUrl}`} alt={`${name}`} />
         <AddToFavorite>
           <HeartIconWrap>
             <svg
@@ -41,17 +78,91 @@ https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg"
             </svg>
           </HeartIconWrap>
         </AddToFavorite>
-        <Category>In good hands</Category>
-        <City>Lviv</City>
-        <Years>1 year</Years>
-        <Gender>female</Gender>
+        <Category>{category}</Category>
+        <City>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M20 11C20 15.4183 16.4183 19 12 21C7.58172 19 4 15.4183 4 11C4 6.58172 7.58172 3 12 3C16.4183 3 20 6.58172 20 11Z"
+              stroke="#54ADFF"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M15 11C15 12.6569 13.6569 14 12 14C10.3431 14 9 12.6569 9 11C9 9.34315 10.3431 8 12 8C13.6569 8 15 9.34315 15 11Z"
+              stroke="#54ADFF"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          {sliceLocation(location)}
+        </City>
+        <Years>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="24"
+            viewBox="0 0 25 24"
+            fill="none"
+          >
+            <path
+              d="M12.5 7V12L15.5 15M21.5 12C21.5 16.9706 17.4706 21 12.5 21C7.52944 21 3.5 16.9706 3.5 12C3.5 7.02944 7.52944 3 12.5 3C17.4706 3 21.5 7.02944 21.5 12Z"
+              stroke="#54ADFF"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          {makeAge(date)}
+        </Years>
+        <Gender>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+          >
+            <path
+              d="M12 13C14.7614 13 17 10.7614 17 8C17 5.23858 14.7614 3 12 3C9.23858 3 7 5.23858 7 8C7 10.7614 9.23858 13 12 13ZM12 13L12 21M9 18L15 18"
+              stroke="#54ADFF"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          {sex}
+        </Gender>
       </ImageWrap>
       <CardTextInfoWrap>
-        <Title>Сute dog looking for a home</Title>
-        <LearnMoreBtn>Learn more</LearnMoreBtn>
+        <Title>{title}</Title>
+        <LearnMoreBtn onClick={openModal}>Learn more</LearnMoreBtn>
       </CardTextInfoWrap>
+      {modalIsOpen && (
+        <ModalNotice isOpen={modalIsOpen} closeModal={closeModal} />
+      )}
     </Card>
   );
 }
 
 export default NoticesCategoryItem;
+
+NoticesCategoryItem.propTypes = {
+  card: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    // fileUrl: PropTypes.string.isRequired,
+    fileUrl: PropTypes.string,
+    location: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    sex: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
