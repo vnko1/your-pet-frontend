@@ -36,6 +36,12 @@ const App = () => {
         { path: "login", element: <LoginPage /> },
         { path: "friends", element: <OurFriends /> },
         {
+          path: "register",
+          element: <RegisterPage/>,
+        },
+        { path: "login", element: <LoginPage/> },
+        {
+          path: "notices",
           path: "notices/:categoryName",
           element: <NoticesPage />,
           children: [
