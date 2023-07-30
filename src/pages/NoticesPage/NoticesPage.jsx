@@ -45,9 +45,9 @@ function NoticesPage() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(
-        fetchFavorite("https://my-pet-app-8sz1.onrender.com/notices/favorites")
-      );
+      // dispatch(
+      //   fetchFavorite("https://my-pet-app-8sz1.onrender.com/notices/favorites")
+      // );
     } else {
       // при розлогине надо очистить массив фейворит но лучше поставить на кнопку логаут
       dispatch(resetNotices());

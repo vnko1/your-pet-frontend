@@ -8,6 +8,7 @@ import {
   fetchCardById,
   resetCardById,
   deleteCardById,
+  takeFavoritesList,
 } from "./notices-operations";
 
 // FetchNotices
@@ -126,6 +127,7 @@ const handleRejectedFetchCardById = (state) => {
   state.isLoading = false;
   state.error = true;
 };
+// =============================================
 
 const handleResetCardById = (state) => {
   return {
@@ -152,6 +154,12 @@ const handleRejectedDeleteCardById = (state) => {
   state.error = true;
 };
 //==================================================
+const handleTakeFavoritesList = (state, action) => {
+  // console.log(state)
+  // console.log(action.payload)
+  state.favorite = [...action.payload];
+};
+// =================================================
 export const noticesSlice = createSlice({
   name: "notices",
   initialState: {
@@ -204,7 +212,8 @@ export const noticesSlice = createSlice({
       .addCase(deleteCardById.rejected, handleRejectedDeleteCardById)
       // ===========================================
       .addCase(resetNotices, handleResetFavoriteList)
-      .addCase(resetCardById, handleResetCardById);
+      .addCase(resetCardById, handleResetCardById)
+      .addCase(takeFavoritesList, handleTakeFavoritesList);
   },
 });
 

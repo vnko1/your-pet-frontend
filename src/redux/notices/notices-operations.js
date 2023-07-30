@@ -81,3 +81,4 @@ export const deleteCardById = createAsyncThunk(
 
 export const resetNotices = createAction("notices/resetFavorite");
 export const resetCardById = createAction("notices/resetCardById");
+export const takeFavoritesList = createAction("TAKE_FAVORITE_LIST");

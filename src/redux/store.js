@@ -14,7 +14,7 @@ import { newsReducer } from "./news/news-slice";
 import { friendsReducer } from "./ourFriends/ourFriends-slice";
 import { noticesReducer } from "./notices/notices-slice";
 import { sponsorsReducer } from "./sponsors/sponsors-slice";
-import handleNotificationsNoticePage from "./utils/handleNotificationsNoticePage";
+import handleMiddlewateForNoticePage from "./utils/handleMiddlewateForNoticePage";
 
 export const store = configureStore({
   reducer: {
@@ -30,7 +30,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(handleNotificationsNoticePage),
+    }).concat(handleMiddlewateForNoticePage),
 });
 
 export const persistor = persistStore(store);
