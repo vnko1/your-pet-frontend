@@ -55,7 +55,6 @@ export const UserFormBox = styled.div`
     flex-direction: column;
     padding: 20px 24px 20px 16px;
     border-radius: 40px;
-
     gap: 0;
   }
 `;
@@ -69,6 +68,8 @@ export const UserBtnPen = styled.button`
   height: 24px;
 
   background-color: inherit;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
   border: none;
 
@@ -77,11 +78,11 @@ export const UserBtnPen = styled.button`
   }
 `;
 
-export const IconShown = styled.img`
-  width: 100%;
-  height: 100%;
+export const Icon = styled.svg`
+  width: 24px;
+  height: 24px;
 
-  transition: fill 250ms ease-in-out;
+  fill: ${(props) => props.theme.colors.primary};
 `;
 
 export const UserInputWrapper = styled.div`

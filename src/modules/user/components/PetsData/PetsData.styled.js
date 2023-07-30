@@ -15,6 +15,18 @@ export const UserPetsBody = styled.div`
   }
 `;
 
+export const UserPetsTitle = styled.h2`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.35;
+
+  color: #000000;
+
+  @media screen and (min-width: 768px) {
+    font-size: 28px;
+  }
+`;
 export const UserPetsTitleWrap = styled.div`
   display: flex;
   flex-direction: row;
@@ -30,11 +42,6 @@ export const UserPetsTitleWrap = styled.div`
   @media screen and (min-width: 1280px) {
     width: 821px;
   }
-`;
-
-export const UserPetsTitle = styled.h2`
-=======
-  flex: 1 1 65%;
 `;
 
 export const UserPetsHead = styled.div`
@@ -81,12 +88,6 @@ export const UserPetsNavBtn = styled.button`
     line-height: 22px;
     letter-spacing: 0.04em;
     color: #fef9f9;
-  margin-bottom: 18px;
-  color: #000000;
-
-  @media (${(props) => props.theme.media.tablet}) {
-    font-size: 28px;
-    margin-bottom: 24px;
   }
 `;
 
@@ -126,24 +127,6 @@ export const UserPetsInfo = styled.div`
     min-height: 200px;
     padding: 20px;
   }
-`;
-export const UserPetsBtnDell = styled.button`
-  position: absolute;
-  top: 10%;
-  right: 5%;
-
-  transform: translateY(-50%);
-
-  width: 24px;
-  height: 24px;
-
-  background-color: transparent;
-  border: 2px solid rgb(84, 173, 255);
-  border-radius: 4px;
-
-  transition: border 250ms ease-in-out;
-
-  cursor: pointer;
 `;
 
 export const UserPetsImg = styled.img`
@@ -226,4 +209,9 @@ export const UserPetsBtn = styled.button`
     right: 20px;
   }
 `;
+export const UserPetsSvg = styled.svg`
+  width: 20px;
+  height: 20px;
 
+  fill: ${(props) => props.theme.colors.primary};
+`;

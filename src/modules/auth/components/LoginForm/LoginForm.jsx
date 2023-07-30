@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
-import { loginSchema } from "./../../../../schemas/loginSchema";
+import {
+  InputCorrect,
+  InputError,
+  LoginSchema,
+} from "./../../../../schemas/formValid";
 import { logIn } from "./../../../../redux/auth/auth-operations";
-import iconClose from "./../../../../assets/icons.svg#eye-closed";
-import iconOpen from "./../../../../assets/icons.svg#eye-open";
+import { ReactComponent as CloseSvg } from "./../../../../assets/icons/cross-small.svg";
+import { ReactComponent as CheckSvg } from "./../../../../assets/icons/check.svg";
 
 import {
   InputWrapper,
   FormContainer,
-  ErrorMsg,
   PassWrapper,
   Input,
   ShowPassBtn,
@@ -18,17 +21,26 @@ import {
   Btn,
   LoginHeader,
   Text,
+  WrapperCheckCross,
+  IconCheck,
+  IconCross,
 } from "./LoginForm.styled";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [password, setPassword] = useState(false);
 
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+
   const handleSubmit = (values, { resetForm }) => {
+    const { email, password } = values;
     dispatch(
       logIn({
-        email: values.email,
-        password: values.password,
+        email: email,
+        password: password,
       })
     );
 
@@ -38,50 +50,133 @@ const LoginForm = () => {
   const togglePassword = () => setPassword(!password);
 
   return (
-    <Formik onSubmit={handleSubmit} validationSchema={loginSchema}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={LoginSchema}
+    >
       {({ errors, touched }) => (
         <FormContainer>
           <LoginHeader>Login</LoginHeader>
           <InputWrapper>
-            <Input
-              type="email"
-              name="email"
-              id="email"
-              autoComplete="off"
-              placeholder={"Email"}
-              data-error={errors.email && touched.email ? true : false}
-            />
-            <ErrorMsg
-              name="email"
-              component="span"
-              data-error={errors.email && touched.email ? true : false}
-            />
             <PassWrapper>
               <Input
+                className={
+                  !errors.email && touched.email !== ""
+                    ? "success"
+                    : errors.email && touched.email !== ""
+                    ? "error"
+                    : "default"
+                }
+                type="email"
+                name="email"
+                id="email"
+                autoComplete="off"
+                placeholder={"Email"}
+              />
+              {!errors.email && touched.email !== "" ? (
+                <InputCorrect name="Enter a valid Email" />
+              ) : null}
+              <WrapperCheckCross
+              // data-error={
+              // errors.email && touched.email
+              //   ? <CheckSvg /> === true
+              //   : <CloseSvg /> === false
+              // }
+              >
+                <CheckSvg />
+                <CloseSvg />
+              </WrapperCheckCross>
+            </PassWrapper>
+            <PassWrapper>
+              <Input
+                className={
+                  !errors.password && touched.password !== ""
+                    ? "success"
+                    : errors.password && touched.password !== ""
+                    ? "error"
+                    : "default"
+                }
                 type={password ? "text" : "password"}
                 name="password"
                 id="password"
                 autoComplete="off"
                 placeholder={"Password"}
-                data-error={errors.password && touched.password ? true : false}
               />
+              {!errors.password && touched.password !== "" ? (
+                <InputCorrect name="Password is secure" />
+              ) : null}
+              <InputError name="password" />
 
               <ShowPassBtn
                 type="button"
                 onClick={togglePassword}
                 data-shown={password}
+                data-error={
+                  errors.password && touched.password
+                    ? (
+                        <IconCheck viewBox="0 0 32 32">
+                          <path
+                            fill="none"
+                            stroke="#00c3ad"
+                            strokeLinejoin="round"
+                            strokeLinecap="round"
+                            strokeMiterlimit="4"
+                            strokeWidth="2"
+                            d="M26.667 9.333l-14.667 14.667-6.667-6.667"
+                          ></path>
+                        </IconCheck>
+                      ) === true
+                    : (
+                        <IconCross viewBox="0 0 32 32">
+                          <path
+                            fill="none"
+                            stroke="#f43f5e"
+                            strokeLinejoin="round"
+                            strokeLinecap="round"
+                            strokeMiterlimit="4"
+                            strokeWidth="2"
+                            d="M25.333 6.667l-18.667 18.667M6.667 6.667l18.667 18.667"
+                          ></path>
+                        </IconCross>
+                      ) === false
+                }
               >
                 {password ? (
-                  <IconShown src={iconOpen} />
+                  <IconShown viewBox="0 0 32 32">
+                    <path
+                      fill="none"
+                      stroke="#54adff"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeMiterlimit="4"
+                      strokeWidth="2"
+                      d="M2.667 16c0 0 4.848-9.333 13.333-9.333s13.333 9.333 13.333 9.333-4.849 9.333-13.333 9.333c-8.485 0-13.333-9.333-13.333-9.333z"
+                    ></path>
+                    <path
+                      fill="none"
+                      stroke="#54adff"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeMiterlimit="4"
+                      strokeWidth="2"
+                      d="M16 20c2.209 0 4-1.791 4-4s-1.791-4-4-4c-2.209 0-4 1.791-4 4s1.791 4 4 4z"
+                    ></path>
+                  </IconShown>
                 ) : (
-                  <IconHidden src={iconClose} />
+                  <IconHidden viewBox="0 0 32 32">
+                    <path
+                      fill="none"
+                      stroke="#54adff"
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeMiterlimit="4"
+                      strokeWidth="2"
+                      d="M13.019 7.060c0.936-0.251 1.931-0.394 2.981-0.394 8.485 0 13.333 9.333 13.333 9.333s-1.105 2.128-3.184 4.351M5.799 11.704c-2.045 2.203-3.132 4.296-3.132 4.296s4.848 9.333 13.333 9.333c1.069 0 2.081-0.148 3.033-0.407M15.333 19.945c-1.446-0.243-2.628-1.26-3.106-2.611M16.667 12.055c1.675 0.281 2.997 1.603 3.278 3.278M4 4l24 24"
+                    ></path>
+                  </IconHidden>
                 )}
               </ShowPassBtn>
-              <ErrorMsg
-                name="password"
-                component="span"
-                data-error={errors.password && touched.password ? true : false}
-              />
             </PassWrapper>
           </InputWrapper>
           <Btn type="submit">Login</Btn>

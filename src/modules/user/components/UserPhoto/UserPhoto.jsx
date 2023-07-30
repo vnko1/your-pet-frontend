@@ -1,8 +1,23 @@
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import PropTypes from "prop-types";
-import { Img, PhotoWrap } from "./UserPhoto.styled";
+import {
+  Box,
+  PhotoContainer,
+  UserDataWrapper,
+  UserPhotoBtn,
+  UserPhotoBtnCheck,
+  UserPhotoEdit,
+  UserPhotoIcon,
+  UserPhotoIconDell,
+  UserPhotoTitle,
+  UserPhotoWrapper,
+} from "./UserPhoto.styled";
+
 import avatar from "../../../../images/avatarDefault-image/Avatar.png";
+
+import sprite from "../../../../assets/icons.svg";
+
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../../../redux/auth/auth-operations";
 import authSelectors from "../../../../redux/auth/auth-selectors";
@@ -38,51 +53,61 @@ const AddPhoto = ({ isUserUpdate }) => {
       {isLoader ? (
         <div>тутмає бути спінер</div>
       ) : (
-        <div>
-          <div>
+        <UserDataWrapper>
+          <UserDataWrapper>
             <input {...getInputProps()} />
             {selectedFile ? (
-              <PhotoWrap>
-                <Img
+              <UserPhotoWrapper>
+                <PhotoContainer
                   src={URL.createObjectURL(selectedFile)}
                   alt="User's file"
                   style={{ maxWidth: "300px" }}
                 />
-              </PhotoWrap>
+              </UserPhotoWrapper>
             ) : (
-              <PhotoWrap>
-                <Img
-                  src={user?.avatarUrl || avatar}
+              <UserPhotoWrapper>
+                <PhotoContainer
+                  src={user.avatarUrl || avatar}
                   alt="Default avatar"
                   style={{ maxWidth: "300px" }}
                 />
-              </PhotoWrap>
+              </UserPhotoWrapper>
             )}
             {!isUserUpdate && (
-              <div>
+              <Box>
                 {selectedFile ? (
                   <>
-                    <button type="button" onClick={onSubmit}>
-                      succes svg
-                    </button>
-                    <p>Confirm</p>
-                    <button type="button" onClick={() => setSelectedFile(null)}>
-                      cancel svg
-                    </button>
+                    <UserPhotoBtnCheck type="button" onClick={onSubmit}>
+                      <UserPhotoIcon>
+                        <use href={sprite + "#check"} />
+                      </UserPhotoIcon>
+                    </UserPhotoBtnCheck>
+                    <UserPhotoTitle>Confirm</UserPhotoTitle>
+                    <UserPhotoBtn
+                      type="button"
+                      onClick={() => setSelectedFile(null)}
+                    >
+                      <UserPhotoIconDell>
+                        <use href={sprite + "#cross-small"} />
+                      </UserPhotoIconDell>
+                    </UserPhotoBtn>
                   </>
                 ) : (
-                  <button
+                  <UserPhotoEdit
                     {...getRootProps()}
                     className={`dropzone ${isDragActive ? "active" : ""}`}
                     type="button"
                   >
+                    <UserPhotoIcon>
+                      <use href={sprite + "#camera"} />
+                    </UserPhotoIcon>
                     Edit photo
-                  </button>
+                  </UserPhotoEdit>
                 )}
-              </div>
+              </Box>
             )}
-          </div>
-        </div>
+          </UserDataWrapper>
+        </UserDataWrapper>
       )}
     </>
   );
