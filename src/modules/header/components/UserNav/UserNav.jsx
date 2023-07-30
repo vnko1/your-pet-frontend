@@ -9,7 +9,7 @@ const UserNav = (props) => {
     <StyledUserNav>
       {(isMobileMenuOpen || isDesktop) && (
         <StyledLogout>
-          <Logout onCloseMobileMenu={onCloseMobileMenu} />
+          <Logout />
         </StyledLogout>
       )}
       <User

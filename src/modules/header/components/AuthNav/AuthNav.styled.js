@@ -57,7 +57,7 @@ export const StyledAuthNavButton = styled(Link)`
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  :hover {
+  :hover, :focus {
     background-color: ${(props) => (props.$primary ? "#FEF9F9" : "#FFC107")};
     color: ${(props) => (props.$primary ? "#FFC107" : "#FEF9F9")};
     border: 2px solid #ffc107;
@@ -67,11 +67,3 @@ export const StyledAuthNavButton = styled(Link)`
     }
   }
 `;
-
-// export const StyledAuthNavMobileMenuTalet = styled.div`
-//   @media (min-width: 768px) and (max-width: 1279px) {
-//     // position: absolute;
-//     top: 0;
-//     left: 0;
-//   }
-// `;

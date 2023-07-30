@@ -13,6 +13,10 @@ export const StyledUser = styled(Link)`
     top: 8px;
     right: 12px;
   }
+
+  :hover, :focus {
+    scale: 1.1;
+  }
 `;
 
 export const StyledUserName = styled.p`
@@ -21,6 +25,7 @@ export const StyledUserName = styled.p`
   font-weight: ${(props) => props.theme.fontWeights.medium};
   color: ${(props) => props.theme.colors.secondary};
 `;
+
 export const StyledUserIcon = styled.img`
   width: 28px;
   height: 28px;

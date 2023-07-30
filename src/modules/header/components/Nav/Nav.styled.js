@@ -21,6 +21,11 @@ export const CommonNavLink = styled(NavLink)`
     padding-top: 10px;
     padding-bottom: 10px;
   }
+
+  :hover,
+  :focus {
+    color: ${(props) => props.theme.colors.secondary};
+  }
 `;
 
 export const StyledNavList = styled.ul`
