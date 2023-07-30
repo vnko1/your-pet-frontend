@@ -16,6 +16,8 @@ import {
   CitySvg,
   YearsSvg,
   GenderSvg,
+  DeleteFromOwn,
+  DeleteIcon,
 } from "./NoticeCategoryItem.styled";
 
 import Modal from "../../../../shared/modals/modalPort/Modal";
@@ -27,6 +29,7 @@ import {
   noticesIsLoadingFavorite,
 } from "../../../../redux/notices/notices-selectors";
 import {
+  deleteCardById,
   fetchAddFavorite,
   fetchCardById,
   fetchDeleteFavorite,
@@ -36,13 +39,16 @@ import icons from "../../../../assets/icons.svg";
 import { toast } from "react-hot-toast";
 import makeAge from "./utils/makeAge";
 import sliceLocation from "./utils/sliceLocation";
+import ModalApproveAction from "../../../../shared/modals/ModalApproveAction/ModalApproveAction";
 
 function NoticesCategoryItem({
   card: { _id, category, date, fileUrl, location, name, sex, title },
+  ownPage,
 }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalDeleteOpen, setModalDeleteOpen] = useState(false);
 
   const favList = useSelector(noticesFavoriteList);
   const isLoadingFavorite = useSelector(noticesIsLoadingFavorite);
@@ -93,20 +99,34 @@ function NoticesCategoryItem({
     }
   };
 
-  const openModalAndFetchCard = () => {
-    dispatch(
-      fetchCardById(`https://my-pet-app-8sz1.onrender.com/notices/${_id}`)
-    );
-
-    toggleModal();
-  };
-
-  const toggleModal = () => {
-    setModalOpen((prev) => !prev);
+  const toggleModalCardById = () => {
+    setIsModalOpen((prev) => !prev);
 
     if (isModalOpen) {
       dispatch(resetCardById());
     }
+  };
+
+  const openModalAndFetchCard = () => {
+    dispatch(
+      fetchCardById(
+        `https://my-pet-app-8sz1.onrender.com/notices/notice/${_id}`
+      )
+    );
+
+    toggleModalCardById();
+  };
+
+  const toggleModalDelete = () => {
+    setModalDeleteOpen((prev) => !prev);
+  };
+
+  const successDelete = () => {
+    dispatch(
+      deleteCardById(
+        `https://my-pet-app-8sz1.onrender.com/notices/notice/delete/${_id}`
+      )
+    );
   };
 
   return (
@@ -127,6 +147,13 @@ function NoticesCategoryItem({
             </HeartIconWrap>
           </div>
         </AddToFavorite>
+        {ownPage && (
+          <DeleteFromOwn onClick={() => toggleModalDelete()}>
+            <DeleteIcon>
+              <use href={icons + "#trash"} stroke="#54ADFF" />
+            </DeleteIcon>
+          </DeleteFromOwn>
+        )}
         <Category>{category}</Category>
         <City>
           <CitySvg>
@@ -154,14 +181,20 @@ function NoticesCategoryItem({
         </LearnMoreBtn>
       </CardTextInfoWrap>
       {isModalOpen && (
-        <Modal toggleModal={toggleModal}>
+        <Modal toggleModal={toggleModalCardById}>
           <ModalNotice
             isDisabledBtn={isDisabledBtn}
             isFavorite={isFavorite}
             handleClickHeart={handleClickHeart}
-            toggleModal={toggleModal}
+            toggleModal={toggleModalCardById}
           />
         </Modal>
+      )}
+      {isModalDeleteOpen && (
+        <ModalApproveAction
+          onSuccess={successDelete}
+          toggleModal={toggleModalDelete}
+        />
       )}
     </Card>
   );
@@ -181,4 +214,5 @@ NoticesCategoryItem.propTypes = {
     sex: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
+  ownPage: PropTypes.bool.isRequired,
 };

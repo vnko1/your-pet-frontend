@@ -14,6 +14,12 @@ const handleNotificationsNoticePage = (store) => (next) => (action) => {
       position: "top-right",
     });
   }
+  if (action.type === "notices/deleteCardById/fulfilled") {
+    toast.success("Successfuly delete from own", {
+      duration: 4000,
+      position: "top-right",
+    });
+  }
 
   return next(action);
 };

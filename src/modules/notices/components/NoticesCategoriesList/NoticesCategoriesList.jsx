@@ -6,6 +6,14 @@ import { CardList } from "./NoticesCategoriesList.styled";
 function NoticesCategoriesList() {
   const list = useSelector(noticesList);
 
+  const isOwnPage = () => {
+    const url = window.location.href;
+    console.log(url);
+    return url.includes("/notices/own") ? true : false;
+  };
+
+  const ownPage = isOwnPage();
+
   return (
     <CardList>
       {list.length > 0 &&
@@ -14,6 +22,7 @@ function NoticesCategoriesList() {
             <NoticesCategoryItem
               key={card._id}
               card={card}
+              ownPage={ownPage}
             ></NoticesCategoryItem>
           );
         })}

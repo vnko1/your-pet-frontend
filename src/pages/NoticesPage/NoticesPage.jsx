@@ -23,10 +23,20 @@ function NoticesPage() {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(isLogin);
   const totalPages = useSelector(noticesTotal);
+  console.log("totalPages", totalPages);
+  console.log("currentPage", currentPage);
   const noticesListInPagination = useSelector(noticesList);
   const dispatch = useDispatch();
 
   const isPagination = noticesListInPagination.length > 0 ? true : false;
+
+  // useEffect(() => {
+  //   if (totalPages <= 9) {
+  //     setCurrentPage(1);
+  //   } else {
+  //     setCurrentPage(Math.ceil(totalPages / 9));
+  //   }
+  // }, [setCurrentPage, totalPages]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -48,7 +58,10 @@ function NoticesPage() {
   return (
     <NoticesContainer>
       <NoticesSearch />
-      <NoticesCategoriesNav currentPage={currentPage} />
+      <NoticesCategoriesNav
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       <NoticesCategoriesList />
       {isPagination && (
         <Pagination

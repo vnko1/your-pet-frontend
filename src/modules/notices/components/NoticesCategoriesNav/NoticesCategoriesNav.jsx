@@ -144,7 +144,7 @@ import icons from "../../../../assets/icons.svg";
 //   }
 // }, [activeButton, dispatch, search, url]);
 
-function NoticesCategoriesNav({ currentPage }) {
+function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
   const { categoryBtnsUrl, activeButton, setActiveButton } = useNavButtons();
   const { search, resetInput } = useSearch();
 
@@ -195,6 +195,7 @@ function NoticesCategoriesNav({ currentPage }) {
     resetFilter();
     resetInput();
     setActiveButton(btn);
+    setCurrentPage(1);
   };
 
   return (
@@ -282,4 +283,5 @@ export default NoticesCategoriesNav;
 
 NoticesCategoriesNav.propTypes = {
   currentPage: PropTypes.number.isRequired,
+  setCurrentPage: PropTypes.func.isRequired,
 };

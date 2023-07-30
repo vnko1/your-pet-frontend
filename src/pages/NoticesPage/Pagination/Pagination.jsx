@@ -9,12 +9,7 @@ import {
 import icons from "../../../assets/icons.svg";
 
 const Pagination = ({ totalPages, currentPage, setCurrentPage }) => {
-  // const [currentPage, setCurrentPage] = useState(1);
-
   const count = Math.ceil(totalPages / 9);
-
-  console.log("totalPages", totalPages);
-  console.log("count", count);
 
   const handleGoToPage = (page) => {
     setCurrentPage(Math.min(Math.max(page, 1), count));

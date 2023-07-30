@@ -66,6 +66,18 @@ export const fetchCardById = createAsyncThunk(
   }
 );
 
+export const deleteCardById = createAsyncThunk(
+  "notices/deleteCardById",
+  async (url, thunkAPI) => {
+    try {
+      const response = await axios.delete(url);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const resetNotices = createAction("notices/resetFavorite");
 export const resetCardById = createAction("notices/resetCardById");
-

@@ -63,6 +63,33 @@ export const HeartIconWrap = styled.svg`
   }
 `;
 
+export const DeleteFromOwn = styled.button`
+  position: absolute;
+  top: 68px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+`;
+
+export const DeleteIcon = styled.svg`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+
+  &:hover use,
+  &:focus use {
+    stroke: #377ac8;
+    transform: scale(1.05);
+  }
+`;
+
 export const Category = styled.p`
   position: absolute;
   top: 12px;

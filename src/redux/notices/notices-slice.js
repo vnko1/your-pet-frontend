@@ -7,6 +7,7 @@ import {
   resetNotices,
   fetchCardById,
   resetCardById,
+  deleteCardById,
 } from "./notices-operations";
 
 // FetchNotices
@@ -133,6 +134,24 @@ const handleResetCardById = (state) => {
   };
 };
 // ==============================================
+const handlePendingDeleteCardById = (state) => {
+  state.isLoading = true;
+  state.error = null;
+};
+const handleFulfilledDeleteCardById = (state, action) => {
+  const { _id } = action.payload;
+
+  const newArr = state.items.filter((item) => item._id !== _id);
+  // мне нужен тотал все карточек, а я записываю то сколько осталось на странице
+
+  state.items = newArr;
+  state.total = state.total -= 1;
+};
+const handleRejectedDeleteCardById = (state) => {
+  state.isLoading = false;
+  state.error = true;
+};
+//==================================================
 export const noticesSlice = createSlice({
   name: "notices",
   initialState: {
@@ -179,6 +198,10 @@ export const noticesSlice = createSlice({
       .addCase(fetchCardById.pending, handlePendingFetchCardById)
       .addCase(fetchCardById.fulfilled, handleFulfilledFetchCardById)
       .addCase(fetchCardById.rejected, handleRejectedFetchCardById)
+      // ===========================================
+      .addCase(deleteCardById.pending, handlePendingDeleteCardById)
+      .addCase(deleteCardById.fulfilled, handleFulfilledDeleteCardById)
+      .addCase(deleteCardById.rejected, handleRejectedDeleteCardById)
       // ===========================================
       .addCase(resetNotices, handleResetFavoriteList)
       .addCase(resetCardById, handleResetCardById);
