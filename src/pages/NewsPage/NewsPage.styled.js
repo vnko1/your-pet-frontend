@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import rectangleMob from "../../assets/RectangleMob.svg";
 
 export const Wrap = styled.div`
   display: flex;
@@ -24,17 +23,17 @@ export const Title = styled.h1`
   @media ${(props) => props.theme.media.tablet} {
     font-size: 48px;
     margin-bottom: 40px;
-    /* font-style: normal;
-    font-weight: 700; */
   }
 `;
 
 export const NewsList = styled.ul`
   display: flex;
-  flex-wrap: wrap;
   gap: 24px;
-  /* margin-top: 24px; */
+  flex-direction: column;
+
   @media ${(props) => props.theme.media.tablet} {
+    flex-wrap: wrap;
+    flex-direction: row;
     gap: 32px;
   }
 `;
@@ -50,11 +49,10 @@ export const DecorationLine = styled.div`
 `;
 
 export const NewsItem = styled.li`
-  width: 100%;
+  width: 280px;
+  margin: auto;
 
   @media ${(props) => props.theme.media.tablet} {
-    /* width: calc((100% - 64px) / 2);
-     */
     width: calc((100% - 32px) / 2);
   }
   @media ${(props) => props.theme.media.desktop} {
@@ -66,26 +64,31 @@ export const ShadowBox = styled.div`
   border-radius: 20px;
 
   box-shadow: ${(props) => props.theme.shadow.normal};
+
+  /* margin: auto; */
+  height: 578px;
+
+  @media ${(props) => props.theme.media.tablet} {
+    height: 556px;
+  }
+  @media ${(props) => props.theme.media.desktop} {
+    height: 534px;
+  }
 `;
 
 export const NewsImg = styled.img`
   border-radius: 20px;
   object-fit: cover;
   object-position: 50% 0;
-
-  @media ${(props) => props.theme.media.desktop} {
-    /* width: 395px; */
-    height: 252px;
-  }
+  height: 252px;
 `;
 
 export const Content = styled.div`
   padding: 16px 12px 12px;
-  /* height: 326px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 40px;
+  /* height: 254px; */
 `;
 
 export const AdditionalInfo = styled.div`

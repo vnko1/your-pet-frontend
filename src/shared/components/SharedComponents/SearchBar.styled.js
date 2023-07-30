@@ -18,7 +18,7 @@ export const InputSmall = styled.input`
   font: inherit;
 `;
 
-export const SearchContainer = styled.form`
+export const SearchForm = styled.form`
   width: 100%;
 
   display: inline-flex;

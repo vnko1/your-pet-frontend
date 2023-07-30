@@ -7,7 +7,9 @@ export const getNews = createAsyncThunk(
   "news/postPet",
   async (payload, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/articles", payload);
+      const { data } = await axios.get(
+        `/articles?${payload && "filter=" + payload}&sort=desc&page=1&limit=6`
+      );
 
       return data;
     } catch (error) {
