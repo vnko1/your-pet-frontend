@@ -8,7 +8,11 @@ import {
   fetchFavorite,
   resetNotices,
 } from "../../redux/notices/notices-operations";
-import { isLogin, noticesTotal } from "../../redux/notices/notices-selectors";
+import {
+  isLogin,
+  noticesList,
+  noticesTotal,
+} from "../../redux/notices/notices-selectors";
 import { NoticesContainer } from "./NoticesPage.styled";
 import Pagination from "./Pagination";
 
@@ -19,14 +23,10 @@ function NoticesPage() {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(isLogin);
   const totalPages = useSelector(noticesTotal);
-
-  // const countPages = Math.ceil(totalPages/9)
-
-  console.log("currentPage", currentPage);
-  // console.log("totalPages", totalPages)
-  // console.log("countPages", countPages)
-
+  const noticesListInPagination = useSelector(noticesList);
   const dispatch = useDispatch();
+
+  const isPagination = noticesListInPagination.length > 0 ? true : false;
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -50,11 +50,13 @@ function NoticesPage() {
       <NoticesSearch />
       <NoticesCategoriesNav currentPage={currentPage} />
       <NoticesCategoriesList />
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {isPagination && (
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </NoticesContainer>
   );
 }

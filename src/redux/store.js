@@ -13,6 +13,7 @@ import { petsReducer } from "./pets/pets-slice";
 import { newsReducer } from "./news/news-slice";
 import { friendsReducer } from "./ourFriends/ourFriends-slice";
 import { noticesReducer } from "./notices/notices-slice";
+import { sponsorsReducer } from "./sponsors/sponsors-slice";
 import handleNotificationsNoticePage from "./utils/handleNotificationsNoticePage";
 
 export const store = configureStore({

@@ -77,7 +77,7 @@ function NoticesCategoryItem({
 
         dispatch(
           fetchDeleteFavorite(
-            `https://my-pet-app-8sz1.onrender.com/notices/favorites/delFavorite/${_id}`
+            `https://my-pet-app-8sz1.onrender.com/notices/favorites/delete/${_id}`
           )
         );
       } else {
@@ -86,7 +86,7 @@ function NoticesCategoryItem({
 
         dispatch(
           fetchAddFavorite(
-            `https://my-pet-app-8sz1.onrender.com/notices/favorites/addFavorite/${_id}`
+            `https://my-pet-app-8sz1.onrender.com/notices/favorites/add/${_id}`
           )
         );
       }
