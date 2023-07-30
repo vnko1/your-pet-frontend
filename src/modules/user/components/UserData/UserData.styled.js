@@ -1,18 +1,15 @@
 import styled from "styled-components";
 
-// export const UserPage = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   gap: 20px;
-// `;
-
 export const UserPageItem = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
 	width: 100%;
 	max-width: 320px;
+
+	@media (${(props) => props.theme.media.tablet}) {
+		max-width: 704px;
+}
 `;
 
 export const UserFormTitle = styled.h2`
@@ -42,12 +39,7 @@ export const UserFormBox = styled.div`
 	border-radius: 20px;
 
 	@media (${(props) => props.theme.media.tablet}) {
-		/* width: 704px;
-    height: 268px;
-    flex-direction: row-reverse;
-    padding: 20px 20px 20px 20px;
-    gap: 71px;
-    border-radius: 40px; */
+		padding: 20px 76px 16px 20px;
 	}
 
 	@media (${(props) => props.theme.media.desktop}) {

@@ -12,7 +12,7 @@ import {
 	UserPhotoIconDell,
 	UserPhotoTitle,
 	UserPhotoWrapper,
-  UserPhotoBtnEmpty
+	UserPhotoBtnEmpty,
 } from "./UserPhoto.styled";
 
 import avatar from "../../../../images/avatarDefault-image/Avatar.png";
