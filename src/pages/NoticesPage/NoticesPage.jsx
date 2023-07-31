@@ -9,7 +9,7 @@ import {
   noticesTotal,
 } from "../../redux/notices/notices-selectors";
 import { NoticesContainer } from "./NoticesPage.styled";
-import Pagination from "./Pagination";
+import Pagination from "../../shared/components/Notices/Pagination";
 
 function NoticesPage() {
   const [currentPage, setCurrentPage] = useState(1);

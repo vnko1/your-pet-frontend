@@ -2,8 +2,6 @@ import { toast } from "react-hot-toast";
 import { takeFavoritesList } from "../notices/notices-operations";
 
 const handleMiddlewateForNoticePage = (store) => (next) => (action) => {
-  console.log("actionType", action.type);
-
   if (action.type === "notices/addFavorite/fulfilled") {
     toast.success("Successfuly add to favorite", {
       duration: 4000,

@@ -6,7 +6,6 @@ export const BtnBack = styled.button`
 
   background: none;
   border: none;
-  /* margin-left: 40px; */
   margin-right: 40px;
   padding: 0;
   text-decoration: none;
@@ -22,6 +21,11 @@ export const BtnBack = styled.button`
       height: 30px;
     }
   }
+
+  :hover svg,
+  :focus svg {
+    transform: scale(1.05);
+  }
 `;
 
 export const BtnForward = styled.button`
@@ -31,7 +35,6 @@ export const BtnForward = styled.button`
   background: none;
   border: none;
   margin-left: 40px;
-  /* margin-right: 40px; */
   padding: 0;
   text-decoration: none;
   cursor: pointer;
@@ -45,6 +48,11 @@ export const BtnForward = styled.button`
       width: 30px;
       height: 30px;
     }
+  }
+
+  :hover svg,
+  :focus svg {
+    transform: scale(1.05);
   }
 `;
 
@@ -75,11 +83,12 @@ export const NumBtn = styled.button`
   align-items: center;
   width: 35px;
   height: 35px;
+
   @media (max-width: 767px) {
     width: 30px;
-
     height: 30px;
   }
+
   border-radius: 50%;
   border: 1px solid #54adff;
   background: ${(props) => (props.currentPage ? "#54ADFF" : "none")};
@@ -90,4 +99,9 @@ export const NumBtn = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: 15px;
+
+  :hover,
+  :focus {
+    transform: scale(1.05);
+  }
 `;

@@ -24,3 +24,11 @@ export const CardList = styled.ul`
     margin-bottom: 68px;
   }
 `;
+
+export const EmptyError = styled.h2`
+  color: #000;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.28px;
+  text-align: center;
+`;
