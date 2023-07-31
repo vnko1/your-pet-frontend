@@ -90,7 +90,7 @@ const AddPhoto = ({ isUserUpdate }) => {
                     src={user.avatarUrl || avatar}
                     alt="Default avatar"
                     style={{ maxWidth: "300px" }}
-                  />{" "}
+                  />
                 </UserPhotoWrapper>
               )}
               {!isUserUpdate && (
