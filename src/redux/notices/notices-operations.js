@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosPublic, axiosPrivate } from "../../utils/axiosConfig";
+import { axiosPublic, axiosPrivate } from "../../shared/utils/axiosConfig";
 
 export const fetchNotices = createAsyncThunk(
   "notices/fetchNotices",

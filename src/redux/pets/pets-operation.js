@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosPrivate } from "../../utils/axiosConfig";
+import { axiosPrivate } from "../../shared/utils/axiosConfig";
 
 export const postPet = createAsyncThunk(
   "pets/postPet",

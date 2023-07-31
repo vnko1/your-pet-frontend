@@ -1,5 +1,5 @@
 import axios from "axios";
-import { refreshToken } from "../redux/auth/auth-operations";
+import { refreshToken } from "../../redux/auth/auth-operations";
 
 const baseURL = "https://my-pet-app-8sz1.onrender.com";
 

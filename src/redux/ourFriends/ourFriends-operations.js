@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosPublic } from "../../utils/axiosConfig";
+import { axiosPublic } from "../../shared/utils/axiosConfig";
 
 const getFriends = createAsyncThunk(
   "/sponsors",

@@ -14,7 +14,7 @@ import { newsReducer } from "./news/news-slice";
 import { friendsReducer } from "./ourFriends/ourFriends-slice";
 import { noticesReducer } from "./notices/notices-slice";
 
-import { interceptor } from "../utils/axiosConfig";
+import { interceptor } from "../shared/utils/axiosConfig";
 
 export const store = configureStore({
   reducer: {
