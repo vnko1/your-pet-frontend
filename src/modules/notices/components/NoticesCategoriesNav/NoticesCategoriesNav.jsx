@@ -67,7 +67,7 @@ function NoticesCategoriesNav() {
   const url = window.location.href;
 
   useEffect(() => {
-    const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/searchQuery";
+    const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices";
 
     if (url.includes("date") || url.includes("sex")) {
       console.log("renderNav");
@@ -76,16 +76,16 @@ function NoticesCategoriesNav() {
       const query = newArr.map((query) => query.replace(/%2C/g, ","));
       const filterQuery = query.join("&");
 
-      const fetchUrl = `${baseUrl}?page=1&limit=9&category=${activeButton}&${filterQuery}`;
+      const fetchUrl = `?page=1&limit=9&category=${activeButton}&${filterQuery}`;
 
       console.log("fetchUrl", fetchUrl);
 
-      dispatch(fetchNotices(fetchUrl));
+      dispatch(fetchNotices({ url: fetchUrl }));
     } else {
       const fetchUrl = search
-        ? `${baseUrl}?page=1&limit=9&category=${activeButton}&filter=${search}`
-        : `${baseUrl}?page=1&limit=9&category=${activeButton}`;
-      dispatch(fetchNotices(fetchUrl));
+        ? `?page=1&limit=9&category=${activeButton}&filter=${search}`
+        : `?page=1&limit=9&category=${activeButton}`;
+      dispatch(fetchNotices({ url: fetchUrl }));
     }
   }, [activeButton, dispatch, search, url]);
 
