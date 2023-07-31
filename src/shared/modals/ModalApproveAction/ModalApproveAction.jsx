@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Modal from "../modalPort/modal";
+import Modal from "../ModalPort/Modal";
 import {
   ButtonlWrap,
   CancelButton,
