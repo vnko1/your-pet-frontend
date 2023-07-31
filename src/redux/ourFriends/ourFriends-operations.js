@@ -1,16 +1,15 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-axios.defaults.baseURL = "https://my-pet-app-8sz1.onrender.com";
+import { axiosPublic } from "../../shared/utils/axiosConfig";
 
 const getFriends = createAsyncThunk(
   "/sponsors",
-  async (friends, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get("/sponsors", friends);
+      const { data } = await axiosPublic.get("/sponsors");
+
       return data.sponsors;
     } catch (error) {
-      rejectWithValue(error);
+      return rejectWithValue(error);
     }
   }
 );

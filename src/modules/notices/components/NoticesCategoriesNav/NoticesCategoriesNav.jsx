@@ -41,7 +41,8 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
   const url = window.location.href;
 
   useEffect(() => {
-    const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices/";
+    // const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices";
+    const baseUrl = "/notices";
 
     let fetchUrl;
     const filterQuery = search
@@ -58,14 +59,20 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
       fetchUrl = `${baseUrl}?category=${activeButton}&page=${currentPage}&limit=9${commonParams}`;
     } else if (url.includes("/notices/favorite")) {
       fetchUrl = `${baseUrl}favorites?page=${currentPage}&limit=9${commonParams}`;
+      ref.current = fetchUrl;
+      dispatch(fetchNotices({ url: fetchUrl, privateRoute: true }));
+      return;
     } else if (url.includes("/notices/own")) {
       fetchUrl = `${baseUrl}owner?page=${currentPage}&limit=9${commonParams}`;
+      ref.current = fetchUrl;
+      dispatch(fetchNotices({ url: fetchUrl, privateRoute: true }));
+      return;
     }
 
     ref.current = fetchUrl;
 
     if (fetchUrl) {
-      dispatch(fetchNotices(fetchUrl));
+      dispatch(fetchNotices({ url: fetchUrl }));
     }
   }, [activeButton, currentPage, dispatch, search, url]);
 

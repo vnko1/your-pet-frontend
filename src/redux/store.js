@@ -13,7 +13,8 @@ import { petsReducer } from "./pets/pets-slice";
 import { newsReducer } from "./news/news-slice";
 import { friendsReducer } from "./ourFriends/ourFriends-slice";
 import { noticesReducer } from "./notices/notices-slice";
-import { sponsorsReducer } from "./sponsors/sponsors-slice";
+
+import { interceptor } from "../shared/utils/axiosConfig";
 import handleMiddlewateForNoticePage from "./utils/handleMiddlewateForNoticePage";
 
 export const store = configureStore({
@@ -23,7 +24,6 @@ export const store = configureStore({
     notices: noticesReducer,
     news: newsReducer,
     friends: friendsReducer,
-    sponsors: sponsorsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -32,5 +32,7 @@ export const store = configureStore({
       },
     }).concat(handleMiddlewateForNoticePage),
 });
+
+interceptor(store);
 
 export const persistor = persistStore(store);

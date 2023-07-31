@@ -9,6 +9,9 @@ import {
   UserFormLabel,
   UserFormBtn,
   Btn,
+  UserFormList,
+  UserFormInfo,
+  BtnText,
 } from "./UserForm.styled";
 
 import { updateUser } from "./../../../../redux/auth/auth-operations";
@@ -22,10 +25,16 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector(authSelectors.selectUser);
+  const initialValues = {
+    name: user.name,
+    birthday: user.birthday,
+    email: user.email,
+    city: user.city,
+    phone: user.phone,
+  };
 
   const handleSubmit = (values) => {
-    const newUser = compareObjects(user, values);
-    JSON.stringify(newUser) !== "{}" && dispatch(updateUser(newUser));
+    dispatch(updateUser(values));
     setIsUserUpdate((state) => !state);
   };
 
@@ -35,71 +44,77 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
 
   return (
     <>
-      <Formik initialValues={user} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <UserFormBody>
           <AddPhoto isUserUpdate={isUserUpdate} />
-          <UserFormItem>
-            <UserFormLabel htmlFor={`name`}>Name:</UserFormLabel>
-            <UserFormInput
-              type="text"
-              name="name"
-              id="name"
-              autoComplete="off"
-              placeholder={"Anna"}
-              disabled={isUserUpdate}
-            />
-          </UserFormItem>
-          <UserFormItem>
-            <UserFormLabel htmlFor={`email`}>Email:</UserFormLabel>
-            <UserFormInput
-              type="text"
-              name="email"
-              id="email"
-              autoComplete="off"
-              placeholder={"anna00@gmail.com|"}
-              disabled={isUserUpdate}
-            />
-          </UserFormItem>
-          <UserFormItem>
-            <UserFormLabel htmlFor={`birthDate`}>Birthday:</UserFormLabel>
-            <UserFormInput
-              type="text"
-              name="birthday"
-              id="birthday"
-              autoComplete="off"
-              placeholder={"00.00.0000"}
-              disabled={isUserUpdate}
-            />
-          </UserFormItem>
-          <UserFormItem>
-            <UserFormLabel htmlFor={`phone`}>Phone:</UserFormLabel>
-            <UserFormInput
-              type="text"
-              name="phone"
-              id="phone"
-              autoComplete="off"
-              placeholder={"+38000000000"}
-              disabled={isUserUpdate}
-            />
-          </UserFormItem>
-          <UserFormItem>
-            <UserFormLabel htmlFor={`city`}>City:</UserFormLabel>
-            <UserFormInput
-              type="text"
-              name="city"
-              id="city"
-              autoComplete="off"
-              placeholder={"Kiev"}
-              disabled={isUserUpdate}
-            />
-          </UserFormItem>
-          {isUserUpdate ? (
-            <UserFormBtn type="button" onClick={toggleModal}>
-              svg + Log Out
-            </UserFormBtn>
-          ) : (
-            <Btn type="submit">Save</Btn>
-          )}
+          <UserFormInfo>
+            <UserFormList>
+              <UserFormItem>
+                <UserFormLabel htmlFor={`name`}>Name:</UserFormLabel>
+                <UserFormInput
+                  type="text"
+                  name="name"
+                  id="name"
+                  autoComplete="off"
+                  placeholder={"Anna"}
+                  disabled={isUserUpdate}
+                />
+              </UserFormItem>
+              <UserFormItem>
+                <UserFormLabel htmlFor={`email`}>Email:</UserFormLabel>
+                <UserFormInput
+                  type="text"
+                  name="email"
+                  id="email"
+                  autoComplete="off"
+                  placeholder={"anna00@gmail.com|"}
+                  disabled={isUserUpdate}
+                />
+              </UserFormItem>
+              <UserFormItem>
+                <UserFormLabel htmlFor={`birthDate`}>Birthday:</UserFormLabel>
+                <UserFormInput
+                  type="text"
+                  name="birthday"
+                  id="birthday"
+                  autoComplete="off"
+                  placeholder={"00.00.0000"}
+                  disabled={isUserUpdate}
+                />
+              </UserFormItem>
+              <UserFormItem>
+                <UserFormLabel htmlFor={`phone`}>Phone:</UserFormLabel>
+                <UserFormInput
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  autoComplete="off"
+                  placeholder={"+38000000000"}
+                  disabled={isUserUpdate}
+                />
+              </UserFormItem>
+              <UserFormItem>
+                <UserFormLabel htmlFor={`city`}>City:</UserFormLabel>
+                <UserFormInput
+                  type="text"
+                  name="city"
+                  id="city"
+                  autoComplete="off"
+                  placeholder={"Kiev"}
+                  disabled={isUserUpdate}
+                />
+              </UserFormItem>
+            </UserFormList>
+            {isUserUpdate ? (
+              <UserFormBtn type="button" onClick={toggleModal}>
+                <BtnText> svg + Log Out</BtnText>
+              </UserFormBtn>
+            ) : (
+              <UserFormBtn>
+                <Btn type="submit">Save</Btn>
+              </UserFormBtn>
+            )}
+          </UserFormInfo>
         </UserFormBody>
       </Formik>
       {isShowModal && <ModalLogOut toggleModal={toggleModal} />}

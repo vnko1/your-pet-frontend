@@ -1,5 +1,4 @@
 import * as React from "react";
-// import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { refreshUser } from "./redux/auth/auth-operations";
@@ -37,22 +36,19 @@ const App = () => {
         { path: "register", element: <RegisterPage /> },
         { path: "login", element: <LoginPage /> },
         {
-          // path: "notices/:categoryName",
           path: "notices",
           element: <NoticesPage />,
           children: [
-            // { index: true, element: <NoticesCategoriesList /> },
             { index: true, path: "sell", element: <NoticesCategoriesList /> },
             { path: "lost-found", element: <NoticesCategoriesList /> },
             { path: "for-free", element: <NoticesCategoriesList /> },
-            // след 2 будет 2 приват роута
             { path: "favorite", element: <NoticesCategoriesList /> },
             { path: "own", element: <NoticesCategoriesList /> },
           ],
         },
         { path: "user", element: <UserPage /> },
         { path: "add-pet", element: <AddPetPage /> },
-        { path: "*", element: <NotFound /> }, // Not Found Route
+        { path: "*", element: <NotFound /> },
       ],
     },
   ];
