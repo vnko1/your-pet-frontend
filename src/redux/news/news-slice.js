@@ -15,31 +15,34 @@ export const newsSlice = createSlice({
 
   initialState: {
     items: [],
-
+    page: 1,
+    totalArticles: null,
     newsFilter: "",
     isLoading: false,
     error: null,
   },
 
   reducers: {
-    // changeFilter(state, { payload }) {
-    //   state.newsFilter = payload;
-    // },
+    changeFilter(state, { payload }) {
+      state.newsFilter = payload;
+    },
     changePage(state, { payload }) {
       state.page = payload;
-      console.log("state.page", state.page);
+    },
+    changeTotalArticles(state, { payload }) {
+      state.totalArticles = payload;
     },
   },
 
   extraReducers: (builder) => {
     builder
-      // getNews
 
       .addCase(getNews.fulfilled, (state, { payload }) => {
         let newsArticles = payload.articles.map((item) => {
           return { ...item, date: formatDate(item.date, "/") };
         });
 
+        state.totalArticles = payload.total;
         state.items = newsArticles;
       })
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
@@ -49,4 +52,4 @@ export const newsSlice = createSlice({
 });
 
 export const newsReducer = newsSlice.reducer;
-export const { changePage } = newsSlice.actions;
+export const { changeFilter, changePage } = newsSlice.actions;

@@ -8,9 +8,9 @@ import {
 import sprite from "../../../assets/icons.svg";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { selectNews } from "../../../redux/news/news-selectors";
 import { getNews } from "../../../redux/news/news-operation";
-// import { changePage } from "../../../redux/news/news-slice";
+import { changeFilter } from "../../../redux/news/news-slice";
+import { changePage } from "../../../redux/news/news-slice";
 
 function SearchBar() {
   const [searchRequest, setSearchRequest] = useState("");
@@ -23,7 +23,9 @@ function SearchBar() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    // dispatch(changePage(1));
+    dispatch(changePage(1));
+    dispatch(changeFilter(searchRequest));
+
     dispatch(getNews({ filter: searchRequest, page: 1 }));
   };
 

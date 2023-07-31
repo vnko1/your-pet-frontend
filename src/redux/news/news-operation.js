@@ -10,7 +10,7 @@ export const getNews = createAsyncThunk(
       const { data } = await axios.get(`/articles?
 ${payload.filter && "filter=" + payload.filter}&sort=desc&${
         "page=" + payload.page
-      }&limit=6`);
+      }&limit=2`);
 
       return data;
     } catch (error) {
