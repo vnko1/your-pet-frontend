@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "../../../../shared/modals/ModalPort/Modal";
+import Modal from "../../../../shared/modals/modalPort/Modal";
 
 import { BtnClose, BtnCongrats, Text, Title } from "./ ModalCongrats.styled";
 

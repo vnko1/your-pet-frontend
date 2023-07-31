@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../../redux/auth/auth-operations";
 import { resetNotices } from "../../../redux/notices/notices-operations";
-import Modal from "../ModalPort/Modal";
+import Modal from "../modalPort/Modal";
 import spriteSvg from "../../../assets/icons.svg";
 import {
   ButtonWrap,

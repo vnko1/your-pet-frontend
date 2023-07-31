@@ -20,7 +20,7 @@ import {
   DeleteIcon,
 } from "./NoticeCategoryItem.styled";
 
-import Modal from "../../../../shared/modals/ModalPort/Modal";
+import Modal from "../../../../shared/modals/modalPort/Modal";
 import ModalNotice from "../ModalNotice";
 import { useDispatch, useSelector } from "react-redux";
 import {

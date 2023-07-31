@@ -39,6 +39,14 @@ export const Input = styled.input`
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.56px;
+
+  ::placeholder {
+    color: #888;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.8px;
+  }
 `;
 
 export const BtnsWrap = styled.div`
