@@ -58,7 +58,7 @@ export const getInitialState = (state) => {
   notifySucces(`Goodbye ${state.user.name}`);
 
   state.isLoggedIn = false;
-  state.token = "";
+  state.token = null;
   state.tokenLifeTime = null;
   state.refreshToken = null;
   state.user = { name: null, email: null };
