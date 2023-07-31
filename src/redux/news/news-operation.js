@@ -1,7 +1,5 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-axios.defaults.baseURL = "https://my-pet-app-8sz1.onrender.com";
+import { axios } from "../../shared/utils/axiosConfig";
 
 export const getNews = createAsyncThunk(
   "news/postPet",
