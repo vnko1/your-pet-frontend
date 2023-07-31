@@ -12,11 +12,11 @@ export const CommonNavLink = styled(NavLink)`
     font-weight: ${(props) => props.theme.fontWeights.bold};
   }
 
-  @media (min-width: 768px) {
+  @media ${(props) => props.theme.media.tablet} {
     font-size: 48px;
   }
 
-  @media (min-width: 1280px) {
+  @media ${(props) => props.theme.media.desktop} {
     font-size: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -37,7 +37,7 @@ export const StyledNavList = styled.ul`
     margin-top: 40px;
   }
 
-  @media (min-width: 1280px) {
+  @media ${(props) => props.theme.media.desktop} {
     display: flex;
     gap: 40px;
     margin: 0;
@@ -48,11 +48,11 @@ export const StyledNavItem = styled.li`
   padding: 0;
   margin-bottom: 20px;
 
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media ${(props) => props.theme.media.tablet} and (max-width: 1279px) {
     margin-bottom: 60px;
   }
 
-  @media (min-width: 1280px) {
+  @media ${(props) => props.theme.media.desktop} {
     margin-bottom: 0;
   }
 `;

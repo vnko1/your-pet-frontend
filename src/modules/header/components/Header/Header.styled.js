@@ -12,7 +12,7 @@ export const BurgerMenuBtn = styled.svg`
   height: 24px;
   stroke: #ffc107;
 
-  @media (min-width: 1280px) {
+  @media ${(props) => props.theme.media.desktop} {
     display: none;
   }
 `;
@@ -57,7 +57,7 @@ export const MobileMenu = styled.div`
 
   padding: 20px;
 
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media ${(props) => props.theme.media.tablet} and (max-width: 1279px) {
     padding: 32px;
   }
 `;
@@ -72,7 +72,7 @@ export const MenuWrap = styled.div`
   justify-content: space-between;
   margin-bottom: 40px;
 
-  @media (min-width: 768px) {
+  @media ${(props) => props.theme.media.tablet} {
     margin-bottom: 92px;
   }
 `;
@@ -84,7 +84,7 @@ export const BurgerMenuWrap = styled.div`
     align-items: center;
   }
 
-  @media ((min-width: 768px) and (max-width: 1279px)) {
+  @media (${(props) => props.theme.media.tablet} and (max-width: 1279px)) {
     gap: 38px;
   }
 `;

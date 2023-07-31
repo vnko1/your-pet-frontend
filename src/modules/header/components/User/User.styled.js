@@ -8,13 +8,14 @@ export const StyledUser = styled(Link)`
   gap: 12px;
   text-decoration: none;
 
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media ${(props) => props.theme.media.tablet} and (max-width: 1279px) {
     position: absolute;
     top: 8px;
     right: 12px;
   }
 
-  :hover, :focus {
+  :hover,
+  :focus {
     scale: 1.1;
   }
 `;

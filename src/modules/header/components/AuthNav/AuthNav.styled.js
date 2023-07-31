@@ -9,7 +9,7 @@ export const StyledAuthNav = styled.ul`
   flex-direction: column;
   gap: 12px;
 
-  @media (min-width: 768px) {
+  @media ${(props) => props.theme.media.tablet} {
     flex-direction: row;
     align-items: center;
     gap: 20px;
