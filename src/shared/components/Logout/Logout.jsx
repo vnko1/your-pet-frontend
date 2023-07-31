@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { logOut } from "../../../redux/auth/auth-operations";
+import { resetNotices } from "../../../redux/notices/notices-operations";
 import spriteSvg from "../../../assets/icons.svg";
 import {
   StyledLogout,
@@ -25,6 +26,8 @@ const Logout = (props) => {
     logoutUser(logOut());
     setIsModalOpen(false);
     onCloseMobileMenu();
+
+    logoutUser(resetNotices());
   };
 
   return (

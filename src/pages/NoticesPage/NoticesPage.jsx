@@ -5,11 +5,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchFavorite,
-  resetNotices,
-} from "../../redux/notices/notices-operations";
-import {
-  isLogin,
   noticesList,
   noticesTotal,
 } from "../../redux/notices/notices-selectors";
@@ -21,7 +16,6 @@ function NoticesPage() {
 
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(isLogin);
   const totalNoticesItems = useSelector(noticesTotal);
   const noticesListInPagination = useSelector(noticesList);
 
@@ -35,24 +29,9 @@ function NoticesPage() {
       noticesListInPagination.length === 0 &&
       currentPage !== 1
     ) {
-      console.log("Есть условие");
       setCurrentPage((prev) => (prev -= 1));
     }
-    // else if (totalNoticesItems > 9 && noticesListInPagination.length !== 9) {
-    //
-    // }
   }, [currentPage, noticesListInPagination.length, totalNoticesItems]);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      // dispatch(
-      //   fetchFavorite("https://my-pet-app-8sz1.onrender.com/notices/favorites")
-      // );
-    } else {
-      // при розлогине надо очистить массив фейворит но лучше поставить на кнопку логаут
-      dispatch(resetNotices());
-    }
-  }, [dispatch, isLoggedIn]);
 
   useEffect(() => {
     if (pathname === "/notices") {

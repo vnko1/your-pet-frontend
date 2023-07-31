@@ -29,18 +29,10 @@ const useSearch = () => {
 
   const resetInput = () => {
     setSearch("");
-    //
     setSearchParams((prevSearchParams) => {
       prevSearchParams.delete("search");
       return prevSearchParams;
     });
-    const updatedSearchParams = new URLSearchParams(searchParams);
-
-    // Удаляем параметр "date"
-    updatedSearchParams.delete("date");
-
-    // Устанавливаем обновленные searchParams в состояние
-    setSearchParams(updatedSearchParams);
   };
 
   return {

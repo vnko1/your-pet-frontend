@@ -1,7 +1,5 @@
 import { toast } from "react-hot-toast";
-import { useDispatch } from "react-redux";
 import { takeFavoritesList } from "../notices/notices-operations";
-// const dispatch = useDispatch();
 
 const handleMiddlewateForNoticePage = (store) => (next) => (action) => {
   console.log("actionType", action.type);
@@ -26,6 +24,7 @@ const handleMiddlewateForNoticePage = (store) => (next) => (action) => {
   }
   if (
     action.type === "auth/login/fulfilled" ||
+    action.type === "auth/register/fulfilled" ||
     action.type === "auth/refresh/fulfilled"
   ) {
     const { favorites } = action.payload.user;

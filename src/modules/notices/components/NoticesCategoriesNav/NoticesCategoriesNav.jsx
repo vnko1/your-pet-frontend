@@ -17,17 +17,20 @@ import { fetchNotices } from "../../../../redux/notices/notices-operations";
 import useFilter from "./hooks/useFilter";
 import useNavButtons from "./hooks/useNavButtons";
 import icons from "../../../../assets/icons.svg";
-import { noticesList } from "../../../../redux/notices/notices-selectors";
+import {
+  isLogin,
+  noticesList,
+} from "../../../../redux/notices/notices-selectors";
 
 function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
   const { categoryBtnsUrl, activeButton, setActiveButton } = useNavButtons();
   const { search, resetInput } = useSearch();
   const { filterState, setFilterState, resetFilter } = useFilter();
-  const dispatch = useDispatch();
   const ref = useRef();
-
+  const isLoggedIn = useSelector(isLogin);
   const list = useSelector(noticesList);
 
+  const dispatch = useDispatch();
   const { isBeforeOneYear, isUpOneYear, isUpTwoYear, isFemale, isMale } =
     filterState;
   const {
@@ -41,7 +44,6 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
   const url = window.location.href;
 
   useEffect(() => {
-    // const baseUrl = "https://my-pet-app-8sz1.onrender.com/notices";
     const baseUrl = "/notices";
 
     let fetchUrl;
@@ -58,12 +60,13 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
     ) {
       fetchUrl = `${baseUrl}?category=${activeButton}&page=${currentPage}&limit=9${commonParams}`;
     } else if (url.includes("/notices/favorite")) {
-      fetchUrl = `${baseUrl}favorites?page=${currentPage}&limit=9${commonParams}`;
+      fetchUrl = `${baseUrl}/favorites?page=${currentPage}&limit=9${commonParams}`;
       ref.current = fetchUrl;
+
       dispatch(fetchNotices({ url: fetchUrl, privateRoute: true }));
       return;
     } else if (url.includes("/notices/own")) {
-      fetchUrl = `${baseUrl}owner?page=${currentPage}&limit=9${commonParams}`;
+      fetchUrl = `${baseUrl}/owner?page=${currentPage}&limit=9${commonParams}`;
       ref.current = fetchUrl;
       dispatch(fetchNotices({ url: fetchUrl, privateRoute: true }));
       return;
@@ -77,11 +80,10 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
   }, [activeButton, currentPage, dispatch, search, url]);
 
   useEffect(() => {
-    // короче в идеале не последняя пейджа должна быть еще
-    if (list.length === 8) {
-      dispatch(fetchNotices(ref.current));
+    if (list.length === 8 && isLoggedIn) {
+      dispatch(fetchNotices({ url: ref.current, privateRoute: true }));
     }
-  }, [dispatch, list.length]);
+  }, [dispatch, isLoggedIn, list.length]);
 
   const resetAllSearchQuery = (btn) => {
     resetFilter();

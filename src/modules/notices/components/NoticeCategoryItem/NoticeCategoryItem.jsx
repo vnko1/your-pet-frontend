@@ -81,20 +81,12 @@ function NoticesCategoryItem({
         setIsDisabledBtn(true);
         setIsFavorite((prev) => !prev);
 
-        dispatch(
-          fetchDeleteFavorite(
-            `https://my-pet-app-8sz1.onrender.com/notices/favorites/delete/${_id}`
-          )
-        );
+        dispatch(fetchDeleteFavorite(`/notices/favorites/delete/${_id}`));
       } else {
         setIsDisabledBtn(true);
         setIsFavorite((prev) => !prev);
 
-        dispatch(
-          fetchAddFavorite(
-            `https://my-pet-app-8sz1.onrender.com/notices/favorites/add/${_id}`
-          )
-        );
+        dispatch(fetchAddFavorite(`/notices/favorites/add/${_id}`));
       }
     }
   };
@@ -108,11 +100,7 @@ function NoticesCategoryItem({
   };
 
   const openModalAndFetchCard = () => {
-    dispatch(
-      fetchCardById(
-        `https://my-pet-app-8sz1.onrender.com/notices/notice/${_id}`
-      )
-    );
+    dispatch(fetchCardById(`/notices/notice/${_id}`));
 
     toggleModalCardById();
   };
@@ -122,11 +110,7 @@ function NoticesCategoryItem({
   };
 
   const successDelete = () => {
-    dispatch(
-      deleteCardById(
-        `https://my-pet-app-8sz1.onrender.com/notices/notice/delete/${_id}`
-      )
-    );
+    dispatch(deleteCardById(`/notices/notice/delete/${_id}`));
   };
 
   return (
@@ -207,8 +191,8 @@ NoticesCategoryItem.propTypes = {
     _id: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
-    // fileUrl: PropTypes.string.isRequired,
-    fileUrl: PropTypes.string,
+    fileUrl: PropTypes.string.isRequired,
+    // fileUrl: PropTypes.string,
     location: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     sex: PropTypes.string.isRequired,
