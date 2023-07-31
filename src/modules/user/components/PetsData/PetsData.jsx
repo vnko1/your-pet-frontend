@@ -45,7 +45,7 @@ const PetsData = () => {
             data-testid="loader"
           />
         </div>
-      ) : pets.length === 0 ? (
+      ) : pets && pets.length === 0 ? (
         <NoUserPets>
           You have not added a pet yet, you have the option to add your furry
           friend!

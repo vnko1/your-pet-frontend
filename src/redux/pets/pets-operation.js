@@ -1,13 +1,11 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-axios.defaults.baseURL = "https://my-pet-app-8sz1.onrender.com";
+import { axiosPrivate } from "../../shared/utils/axiosConfig";
 
 export const postPet = createAsyncThunk(
   "pets/postPet",
   async (pet, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post("/pets", pet);
+      const { data } = await axiosPrivate.post("/pets", pet);
       //   notifyCreacteNewContact();
       return data;
     } catch (error) {
@@ -20,7 +18,7 @@ export const deletePet = createAsyncThunk(
   "pets/deletePet",
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`/pets/${id}`);
+      await axiosPrivate.delete(`/pets/${id}`);
       //   notifyDeleteContact();
       return id;
     } catch (error) {
