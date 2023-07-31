@@ -8,6 +8,7 @@ import {
   loading,
 } from "../../redux/ourFriends/ourFriends-selectors";
 import NotFound from "../../pages/NotFoundPage/NotFound";
+import Loader from "../../../src/shared/loader/Loader";
 const OurFriends = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(loading);
@@ -19,7 +20,13 @@ const OurFriends = () => {
   if (error) {
     return <NotFound />;
   } else {
-    return isLoading ? <div>Loading</div> : <FriendsList />;
+    return isLoading ? (
+      <div>
+        <Loader loading={isLoading} />
+      </div>
+    ) : (
+      <FriendsList />
+    );
   }
 };
 export default OurFriends;
