@@ -19,9 +19,7 @@ export const petsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       //postPet
-      .addCase(postPet.fulfilled, (state, { payload }) => {
-        state.items.push(payload);
-      })
+      .addCase(postPet.fulfilled, (state, { payload }) => {})
 
       //deletePet
       .addCase(deletePet.fulfilled, (state, { payload }) => {

@@ -1,12 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosPrivate } from "../../shared/utils/axiosConfig";
+import { getCurrentUser } from "../auth/auth-operations";
 
 export const postPet = createAsyncThunk(
   "pets/postPet",
-  async (pet, { rejectWithValue }) => {
+  async (pet, { rejectWithValue, dispatch }) => {
     try {
       const { data } = await axiosPrivate.post("/pets/add", pet);
-      //   notifyCreacteNewContact();
+
+      dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -16,10 +18,10 @@ export const postPet = createAsyncThunk(
 
 export const deletePet = createAsyncThunk(
   "pets/delete",
-  async (id, { rejectWithValue }) => {
+  async (id, { rejectWithValue, dispatch }) => {
     try {
       await axiosPrivate.delete(`/pets/delete/${id}`);
-      //   notifyDeleteContact();
+      dispatch(getCurrentUser());
       return id;
     } catch (error) {
       return rejectWithValue(error);
