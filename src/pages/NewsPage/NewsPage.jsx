@@ -36,8 +36,8 @@ export function NewsPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getNews({ page: 1 }));
-  }, [dispatch]);
+    dispatch(getNews({ page: currentPage }));
+  }, [currentPage, dispatch]);
 
   useEffect(() => {
     if (totalArticles > 0 && news.length === 0 && currentPage !== 1) {
@@ -83,7 +83,7 @@ export function NewsPage() {
         {isPagination && (
           <Pagination
             totalItems={totalArticles}
-            currentPage={page}
+            currentPage={currentPage}
             setCurrentPage={setCurrentPage}
           />
         )}
