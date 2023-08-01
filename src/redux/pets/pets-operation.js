@@ -15,10 +15,10 @@ export const postPet = createAsyncThunk(
 );
 
 export const deletePet = createAsyncThunk(
-  "pets/deletePet",
+  "pets/delete",
   async (id, { rejectWithValue }) => {
     try {
-      await axiosPrivate.delete(`/pets/${id}`);
+      await axiosPrivate.delete(`/pets/delete/${id}`);
       //   notifyDeleteContact();
       return id;
     } catch (error) {

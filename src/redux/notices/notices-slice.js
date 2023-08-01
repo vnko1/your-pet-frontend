@@ -1,25 +1,7 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchNotices, newPost } from "./notices-operations";
-
-const handlePendingFetchNotices = (state, action) => {
-  state.isLoading = true;
-  state.error = null;
-};
-const handleFulfilledFetchNotices = (state, action) => {
-  const { total, notices } = action.payload;
-
-  state.items = [...notices];
-  state.total = total;
-  state.isLoading = false;
-  state.error = null;
-};
-const handleRejectedFetchNotices = (state, action) => {
-  state.isLoading = false;
-  state.error = true;
-};
-
 import {
   fetchNotices,
+  newPost,
   fetchAddFavorite,
   fetchDeleteFavorite,
   resetNotices,
@@ -62,7 +44,7 @@ export const noticesSlice = createSlice({
 
       .addCase(newPost.pending, handlePendingFetchNotices)
       .addCase(newPost.fulfilled, (state, { payload }) => console.log(payload))
-      .addCase(newPost.rejected, handleRejectedFetchNotices);
+      .addCase(newPost.rejected, handleRejectedFetchNotices)
       // ==========================================
       .addCase(fetchAddFavorite.pending, handlePendingFetchNoticesFavorite)
       .addCase(
