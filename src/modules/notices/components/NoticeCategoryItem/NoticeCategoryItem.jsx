@@ -196,7 +196,6 @@ NoticesCategoryItem.propTypes = {
     category: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     fileUrl: PropTypes.string.isRequired,
-    // fileUrl: PropTypes.string,
     location: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     sex: PropTypes.string.isRequired,

@@ -13,7 +13,6 @@ function NoticesSearch() {
   const { search, handleSubmit, handleChange, resetInput } = useSearch();
 
   return (
-    // временный контейнер
     <ContainerNoticesSearch>
       <Form onSubmit={handleSubmit}>
         <Input

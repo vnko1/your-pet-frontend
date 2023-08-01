@@ -4,8 +4,6 @@ import { ScrollTopBtn } from "./ScrollTopButton.styled";
 const ScrollTopButton = React.memo(() => {
   const [isVisible, setIsVisible] = useState(false);
 
-  console.log("ScrollTopButton");
-
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {

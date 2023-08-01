@@ -51,24 +51,19 @@ function NoticesFilters({
     }
 
     setSearchParams((prevSearchParams) => {
-      // Создаем новый объект URLSearchParams на основе текущих параметров
-      const newSearchParams = new URLSearchParams(prevSearchParams);
-
-      // Устанавливаем параметр 'date'
       if (dateArray.length > 0) {
-        newSearchParams.set("date", dateArray.join(","));
+        prevSearchParams.set("date", dateArray.join(","));
       } else {
-        newSearchParams.delete("date");
+        prevSearchParams.delete("date");
       }
 
-      // Устанавливаем параметр 'sex'
       if (sexArray.length > 0) {
-        newSearchParams.set("sex", sexArray.join(","));
+        prevSearchParams.set("sex", sexArray.join(","));
       } else {
-        newSearchParams.delete("sex");
+        prevSearchParams.delete("sex");
       }
 
-      return newSearchParams;
+      return prevSearchParams;
     });
   }, [
     isBeforeOneYear,
