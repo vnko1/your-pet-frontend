@@ -40,7 +40,7 @@ const SecondStep = ({ currentRadioChecked, formik }) => {
       )}
       
       
-      FieldContainer>
+      <FieldContainer>
                 <FieldLabel htmlFor='name'>Pet’s name</FieldLabel>
                 <InputField type='text' name='name' id='name' autoComplete="off" placeholder='Type name pet' value={formik.values.name} onChange={formik.handleChange} />
                 <ErrorMessage name={"name"} />
