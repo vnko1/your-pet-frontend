@@ -153,7 +153,11 @@ function NoticesCategoryItem({
         </Years>
         <Gender>
           <GenderSvg>
-            <use href={icons + "#female"} stroke="#54ADFF" />
+            {sex === "male" ? (
+              <use href={icons + "#male"} stroke="#54ADFF" />
+            ) : (
+              <use href={icons + "#female"} stroke="#54ADFF" />
+            )}
           </GenderSvg>
           <span>{sex}</span>
         </Gender>
