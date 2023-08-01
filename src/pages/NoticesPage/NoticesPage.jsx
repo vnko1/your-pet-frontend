@@ -10,6 +10,7 @@ import {
 } from "../../redux/notices/notices-selectors";
 import { NoticesContainer } from "./NoticesPage.styled";
 import Pagination from "../../shared/components/Notices/Pagination";
+import ScrollTopButton from "../../shared/components/Notices/ScrollTopButton";
 
 function NoticesPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -54,6 +55,8 @@ function NoticesPage() {
           setCurrentPage={setCurrentPage}
         />
       )}
+
+      <ScrollTopButton />
     </NoticesContainer>
   );
 }
