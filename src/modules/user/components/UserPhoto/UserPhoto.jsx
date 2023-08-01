@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import PropTypes from "prop-types";
+
+import { HashLoader } from "react-spinners";
+
 import {
   Box,
   PhotoContainer,
@@ -12,6 +15,7 @@ import {
   UserPhotoIconDell,
   UserPhotoTitle,
   UserPhotoWrapper,
+  UserPhotoBtnEmpty,
 } from "./UserPhoto.styled";
 
 import avatar from "../../../../images/avatarDefault-image/Avatar.png";
@@ -51,61 +55,78 @@ const AddPhoto = ({ isUserUpdate }) => {
   return (
     <>
       {isLoader ? (
-        <div>тутмає бути спінер</div>
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <HashLoader
+            color="blue"
+            loading="true"
+            size={55}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
       ) : (
         <UserDataWrapper>
           <UserDataWrapper>
             <input {...getInputProps()} />
-            {selectedFile ? (
-              <UserPhotoWrapper>
-                <PhotoContainer
-                  src={URL.createObjectURL(selectedFile)}
-                  alt="User's file"
-                  style={{ maxWidth: "300px" }}
-                />
-              </UserPhotoWrapper>
-            ) : (
-              <UserPhotoWrapper>
-                <PhotoContainer
-                  src={user.avatarUrl || avatar}
-                  alt="Default avatar"
-                  style={{ maxWidth: "300px" }}
-                />
-              </UserPhotoWrapper>
-            )}
-            {!isUserUpdate && (
-              <Box>
-                {selectedFile ? (
-                  <>
-                    <UserPhotoBtnCheck type="button" onClick={onSubmit}>
-                      <UserPhotoIcon>
-                        <use href={sprite + "#check"} />
-                      </UserPhotoIcon>
-                    </UserPhotoBtnCheck>
-                    <UserPhotoTitle>Confirm</UserPhotoTitle>
-                    <UserPhotoBtn
+            <UserPhotoBtnEmpty>
+              {selectedFile ? (
+                <UserPhotoWrapper>
+                  <PhotoContainer
+                    src={URL.createObjectURL(selectedFile)}
+                    alt="User's file"
+                    style={{ maxWidth: "300px" }}
+                  />
+                </UserPhotoWrapper>
+              ) : (
+                <UserPhotoWrapper>
+                  <PhotoContainer
+                    src={user.avatarUrl || avatar}
+                    alt="Default avatar"
+                    style={{ maxWidth: "300px" }}
+                  />
+                </UserPhotoWrapper>
+              )}
+              {!isUserUpdate && (
+                <Box>
+                  {selectedFile ? (
+                    <>
+                      <UserPhotoBtnCheck type="button" onClick={onSubmit}>
+                        <UserPhotoIcon>
+                          <use href={sprite + "#check"} />
+                        </UserPhotoIcon>
+                      </UserPhotoBtnCheck>
+                      <UserPhotoTitle>Confirm</UserPhotoTitle>
+                      <UserPhotoBtn
+                        type="button"
+                        onClick={() => setSelectedFile(null)}
+                      >
+                        <UserPhotoIconDell>
+                          <use href={sprite + "#cross-small"} />
+                        </UserPhotoIconDell>
+                      </UserPhotoBtn>
+                    </>
+                  ) : (
+                    <UserPhotoEdit
+                      {...getRootProps()}
+                      className={`dropzone ${isDragActive ? "active" : ""}`}
                       type="button"
-                      onClick={() => setSelectedFile(null)}
                     >
-                      <UserPhotoIconDell>
-                        <use href={sprite + "#cross-small"} />
-                      </UserPhotoIconDell>
-                    </UserPhotoBtn>
-                  </>
-                ) : (
-                  <UserPhotoEdit
-                    {...getRootProps()}
-                    className={`dropzone ${isDragActive ? "active" : ""}`}
-                    type="button"
-                  >
-                    <UserPhotoIcon>
-                      <use href={sprite + "#camera"} />
-                    </UserPhotoIcon>
-                    Edit photo
-                  </UserPhotoEdit>
-                )}
-              </Box>
-            )}
+                      <UserPhotoIcon>
+                        <use href={sprite + "#camera"} />
+                      </UserPhotoIcon>
+                      Edit photo
+                    </UserPhotoEdit>
+                  )}
+                </Box>
+              )}
+            </UserPhotoBtnEmpty>
           </UserDataWrapper>
         </UserDataWrapper>
       )}
