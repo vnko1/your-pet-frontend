@@ -46,23 +46,70 @@ export const SearchForm = styled.form`
   }
 `;
 
-export const SearchIcon = styled.svg`
-  height: 24px;
-  width: 24px;
-  fill: ${(props) => props.theme.colors.primary};
-`;
+// export const SearchIcon = styled.svg`
+//   height: 24px;
+//   width: 24px;
+//   fill: ${(props) => props.theme.colors.primary};
+// `;
 
-export const SearchBtn = styled.button`
-  display: flex;
-  align-items: center;
+// export const SearchBtn = styled.button`
+//   display: flex;
+//   align-items: center;
+//   height: 100%;
+
+//   padding: 10px 12px;
+//   border: ${(props) => props.theme.borders.none};
+//   border-top-right-radius: 40px;
+//   border-bottom-right-radius: 40px;
+//   background-color: ${(props) => props.theme.colors.white};
+//   @media ${(props) => props.theme.media.tablet} {
+//     padding: 10px 20px;
+//   }
+// `;
+
+export const BtnsWrap = styled.div`
   height: 100%;
-
-  padding: 10px 12px;
   border: ${(props) => props.theme.borders.none};
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
   background-color: ${(props) => props.theme.colors.white};
+  padding: 10px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
   @media ${(props) => props.theme.media.tablet} {
     padding: 10px 20px;
+  }
+`;
+
+export const ResetBtn = styled.button`
+  width: 24px;
+  height: 24px;
+
+  border: none;
+  background-color: #fff;
+  padding: 0;
+
+  &:hover svg use,
+  &:focus svg use {
+    stroke: red;
+    transform: scale(1.05);
+  }
+`;
+
+export const SubmitBtn = styled.button`
+  width: 24px;
+  height: 24px;
+
+  border: none;
+  background-color: #fff;
+  padding: 0;
+
+  &:hover svg use,
+  &:focus svg use {
+    fill: #377ac8;
+    transform: scale(1.05);
   }
 `;

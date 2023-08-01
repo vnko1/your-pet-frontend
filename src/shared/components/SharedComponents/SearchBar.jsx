@@ -1,8 +1,11 @@
 import {
   InputSmall,
-  SearchBtn,
+  // SearchBtn,
   SearchForm,
-  SearchIcon,
+  // SearchIcon,
+  BtnsWrap,
+  ResetBtn,
+  SubmitBtn,
 } from "./SearchBar.styled";
 
 import sprite from "../../../assets/icons.svg";
@@ -29,6 +32,10 @@ function SearchBar() {
     dispatch(getNews({ filter: searchRequest, page: 1 }));
   };
 
+  const resetInput = () => {
+    setSearchRequest("");
+  };
+
   return (
     <SearchForm onSubmit={onFormSubmit}>
       <InputSmall
@@ -38,11 +45,26 @@ function SearchBar() {
         onChange={inputChange}
         value={searchRequest}
       />
-      <SearchBtn>
+
+      {/* <SearchBtn>
         <SearchIcon>
           <use href={sprite + "#search"} />
         </SearchIcon>
-      </SearchBtn>
+      </SearchBtn> */}
+      <BtnsWrap>
+        <SubmitBtn type="submit">
+          <svg viewBox="0 0 24 24">
+            <use xlinkHref={sprite + "#search"} fill="#54ADFF" />
+          </svg>
+        </SubmitBtn>
+        {searchRequest && (
+          <ResetBtn onClick={resetInput}>
+            <svg viewBox="0 0 24 24">
+              <use xlinkHref={sprite + "#cross"} stroke="rgb(255, 193, 7)" />
+            </svg>
+          </ResetBtn>
+        )}
+      </BtnsWrap>
     </SearchForm>
   );
 }
