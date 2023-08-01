@@ -24,6 +24,7 @@ import {
   InputField,
 } from "../SecondStep/SecondStep.styled";
 
+
 const ThirdStep = ({
   currentRadioChecked,
   handleSex,

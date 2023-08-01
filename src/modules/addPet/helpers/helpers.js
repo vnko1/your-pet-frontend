@@ -41,23 +41,4 @@ export const titleChange = (title) => {
   }
 };
 
-export const fields = [
-  {
-    name: "name",
-    label: "Pet’s name",
-    placeholder: "Type name pet",
-    type: "text",
-  },
-  {
-    name: "date",
-    label: "date",
-    placeholder: "Type date of birth",
-    type: "date",
-  },
-  {
-    name: "type",
-    label: "Type",
-    placeholder: "Type of pet",
-    type: "text",
-  },
-];
+

@@ -1,4 +1,4 @@
-import { fields } from "../../helpers/helpers";
+
 import PropTypes from "prop-types";
 import {
   FieldContainer,
@@ -7,8 +7,20 @@ import {
   StageContainer,
 } from "./SecondStep.styled";
 import { ErrorMessage } from "formik";
+import { useState } from "react";
 
 const SecondStep = ({ currentRadioChecked, formik }) => {
+  const [inputType, setInputType] = useState('text');
+
+    const handleFocus = () => {
+        if (inputType === "text") {
+            setInputType('date');
+        } else {
+            setInputType('text')
+        }
+    };
+
+  
   return (
     <StageContainer>
       {currentRadioChecked !== "your-pet" && (
@@ -20,31 +32,29 @@ const SecondStep = ({ currentRadioChecked, formik }) => {
             id="title"
             autoComplete="off"
             placeholder="Title of add"
-            value={formik.values.add}
+            value={formik.values.title}
             onChange={formik.handleChange}
           />
+             <ErrorMessage name={"title"} />
         </FieldContainer>
       )}
-      {fields.map(({ name, label, placeholder, type }) => {
-        return (
-          <FieldContainer key={name}>
-            <FieldLabel htmlFor={name}>{label}</FieldLabel>
-            <InputField
-              type={type}
-              name={name}
-              id={name}
-              autoComplete="off"
-              placeholder={placeholder}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-            />
-            <ErrorMessage name={name} />
-          </FieldContainer>
-        );
-      })}
+      
+      
+      FieldContainer>
+                <FieldLabel htmlFor='name'>Pet’s name</FieldLabel>
+                <InputField type='text' name='name' id='name' autoComplete="off" placeholder='Type name pet' value={formik.values.name} onChange={formik.handleChange} />
+                <ErrorMessage name={"name"} />
+            </FieldContainer>
+
+            <FieldContainer>
+                <FieldLabel htmlFor='birthday'>Birthday</FieldLabel>
+                <InputField type={inputType} name='birthday' id='birthday' autoComplete="off" placeholder='Type date of birth' value={formik.values.birthday} onChange={formik.handleChange} onFocus={handleFocus} onBlur={handleFocus} />
+                  <ErrorMessage name={"birthday"} />
+            </FieldContainer>
     </StageContainer>
   );
 };
+
 
 export default SecondStep;
 
