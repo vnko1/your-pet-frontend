@@ -57,7 +57,6 @@ const AddPetForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={handleSubmit}
       validationSchema={
         currentRadioChecked === "your-pet" ? addPetShema2 : addPetShema
       }
