@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Error = styled.div`
-  // position: absolute;
   margin-top: 4px;
   margin-left: 20px;
   width: 100%;
