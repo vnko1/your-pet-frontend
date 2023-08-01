@@ -1,4 +1,5 @@
-import { Form, Formik } from "formik";
+import { Formik } from "formik";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { titleChange } from "../../helpers/helpers";
@@ -15,20 +16,23 @@ import { AddPetFormTitle, FormBox, Steps, StepTitle, TitleBox } from "./AddPetFo
 const AddPetForm = () => {
     const { currentStep, handleNextStep, handleBackStep, isFirstStep, isLastStep } = useMultistepForm(1);
     const [currentRadioChecked, setCurremtRadioChecked] = useState("your-pet");
-    const [avatarFile, setAvatarFile] = useState('');
+    const [avatarFile, setAvatarFile] = useState("");
     const [selectedSex, setSelectedSex] = useState("");
     const [fileIsLoaded, setFileIsLoaded] = useState(false);
-    const [avatarPreview, setAvatarPreview] = useState("")
+    const [avatarPreview, setAvatarPreview] = useState("");
     const dispatch = useDispatch();
+
+
+
 
     const initialValues = {
         categories: currentRadioChecked,
         add: '',
         name: '',
-        birthday: '',
+        birthday: "",
+        file: avatarFile,
         type: '',
         sex: selectedSex,
-        avatar: avatarFile,
         location: '',
         price: '',
         comments: ''
@@ -53,8 +57,8 @@ const AddPetForm = () => {
                                 <AddPetFormTitle>{currentStep !== 1 ? titleChange(currentRadioChecked) : "Add pet"}</AddPetFormTitle>
                             </TitleBox>
                             <Steps>
-                                <StepTitle isActive={currentStep === 1}>Choose  option</StepTitle>
-                                <StepTitle isActive={currentStep === 2}>Personal details</StepTitle>
+                                <StepTitle isActive={currentStep === 1} isCompleated={currentStep > 1}>Choose  option</StepTitle>
+                                <StepTitle isActive={currentStep === 2} isCompleated={currentStep > 2}>Personal details</StepTitle>
                                 <StepTitle isActive={currentStep === 3}>More info</StepTitle>
                             </Steps>
 
@@ -62,7 +66,7 @@ const AddPetForm = () => {
                                 <FirstStep handleCategories={handleCategories} currentRadioChecked={currentRadioChecked}/>
                             )}
                             {currentStep === 2 && (
-                                <SecondStep currentRadioChecked={currentRadioChecked} formik={formik}/>
+                                <SecondStep currentRadioChecked={currentRadioChecked} formik={formik} handleDate={handleDate} formatedDate={formatedDate} />
                             )}
                             {currentStep === 3 && (
                                 <ThirdStep
