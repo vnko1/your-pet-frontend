@@ -81,7 +81,7 @@ export const UserFormLabel = styled.label`
 
   color: #111111;
 
-  @media screen and (min-width: 320px) {
+  @media ${(props) => props.theme.media.tablet} {
     font-size: 18px;
     letter-spacing: 0.72px;
   }

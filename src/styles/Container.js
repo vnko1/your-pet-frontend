@@ -7,9 +7,9 @@ export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   margin: 0 auto;
+  padding: 20px 20px 0;
 
   @media ${(props) => props.theme.media.phone} {
-    padding: 20px 20px 0;
     /* background-image: url(${bgMobile}); */
   }
 
