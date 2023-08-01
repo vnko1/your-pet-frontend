@@ -144,11 +144,11 @@ const LoginForm = () => {
                       </IconHidden>
                     )}
                   </ShowPassBtn>
-                  <WrapperCheckCross>
-                    {(values.password === "" && true) ||
-                      (touched.password && errors.password && <IconCross />) ||
-                      (!errors.password && <IconCheck />)}
-                  </WrapperCheckCross>
+                  {(values.password === "" && true) ||
+                    (touched.password && errors.password && <IconCross />)}
+
+                  {(values.password === "" && true) ||
+                    (!errors.password && <IconCheck />)}
                 </WrapperShowCheck>
               </WrapperInput>
               {values.password === "" && true

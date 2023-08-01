@@ -181,14 +181,12 @@ export const WrapperCheckCross = styled.div`
 `;
 
 export const IconCross = styled(CloseSvg)`
-  width: 100%;
-  height: 100%;
   stroke: #f43f5e;
 `;
 
 export const IconCheck = styled(CheckSvg)`
-  width: 100%;
-  height: 100%;
+  width: 24px;
+  height: 24px;
   * {
     stroke: #00c3ad;
   }
