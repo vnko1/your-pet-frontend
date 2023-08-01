@@ -12,9 +12,16 @@ import {
   ShowPassBtn,
   Text,
   RegisterHeader,
+  WrapperCheckCross,
+  IconCross,
+  IconCheck,
 } from "./RegisterForm.styled";
 import { registration } from "./../../../../redux/auth/auth-operations";
-import { InputCorrect, RegisterSchema } from "./../../../../schemas/formValid";
+import {
+  InputRegisterCorrect,
+  InputRegisterError,
+  RegisterSchema,
+} from "./../../../../schemas/formValid";
 
 const initialValues = {
   name: "",
@@ -54,43 +61,51 @@ const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={RegisterSchema}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, values }) => (
         <FormContainer>
           <RegisterHeader>Registration</RegisterHeader>
           <InputWrapper>
-            <Input
-              type="text"
-              name="name"
-              id="name"
-              autoComplete="off"
-              placeholder={"Name"}
-            />
-
-            <Input
-              className={
-                !errors.email && touched.email !== ""
-                  ? "success"
-                  : errors.email && touched.email !== ""
-                  ? "error"
-                  : "default"
-              }
-              type="email"
-              name="email"
-              autoComplete="off"
-              placeholder={"Email"}
-            />
-            {!errors.email && touched.email !== "" ? (
-              <InputCorrect name="Enter a valid Email" />
-            ) : null}
+            <PassWrapper>
+              <Input
+                type="text"
+                name="name"
+                id="name"
+                autoComplete="off"
+                placeholder={"Name"}
+              />
+            </PassWrapper>
 
             <PassWrapper>
               <Input
                 className={
-                  !errors.password && touched.password !== ""
-                    ? "success"
-                    : errors.password && touched.password !== ""
-                    ? "error"
-                    : "default"
+                  (values.email === "" && "default") ||
+                  (touched.email && errors.email && "error") ||
+                  (!errors.email && "success")
+                }
+                type="email"
+                name="email"
+                autoComplete="off"
+                placeholder={"Email"}
+              />
+              {values.email === "" && true
+                ? null
+                : errors.email &&
+                  touched.email !== "" && (
+                    <InputRegisterError name="Enter a valid Email" />
+                  )}
+              <WrapperCheckCross>
+                {(values.email === "" && true) ||
+                  (touched.email && errors.email && <IconCross />) ||
+                  (!errors.email && <IconCheck />)}
+              </WrapperCheckCross>
+            </PassWrapper>
+
+            <PassWrapper>
+              <Input
+                className={
+                  (values.password === "" && "default") ||
+                  (touched.password && errors.password && "error") ||
+                  (!errors.password && "success")
                 }
                 type={passwordShown ? "text" : "password"}
                 name="password"
@@ -98,6 +113,12 @@ const RegistrationForm = () => {
                 autoComplete="off"
                 placeholder={"Password"}
               />
+              {values.password === "" && true
+                ? null
+                : !errors.password &&
+                  touched.password !== "" && (
+                    <InputRegisterCorrect name="Password is secure" />
+                  )}
 
               <ShowPassBtn
                 type="button"
@@ -139,22 +160,34 @@ const RegistrationForm = () => {
                   </IconHidden>
                 )}
               </ShowPassBtn>
+              <WrapperCheckCross>
+                {(values.password === "" && true) ||
+                  (touched.password && errors.password && <IconCross />) ||
+                  (!errors.password && <IconCheck />)}
+              </WrapperCheckCross>
             </PassWrapper>
 
             <PassWrapper>
               <Input
                 className={
-                  !errors.confirmPassword && touched.confirmPassword !== ""
-                    ? "success"
-                    : errors.confirmPassword && touched.confirmPassword !== ""
-                    ? "error"
-                    : "default"
+                  (values.confirmPassword === "" && "default") ||
+                  (touched.confirmPassword &&
+                    errors.confirmPassword &&
+                    "error") ||
+                  (!errors.confirmPassword && "success")
                 }
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 autoComplete="off"
                 placeholder={"Confirm password"}
               />
+
+              {values.confirmPassword === "" && true
+                ? null
+                : !errors.confirmPassword &&
+                  touched.confirmPassword !== "" && (
+                    <InputRegisterCorrect name="Confirm password is secure" />
+                  )}
 
               <ShowPassBtn
                 type="button"
@@ -196,12 +229,18 @@ const RegistrationForm = () => {
                   </IconHidden>
                 )}
               </ShowPassBtn>
+              <WrapperCheckCross>
+                {(values.confirmPassword === "" && true) ||
+                  (touched.confirmPassword && errors.confirmPassword && (
+                    <IconCross />
+                  )) ||
+                  (!errors.confirmPassword && <IconCheck />)}
+              </WrapperCheckCross>
             </PassWrapper>
           </InputWrapper>
           <Btn type="submit">Registration</Btn>
           <Text>
-            Already have an account?{" "}
-            <a href="/your-pet-frontend/login">Login</a>
+            Already have an account? <a href="/login">Login</a>
           </Text>
         </FormContainer>
       )}

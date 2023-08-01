@@ -20,7 +20,6 @@ const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));
 const NoticesPage = React.lazy(() => import("./pages/NoticesPage/NoticesPage"));
 const UserPage = React.lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = React.lazy(() => import("./pages/AddPetPage/AddPetPage"));
-import { RestrictedRoute } from "./protected routers/RestricdetRoute";
 import { PrivateRoute } from "./protected routers/PrivateRoute";
 
 const App = () => {
@@ -39,9 +38,9 @@ const App = () => {
         { index: true, element: <MainPage /> },
         {
           path: "register",
-          element: <RestrictedRoute component={RegisterPage} />,
+          element: <RegisterPage />,
         },
-        { path: "login", element: <RestrictedRoute component={LoginPage} /> },
+        { path: "login", element: <LoginPage /> },
         {
           path: "notices",
           element: <NoticesPage />,

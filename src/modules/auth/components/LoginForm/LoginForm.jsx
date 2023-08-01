@@ -7,8 +7,8 @@ import {
   LoginSchema,
 } from "./../../../../schemas/formValid";
 import { logIn } from "./../../../../redux/auth/auth-operations";
-import { ReactComponent as CloseSvg } from "./../../../../assets/icons/cross-small.svg";
-import { ReactComponent as CheckSvg } from "./../../../../assets/icons/check.svg";
+// import { ReactComponent as CloseSvg } from "./../../../../assets/icons/cross-small.svg";
+// import { ReactComponent as CheckSvg } from "./../../../../assets/icons/check.svg";
 
 import {
   InputWrapper,
@@ -55,18 +55,16 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
       validationSchema={LoginSchema}
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, values }) => (
         <FormContainer>
           <LoginHeader>Login</LoginHeader>
           <InputWrapper>
             <PassWrapper>
               <Input
                 className={
-                  !errors.email && touched.email !== ""
-                    ? "success"
-                    : errors.email && touched.email !== ""
-                    ? "error"
-                    : "default"
+                  (values.email === "" && "default") ||
+                  (touched.email && errors.email && "error") ||
+                  (!errors.email && "success")
                 }
                 type="email"
                 name="email"
@@ -74,28 +72,24 @@ const LoginForm = () => {
                 autoComplete="off"
                 placeholder={"Email"}
               />
-              {!errors.email && touched.email !== "" ? (
-                <InputCorrect name="Enter a valid Email" />
-              ) : null}
-              <WrapperCheckCross
-              // data-error={
-              // errors.email && touched.email
-              //   ? <CheckSvg /> === true
-              //   : <CloseSvg /> === false
-              // }
-              >
-                <CheckSvg />
-                <CloseSvg />
+              <WrapperCheckCross>
+                {(values.email === "" && true) ||
+                  (touched.email && errors.email && <IconCross />) ||
+                  (!errors.email && <IconCheck />)}
               </WrapperCheckCross>
+              {values.email === "" && true
+                ? null
+                : errors.email &&
+                  touched.email !== "" && (
+                    <InputError name="Enter a valid Email" />
+                  )}
             </PassWrapper>
             <PassWrapper>
               <Input
                 className={
-                  !errors.password && touched.password !== ""
-                    ? "success"
-                    : errors.password && touched.password !== ""
-                    ? "error"
-                    : "default"
+                  (values.password === "" && "default") ||
+                  (touched.password && errors.password && "error") ||
+                  (!errors.password && "success")
                 }
                 type={password ? "text" : "password"}
                 name="password"
@@ -103,44 +97,19 @@ const LoginForm = () => {
                 autoComplete="off"
                 placeholder={"Password"}
               />
-              {!errors.password && touched.password !== "" ? (
-                <InputCorrect name="Password is secure" />
-              ) : null}
-              <InputError name="password" />
+
+              {values.password === "" && true
+                ? null
+                : !errors.password &&
+                  touched.password !== "" && (
+                    <InputCorrect name="Password is secure" />
+                  )}
 
               <ShowPassBtn
                 type="button"
                 onClick={togglePassword}
                 data-shown={password}
-                data-error={
-                  errors.password && touched.password
-                    ? (
-                        <IconCheck viewBox="0 0 32 32">
-                          <path
-                            fill="none"
-                            stroke="#00c3ad"
-                            strokeLinejoin="round"
-                            strokeLinecap="round"
-                            strokeMiterlimit="4"
-                            strokeWidth="2"
-                            d="M26.667 9.333l-14.667 14.667-6.667-6.667"
-                          ></path>
-                        </IconCheck>
-                      ) === true
-                    : (
-                        <IconCross viewBox="0 0 32 32">
-                          <path
-                            fill="none"
-                            stroke="#f43f5e"
-                            strokeLinejoin="round"
-                            strokeLinecap="round"
-                            strokeMiterlimit="4"
-                            strokeWidth="2"
-                            d="M25.333 6.667l-18.667 18.667M6.667 6.667l18.667 18.667"
-                          ></path>
-                        </IconCross>
-                      ) === false
-                }
+                className="btnShowHidden"
               >
                 {password ? (
                   <IconShown viewBox="0 0 32 32">
@@ -177,12 +146,16 @@ const LoginForm = () => {
                   </IconHidden>
                 )}
               </ShowPassBtn>
+              <WrapperCheckCross onClick={togglePassword}>
+                {(values.password === "" && true) ||
+                  (touched.password && errors.password && <IconCross />) ||
+                  (!errors.password && <IconCheck />)}
+              </WrapperCheckCross>
             </PassWrapper>
           </InputWrapper>
           <Btn type="submit">Login</Btn>
           <Text>
-            Don&apos;t have an account?{" "}
-            <a href="/your-pet-frontend/register">Register</a>
+            Don&apos;t have an account? <a href="/register">Register</a>
           </Text>
         </FormContainer>
       )}
