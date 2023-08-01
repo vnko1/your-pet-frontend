@@ -44,6 +44,7 @@ export function NewsPage() {
 
   const handleInitialPage = () => {
     dispatch(getNews({ filter: "", page: 1 }));
+    setCurrentPage(1);
   };
 
   const onImageError = (e) => {
