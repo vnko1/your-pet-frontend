@@ -55,22 +55,15 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const Input = styled(Field)`
-  position: relative;
-  padding: 12px 70px 12px 12px;
-  width: 100%;
-  margin-bottom: 32px;
-
-  font-size: 16px;
-  color: #888888;
-
+export const WrapperInput = styled.div`
+  display: flex;
+  padding-left: 12px;
+  padding-right: 12px;
+  align-items: center;
   background-color: #fff;
   border: 1px solid #54adff;
   border-radius: 25px;
-
-  transition: all 300ms ease-in-out;
-
-  outline: none;
+  height: 45px;
 
   &.default {
     border-color: #54adff;
@@ -84,8 +77,19 @@ export const Input = styled(Field)`
 
   @media (min-width: 768px) {
     border-radius: 25px;
-    font-size: 16px;
   }
+`;
+
+export const Input = styled(Field)`
+  width: 100%;
+
+  font-size: 16px;
+  color: #888888;
+
+  background-color: #fff;
+
+  outline: none;
+  border: none;
 `;
 
 export const Btn = styled.button`
@@ -130,8 +134,8 @@ export const Text = styled.p`
 `;
 
 export const PassWrapper = styled.div`
-  position: relative;
   width: 100%;
+  margin-bottom: 32px;
 `;
 
 export const ErrorText = styled(Error)`
@@ -139,11 +143,9 @@ export const ErrorText = styled(Error)`
 `;
 
 export const ShowPassBtn = styled.button`
-  position: absolute;
-  top: 30%;
-  right: 15px;
-
-  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   padding: 5px;
   width: 33px;
@@ -167,17 +169,11 @@ export const IconShown = styled.svg`
 `;
 
 export const WrapperCheckCross = styled.div`
-  position: absolute;
-  top: 16%;
-  right: 15px;
   width: 24px;
   height: 24px;
-  z-index: 1000;
-  &:active {
-    .btnShowHidden {
-      right: 12px;
-    }
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const IconCross = styled(CloseSvg)`

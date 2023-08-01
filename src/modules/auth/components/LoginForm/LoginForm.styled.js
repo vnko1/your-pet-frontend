@@ -58,27 +58,26 @@ export const InputWrapper = styled.div`
 `;
 
 export const Input = styled(Field)`
-  position: relative;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-right: 70px;
   width: 100%;
 
   font-size: 16px;
   color: #888888;
 
   background-color: #fff;
-  border: 1px solid #54adff;
-  border-radius: 25px;
-
-  transition: all 300ms ease-in-out;
 
   outline: none;
+  border: none;
+`;
 
-  &:first-child {
-    padding-bottom: 12px;
-    padding-top: 12px;
-  }
+export const WrapperInput = styled.div`
+  display: flex;
+  padding-left: 12px;
+  padding-right: 12px;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #54adff;
+  border-radius: 25px;
+  height: 45px;
 
   &.default {
     border-color: #54adff;
@@ -92,7 +91,6 @@ export const Input = styled(Field)`
 
   @media (min-width: 768px) {
     border-radius: 25px;
-    font-size: 16px;
   }
 `;
 
@@ -140,7 +138,8 @@ export const Text = styled.p`
 `;
 
 export const PassWrapper = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   &:first-child {
     margin-bottom: 32px;
@@ -148,11 +147,9 @@ export const PassWrapper = styled.div`
 `;
 
 export const ShowPassBtn = styled.button`
-  position: absolute;
-  top: 45%;
-  right: 15px;
-
-  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   padding: 5px;
   width: 33px;
@@ -176,12 +173,11 @@ export const IconShown = styled.svg`
 `;
 
 export const WrapperCheckCross = styled.div`
-  position: absolute;
-  top: 23%;
-  right: 15px;
   width: 24px;
   height: 24px;
-  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const IconCross = styled(CloseSvg)`
@@ -196,4 +192,10 @@ export const IconCheck = styled(CheckSvg)`
   * {
     stroke: #00c3ad;
   }
+`;
+
+export const WrapperShowCheck = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
