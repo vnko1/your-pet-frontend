@@ -1,4 +1,6 @@
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+
 import { UserPageBody } from "./UserPage.styled";
 
 import UserData from "../../modules/user/components/UserData/UserData";
@@ -8,11 +10,18 @@ import { ModalCongrats } from "../../modules/user/components/ModalCongrats/ Moda
 import authSelectors from "../../redux/auth/auth-selectors";
 
 const UserPage = () => {
-  const isNewUser = useSelector(authSelectors.selectUser);
+  const [modal, setModal] = useState(false);
+  const { isNewUser } = useSelector(authSelectors.selectUser);
+
+  useEffect(() => {
+    if (isNewUser === "true") {
+      setModal(true);
+    }
+  }, [isNewUser]);
 
   return (
     <UserPageBody>
-      {!isNewUser && <ModalCongrats />}
+      {modal && <ModalCongrats />}
       <UserData />
       <PetsData />
     </UserPageBody>
