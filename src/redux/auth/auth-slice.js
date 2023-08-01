@@ -7,6 +7,7 @@ import {
   refreshUser,
   registration,
   updateUser,
+  refreshToken,
 } from "./auth-operations";
 
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
@@ -21,6 +22,7 @@ import {
   userUpdateFulfilled,
   userRefreshFulfilled,
   userRefreshRejected,
+  refreshTokenFullfilled,
 } from "./auth-Utils";
 
 const initialState = {
@@ -33,6 +35,8 @@ const initialState = {
     isNewUser: false,
   },
   token: null,
+  tokenLifeTime: null,
+  refreshToken: null,
   isLoggedIn: false,
   isLoader: false,
   isRefreshing: false,
@@ -69,6 +73,8 @@ const authSlice = createSlice({
 
       .addCase(refreshUser.rejected, userRefreshRejected)
 
+      .addCase(refreshToken.fulfilled, refreshTokenFullfilled)
+
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)
       .addMatcher(isAnyOf(...getActions("rejected")), handleRejected);
@@ -78,7 +84,7 @@ const authSlice = createSlice({
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["token"],
+  whitelist: ["token", "tokenLifeTime", "refreshToken"],
 };
 
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);

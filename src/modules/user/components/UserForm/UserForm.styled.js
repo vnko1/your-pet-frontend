@@ -3,7 +3,7 @@ import { Form, Field } from "formik";
 
 export const UserImgBox = styled.div`
   margin-bottom: 32px;
-  position: relativ;
+  position: relative;
   img {
     width: 140px;
     height: 135px;
@@ -29,32 +29,61 @@ export const UserImgInput = styled.input`
 `;
 
 export const UserFormBody = styled(Form)`
-  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 21px;
 
-  @media screen and (min-width: 768px) {
-    margin-bottom: 10px;
-    flex: 1 1 auto;
+  @media ${(props) => props.theme.media.tablet} {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  @media ${(props) => props.theme.media.desktop} {
+    flex-direction: column;
+    gap: 25px;
+  }
+`;
+export const UserFormInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  width: 100%;
+
+  @media ${(props) => props.theme.media.tablet} {
+    max-width: 355px;
+    gap: 10px;
   }
 `;
 
-export const UserFormItem = styled.div`
+export const UserFormList = styled.ul`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
 
-  &:not(:last-child) {
-    margin-bottom: 15px;
+  @media ${(props) => props.theme.media.tablet} {
+    gap: 10px;
   }
+`;
+
+export const UserFormItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export const UserFormLabel = styled.label`
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1, 112;
-  flex: 0 0 85px;
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.56px;
 
-  @media screen and (min-width: 320px) {
-    font-size: 14px;
-    flex: 0 0 60px;
+  color: #111111;
+
+  @media ${(props) => props.theme.media.tablet} {
+    font-size: 18px;
+    letter-spacing: 0.72px;
   }
 `;
 
@@ -64,7 +93,7 @@ export const UserFormInput = styled(Field)`
 
   flex: 1 1 auto;
 
-  width: 255px;
+  max-width: 190px;
   height: 28px;
   padding: 4px 12px;
   background: blue;
@@ -73,60 +102,87 @@ export const UserFormInput = styled(Field)`
   border: 1px solid #54adff;
   border-radius: 40px;
 
-  @media screen and (min-width: 320px) {
-    font-size: 12px;
-  }
+  color: #111111;
 
-  /* height: 28px;
-  font-weight: 400;
+  font-family: Manrope, sans-serif;
   font-size: 12px;
-  line-height: 1.33;
-  letter-spacing: 0.04em;
-  padding: 6px 32px 6px 12px;
-  color: inherit;
-  outline: 1px solid #54adff;
-  border: none;
-  border-radius: 20px;
+  letter-spacing: 0.48px;
 
-  width: 190px;
+  @media ${(props) => props.theme.media.tablet} {
+    max-width: 255px;
+    height: 30px;
 
-  @media screen and (min-width: 768px) {
-    width: 255px;
-  } */
+    font-size: 16px;
+    letter-spacing: 0.64px;
+  }
 `;
 
 export const UserFormBtn = styled.button`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 31px;
+  width: 100%;
+  padding: 0;
+
+  border: none;
+
   background: white;
   color: rgba(136, 136, 136, 1);
-  border: none;
-  display: flex;
-  align-items: center;
   font-size: 18px;
+
+  @media ${(props) => props.theme.media.tablet} {
+    justify-content: end;
+    height: 32px;
+  }
 `;
 
 export const Btn = styled.button`
-  width: 255px;
+  max-width: 248px;
   flex: 1 1 auto;
-
-  border-radius: 40px;
+  text-align: center;
   padding: 8px 12px;
 
-  font-weight: 500;
-  font-size: 20px;
-  font-family: Manrope, sans-serif;
-  text-align: center;
-  color: #fff;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+
+  color: #fef9f9;
   background-color: #54adff;
 
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 25px;
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.56px;
 
   transition: all 250ms ease-in-out;
 
   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
-    width: 100%;
-    margin: 0, auto;
+  @media ${(props) => props.theme.media.tablet} {
+    max-width: 255px;
+    font-size: 16px;
+    letter-spacing: 0.64px;
   }
+`;
+export const BtnText = styled.p`
+  display: flex;
+  flex-direction: row;
+  margin-right: auto;
+  gap: 10px;
+
+  color: #888;
+
+  padding: 10px;
+
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.64px;
+`;
+export const UserFormSvg = styled.svg`
+  width: 24px;
+  height: 24px;
+
+  stroke: rgba(136, 136, 136, 1);
 `;

@@ -1,5 +1,5 @@
-import { getSponsors } from "./sponsors-operation";
-const extraActions = [getSponsors];
+import { getFriends } from "./ourFriends-operations";
+const extraActions = [getFriends];
 
 export const getActions = (type) => extraActions.map((action) => action[type]);
 
