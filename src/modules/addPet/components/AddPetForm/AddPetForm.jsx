@@ -18,6 +18,7 @@ import {
 import { addPetShema } from "../../../../schemas/addPetShema";
 import { postPet } from "../../../../redux/pets/pets-operation";
 import { newPost } from "../../../../redux/notices/notices-operations";
+import { formatDate } from "../../../../shared/utils/formatDate";
 
 const AddPetForm = () => {
   const {
@@ -54,7 +55,7 @@ const AddPetForm = () => {
 
     if (categories === "your-pet") {
       formData.append("name", name);
-      formData.append("date", date);
+      formData.append("date", formatDate(date));
       formData.append("type", type);
     } else {
       formData.append("value", values);

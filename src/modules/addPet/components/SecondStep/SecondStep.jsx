@@ -13,11 +13,11 @@ const SecondStep = ({ currentRadioChecked, formik }) => {
     <StageContainer>
       {currentRadioChecked !== "your-pet" && (
         <FieldContainer>
-          <FieldLabel htmlFor="add">Title of add</FieldLabel>
+          <FieldLabel htmlFor="title">Title of add</FieldLabel>
           <InputField
             type="text"
-            name="add"
-            id="add"
+            name="title"
+            id="title"
             autoComplete="off"
             placeholder="Title of add"
             value={formik.values.add}
