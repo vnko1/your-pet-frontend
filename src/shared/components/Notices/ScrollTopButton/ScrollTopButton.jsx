@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ScrollTopBtn } from "./ScrollTopButton.styled";
 
-const ScrollTopButton = () => {
+const ScrollTopButton = React.memo(() => {
   const [isVisible, setIsVisible] = useState(false);
+
+  console.log("ScrollTopButton");
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -44,6 +46,8 @@ const ScrollTopButton = () => {
       )}
     </div>
   );
-};
+});
+
+ScrollTopButton.displayName = "ScrollTopButton";
 
 export default ScrollTopButton;
