@@ -12,7 +12,6 @@ const Pagination = ({ totalItems, currentPage, setCurrentPage }) => {
 
   const handleGoToPage = (page) => {
     setCurrentPage(Math.min(Math.max(page, 1), count));
-    console.log("currentPage", currentPage);
   };
 
   const generatePageNumbers = () => {

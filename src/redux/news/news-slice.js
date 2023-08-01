@@ -7,7 +7,6 @@ import {
   handlefulfilled,
   getActions,
 } from "./news-utils";
-// import { formatDate } from "src/shared/utils/formatDate";
 import { formatDate } from "../../shared/utils/formatDate";
 
 export const newsSlice = createSlice({

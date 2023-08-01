@@ -4,14 +4,14 @@ export const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 0;
+  padding: 40px 0 117px;
 
   @media ${(props) => props.theme.media.tablet} {
-    padding: 80px 0 60px;
+    padding: 80px 0 126px;
   }
 
   @media ${(props) => props.theme.media.desktop} {
-    padding: 80px 0 68px;
+    padding: 80px 0 452px;
   }
 `;
 
@@ -19,6 +19,7 @@ export const Title = styled.h1`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 24px;
+  cursor: pointer;
 
   @media ${(props) => props.theme.media.tablet} {
     font-size: 48px;
@@ -30,11 +31,16 @@ export const NewsList = styled.ul`
   display: flex;
   gap: 24px;
   flex-direction: column;
+  margin-bottom: 40px;
 
   @media ${(props) => props.theme.media.tablet} {
     flex-wrap: wrap;
     flex-direction: row;
     gap: 32px;
+    margin-bottom: 60px;
+  }
+  @media ${(props) => props.theme.media.desktop} {
+    margin-bottom: 68px;
   }
 `;
 
@@ -62,10 +68,10 @@ export const NewsItem = styled.li`
 
 export const ShadowBox = styled.div`
   border-radius: 20px;
+  position: relative;
 
   box-shadow: ${(props) => props.theme.shadow.normal};
 
-  /* margin: auto; */
   height: 578px;
 
   @media ${(props) => props.theme.media.tablet} {
@@ -85,13 +91,13 @@ export const NewsImg = styled.img`
 
 export const Content = styled.div`
   padding: 16px 12px 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /* height: 254px; */
 `;
 
 export const AdditionalInfo = styled.div`
+  position: absolute;
+
+  bottom: 12px;
+  width: 93%;
   display: flex;
   justify-content: space-between;
 `;
@@ -107,4 +113,9 @@ export const NewsDate = styled.p`
 
 export const ArticleTitle = styled.h2`
   margin-bottom: 16px;
+`;
+
+export const ArticleText = styled.p`
+  max-height: 128px;
+  overflow: hidden;
 `;

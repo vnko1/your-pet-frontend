@@ -1,8 +1,6 @@
 import {
   InputSmall,
-  // SearchBtn,
   SearchForm,
-  // SearchIcon,
   BtnsWrap,
   ResetBtn,
   SubmitBtn,
@@ -46,11 +44,6 @@ function SearchBar() {
         value={searchRequest}
       />
 
-      {/* <SearchBtn>
-        <SearchIcon>
-          <use href={sprite + "#search"} />
-        </SearchIcon>
-      </SearchBtn> */}
       <BtnsWrap>
         <SubmitBtn type="submit">
           <svg viewBox="0 0 24 24">

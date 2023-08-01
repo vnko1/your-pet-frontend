@@ -46,27 +46,6 @@ export const SearchForm = styled.form`
   }
 `;
 
-// export const SearchIcon = styled.svg`
-//   height: 24px;
-//   width: 24px;
-//   fill: ${(props) => props.theme.colors.primary};
-// `;
-
-// export const SearchBtn = styled.button`
-//   display: flex;
-//   align-items: center;
-//   height: 100%;
-
-//   padding: 10px 12px;
-//   border: ${(props) => props.theme.borders.none};
-//   border-top-right-radius: 40px;
-//   border-bottom-right-radius: 40px;
-//   background-color: ${(props) => props.theme.colors.white};
-//   @media ${(props) => props.theme.media.tablet} {
-//     padding: 10px 20px;
-//   }
-// `;
-
 export const BtnsWrap = styled.div`
   height: 100%;
   border: ${(props) => props.theme.borders.none};

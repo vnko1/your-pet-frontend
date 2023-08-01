@@ -11,33 +11,30 @@ import {
   ReadMoreLink,
   NewsDate,
   ArticleTitle,
+  ArticleText,
 } from "./NewsPage.styled";
 import SearchBar from "../../shared/components/SharedComponents/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectNews,
-  // selectNewsFilter,
-  selectPage,
+  selectNewsFilter,
   selectTotalArticles,
 } from "../../redux/news/news-selectors";
 import { useEffect, useState } from "react";
 import { getNews } from "../../redux/news/news-operation";
-// import Pagination from "@mui/material/Pagination";
-// import { changePage } from "../../redux/news/news-slice";
 import Pagination from "./Pagination";
+import placeholderImage from "../../images/newsImagePlaceholder/image_placeholder.svg";
 
-// export const NewsPage = () => {
 export function NewsPage() {
   const dispatch = useDispatch();
-  const page = useSelector(selectPage);
   const news = useSelector(selectNews);
-  // const request = useSelector(selectNewsFilter);
+  const request = useSelector(selectNewsFilter);
   const totalArticles = useSelector(selectTotalArticles);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(getNews({ page: currentPage }));
-  }, [currentPage, dispatch]);
+    dispatch(getNews({ filter: request, page: currentPage }));
+  }, [currentPage, dispatch, request]);
 
   useEffect(() => {
     if (totalArticles > 0 && news.length === 0 && currentPage !== 1) {
@@ -45,29 +42,34 @@ export function NewsPage() {
     }
   }, [currentPage, news.length, totalArticles]);
 
-  // const handleChange = (_, pageNumber) => {
-  //   dispatch(changePage(pageNumber));
-  //   dispatch(getNews({ filter: request, page: pageNumber }));
-  // };
+  const handleInitialPage = () => {
+    dispatch(getNews({ filter: "", page: 1 }));
+  };
+
+  const onImageError = (e) => {
+    e.target.src = placeholderImage;
+  };
 
   const isPagination = news.length > 0 ? true : false;
-  // const pageCount = Math.ceil(totalArticles / 6);
 
   return (
     <Wrap>
-      <Title>News</Title>
+      <Title onClick={handleInitialPage}>News</Title>
       <SearchBar />
       <NewsList>
         {news.map(({ _id, imgUrl, title, text, date, url }) => (
           <NewsItem key={_id}>
             <DecorationLine></DecorationLine>
             <ShadowBox>
-              <NewsImg src={imgUrl} alt="article's image" />
+              <NewsImg
+                src={imgUrl}
+                alt="article's image"
+                onError={onImageError}
+              />
               <Content>
-                <div>
-                  <ArticleTitle>{title}</ArticleTitle>
-                  <p>{text}</p>
-                </div>
+                <ArticleTitle>{title}</ArticleTitle>
+                <ArticleText>{text}</ArticleText>
+
                 <AdditionalInfo>
                   <NewsDate>{date}</NewsDate>
                   <ReadMoreLink href={url} target="_blank">
@@ -87,65 +89,6 @@ export function NewsPage() {
             setCurrentPage={setCurrentPage}
           />
         )}
-
-        {/* <Pagination
-          totalItems={totalArticles}
-          currentPage={page}
-          setCurrentPage={setCurrentPage}
-        /> */}
-
-        {/* <Pagination
-          count={pageCount}
-          onChange={handleChange}
-          page={page}
-          variant="outlined"
-          color="primary"
-        /> */}
-        {/* <Pagination
-          count={pageCount}
-          onChange={handleChange}
-          page={page}
-          component="div"
-          variant="outlined"
-          sx={{
-            ".MuiPaginationItem-root": {
-              height: "35px",
-              width: "35px",
-              fontSize: "16px",
-              borderRadius: "100%",
-              border: "1px solid #54ADFF",
-              "&:hover": {
-                backgroundColor: "transparent",
-                color: "#54ADFF",
-              },
-            },
-            "& .MuiPaginationItem-page": {
-              border: "1px solid #54ADFF",
-              "&:hover": {
-                backgroundColor: "#54ADFF",
-                color: "#fff",
-              },
-            },
-            "& .MuiButtonBase-root.Mui-selected": {
-              backgroundColor: "#54ADFF",
-              color: "#fff",
-            },
-            "& .MuiPaginationItem-ellipsis": {
-              border: "none",
-              "&:hover": {
-                backgroundColor: "transparent",
-                color: "#000",
-              },
-            },
-            "& .MuiPaginationItem-rounded": {
-              border: "1px solid #54ADFF",
-              "&:hover": {
-                backgroundColor: "#54ADFF",
-                color: "#fff",
-              },
-            },
-          }}
-        /> */}
       </div>
     </Wrap>
   );
