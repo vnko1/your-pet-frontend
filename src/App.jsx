@@ -7,8 +7,8 @@ import NotFound from "./pages/NotFoundPage/NotFound";
 const SharedLayout = React.lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
 );
-// const MainPage = React.lazy(() => import("./pages/MainPage/MainPage"));
-const MainPage = React.lazy(() => import("./pages/NewsPage/NewsPage"));
+const MainPage = React.lazy(() => import("./pages/MainPage/MainPage"));
+const NewsPage = React.lazy(() => import("./pages/NewsPage/NewsPage"));
 
 const RegisterPage = React.lazy(() =>
   import("./pages/RegisterPage/RegisterPage")
@@ -37,6 +37,8 @@ const App = () => {
         { path: "register", element: <RegisterPage /> },
         { path: "login", element: <LoginPage /> },
         { path: "friends", element: <OurFriends /> },
+        { path: "news", element: <NewsPage /> },
+
         {
           path: "register",
           element: <RegisterPage />,
