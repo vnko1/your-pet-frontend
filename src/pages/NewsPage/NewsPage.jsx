@@ -55,7 +55,7 @@ export function NewsPage() {
   return (
     <Wrap>
       <Title onClick={handleInitialPage}>News</Title>
-      <SearchBar />
+      <SearchBar setCurrentPage={setCurrentPage} />
       <NewsList>
         {news.map(({ _id, imgUrl, title, text, date, url }) => (
           <NewsItem key={_id}>

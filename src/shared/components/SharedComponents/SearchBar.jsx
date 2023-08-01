@@ -5,6 +5,7 @@ import {
   ResetBtn,
   SubmitBtn,
 } from "./SearchBar.styled";
+import PropTypes from "prop-types";
 
 import sprite from "../../../assets/icons.svg";
 import { useState } from "react";
@@ -13,7 +14,7 @@ import { getNews } from "../../../redux/news/news-operation";
 import { changeFilter } from "../../../redux/news/news-slice";
 import { changePage } from "../../../redux/news/news-slice";
 
-function SearchBar() {
+function SearchBar({ setCurrentPage }) {
   const [searchRequest, setSearchRequest] = useState("");
 
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function SearchBar() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    setCurrentPage(1);
     dispatch(changePage(1));
     dispatch(changeFilter(searchRequest));
 
@@ -63,3 +65,7 @@ function SearchBar() {
 }
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+  setCurrentPage: PropTypes.func.isRequired,
+};
