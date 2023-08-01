@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchNotices } from "./notices-operations";
+import { fetchNotices, newPost } from "./notices-operations";
 
 const handlePendingFetchNotices = (state, action) => {
   state.isLoading = true;
@@ -30,7 +30,11 @@ export const noticesSlice = createSlice({
     builder
       .addCase(fetchNotices.pending, handlePendingFetchNotices)
       .addCase(fetchNotices.fulfilled, handleFulfilledFetchNotices)
-      .addCase(fetchNotices.rejected, handleRejectedFetchNotices);
+      .addCase(fetchNotices.rejected, handleRejectedFetchNotices)
+
+      .addCase(newPost.pending, handlePendingFetchNotices)
+      .addCase(newPost.fulfilled, (state, { payload }) => console.log(payload))
+      .addCase(newPost.rejected, handleRejectedFetchNotices);
   },
 });
 

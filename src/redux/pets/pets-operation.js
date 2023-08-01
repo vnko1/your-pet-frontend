@@ -5,7 +5,7 @@ export const postPet = createAsyncThunk(
   "pets/postPet",
   async (pet, { rejectWithValue }) => {
     try {
-      const { data } = await axiosPrivate.post("/pets", pet);
+      const { data } = await axiosPrivate.post("/pets/add", pet);
       //   notifyCreacteNewContact();
       return data;
     } catch (error) {
