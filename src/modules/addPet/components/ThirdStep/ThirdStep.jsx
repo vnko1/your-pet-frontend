@@ -2,7 +2,7 @@ import { Field } from "formik";
 import { sexOptions } from "../../helpers/helpers";
 import sprite from "../../../../assets/icons.svg";
 import PropTypes from "prop-types";
-import { AvatarContainer, AvatarTitle, FiledsContainer, GenderBox, LoadedImage, PhotoContainer, PlaceholderField, PlaceholderIcon, PlaceholderImage, RadioButtonSex, SelectContainer, SexIcon, Textarea, ThirdStepContainer } from "./ThirdStep.styled";
+import { AvatarContainer, AvatarTitle, FiledsContainer, GenderBox, LoadedImage, PhotoContainer, PlaceholderField, PlaceholderIcon, PlaceholderImage, RadioButtonSex, SelectContainer, SexIcon, Textarea, TextAreaInput, ThirdStepContainer } from "./ThirdStep.styled";
 import { FieldContainer, FieldLabel, InputField } from "../SecondStep/SecondStep.styled";
 
 const ThirdStep = ({ currentRadioChecked, handleSex, setAvatarFile, fileIsLoaded, setFileIsLoaded, avatarPreview, setAvatarPreview, formik }) => {
@@ -21,6 +21,17 @@ const ThirdStep = ({ currentRadioChecked, handleSex, setAvatarFile, fileIsLoaded
         setAvatarPreview("");
     };
 
+    const setHeigth = category => {
+        switch (category) {
+            case 'your_pet':
+            return '79px';
+            case 'sell':
+            return '79px';
+            default:
+            return '182px';
+        }
+    };
+
     return (
         <ThirdStepContainer isYourPet={currentRadioChecked === "your-pet"}>
             <SelectContainer>
@@ -31,7 +42,7 @@ const ThirdStep = ({ currentRadioChecked, handleSex, setAvatarFile, fileIsLoaded
                             {sexOptions.map(({ value, label }) => {
                                 return (
                                     <RadioButtonSex key={value} checked={formik.values.sex === value}>
-                                        <SexIcon checked={formik.values.sex === value} isFemale={value === "female"} isAnyOfChecked={formik.values.sex !== ''}>
+                                        <SexIcon className={value === 'male' ? 'male' : 'female'} checked={formik.values.sex === value}  sex={formik.values.sex}>
                                             <use href={sprite + `#${value}`}></use>
                                         </SexIcon>
                                         {label}
@@ -56,7 +67,7 @@ const ThirdStep = ({ currentRadioChecked, handleSex, setAvatarFile, fileIsLoaded
                                 </PlaceholderIcon>
                             </PlaceholderImage>
                         )}
-                        <PlaceholderField type="file" id="avatar" name='avatar' onChange={handleAvatarLoad} />
+                        <PlaceholderField type="file" id="file" name='file' accept="image/*" onChange={handleAvatarLoad}/>
                     </PhotoContainer>
                 
                 </AvatarContainer>
@@ -76,7 +87,7 @@ const ThirdStep = ({ currentRadioChecked, handleSex, setAvatarFile, fileIsLoaded
                 }
                 <FieldContainer>
                     <p>Comments</p>
-                    <InputField as={Textarea} name="comments" id="comments" placeholder="Type of pet" value={formik.values.comments} onChange={formik.handleChange}></InputField>
+                    <TextAreaInput as={Textarea} name="comments" id="comments" placeholder="Type of pet" value={formik.values.comments} onChange={formik.handleChange} height={setHeigth(currentRadioChecked)}></TextAreaInput>
                 </FieldContainer>
             </FiledsContainer>
         </ThirdStepContainer>
