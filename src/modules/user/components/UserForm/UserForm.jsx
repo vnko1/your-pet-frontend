@@ -15,23 +15,29 @@ import {
   UserFormSvg,
 } from "./UserForm.styled";
 
-import sprite from "../../../../assets/icons.svg";
-
 import { updateUser } from "./../../../../redux/auth/auth-operations";
 import authSelectors from "./../../../../redux/auth/auth-selectors";
 import AddPhoto from "../UserPhoto/UserPhoto";
-import { compareObjects } from "../../../../shared/utils/compareObjects";
+
 import ModalLogOut from "../../../../shared/modals/ModalLogout/ModalLogOut";
 import { useState } from "react";
+
+import sprite from "../../../../assets/icons.svg";
 
 const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
   const [isShowModal, setIsShowModal] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector(authSelectors.selectUser);
+  const initialValues = {
+    name: user.name,
+    birthday: user.birthday,
+    email: user.email,
+    city: user.city,
+    phone: user.phone,
+  };
 
   const handleSubmit = (values) => {
-    const newUser = compareObjects(user, values);
-    JSON.stringify(newUser) !== "{}" && dispatch(updateUser(newUser));
+    dispatch(updateUser(values));
     setIsUserUpdate((state) => !state);
   };
 
@@ -41,7 +47,7 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
 
   return (
     <>
-      <Formik initialValues={user} onSubmit={handleSubmit}>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <UserFormBody>
           <AddPhoto isUserUpdate={isUserUpdate} />
           <UserFormInfo>
@@ -104,12 +110,10 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
             </UserFormList>
             {isUserUpdate ? (
               <UserFormBtn type="button" onClick={toggleModal}>
-                <BtnText>
-                  <UserFormSvg>
-                    <use href={sprite + "#logout"} />
-                  </UserFormSvg>
-                  Log Out
-                </BtnText>
+                <UserFormSvg>
+                  <use href={sprite + "#logout"} />
+                </UserFormSvg>
+                <BtnText>Log Out</BtnText>
               </UserFormBtn>
             ) : (
               <UserFormBtn>

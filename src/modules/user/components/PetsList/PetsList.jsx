@@ -8,17 +8,18 @@ const PetsList = () => {
   const { pets } = useSelector(authSelectors.selectUser);
   return (
     <div>
-      {pets.map(({ _id, petsURL, name, birthday, type, comments }) => (
-        <PetsItem
-          key={_id}
-          id={_id}
-          image={petsURL}
-          name={name}
-          birth={birthday}
-          type={type}
-          comments={comments}
-        />
-      ))}
+      {pets &&
+        pets.map(({ _id, fileUrl, name, date, type, comments }) => (
+          <PetsItem
+            key={_id}
+            id={_id}
+            image={fileUrl}
+            name={name}
+            birthday={date}
+            type={type}
+            comments={comments}
+          />
+        ))}
     </div>
   );
 };
