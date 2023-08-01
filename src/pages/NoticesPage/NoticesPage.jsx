@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  isLogin,
   noticesList,
   noticesTotal,
 } from "../../redux/notices/notices-selectors";
@@ -19,6 +20,7 @@ function NoticesPage() {
   const navigate = useNavigate();
   const totalNoticesItems = useSelector(noticesTotal);
   const noticesListInPagination = useSelector(noticesList);
+  const isLoggedIn = useSelector(isLogin);
 
   const dispatch = useDispatch();
 
@@ -39,6 +41,12 @@ function NoticesPage() {
       navigate("/notices/sell", { replace: true });
     }
   }, [pathname, navigate, dispatch]);
+
+  useEffect(() => {
+    if (pathname === "/notices/favorite" || pathname === "/notices/own") {
+      !isLoggedIn && navigate("/login");
+    }
+  }, [isLoggedIn, navigate, pathname]);
 
   return (
     <NoticesContainer>

@@ -20,6 +20,7 @@ import { addPetShema } from "../../../../schemas/addPetShema";
 import { postPet } from "../../../../redux/pets/pets-operation";
 import { newPost } from "../../../../redux/notices/notices-operations";
 import { formatDate } from "../../../../shared/utils/formatDate";
+import { useNavigate } from "react-router-dom";
 
 const AddPetForm = () => {
   const {
@@ -35,6 +36,7 @@ const AddPetForm = () => {
   const [fileIsLoaded, setFileIsLoaded] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const initialValues = {
     categories: currentRadioChecked,
@@ -51,6 +53,7 @@ const AddPetForm = () => {
 
   const handleSubmit = (values, { resetForm }) => {
     const { name, date, type, comments, categories } = values;
+    console.log(values);
 
     const formData = new FormData();
 
@@ -72,6 +75,7 @@ const AddPetForm = () => {
       : dispatch(newPost(formData));
 
     resetForm();
+    navigate("/user");
   };
 
   return (
