@@ -1,5 +1,3 @@
-
-import { Formik } from "formik";
 import { useEffect } from "react";
 import { ErrorMessage, Form, Formik } from "formik";
 import { useState } from "react";
@@ -57,6 +55,7 @@ const AddPetForm = () => {
   return (
     <Formik
       initialValues={initialValues}
+      onSubmit={handleSubmit}
       validationSchema={
         currentRadioChecked === "your-pet" ? addPetShema2 : addPetShema
       }
