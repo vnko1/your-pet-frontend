@@ -14,7 +14,7 @@ import { getNews } from "../../../redux/news/news-operation";
 import { changeFilter } from "../../../redux/news/news-slice";
 import { changePage } from "../../../redux/news/news-slice";
 
-function SearchBar({ setCurrentPage }) {
+export function SearchBar({ setCurrentPage }) {
   const [searchRequest, setSearchRequest] = useState("");
 
   const dispatch = useDispatch();
@@ -26,10 +26,12 @@ function SearchBar({ setCurrentPage }) {
   const onFormSubmit = (e) => {
     e.preventDefault();
     setCurrentPage(1);
+
     dispatch(changePage(1));
     dispatch(changeFilter(searchRequest));
-
     dispatch(getNews({ filter: searchRequest, page: 1 }));
+
+    setSearchRequest("");
   };
 
   const resetInput = () => {
@@ -64,7 +66,7 @@ function SearchBar({ setCurrentPage }) {
   );
 }
 
-export default SearchBar;
+// export default SearchBar;
 
 SearchBar.propTypes = {
   setCurrentPage: PropTypes.func.isRequired,
