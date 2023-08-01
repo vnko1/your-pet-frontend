@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import PropTypes from "prop-types";
 
-import { HashLoader } from "react-spinners";
+import Loader from "../../../../shared/loader/Loader";
 
 import {
   Box,
@@ -55,22 +55,7 @@ const AddPhoto = ({ isUserUpdate }) => {
   return (
     <>
       {isLoader ? (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <HashLoader
-            color="blue"
-            loading="true"
-            size={55}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
+        <Loader />
       ) : (
         <UserDataWrapper>
           <UserDataWrapper>
