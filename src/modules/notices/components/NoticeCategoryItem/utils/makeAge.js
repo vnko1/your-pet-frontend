@@ -8,7 +8,7 @@ const makeAge = (petDate) => {
   if (yearDifference >= 1) {
     return yearDifference + " year";
   } else {
-    return monthDifference + " month";
+    return monthDifference + " mth";
   }
 };
 
