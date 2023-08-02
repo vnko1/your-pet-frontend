@@ -59,6 +59,7 @@ const Pagination = ({ totalItems, currentPage, setCurrentPage }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        marginBottom: 112,
       }}
     >
       <BtnBack

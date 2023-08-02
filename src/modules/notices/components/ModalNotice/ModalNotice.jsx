@@ -45,8 +45,7 @@ const ModalNotice = ({
     sex,
     location,
     type,
-    email = "user@qwe.qwe",
-    phone = "+380971234567",
+    owner: { email = "unknown", phone = "unknown" } = {},
   } = useSelector(noticesCardById);
 
   return (

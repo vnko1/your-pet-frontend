@@ -38,6 +38,16 @@ const handleMiddleware = (store) => (next) => (action) => {
     });
   }
   if (
+    action.type === "notices/addFavorite/rejected" ||
+    action.type === "notices/deleteFavorite/rejected" ||
+    action.type === "notices/deleteCardById/rejected"
+  ) {
+    toast.error("Sorry, something went wrong, try reload page and try again", {
+      duration: 4000,
+      position: "top-right",
+    });
+  }
+  if (
     action.type === "auth/login/fulfilled" ||
     action.type === "auth/refresh/fulfilled"
   ) {

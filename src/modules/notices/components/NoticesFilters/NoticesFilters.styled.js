@@ -71,7 +71,7 @@ export const FilterItem = styled.li`
   border-radius: 20px;
   background-color: #cce4fb;
   font-family: "Inter";
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 130%;
   overflow: hidden;
@@ -91,7 +91,7 @@ export const FilterItemGender = styled.li`
   border-radius: 20px;
   background-color: #cce4fb;
   font-family: "Inter";
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 130%;
   cursor: ${(props) => (props.isExpandedGender ? "default" : "pointer")};
