@@ -30,7 +30,7 @@ const OurFriends = React.lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(authSelectors.selectRefreshing);
-  console.log(isRefreshing);
+
   React.useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -78,7 +78,7 @@ const App = () => {
   ];
   return (
     <React.Suspense fallback={<Loader loading={true} />}>
-      <RouterProvider router={createBrowserRouter(routes)} />
+      {!isRefreshing && <RouterProvider router={createBrowserRouter(routes)} />}
     </React.Suspense>
   );
 };
