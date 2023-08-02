@@ -4,9 +4,8 @@ import { NavLink } from "react-router-dom";
 import PetsList from "../PetsList/PetsList";
 
 import authSelectors from "../../../../redux/auth/auth-selectors";
-import { selectPetsIsLoading } from "../../../../redux/pets/pets-selectors";
 
-import { HashLoader } from "react-spinners";
+import Loader from "../../../../shared/loader/Loader";
 import {
   UserPetsBody,
   UserPetsTitleWrap,
@@ -17,7 +16,7 @@ import {
 
 const PetsData = () => {
   const { pets } = useSelector(authSelectors.selectUser);
-  const isLoading = useSelector(selectPetsIsLoading);
+  const isLoading = useSelector(authSelectors.selectIsLoader);
 
   return (
     <UserPetsBody>
@@ -28,22 +27,7 @@ const PetsData = () => {
         </NavLink>
       </UserPetsTitleWrap>
       {isLoading ? (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
-          <HashLoader
-            color="blue"
-            loading="true"
-            size={155}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
+        <Loader />
       ) : !pets || pets.length === 0 ? (
         <NoUserPets>
           You have not added a pet yet, you have the option to add your furry

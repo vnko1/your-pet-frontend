@@ -5,7 +5,6 @@ import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
 import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
-import { Container } from "./styles";
 import { PrivateRoute } from "./protectedRouters/PrivateRoute";
 import { RestrictedRoute } from "./protectedRouters/RestrictedRoute";
 
@@ -13,6 +12,8 @@ const SharedLayout = React.lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
 );
 const MainPage = React.lazy(() => import("./pages/MainPage/MainPage"));
+const NewsPage = React.lazy(() => import("./pages/NewsPage/NewsPage"));
+
 const RegisterPage = React.lazy(() =>
   import("./pages/RegisterPage/RegisterPage")
 );
@@ -43,6 +44,8 @@ const App = () => {
         },
         { path: "login", element: <RestrictedRoute component={LoginPage} /> },
         { path: "friends", element: <OurFriends /> },
+        { path: "news", element: <NewsPage /> },
+
         {
           path: "register",
           element: <RegisterPage />,
@@ -76,9 +79,7 @@ const App = () => {
       {isRefreshing ? (
         <div>Вставить Спінер або щось що інформує про загрузку!</div>
       ) : (
-        <Container>
           <RouterProvider router={createBrowserRouter(routes)} />
-        </Container>
       )}
     </React.Suspense>
   );

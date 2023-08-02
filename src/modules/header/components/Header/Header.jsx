@@ -12,6 +12,7 @@ import {
   MenuWrap,
   BurgerMenuWrap,
   MobileMenuContainer,
+  HeaderContainer,
 } from "./Header.styled";
 
 const Header = () => {
@@ -25,7 +26,7 @@ const Header = () => {
   return (
     <StyledHeader>
       {!isMobileMenuOpen && (
-        <>
+        <HeaderContainer>
           <Logo />
           <BurgerMenuWrap>
             <Navigation
@@ -36,7 +37,7 @@ const Header = () => {
               <use href={spriteSvg + "#menu-hamburger"} />
             </BurgerMenuBtn>
           </BurgerMenuWrap>
-        </>
+        </HeaderContainer>
       )}
 
       {/* {isMobileMenuOpen && ( */}

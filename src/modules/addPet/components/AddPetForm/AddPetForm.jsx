@@ -17,7 +17,7 @@ import {
 	TitleBox,
 } from "./AddPetForm.styled";
 import { addPetShema } from "../../../../schemas/addPetShema";
-import { postPet } from "../../../../redux/pets/pets-operation";
+import { addUserPet } from "../../../../redux/auth/auth-operations";
 import { newPost } from "../../../../redux/notices/notices-operations";
 import { formatDate } from "../../../../shared/utils/formatDate";
 import { useNavigate } from "react-router-dom";
@@ -70,9 +70,10 @@ const AddPetForm = () => {
 		formData.append("file", avatarFile);
 		comments && formData.append("comments", comments);
 
-		categories === "your-pet"
-			? dispatch(postPet(formData))
-			: dispatch(newPost(formData));
+    categories === "your-pet"
+      ? dispatch(addUserPet(formData))
+      : dispatch(newPost(formData));
+
 
 		resetForm();
 		navigate("/user");

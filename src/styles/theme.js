@@ -14,7 +14,7 @@ export const theme = {
 
   fonts: {
     main: "Manrope, sans-serif",
-    secondary: "Inter",
+    secondary: "Inter, sans-serif",
   },
 
   fontWeights: {

@@ -11,7 +11,6 @@ export const fetchNotices = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -36,7 +35,6 @@ export const fetchAddFavorite = createAsyncThunk(
       const response = await axiosPrivate.patch(`${url}`);
       return response.data.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
