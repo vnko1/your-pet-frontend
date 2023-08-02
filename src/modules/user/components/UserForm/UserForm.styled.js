@@ -184,5 +184,5 @@ export const UserFormSvg = styled.svg`
   width: 24px;
   height: 24px;
 
-  stroke: rgba(136, 136, 136, 1);
+  stroke: #54adff;
 `;

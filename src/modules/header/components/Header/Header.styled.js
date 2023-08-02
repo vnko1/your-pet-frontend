@@ -20,6 +20,7 @@ export const BurgerMenuBtn = styled.svg`
   width: 24px;
   height: 24px;
   stroke: #ffc107;
+  cursor: pointer;
 
   @media ${(props) => props.theme.media.desktop} {
     display: none;
@@ -30,6 +31,7 @@ export const MobileMenuCloseBtn = styled.svg`
   width: 24px;
   height: 24px;
   stroke: ${(props) => props.theme.colors.secondary};
+  cursor: pointer;
 `;
 
 export const MobileMenu = styled.div`
