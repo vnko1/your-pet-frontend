@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import PetsList from "../PetsList/PetsList";
 
 import authSelectors from "../../../../redux/auth/auth-selectors";
-import { selectPetsIsLoading } from "../../../../redux/pets/pets-selectors";
 
 import Loader from "../../../../shared/loader/Loader";
 import {
@@ -17,7 +16,7 @@ import {
 
 const PetsData = () => {
   const { pets } = useSelector(authSelectors.selectUser);
-  const isLoading = useSelector(selectPetsIsLoading);
+  const isLoading = useSelector(authSelectors.selectIsLoader);
 
   return (
     <UserPetsBody>

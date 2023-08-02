@@ -20,11 +20,10 @@ import {
   handlefulfilled,
   userFulfilled,
   userUpdateFulfilled,
-  userUpdateRejected,
   userRefreshFulfilled,
   userRefreshRejected,
   refreshTokenFullfilled,
-} from "./auth-Utils";
+} from "./auth-utils";
 
 const initialState = {
   user: {
@@ -41,7 +40,7 @@ const initialState = {
   isLoggedIn: false,
   isLoader: false,
   isRefreshing: false,
-  error: "",
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -63,7 +62,6 @@ const authSlice = createSlice({
 
       // UPDATE USER
       .addCase(updateUser.fulfilled, userUpdateFulfilled)
-      .addCase(updateUser.rejected, userUpdateRejected)
 
       // GetCurrentUser
       .addCase(getCurrentUser.fulfilled, getUserFulfilled)

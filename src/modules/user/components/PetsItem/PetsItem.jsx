@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { deletePet } from "../../../../redux/pets/pets-operation";
+import { deleteUserPet } from "../../../../redux/auth/auth-operations";
 
 import {
   UserPetsBtn,
@@ -18,7 +18,7 @@ const PetsItem = ({ id, image, name, birthday, type, comments }) => {
   const dispatch = useDispatch();
 
   const handelDellPets = (id) => {
-    dispatch(deletePet(id));
+    dispatch(deleteUserPet(id));
   };
   return (
     <UserPetsInfo>
