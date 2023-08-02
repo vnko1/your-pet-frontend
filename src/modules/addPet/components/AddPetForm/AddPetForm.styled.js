@@ -40,7 +40,7 @@ export const TitleBox = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 
-	@media ${(props) => props.theme.media.tablet} {
+	@media ${(props) => props.theme.media.desktop} {
 
 		&.third {
 			align-items: center;
