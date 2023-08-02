@@ -7,12 +7,15 @@ import {
   handlefulfilled,
   getActions,
 } from "./news-utils";
+import { formatDate } from "../../shared/utils/formatDate";
 
 export const newsSlice = createSlice({
   name: "news",
-  
+
   initialState: {
     items: [],
+    page: 1,
+    totalArticles: null,
     newsFilter: "",
     isLoading: false,
     error: null,
@@ -22,13 +25,24 @@ export const newsSlice = createSlice({
     changeFilter(state, { payload }) {
       state.newsFilter = payload;
     },
+    changePage(state, { payload }) {
+      state.page = payload;
+    },
+    changeTotalArticles(state, { payload }) {
+      state.totalArticles = payload;
+    },
   },
 
   extraReducers: (builder) => {
     builder
-      // getNews
+
       .addCase(getNews.fulfilled, (state, { payload }) => {
-        state.items = payload.articles;
+        let newsArticles = payload.articles.map((item) => {
+          return { ...item, date: formatDate(item.date, "/") };
+        });
+
+        state.totalArticles = payload.total;
+        state.items = newsArticles;
       })
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)
@@ -37,4 +51,4 @@ export const newsSlice = createSlice({
 });
 
 export const newsReducer = newsSlice.reducer;
-export const { changeFilter } = newsSlice.actions;
+export const { changeFilter, changePage } = newsSlice.actions;

@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 20px 0;
+
+  @media ${(props) => props.theme.media.tablet} {
+    width: 768px;
+    padding: 24px 32px 0;
+  }
+
+  @media ${(props) => props.theme.media.desktop} {
+    width: 1280px;
+    padding: 20px 16px 0;
+  }
 `;
 
 export const BurgerMenuBtn = styled.svg`
@@ -87,4 +96,11 @@ export const BurgerMenuWrap = styled.div`
   @media (${(props) => props.theme.media.tablet} and (max-width: 1279px)) {
     gap: 38px;
   }
+`;
+
+export const HeaderContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
