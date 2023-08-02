@@ -1,12 +1,18 @@
-import { List } from "./NewsList.styled";
+import { List, EmptyError } from "./NewsList.styled";
 
 import { useSelector } from "react-redux";
-import { selectNews } from "../../../redux/news/news-selectors";
+import {
+  selectNews,
+  selectTotalArticles,
+  selectIsLoading,
+} from "../../../redux/news/news-selectors";
 
 import NewsItem from "../newsItem";
 
 export function NewsList() {
   const news = useSelector(selectNews);
+  const totalArticles = useSelector(selectTotalArticles);
+  const isLoading = useSelector(selectIsLoading);
 
   return (
     <List>
@@ -20,6 +26,12 @@ export function NewsList() {
           url={url}
         />
       ))}
+      {news.length === 0 && !isLoading && totalArticles === 0 && (
+        <EmptyError>
+          Sorry, but we did not find any news with such request. Try changing
+          the search query.
+        </EmptyError>
+      )}
     </List>
   );
 }

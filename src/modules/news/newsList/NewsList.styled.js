@@ -16,3 +16,10 @@ export const List = styled.ul`
     margin-bottom: 68px;
   }
 `;
+
+export const EmptyError = styled.h2`
+  font-size: 28px;
+  font-weight: ${(props) => props.theme.fontWeights.bold};
+  letter-spacing: -0.28px;
+  text-align: center;
+`;
