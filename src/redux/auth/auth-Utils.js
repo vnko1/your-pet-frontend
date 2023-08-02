@@ -1,4 +1,4 @@
-import { notifySucces, notifyError } from "../../shared/toasters/Toasters";
+import { notifySucces } from "../../shared/toasters/Toasters";
 import { formatDate } from "../../shared/utils/formatDate";
 import {
   logIn,
@@ -6,6 +6,9 @@ import {
   logOut,
   updateUser,
   getCurrentUser,
+  addUserPet,
+  deleteUserPet,
+  refreshToken,
 } from "./auth-operations";
 
 export const extraActions = [
@@ -14,6 +17,9 @@ export const extraActions = [
   logOut,
   updateUser,
   getCurrentUser,
+  addUserPet,
+  deleteUserPet,
+  refreshToken,
 ];
 
 export const getActions = (type) => extraActions.map((action) => action[type]);
@@ -24,10 +30,13 @@ export const handlePending = (state) => {
 
 export const handlefulfilled = (state) => {
   state.isLoader = false;
+  state.error = null;
 };
 
-export const handleRejected = (state) => {
+export const handleRejected = (state, action) => {
   state.isLoader = false;
+
+  state.error = action.payload.response?.data?.message;
 };
 
 export const userFulfilled = (
@@ -87,11 +96,6 @@ export const userUpdateFulfilled = (
   state.tokenLifeTime = tokenLifeTime;
   state.refreshToken = refreshToken;
   state.user = { ...user, birthday };
-};
-
-export const userUpdateRejected = (state, { payload }) => {
-  notifyError(`${payload.error}`);
-  console.log("=>>>>>>>>>>>>>>>>>", payload);
 };
 
 export const userRefreshFulfilled = (state, { payload: { user } }) => {

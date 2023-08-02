@@ -18,10 +18,11 @@ const friendsSlice = createSlice({
       .addCase(getFriends.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.items = payload;
+        state.error = null;
       })
       .addCase(getFriends.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload;
+        state.error = payload.response?.data?.message;
       });
   },
 });

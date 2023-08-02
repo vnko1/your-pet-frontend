@@ -18,13 +18,6 @@ export const registration = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      if (error.response.status === 400) {
-        console.log("Невірно введені дані! Спробуйте ще раз!");
-      } else if (error.response.status === 409) {
-        console.log("Пошта вже використовується");
-      } else {
-        console.log("Упс... щось пішло не так. Перезавантажте сторінку.");
-      }
       return rejectWithValue(error);
     }
   }
@@ -38,7 +31,6 @@ export const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      console.log("Невірно введені дані");
       return rejectWithValue(error);
     }
   }
@@ -58,7 +50,6 @@ export const logOut = createAsyncThunk("auth/logOut", async () => {
 export const updateUser = createAsyncThunk(
   "auth/updateUser",
   async (credentials, { rejectWithValue }) => {
-    console.log("string ");
     try {
       const { data } = await axiosPrivate.put("/users/update", credentials);
       console.log(data);
@@ -77,20 +68,13 @@ export const updateUser = createAsyncThunk(
 
 export const getCurrentUser = createAsyncThunk(
   "auth/getCurrentUser",
-  async () => {
+  async (_, { rejectWithValue }) => {
     try {
       const { data } = await axiosPrivate.get("/users/current");
 
-      // notifyFulfilledLogin();
-      console.log("тут фулфілд логін");
-      console.log(data);
-
       return data;
     } catch (error) {
-      // notifyErrorLogin();
-      console.log(error);
-      console.log("тут ерор getCurrentUser func - operation");
-      return;
+      return rejectWithValue(error);
     }
   }
 );
@@ -114,7 +98,7 @@ export const refreshUser = createAsyncThunk(
 
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -122,12 +106,45 @@ export const refreshUser = createAsyncThunk(
 export const refreshToken = createAsyncThunk(
   "auth/refreshToken",
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const refreshToken = state.auth.refreshToken;
+    try {
+      const state = thunkAPI.getState();
+      const refreshToken = state.auth.refreshToken;
 
-    const { data } = await axiosPublic.post("/users/refresh", { refreshToken });
+      const { data } = await axiosPublic.post("/users/refresh", {
+        refreshToken,
+      });
 
-    return data;
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const addUserPet = createAsyncThunk(
+  "auth/addUserPet",
+  async (pet, { rejectWithValue, dispatch }) => {
+    try {
+      const { data } = await axiosPrivate.post("/pets/add", pet);
+
+      dispatch(getCurrentUser());
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteUserPet = createAsyncThunk(
+  "auth/deleteUserPet",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      await axiosPrivate.delete(`/pets/delete/${id}`);
+      dispatch(getCurrentUser());
+      return id;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
 );
 
