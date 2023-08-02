@@ -59,17 +59,15 @@ function NoticesPage() {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-      {isLoading ? (
+      {isLoading && (
         <Loader
           loading={isLoading}
           cssOverride={{
-            position: "static",
-            margin: "0 auto",
+            top: 280,
           }}
         />
-      ) : (
-        <NoticesCategoriesList />
       )}
+      <NoticesCategoriesList />
       {isPagination && !isLoading && (
         <Pagination
           totalItems={totalNoticesItems}
