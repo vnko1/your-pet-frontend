@@ -67,7 +67,7 @@ const SecondStep = ({ currentRadioChecked, formik }) => {
         <ErrorMessage name={"birthday"} />
       </FieldContainer>
       <FieldContainer>
-        <FieldLabel htmlFor="type">type</FieldLabel>
+        <FieldLabel htmlFor="type">Type</FieldLabel>
         <InputField
           type="text"
           name="type"
