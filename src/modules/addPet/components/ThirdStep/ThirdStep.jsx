@@ -66,8 +66,8 @@ const ThirdStep = ({
 									>
 										<SexIcon
 											checked={formik.values.sex === value}
-											isFemale={value === "female"}
-											isAnyOfChecked={formik.values.sex !== ""}
+											sex={formik.values.sex}
+											className={value === "male" ? "male" : "female"}
 										>
 											<use href={sprite + `#${value}`}></use>
 										</SexIcon>

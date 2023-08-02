@@ -73,7 +73,7 @@ const SecondStep = ({ currentRadioChecked, formik }) => {
           name="type"
           id="type"
           autoComplete="off"
-          placeholder="Type date of birth"
+          placeholder="Type of pet"
           value={formik.values.type}
           onChange={formik.handleChange}
           onFocus={handleFocus}
