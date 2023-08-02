@@ -1,73 +1,81 @@
 import styled from "styled-components";
 
-
 export const ButtonsContaiiner = styled.div`
-    display: flex;
-    justify-content: center;
-    gap: 32px;
+	display: flex;
+	flex-direction: column-reverse;
+	gap: 21px;
 
+	@media ${(props) => props.theme.media.tablet} {
+		flex-direction: row;
+		gap: 24px;
+
+		&.third {
+			justify-content: center;
+		}
+	}
 `;
 
 export const IconBtn = styled.svg`
-    fill: ${props => props.theme.colors.background};
-    stroke: ${props => props.theme.colors.primary};
+	fill: ${(props) => props.theme.colors.background};
+	stroke: ${(props) => props.theme.colors.primary};
 `;
 
 export const ButtonForm = styled.button`
-      display: flex;
-  gap: 12px;
-  justify-content: center;
-  background-color: ${props => props.theme.colors.primary};
-  border: none;
-  border-radius: 40px;
-  padding: 8px 28px;
-  text-align: center;
-  align-content: center;
-  align-items: center;
-  color: #fef9f9;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 0.64px;
+	display: flex;
+	justify-content: center;
+	padding: 8px 28px;
+	text-align: center;
+	align-content: center;
+	align-items: center;
+	gap: 12px;
 
-  @media screen and (min-width: 768px) {
-    width: 248px;
-  }
+	border: none;
+	border-radius: 40px;
 
-  & span {
-    margin: auto 0;
-    text-align: center;
-  }
+	background-color: ${(props) => props.theme.colors.primary};
+	color: #fef9f9;
 
-  &:active {
-    background-color: transparent;
-    color: ${props => props.theme.colors.primary};
+	font-family: Manrope, sans-serif;
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 0.64px;
 
-    ${IconBtn} {
-        fill: ${props => props.theme.colors.primary};
-    }
-  }
-  
+	@media ${(props) => props.theme.media.tablet} {
+		font-size: 16px;
+		width: 248px;
+	}
 
-  &:first-child {
-    background-color: transparent;
-    color: ${props => props.theme.colors.primary};
-    text-align: center;
-    align-content: center;
-    align-items: center;
-    @media screen and (min-width: 768px) {
-      width: 148px;
-    }
-  }
+	& span {
+		margin: auto 0;
+		text-align: center;
+	}
 
-  &:first-child:hover {
-    background-color: ${props => props.theme.colors.primary};
-    color: ${props => props.theme.colors.background};
+	&:active {
+		background-color: transparent;
+		color: ${(props) => props.theme.colors.primary};
 
-    ${IconBtn} {
-        stroke: ${props => props.theme.colors.background};
-    }
-  }
-  
-`
+		${IconBtn} {
+			fill: ${(props) => props.theme.colors.primary};
+		}
+	}
+
+	&:first-child {
+		background-color: transparent;
+		color: ${(props) => props.theme.colors.primary};
+		text-align: center;
+		align-content: center;
+		align-items: center;
+		@media screen and (min-width: 768px) {
+			width: 148px;
+		}
+	}
+
+	&:first-child:hover {
+		background-color: ${(props) => props.theme.colors.primary};
+		color: ${(props) => props.theme.colors.background};
+
+		${IconBtn} {
+			stroke: ${(props) => props.theme.colors.background};
+		}
+	}
+`;
