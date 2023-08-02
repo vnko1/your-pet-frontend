@@ -5,7 +5,6 @@ import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
 import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
-import { Container } from "./styles";
 import { PrivateRoute } from "./protectedRouters/PrivateRoute";
 import { RestrictedRoute } from "./protectedRouters/RestrictedRoute";
 
@@ -80,9 +79,7 @@ const App = () => {
       {isRefreshing ? (
         <div>Вставить Спінер або щось що інформує про загрузку!</div>
       ) : (
-        <Container>
           <RouterProvider router={createBrowserRouter(routes)} />
-        </Container>
       )}
     </React.Suspense>
   );
