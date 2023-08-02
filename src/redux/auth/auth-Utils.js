@@ -86,7 +86,6 @@ export const userUpdateFulfilled = (
   state,
   { payload: { token, tokenLifeTime, refreshToken, user } }
 ) => {
-  console.log(token);
   let birthday = "";
   if (user.birthday) {
     birthday = formatDate(user.birthday);

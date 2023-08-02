@@ -52,15 +52,11 @@ export const updateUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axiosPrivate.put("/users/update", credentials);
-      console.log(data);
+
       token.set(data.token);
-      // notifyFulfilledLogin();
-      console.log("тут фулфілд логін");
 
       return data;
     } catch (error) {
-      // notifyErrorLogin();
-      console.log("тут ерор updateUser func - operation");
       return rejectWithValue(error);
     }
   }
