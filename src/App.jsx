@@ -4,6 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { refreshUser } from "./redux/auth/auth-operations";
 import authSelectors from "./redux/auth/auth-selectors";
 import NotFound from "./pages/NotFoundPage/NotFound";
+import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
+import { Container } from "./styles";
+import { PrivateRoute } from "./protectedRouters/PrivateRoute";
+import { RestrictedRoute } from "./protectedRouters/RestrictedRoute";
+
 const SharedLayout = React.lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
 );
@@ -17,11 +22,11 @@ const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));
 const NoticesPage = React.lazy(() => import("./pages/NoticesPage/NoticesPage"));
 const UserPage = React.lazy(() => import("./pages/UserPage/UserPage"));
 const AddPetPage = React.lazy(() => import("./pages/AddPetPage/AddPetPage"));
-import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
-import { Container } from "./styles";
+
 const OurFriends = React.lazy(() =>
   import("./pages/OurFriendsPage/OurFriendsPage")
 );
+
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(authSelectors.selectRefreshing);
@@ -34,8 +39,11 @@ const App = () => {
       element: <SharedLayout />,
       children: [
         { index: true, element: <MainPage /> },
-        { path: "register", element: <RegisterPage /> },
-        { path: "login", element: <LoginPage /> },
+        {
+          path: "register",
+          element: <RestrictedRoute component={RegisterPage} />,
+        },
+        { path: "login", element: <RestrictedRoute component={LoginPage} /> },
         { path: "friends", element: <OurFriends /> },
         { path: "news", element: <NewsPage /> },
 
@@ -51,12 +59,18 @@ const App = () => {
             { index: true, path: "sell", element: <NoticesCategoriesList /> },
             { path: "lost-found", element: <NoticesCategoriesList /> },
             { path: "for-free", element: <NoticesCategoriesList /> },
-            { path: "favorite", element: <NoticesCategoriesList /> },
-            { path: "own", element: <NoticesCategoriesList /> },
+            {
+              path: "favorite",
+              element: <NoticesCategoriesList />,
+            },
+            {
+              path: "own",
+              element: <NoticesCategoriesList />,
+            },
           ],
         },
-        { path: "user", element: <UserPage /> },
-        { path: "add-pet", element: <AddPetPage /> },
+        { path: "user", element: <PrivateRoute component={UserPage} /> },
+        { path: "add-pet", element: <PrivateRoute component={AddPetPage} /> },
         { path: "*", element: <NotFound /> }, // Not Found Route
       ],
     },
