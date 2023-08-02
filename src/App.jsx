@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFoundPage/NotFound";
 import NoticesCategoriesList from "./modules/notices/components/NoticesCategoriesList/NoticesCategoriesList";
 import { PrivateRoute } from "./protectedRouters/PrivateRoute";
 import { RestrictedRoute } from "./protectedRouters/RestrictedRoute";
+import Loader from "./shared/loader/Loader";
 
 const SharedLayout = React.lazy(() =>
   import("./shared/components/SharedLayout/SharedLayout")
@@ -29,6 +30,7 @@ const OurFriends = React.lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(authSelectors.selectRefreshing);
+
   React.useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -75,12 +77,8 @@ const App = () => {
     },
   ];
   return (
-    <React.Suspense fallback={<div>Loading...</div>}>
-      {isRefreshing ? (
-        <div>Вставить Спінер або щось що інформує про загрузку!</div>
-      ) : (
-          <RouterProvider router={createBrowserRouter(routes)} />
-      )}
+    <React.Suspense fallback={<Loader loading={true} />}>
+      {!isRefreshing && <RouterProvider router={createBrowserRouter(routes)} />}
     </React.Suspense>
   );
 };
