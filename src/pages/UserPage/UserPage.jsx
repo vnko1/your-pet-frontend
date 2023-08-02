@@ -8,11 +8,11 @@ import { ModalCongrats } from "../../modules/user/components/ModalCongrats/ Moda
 import authSelectors from "../../redux/auth/auth-selectors";
 
 const UserPage = () => {
-  const isNewUser = useSelector(authSelectors.selectUser);
+  const { isNewUser } = useSelector(authSelectors.selectUser);
 
   return (
     <UserPageBody>
-      {!isNewUser && <ModalCongrats />}
+      {isNewUser && <ModalCongrats />}
       <UserData />
       <PetsData />
     </UserPageBody>

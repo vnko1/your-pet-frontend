@@ -51,13 +51,13 @@ const authSlice = createSlice({
       // REGISTRATION
       .addCase(registration.fulfilled, userFulfilled)
 
-      // //LogIn
+      //LogIn
       .addCase(logIn.fulfilled, userFulfilled)
       .addCase(logIn.rejected, (state) => {
         state.isLoggedIn = false;
       })
 
-      // // LOGOUT
+      // LOGOUT
       .addCase(logOut.fulfilled, getInitialState)
 
       // UPDATE USER

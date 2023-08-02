@@ -3,6 +3,15 @@ import { takeFavoritesList } from "../notices/notices-operations";
 import { notifySucces, notifyError } from "../../shared/toasters/Toasters";
 
 const handleMiddleware = (store) => (next) => (action) => {
+  if (
+    action.type === "auth/refresh/fulfilled" ||
+    action.type === "auth/login/fulfilled"
+  ) {
+    notifySucces(`Welcome ${action.payload.user.name}`);
+  }
+  if (action.type === "auth/logOut/fulfilled") {
+    notifySucces(`Goodbye ${store.getState().auth?.user?.name}`);
+  }
   if (action.type === "auth/addUserPet/fulfilled") {
     notifySucces("New Post of Pet succesfully created");
   }
