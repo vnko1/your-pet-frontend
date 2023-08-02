@@ -54,67 +54,63 @@ const AddPhoto = ({ isUserUpdate }) => {
 
   return (
     <>
-      {isLoader ? (
-        <Loader />
-      ) : (
+      <UserDataWrapper>
         <UserDataWrapper>
-          <UserDataWrapper>
-            <input {...getInputProps()} />
-            <UserPhotoBtnEmpty>
-              {selectedFile ? (
-                <UserPhotoWrapper>
-                  <PhotoContainer
-                    src={URL.createObjectURL(selectedFile)}
-                    alt="User's file"
-                    style={{ maxWidth: "300px" }}
-                  />
-                </UserPhotoWrapper>
-              ) : (
-                <UserPhotoWrapper>
-                  <PhotoContainer
-                    src={user.avatarUrl || avatar}
-                    alt="Default avatar"
-                    style={{ maxWidth: "300px" }}
-                  />
-                </UserPhotoWrapper>
-              )}
-              {!isUserUpdate && (
-                <Box>
-                  {selectedFile ? (
-                    <>
-                      <UserPhotoBtnCheck type="button" onClick={onSubmit}>
-                        <UserPhotoIcon>
-                          <use href={sprite + "#check"} />
-                        </UserPhotoIcon>
-                      </UserPhotoBtnCheck>
-                      <UserPhotoTitle>Confirm</UserPhotoTitle>
-                      <UserPhotoBtn
-                        type="button"
-                        onClick={() => setSelectedFile(null)}
-                      >
-                        <UserPhotoIconDell>
-                          <use href={sprite + "#cross-small"} />
-                        </UserPhotoIconDell>
-                      </UserPhotoBtn>
-                    </>
-                  ) : (
-                    <UserPhotoEdit
-                      {...getRootProps()}
-                      className={`dropzone ${isDragActive ? "active" : ""}`}
-                      type="button"
-                    >
+          {isLoader ? <Loader /> : <input {...getInputProps()} />}
+          <UserPhotoBtnEmpty>
+            {selectedFile ? (
+              <UserPhotoWrapper>
+                <PhotoContainer
+                  src={URL.createObjectURL(selectedFile)}
+                  alt="User's file"
+                  style={{ maxWidth: "300px" }}
+                />
+              </UserPhotoWrapper>
+            ) : (
+              <UserPhotoWrapper>
+                <PhotoContainer
+                  src={user.avatarUrl || avatar}
+                  alt="Default avatar"
+                  style={{ maxWidth: "300px" }}
+                />
+              </UserPhotoWrapper>
+            )}
+            {!isUserUpdate && (
+              <Box>
+                {selectedFile ? (
+                  <Box>
+                    <UserPhotoBtnCheck type="button" onClick={onSubmit}>
                       <UserPhotoIcon>
-                        <use href={sprite + "#camera"} />
+                        <use href={sprite + "#check"} />
                       </UserPhotoIcon>
-                      Edit photo
-                    </UserPhotoEdit>
-                  )}
-                </Box>
-              )}
-            </UserPhotoBtnEmpty>
-          </UserDataWrapper>
+                    </UserPhotoBtnCheck>
+                    <UserPhotoTitle>Confirm</UserPhotoTitle>
+                    <UserPhotoBtn
+                      type="button"
+                      onClick={() => setSelectedFile(null)}
+                    >
+                      <UserPhotoIconDell>
+                        <use href={sprite + "#cross-small"} />
+                      </UserPhotoIconDell>
+                    </UserPhotoBtn>
+                  </Box>
+                ) : (
+                  <UserPhotoEdit
+                    {...getRootProps()}
+                    className={`dropzone ${isDragActive ? "active" : ""}`}
+                    type="button"
+                  >
+                    <UserPhotoIcon>
+                      <use href={sprite + "#camera"} />
+                    </UserPhotoIcon>
+                    Edit photo
+                  </UserPhotoEdit>
+                )}
+              </Box>
+            )}
+          </UserPhotoBtnEmpty>
         </UserDataWrapper>
-      )}
+      </UserDataWrapper>
     </>
   );
 };
