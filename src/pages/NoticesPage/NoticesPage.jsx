@@ -6,12 +6,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   isLogin,
+  noticesIsLoading,
   noticesList,
   noticesTotal,
 } from "../../redux/notices/notices-selectors";
 import { NoticesContainer, NoticesTitle } from "./NoticesPage.styled";
 import Pagination from "../../shared/components/Notices/Pagination";
 import ScrollTopButton from "../../shared/components/Notices/ScrollTopButton";
+import Loader from "../../shared/loader/Loader";
 
 function NoticesPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +23,7 @@ function NoticesPage() {
   const totalNoticesItems = useSelector(noticesTotal);
   const noticesListInPagination = useSelector(noticesList);
   const isLoggedIn = useSelector(isLogin);
+  const isLoading = useSelector(noticesIsLoading);
 
   const dispatch = useDispatch();
 
@@ -56,8 +59,18 @@ function NoticesPage() {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-      <NoticesCategoriesList />
-      {isPagination && (
+      {isLoading ? (
+        <Loader
+          loading={isLoading}
+          cssOverride={{
+            position: "static",
+            margin: "0 auto",
+          }}
+        />
+      ) : (
+        <NoticesCategoriesList />
+      )}
+      {isPagination && !isLoading && (
         <Pagination
           totalItems={totalNoticesItems}
           currentPage={currentPage}
