@@ -20,21 +20,23 @@ import { addPetShema } from "../../../../schemas/addPetShema";
 import { postPet } from "../../../../redux/pets/pets-operation";
 import { newPost } from "../../../../redux/notices/notices-operations";
 import { formatDate } from "../../../../shared/utils/formatDate";
+import { useNavigate } from "react-router-dom";
 
 const AddPetForm = () => {
-	const {
-		currentStep,
-		handleNextStep,
-		handleBackStep,
-		isFirstStep,
-		isLastStep,
-	} = useMultistepForm(1);
-	const [currentRadioChecked, setCurremtRadioChecked] = useState("your-pet");
-	const [avatarFile, setAvatarFile] = useState("");
-	const [selectedSex, setSelectedSex] = useState("");
-	const [fileIsLoaded, setFileIsLoaded] = useState(false);
-	const [avatarPreview, setAvatarPreview] = useState("");
-	const dispatch = useDispatch();
+  const {
+    currentStep,
+    handleNextStep,
+    handleBackStep,
+    isFirstStep,
+    isLastStep,
+  } = useMultistepForm(1);
+  const [currentRadioChecked, setCurremtRadioChecked] = useState("your-pet");
+  const [avatarFile, setAvatarFile] = useState("");
+  const [selectedSex, setSelectedSex] = useState("");
+  const [fileIsLoaded, setFileIsLoaded] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
 	const initialValues = {
 		categories: currentRadioChecked,
@@ -49,8 +51,9 @@ const AddPetForm = () => {
 		comments: "",
 	};
 
-	const handleSubmit = (values, { resetForm }) => {
-		const { name, date, type, comments, categories } = values;
+  const handleSubmit = (values, { resetForm }) => {
+    const { name, date, type, comments, categories } = values;
+    console.log(values);
 
 		const formData = new FormData();
 
@@ -71,8 +74,9 @@ const AddPetForm = () => {
 			? dispatch(postPet(formData))
 			: dispatch(newPost(formData));
 
-		resetForm();
-	};
+    resetForm();
+    navigate("/user");
+  };
 
 	return (
 		<Formik

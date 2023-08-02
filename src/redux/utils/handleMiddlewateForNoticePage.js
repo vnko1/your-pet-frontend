@@ -1,5 +1,6 @@
 import { toast } from "react-hot-toast";
 import { takeFavoritesList } from "../notices/notices-operations";
+import { notifySucces } from "../../shared/toasters/Toasters";
 
 const handleMiddlewateForNoticePage = (store) => (next) => (action) => {
   if (action.type === "notices/addFavorite/fulfilled") {
@@ -22,11 +23,16 @@ const handleMiddlewateForNoticePage = (store) => (next) => (action) => {
   }
   if (
     action.type === "auth/login/fulfilled" ||
-    action.type === "auth/register/fulfilled" ||
     action.type === "auth/refresh/fulfilled"
   ) {
     const { favorites } = action.payload.user;
     store.dispatch(takeFavoritesList(favorites));
+  }
+  if (action.type === "pets/postPet/fulfilled") {
+    notifySucces("New Post of Pet succesfully created");
+  }
+  if (action.type === "pets/delete/fulfilled") {
+    notifySucces("Post succesfully deleted");
   }
 
   return next(action);

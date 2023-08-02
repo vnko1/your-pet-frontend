@@ -58,7 +58,7 @@ export const InputWrapper = styled.div`
 export const WrapperInput = styled.div`
   display: flex;
   padding-left: 12px;
-  padding-right: 12px;
+  padding-right: 7px;
   align-items: center;
   background-color: #fff;
   border: 1px solid #54adff;
@@ -177,14 +177,12 @@ export const WrapperCheckCross = styled.div`
 `;
 
 export const IconCross = styled(CloseSvg)`
-  width: 100%;
-  height: 100%;
   stroke: #f43f5e;
 `;
 
 export const IconCheck = styled(CheckSvg)`
-  width: 100%;
-  height: 100%;
+  width: 24px;
+  height: 24px;
   * {
     stroke: #00c3ad;
   }

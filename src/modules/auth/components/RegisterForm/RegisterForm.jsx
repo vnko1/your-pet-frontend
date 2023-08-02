@@ -163,11 +163,11 @@ const RegistrationForm = () => {
                       </IconHidden>
                     )}
                   </ShowPassBtn>
-                  <WrapperCheckCross>
-                    {(values.password === "" && true) ||
-                      (touched.password && errors.password && <IconCross />) ||
-                      (!errors.password && <IconCheck />)}
-                  </WrapperCheckCross>
+                  {(values.password === "" && true) ||
+                    (touched.password && errors.password && <IconCross />)}
+
+                  {(values.password === "" && true) ||
+                    (!errors.password && <IconCheck />)}
                 </WrapperShowCheck>
               </WrapperInput>
 
@@ -237,13 +237,13 @@ const RegistrationForm = () => {
                       </IconHidden>
                     )}
                   </ShowPassBtn>
-                  <WrapperCheckCross>
-                    {(values.confirmPassword === "" && true) ||
-                      (touched.confirmPassword && errors.confirmPassword && (
-                        <IconCross />
-                      )) ||
-                      (!errors.confirmPassword && <IconCheck />)}
-                  </WrapperCheckCross>
+                  {(values.confirmPassword === "" && true) ||
+                    (touched.confirmPassword && errors.confirmPassword && (
+                      <IconCross />
+                    ))}
+
+                  {(values.confirmPassword === "" && true) ||
+                    (!errors.confirmPassword && <IconCheck />)}
                 </WrapperShowCheck>
               </WrapperInput>
 
