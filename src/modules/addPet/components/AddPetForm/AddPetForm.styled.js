@@ -20,6 +20,9 @@ export const FormBox = styled(Form)`
 		padding: 20px 32px;
 		min-height: 542px;
 		max-width: 458px;
+	}
+	
+	@media ${(props) => props.theme.media.desktop} {
 		&.third {
 			max-width: 704px;
 		}
@@ -41,12 +44,10 @@ export const TitleBox = styled.div`
 	align-items: flex-start;
 
 	@media ${(props) => props.theme.media.desktop} {
-
 		&.third {
 			align-items: center;
 		}
 	}
-
 `;
 
 export const AddPetFormTitle = styled.h2`
@@ -70,9 +71,11 @@ export const Steps = styled.div`
 	justify-content: space-between;
 	gap: 16px;
 
-	&.third {
-		gap: 16px;
-		justify-content: center;
+	@media ${(props) => props.theme.media.desktop} {
+		&.third {
+			gap: 16px;
+			justify-content: center;
+		}
 	}
 `;
 
