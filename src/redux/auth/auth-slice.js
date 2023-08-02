@@ -8,6 +8,7 @@ import {
   registration,
   updateUser,
   refreshToken,
+  googleAuth,
 } from "./auth-operations";
 
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
@@ -23,6 +24,7 @@ import {
   userRefreshFulfilled,
   userRefreshRejected,
   refreshTokenFullfilled,
+  googleAuthFullfilled,
 } from "./auth-utils";
 
 const initialState = {
@@ -46,6 +48,13 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    setToken(state, action) {
+      state.token = action.payload.token;
+      state.refreshToken = action.payload.refreshToken;
+      state.tokenLifeTime = action.payload.tokenLifeTime;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // REGISTRATION
@@ -76,6 +85,8 @@ const authSlice = createSlice({
 
       .addCase(refreshToken.fulfilled, refreshTokenFullfilled)
 
+      .addCase(googleAuth.fulfilled, googleAuthFullfilled)
+
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)
       .addMatcher(isAnyOf(...getActions("rejected")), handleRejected);
@@ -88,5 +99,5 @@ const persistConfig = {
   whitelist: ["token", "tokenLifeTime", "refreshToken"],
 };
 
+export const { setToken } = authSlice.actions;
 export const authReducer = persistReducer(persistConfig, authSlice.reducer);
-export default authReducer;
