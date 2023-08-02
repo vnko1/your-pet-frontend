@@ -5,6 +5,7 @@ export const FormBox = styled(Form)`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	gap: 24px;
 	padding: 20px 8px;
 	height: 100%;
 	min-height: 496px;
@@ -19,6 +20,9 @@ export const FormBox = styled(Form)`
 		padding: 20px 32px;
 		min-height: 542px;
 		max-width: 458px;
+		&.third {
+			max-width: 704px;
+		}
 	}
 `;
 
@@ -34,6 +38,15 @@ export const ChooseSection = styled.div`
 export const TitleBox = styled.div`
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
+
+	@media ${(props) => props.theme.media.tablet} {
+
+		&.third {
+			align-items: center;
+		}
+	}
+
 `;
 
 export const AddPetFormTitle = styled.h2`
@@ -56,6 +69,11 @@ export const Steps = styled.div`
 	display: flex;
 	justify-content: space-between;
 	gap: 16px;
+
+	&.third {
+		gap: 16px;
+		justify-content: center;
+	}
 `;
 
 export const StepTitle = styled.h3`

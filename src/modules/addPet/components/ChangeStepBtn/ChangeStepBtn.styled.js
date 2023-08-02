@@ -8,6 +8,10 @@ export const ButtonsContaiiner = styled.div`
 	@media ${(props) => props.theme.media.tablet} {
 		flex-direction: row;
 		gap: 24px;
+
+		&.third {
+			justify-content: center;
+		}
 	}
 `;
 

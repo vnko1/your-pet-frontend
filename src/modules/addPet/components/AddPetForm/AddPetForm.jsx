@@ -23,20 +23,20 @@ import { formatDate } from "../../../../shared/utils/formatDate";
 import { useNavigate } from "react-router-dom";
 
 const AddPetForm = () => {
-  const {
-    currentStep,
-    handleNextStep,
-    handleBackStep,
-    isFirstStep,
-    isLastStep,
-  } = useMultistepForm(1);
-  const [currentRadioChecked, setCurremtRadioChecked] = useState("your-pet");
-  const [avatarFile, setAvatarFile] = useState("");
-  const [selectedSex, setSelectedSex] = useState("");
-  const [fileIsLoaded, setFileIsLoaded] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState("");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+	const {
+		currentStep,
+		handleNextStep,
+		handleBackStep,
+		isFirstStep,
+		isLastStep,
+	} = useMultistepForm(1);
+	const [currentRadioChecked, setCurremtRadioChecked] = useState("your-pet");
+	const [avatarFile, setAvatarFile] = useState("");
+	const [selectedSex, setSelectedSex] = useState("");
+	const [fileIsLoaded, setFileIsLoaded] = useState(false);
+	const [avatarPreview, setAvatarPreview] = useState("");
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const initialValues = {
 		categories: currentRadioChecked,
@@ -51,9 +51,9 @@ const AddPetForm = () => {
 		comments: "",
 	};
 
-  const handleSubmit = (values, { resetForm }) => {
-    const { name, date, type, comments, categories } = values;
-    console.log(values);
+	const handleSubmit = (values, { resetForm }) => {
+		const { name, date, type, comments, categories } = values;
+		console.log(values);
 
 		const formData = new FormData();
 
@@ -74,9 +74,9 @@ const AddPetForm = () => {
 			? dispatch(postPet(formData))
 			: dispatch(newPost(formData));
 
-    resetForm();
-    navigate("/user");
-  };
+		resetForm();
+		navigate("/user");
+	};
 
 	return (
 		<Formik
@@ -97,16 +97,16 @@ const AddPetForm = () => {
 				};
 
 				return (
-					<FormBox>
+					<FormBox className="third">
 						<ChooseSection>
-							<TitleBox>
+							<TitleBox className="third">
 								<AddPetFormTitle>
 									{currentStep !== 1
 										? titleChange(currentRadioChecked)
 										: "Add pet"}
 								</AddPetFormTitle>
 							</TitleBox>
-							<Steps>
+							<Steps className="third">
 								<StepTitle isActive={currentStep === 1}>
 									Choose option
 								</StepTitle>

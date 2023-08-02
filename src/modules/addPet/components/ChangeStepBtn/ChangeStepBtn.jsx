@@ -4,7 +4,7 @@ import sprite from "../../../../assets/icons.svg";
 
 const ChangeStepBtn = ({ isFirstStep, isLastStep, next, back }) => {
 	return (
-		<ButtonsContaiiner>
+		<ButtonsContaiiner className="third">
 			<ButtonForm type="button" onClick={back}>
 				<IconBtn width={24} height={24}>
 					<use href={sprite + "#arrow-left"}></use>
