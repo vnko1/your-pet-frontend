@@ -9,7 +9,8 @@ import {
 
 import NewsItem from "../newsItem";
 
-export function NewsList() {
+// export function NewsList() {
+function NewsList() {
   const news = useSelector(selectNews);
   const totalArticles = useSelector(selectTotalArticles);
   const isLoading = useSelector(selectIsLoading);
@@ -35,3 +36,5 @@ export function NewsList() {
     </List>
   );
 }
+
+export default NewsList;
