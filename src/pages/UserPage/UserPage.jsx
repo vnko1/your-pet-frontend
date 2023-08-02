@@ -11,13 +11,23 @@ import authSelectors from "../../redux/auth/auth-selectors";
 
 const UserPage = () => {
   const [modal, setModal] = useState(false);
-  const { isNewUser } = useSelector(authSelectors.selectUser);
+  const user = useSelector(authSelectors.selectUser);
+
+  // useEffect(() => {
+  //   if (user.isNewUser === "true") {
+  //     setModal(true);
+  //   }
+  // }, [user.isNewUser]);
 
   useEffect(() => {
-    if (isNewUser === "true") {
+    const createdAt = new Date(user.createdAt);
+    const updatedAt = new Date();
+
+    const interval = updatedAt - createdAt;
+    if (interval < 6000) {
       setModal(true);
     }
-  }, [isNewUser]);
+  }, [user.createdAt, user.updatedAt]);
 
   return (
     <UserPageBody>
