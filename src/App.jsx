@@ -78,7 +78,7 @@ const App = () => {
   ];
   return (
     <React.Suspense fallback={<Loader loading={true} />}>
-      {!isRefreshing && <RouterProvider router={createBrowserRouter(routes)} />}
+      <RouterProvider router={createBrowserRouter(routes)} />
     </React.Suspense>
   );
 };
