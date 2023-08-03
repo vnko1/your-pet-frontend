@@ -58,29 +58,16 @@ const AddPetForm = () => {
 
     if (categories === "your-pet") {
       formData.append("name", name);
-      formData.append("type", type);
       formData.append("date", formatDate(date));
-      formData.append("file", avatarFile);
-      comments && formData.append("comments", comments);
+      formData.append("type", type);
     } else {
+      formData.append("value", values);
       Object.entries(values).forEach(([key, value]) => {
-        if (key === "categories") {
-          formData.append("category", value);
-          return;
-        } else if (key === "date") {
-          formData.append("date", formatDate(value));
-          return;
-        } else if (key === "file") {
-          formData.append("file", avatarFile);
-          return;
-        } else if (key === "comments") {
-          comments && formData.append(key, value);
-          return;
-        } else {
-          formData.append(key, value);
-        }
+        formData.append(key, value);
       });
     }
+    formData.append("file", avatarFile);
+    comments && formData.append("comments", comments);
 
     categories === "your-pet"
       ? dispatch(addUserPet(formData))
@@ -107,66 +94,70 @@ const AddPetForm = () => {
           setSelectedSex(e.target.value);
           formik.handleChange(e);
         };
-        
-				return (
-					<FormBox className="third">
-						<ChooseSection>
-							<TitleBox className="third">
-								<AddPetFormTitle>
-									{currentStep !== 1
-										? titleChange(currentRadioChecked)
-										: "Add pet"}
-								</AddPetFormTitle>
-							</TitleBox>
-							<Steps className="third">
-								<StepTitle isActive={currentStep === 1} isCompleated={currentStep > 1}>
-									Choose option
-								</StepTitle>
-								<StepTitle isActive={currentStep === 2} isCompleated={currentStep > 2}>
-									Personal details
-								</StepTitle>
-								<StepTitle isActive={currentStep === 3}>More info</StepTitle>
-							</Steps>
 
-							{currentStep === 1 && (
-								<FirstStep
-									handleCategories={handleCategories}
-									currentRadioChecked={currentRadioChecked}
-								/>
-							)}
-							{currentStep === 2 && (
-								<SecondStep
-									currentRadioChecked={currentRadioChecked}
-									formik={formik}
-									
-								/>
-							)}
-							{currentStep === 3 && (
-								<ThirdStep
-									currentRadioChecked={currentRadioChecked}
-									handleSex={handleSex}
-									avatarFile={avatarFile}
-									setAvatarFile={setAvatarFile}
-									fileIsLoaded={fileIsLoaded}
-									setFileIsLoaded={setFileIsLoaded}
-									avatarPreview={avatarPreview}
-									setAvatarPreview={setAvatarPreview}
-									formik={formik}
-								/>
-							)}
-						</ChooseSection>
-						<ChangeStepBtn
-							isFirstStep={isFirstStep}
-							isLastStep={isLastStep}
-							next={handleNextStep}
-							back={handleBackStep}
-						/>
-					</FormBox>
-				);
-			}}
-		</Formik>
-	);
+        return (
+          <FormBox className="third">
+            <ChooseSection>
+              <TitleBox className="third">
+                <AddPetFormTitle>
+                  {currentStep !== 1
+                    ? titleChange(currentRadioChecked)
+                    : "Add pet"}
+                </AddPetFormTitle>
+              </TitleBox>
+              <Steps className="third">
+                <StepTitle
+                  isActive={currentStep === 1}
+                  isCompleated={currentStep > 1}
+                >
+                  Choose option
+                </StepTitle>
+                <StepTitle
+                  isActive={currentStep === 2}
+                  isCompleated={currentStep > 2}
+                >
+                  Personal details
+                </StepTitle>
+                <StepTitle isActive={currentStep === 3}>More info</StepTitle>
+              </Steps>
 
+              {currentStep === 1 && (
+                <FirstStep
+                  handleCategories={handleCategories}
+                  currentRadioChecked={currentRadioChecked}
+                />
+              )}
+              {currentStep === 2 && (
+                <SecondStep
+                  currentRadioChecked={currentRadioChecked}
+                  formik={formik}
+                />
+              )}
+              {currentStep === 3 && (
+                <ThirdStep
+                  currentRadioChecked={currentRadioChecked}
+                  handleSex={handleSex}
+                  avatarFile={avatarFile}
+                  setAvatarFile={setAvatarFile}
+                  fileIsLoaded={fileIsLoaded}
+                  setFileIsLoaded={setFileIsLoaded}
+                  avatarPreview={avatarPreview}
+                  setAvatarPreview={setAvatarPreview}
+                  formik={formik}
+                />
+              )}
+            </ChooseSection>
+            <ChangeStepBtn
+              isFirstStep={isFirstStep}
+              isLastStep={isLastStep}
+              next={handleNextStep}
+              back={handleBackStep}
+            />
+          </FormBox>
+        );
+      }}
+    </Formik>
+  );
 };
 
 export default AddPetForm;
