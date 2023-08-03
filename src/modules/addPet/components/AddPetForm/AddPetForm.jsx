@@ -63,7 +63,24 @@ const AddPetForm = () => {
     } else {
       formData.append("value", values);
       Object.entries(values).forEach(([key, value]) => {
-        formData.append(key, value);
+        if (key === "categories") {
+          formData.append("category", value);
+
+          return;
+        } else if (key === "date") {
+          formData.append("date", formatDate(value));
+          return;
+        } else if (key === "file") {
+          formData.append("file", avatarFile);
+          return;
+        } else if (key === "comments") {
+          comments && formData.append(key, value);
+          return;
+        } else if (!value) {
+          return;
+        } else {
+          formData.append(key, value);
+        }
       });
     }
     formData.append("file", avatarFile);
@@ -87,7 +104,6 @@ const AddPetForm = () => {
         const handleCategories = (e) => {
           setCurremtRadioChecked(e.target.value);
           formik.handleChange(e);
-          console.log(formik.values);
         };
 
         const handleSex = (e) => {
