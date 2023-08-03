@@ -10,7 +10,7 @@ export const NoticesNavMainContainer = styled.div`
   margin-bottom: 24px;
 
   @media (min-width: 768px) {
-    margin-bottom: 40px;
+    margin-bottom: ${(props) => (props.isLoggedIn ? "26px" : "82px")};
   }
 
   @media (min-width: 1280px) {
@@ -43,7 +43,6 @@ export const NoticesNavWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  /* margin-bottom: 24px; */
   width: 100%;
 
   @media (max-width: 767px) {
@@ -102,6 +101,22 @@ export const FilterCategoryWrap = styled.div`
     gap: 8px;
     margin: 0 auto;
   }
+
+  @media (min-width: 768px) {
+    position: absolute;
+    top: ${(props) => (props.isLoggedIn ? "48px" : "64px")};
+    left: 265px;
+    justify-content: flex-end;
+    width: 440px;
+  }
+
+  @media (min-width: 1280px) {
+    position: absolute;
+    top: 2px;
+    left: 534px;
+    justify-content: flex-end;
+    width: 400px;
+  }
 `;
 
 export const FilterCategoryBtn = styled.button`
@@ -121,13 +136,17 @@ export const FilterCategoryBtn = styled.button`
   font-weight: 400;
   line-height: 120%;
 
+  @media (min-width: 1280px) {
+    padding: 8px 12px;
+  }
+
   &:hover svg use,
   &:focus svg use {
     stroke: rgb(255, 193, 7);
   }
 `;
 
-export const FilterCategoryText = styled.p`
+export const FilterCategoryText = styled.span`
   color: #54adff;
   font-family: Inter;
   font-size: 12px;

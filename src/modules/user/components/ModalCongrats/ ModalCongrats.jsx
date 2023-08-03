@@ -8,6 +8,7 @@ import {
   Svg,
   Text,
   Title,
+  WrapperIconPawnprint,
 } from "./ ModalCongrats.styled";
 
 import sprite from "../../../../assets/icons.svg";
@@ -34,7 +35,9 @@ export const ModalCongrats = () => {
             <Text>Youre registration is success</Text>
             <BtnCongrats type="button" onClick={closeModal}>
               Go to profile
-              <Pawnprint />
+              <WrapperIconPawnprint>
+                <Pawnprint />
+              </WrapperIconPawnprint>
             </BtnCongrats>
           </Box>
         </Modal>
