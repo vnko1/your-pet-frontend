@@ -20,6 +20,7 @@ export const Box = styled.div`
 `;
 
 export const BtnClose = styled.button`
+  position: relative;
   width: 24px;
   height: 24px;
   padding: 0;
@@ -34,8 +35,7 @@ export const BtnClose = styled.button`
 
   @media screen and (min-width: 768px) {
     margin-left: 550px;
-    right: 24px;
-    top: 24px;
+    top: 10px;
   }
 
   @media screen and (min-width: 1280px) {
@@ -54,7 +54,7 @@ export const Title = styled.h2`
   padding: 30px;
   text-align: center;
 
-  font-family: Manrope;
+  font-family: Manrope, sans-serif;
   font-weight: 500;
   font-size: 24px;
 
@@ -77,7 +77,7 @@ export const Text = styled.p`
   margin-bottom: 40px;
   text-align: center;
 
-  font-family: Manrope;
+  font-family: Manrope, sans-serif;
   font-weight: 500;
   font-size: 16px;
 
@@ -105,11 +105,11 @@ export const BtnCongrats = styled.button`
   border-radius: 40px;
   border: none;
 
-  font-family: Manrope;
   font-weight: 700;
   font-size: 16px;
   line-height: 33px;
   letter-spacing: 0.04em;
+  padding-right: 30px;
 
   color: rgba(254, 249, 249, 1);
 
@@ -127,6 +127,14 @@ export const BtnCongrats = styled.button`
 
   @media screen and (min-width: 1280px) {
     height: 40px;
-    margin-left: 180px;
   }
+`;
+
+export const WrapperIconPawnprint = styled.div`
+  position: absolute;
+  top: 60%;
+  right: 45%;
+  z-index: 10;
+  margin-top: 7px;
+  margin-right: 10px;
 `;
