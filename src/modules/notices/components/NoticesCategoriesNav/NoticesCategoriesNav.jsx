@@ -95,6 +95,7 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
 
   return (
     <NoticesNavMainContainer
+      isLoggedIn={isLoggedIn}
       isActiveItems={
         isBeforeOneYear || isUpOneYear || isUpTwoYear || isFemale || isMale
       }
@@ -120,7 +121,7 @@ function NoticesCategoriesNav({ currentPage, setCurrentPage }) {
           <AddPetButton />
         </FilterAndAddPetBtnWrap>
       </NoticesCategoryContainer>
-      <FilterCategoryWrap>
+      <FilterCategoryWrap isLoggedIn={isLoggedIn}>
         {isBeforeOneYear && (
           <FilterCategoryBtn onClick={() => setIsBeforeOneYear(false)}>
             <FilterCategoryText>3-12m</FilterCategoryText>
