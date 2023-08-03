@@ -89,7 +89,7 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
                   name="birthday"
                   id="birthday"
                   autoComplete="off"
-                  placeholder={"00.00.0000"}
+                  placeholder={"00-00-0000"}
                   disabled={isUserUpdate}
                 />
               </UserFormItem>
