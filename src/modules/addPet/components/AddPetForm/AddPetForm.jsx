@@ -107,64 +107,66 @@ const AddPetForm = () => {
           setSelectedSex(e.target.value);
           formik.handleChange(e);
         };
+        
+				return (
+					<FormBox className="third">
+						<ChooseSection>
+							<TitleBox className="third">
+								<AddPetFormTitle>
+									{currentStep !== 1
+										? titleChange(currentRadioChecked)
+										: "Add pet"}
+								</AddPetFormTitle>
+							</TitleBox>
+							<Steps className="third">
+								<StepTitle isActive={currentStep === 1} isCompleated={currentStep > 1}>
+									Choose option
+								</StepTitle>
+								<StepTitle isActive={currentStep === 2} isCompleated={currentStep > 2}>
+									Personal details
+								</StepTitle>
+								<StepTitle isActive={currentStep === 3}>More info</StepTitle>
+							</Steps>
 
-        return (
-          <FormBox className="third">
-            <ChooseSection>
-              <TitleBox className="third">
-                <AddPetFormTitle>
-                  {currentStep !== 1
-                    ? titleChange(currentRadioChecked)
-                    : "Add pet"}
-                </AddPetFormTitle>
-              </TitleBox>
-              <Steps className="third">
-                <StepTitle isActive={currentStep === 1}>
-                  Choose option
-                </StepTitle>
-                <StepTitle isActive={currentStep === 2}>
-                  Personal details
-                </StepTitle>
-                <StepTitle isActive={currentStep === 3}>More info</StepTitle>
-              </Steps>
+							{currentStep === 1 && (
+								<FirstStep
+									handleCategories={handleCategories}
+									currentRadioChecked={currentRadioChecked}
+								/>
+							)}
+							{currentStep === 2 && (
+								<SecondStep
+									currentRadioChecked={currentRadioChecked}
+									formik={formik}
+									
+								/>
+							)}
+							{currentStep === 3 && (
+								<ThirdStep
+									currentRadioChecked={currentRadioChecked}
+									handleSex={handleSex}
+									avatarFile={avatarFile}
+									setAvatarFile={setAvatarFile}
+									fileIsLoaded={fileIsLoaded}
+									setFileIsLoaded={setFileIsLoaded}
+									avatarPreview={avatarPreview}
+									setAvatarPreview={setAvatarPreview}
+									formik={formik}
+								/>
+							)}
+						</ChooseSection>
+						<ChangeStepBtn
+							isFirstStep={isFirstStep}
+							isLastStep={isLastStep}
+							next={handleNextStep}
+							back={handleBackStep}
+						/>
+					</FormBox>
+				);
+			}}
+		</Formik>
+	);
 
-              {currentStep === 1 && (
-                <FirstStep
-                  handleCategories={handleCategories}
-                  currentRadioChecked={currentRadioChecked}
-                />
-              )}
-              {currentStep === 2 && (
-                <SecondStep
-                  currentRadioChecked={currentRadioChecked}
-                  formik={formik}
-                />
-              )}
-              {currentStep === 3 && (
-                <ThirdStep
-                  currentRadioChecked={currentRadioChecked}
-                  handleSex={handleSex}
-                  avatarFile={avatarFile}
-                  setAvatarFile={setAvatarFile}
-                  fileIsLoaded={fileIsLoaded}
-                  setFileIsLoaded={setFileIsLoaded}
-                  avatarPreview={avatarPreview}
-                  setAvatarPreview={setAvatarPreview}
-                  formik={formik}
-                />
-              )}
-            </ChooseSection>
-            <ChangeStepBtn
-              isFirstStep={isFirstStep}
-              isLastStep={isLastStep}
-              next={handleNextStep}
-              back={handleBackStep}
-            />
-          </FormBox>
-        );
-      }}
-    </Formik>
-  );
 };
 
 export default AddPetForm;
