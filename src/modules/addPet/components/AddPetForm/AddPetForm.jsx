@@ -76,6 +76,8 @@ const AddPetForm = () => {
         } else if (key === "comments") {
           comments && formData.append(key, value);
           return;
+        } else if (!value) {
+          return;
         } else {
           formData.append(key, value);
         }
