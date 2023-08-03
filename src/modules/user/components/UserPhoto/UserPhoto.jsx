@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import PropTypes from "prop-types";
 
@@ -22,13 +22,12 @@ import avatar from "../../../../images/avatarDefault-image/Avatar.png";
 
 import sprite from "../../../../assets/icons.svg";
 
-import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../../../../redux/auth/auth-operations";
+import { useSelector } from "react-redux";
 import authSelectors from "../../../../redux/auth/auth-selectors";
 
-const AddPhoto = ({ isUserUpdate }) => {
+const AddPhoto = ({ isUserUpdate, setUserPhoto }) => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const dispatch = useDispatch();
+  const [isSelected, setisSelected] = useState(false);
   const user = useSelector(authSelectors.selectUser);
   const isLoader = useSelector(authSelectors.selectIsLoader);
 
@@ -44,12 +43,13 @@ const AddPhoto = ({ isUserUpdate }) => {
     },
   });
 
-  const formData = new FormData();
-  formData.append("avatar", selectedFile);
+  useEffect(() => {
+    setisSelected(false);
+  }, [selectedFile]);
 
   const onSubmit = () => {
-    dispatch(updateUser(formData));
-    setSelectedFile(null);
+    setUserPhoto(selectedFile);
+    setisSelected(true);
   };
 
   return (
@@ -77,14 +77,16 @@ const AddPhoto = ({ isUserUpdate }) => {
             )}
             {!isUserUpdate && (
               <Box>
-                {selectedFile ? (
+                {selectedFile && !isSelected ? (
                   <Box>
                     <UserPhotoBtnCheck type="button" onClick={onSubmit}>
                       <UserPhotoIcon>
                         <use href={sprite + "#check"} />
                       </UserPhotoIcon>
                     </UserPhotoBtnCheck>
+
                     <UserPhotoTitle>Confirm</UserPhotoTitle>
+
                     <UserPhotoBtn
                       type="button"
                       onClick={() => setSelectedFile(null)}
@@ -119,4 +121,5 @@ export default AddPhoto;
 
 AddPhoto.propTypes = {
   isUserUpdate: PropTypes.bool.isRequired,
+  setUserPhoto: PropTypes.func.isRequired,
 };
