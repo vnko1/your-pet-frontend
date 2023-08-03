@@ -1,8 +1,8 @@
 import axios from "axios";
 import { refreshToken } from "../../redux/auth/auth-operations";
 
-const baseURL = "https://my-pet-app-8sz1.onrender.com";
-
+// const baseURL = "https://my-pet-app-8sz1.onrender.com";
+const baseURL = "http://localhost:3000";
 export const axiosPublic = axios.create({
   baseURL,
 });
