@@ -31,7 +31,7 @@ export function SearchBar({ setCurrentPage }) {
     dispatch(changeFilter(searchRequest));
     dispatch(getNews({ filter: searchRequest, page: 1 }));
 
-    setSearchRequest("");
+    // setSearchRequest("");
   };
 
   const resetInput = () => {

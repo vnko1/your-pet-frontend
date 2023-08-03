@@ -55,7 +55,6 @@ export const ContentBox = styled.div`
   font-size: 12px;
 `;
 export const TimeItem = styled.li`
-  font-family: "Manrope";
   font-style: normal;
   font-weight: 500;
   font-size: 12px;

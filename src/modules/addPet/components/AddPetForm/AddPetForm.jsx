@@ -109,7 +109,6 @@ const AddPetForm = () => {
           setSelectedSex(e.target.value);
           formik.handleChange(e);
         };
-
         return (
           <FormBox className="third">
             <ChooseSection>
@@ -121,10 +120,16 @@ const AddPetForm = () => {
                 </AddPetFormTitle>
               </TitleBox>
               <Steps className="third">
-                <StepTitle isActive={currentStep === 1}>
+                <StepTitle
+                  isActive={currentStep === 1}
+                  isCompleated={currentStep > 1}
+                >
                   Choose option
                 </StepTitle>
-                <StepTitle isActive={currentStep === 2}>
+                <StepTitle
+                  isActive={currentStep === 2}
+                  isCompleated={currentStep > 2}
+                >
                   Personal details
                 </StepTitle>
                 <StepTitle isActive={currentStep === 3}>More info</StepTitle>

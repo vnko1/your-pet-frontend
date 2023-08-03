@@ -166,6 +166,9 @@ function NoticesCategoryItem({
         <Title>{title}</Title>
         <LearnMoreBtn onClick={() => openModalAndFetchCard()}>
           Learn more
+          <svg width={24} height={24}>
+            <use href={icons + "#pawprint"} stroke="#FFFFFF" />
+          </svg>
         </LearnMoreBtn>
       </CardTextInfoWrap>
       {isModalOpen && (
