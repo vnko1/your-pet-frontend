@@ -66,6 +66,7 @@ const AddPetForm = () => {
       Object.entries(values).forEach(([key, value]) => {
         if (key === "categories") {
           formData.append("category", value);
+
           return;
         } else if (key === "date") {
           formData.append("date", formatDate(value));
@@ -102,7 +103,6 @@ const AddPetForm = () => {
         const handleCategories = (e) => {
           setCurremtRadioChecked(e.target.value);
           formik.handleChange(e);
-          console.log(formik.values);
         };
 
         const handleSex = (e) => {
