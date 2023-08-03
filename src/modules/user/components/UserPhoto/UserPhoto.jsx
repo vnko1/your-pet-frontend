@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import PropTypes from "prop-types";
 
-import Loader from "../../../../shared/loader/Loader";
-
 import {
   Box,
   PhotoContainer,
@@ -30,7 +28,6 @@ const AddPhoto = ({ isUserUpdate }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector(authSelectors.selectUser);
-  const isLoader = useSelector(authSelectors.selectIsLoader);
 
   const onDrop = (acceptedFiles) => {
     setSelectedFile(acceptedFiles[0]);
@@ -56,7 +53,7 @@ const AddPhoto = ({ isUserUpdate }) => {
     <>
       <UserDataWrapper>
         <UserDataWrapper>
-          {isLoader ? <Loader /> : <input {...getInputProps()} />}
+          <input {...getInputProps()} />
           <UserPhotoBtnEmpty>
             {selectedFile ? (
               <UserPhotoWrapper>
@@ -120,3 +117,7 @@ export default AddPhoto;
 AddPhoto.propTypes = {
   isUserUpdate: PropTypes.bool.isRequired,
 };
+
+//  {
+//    isLoader ? <Loader /> : <input {...getInputProps()} />;
+//  }

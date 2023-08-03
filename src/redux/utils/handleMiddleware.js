@@ -59,7 +59,9 @@ const handleMiddleware = (store) => (next) => (action) => {
     action.type === "auth/register/rejected" ||
     action.type === "auth/login/rejected" ||
     action.type === "auth/updateUser/rejected" ||
-    action.type === "auth/getCurrentUser/rejected"
+    action.type === "auth/getCurrentUser/rejected" ||
+    action.type === "auth/addUserPet/rejected" ||
+    action.type === "auth/deleteUserPet/rejected"
   ) {
     notifyError(action.payload.response?.data?.message);
   }

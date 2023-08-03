@@ -106,3 +106,15 @@ export const refreshTokenFullfilled = (state, { payload }) => {
   state.tokenLifeTime = payload.tokenLifeTime;
   state.refreshToken = payload.refreshToken;
 };
+
+export const addPet = (state, action) => {
+  const date = formatDate(action.payload.pet.date);
+  const pet = { ...action.payload.pet, date };
+  state.user.pets = [...state.user.pets, pet];
+};
+
+export const deletePet = (state, action) => {
+  state.user.pets = state.user.pets.filter(
+    (item) => item._id !== action.payload
+  );
+};
