@@ -42,6 +42,7 @@ export const UserFormBody = styled(Form)`
   @media ${(props) => props.theme.media.desktop} {
     flex-direction: column;
     gap: 25px;
+    width: 395px;
   }
 `;
 export const UserFormInfo = styled.div`
@@ -115,6 +116,9 @@ export const UserFormInput = styled(Field)`
     font-size: 16px;
     letter-spacing: 0.64px;
   }
+  @media ${(props) => props.theme.media.desktop} {
+    max-width: 255px;
+  }
 `;
 
 export const UserFormBtn = styled.div`
@@ -124,6 +128,7 @@ export const UserFormBtn = styled.div`
   height: 31px;
   width: 100%;
   padding: 0;
+  cursor: pointer;
 
   border: none;
 

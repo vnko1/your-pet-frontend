@@ -52,7 +52,9 @@ const ModalNotice = ({
     <ModalNoticeBox>
       <ModalNoticeWrap>
         <Image src={fileUrl} alt={name} />
-        <Category>{category}</Category>
+        <Category>
+          {category === "for-free" ? "in good hands" : category}
+        </Category>
         <div>
           <Title>{title}</Title>
           <ModalNoticeInfoList>

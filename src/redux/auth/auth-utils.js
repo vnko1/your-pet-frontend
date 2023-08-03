@@ -34,7 +34,6 @@ export const handlefulfilled = (state) => {
 
 export const handleRejected = (state, action) => {
   state.isLoader = false;
-
   state.error = action.payload.response?.data?.message;
 };
 
@@ -107,7 +106,7 @@ export const refreshTokenFullfilled = (state, { payload }) => {
   state.refreshToken = payload.refreshToken;
 };
 
-export const addPet = (state, action) => {
+export const addPetFulfilled = (state, action) => {
   const date = formatDate(action.payload.pet.date);
   const pet = { ...action.payload.pet, date };
   state.user.pets = [...state.user.pets, pet];
