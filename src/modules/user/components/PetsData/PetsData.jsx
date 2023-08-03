@@ -27,7 +27,7 @@ const PetsData = () => {
         </NavLink>
       </UserPetsTitleWrap>
       {isLoading ? (
-        <Loader />
+        <Loader loading={isLoading} />
       ) : !pets || pets.length === 0 ? (
         <NoUserPets>
           You have not added a pet yet, you have the option to add your furry

@@ -56,7 +56,11 @@ const AddPhoto = ({ isUserUpdate }) => {
     <>
       <UserDataWrapper>
         <UserDataWrapper>
-          {isLoader ? <Loader /> : <input {...getInputProps()} />}
+          {isLoader ? (
+            <Loader loading={isLoader} />
+          ) : (
+            <input {...getInputProps()} />
+          )}
           <UserPhotoBtnEmpty>
             {selectedFile ? (
               <UserPhotoWrapper>
