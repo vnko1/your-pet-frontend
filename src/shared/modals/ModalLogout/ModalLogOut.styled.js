@@ -59,9 +59,11 @@ export const CancelButton = styled.button`
   font-size: 16px;
   font-weight: ${({ theme: { fontWeights } }) => fontWeights.bold};
 
-  :hover, :focus {
+  :hover,
+  :focus {
     background: linear-gradient(90deg, #9bd0ff, #419ef1);
     color: ${(props) => props.theme.colors.white};
+  }
 `;
 
 export const SuccesButton = styled.button`
@@ -86,8 +88,10 @@ export const SuccesButton = styled.button`
     stroke: ${({ theme: { colors } }) => colors.white};
   }
 
-  :hover, :focus {
+  :hover,
+  :focus {
     background: linear-gradient(90deg, #9bd0ff, #419ef1);
+  }
 `;
 
 export const CloseButton = styled.div`

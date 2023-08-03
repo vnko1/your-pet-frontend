@@ -8,6 +8,8 @@ import {
   registration,
   updateUser,
   refreshToken,
+  addUserPet,
+  deleteUserPet,
 } from "./auth-operations";
 
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
@@ -23,6 +25,8 @@ import {
   userRefreshFulfilled,
   userRefreshRejected,
   refreshTokenFullfilled,
+  addPet,
+  deletePet,
 } from "./auth-utils";
 
 const initialState = {
@@ -30,6 +34,7 @@ const initialState = {
     name: "",
     email: "",
     birthday: "",
+    pets: [],
     city: "",
     phone: "",
     isNewUser: false,
@@ -75,6 +80,10 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, userRefreshRejected)
 
       .addCase(refreshToken.fulfilled, refreshTokenFullfilled)
+
+      .addCase(addUserPet.fulfilled, addPet)
+
+      .addCase(deleteUserPet.fulfilled, deletePet)
 
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)

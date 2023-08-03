@@ -58,11 +58,10 @@ const AddPetForm = () => {
 
     if (categories === "your-pet") {
       formData.append("name", name);
-      formData.append("type", type);
       formData.append("date", formatDate(date));
-      formData.append("file", avatarFile);
-      comments && formData.append("comments", comments);
+      formData.append("type", type);
     } else {
+      formData.append("value", values);
       Object.entries(values).forEach(([key, value]) => {
         if (key === "categories") {
           formData.append("category", value);
@@ -84,6 +83,8 @@ const AddPetForm = () => {
         }
       });
     }
+    formData.append("file", avatarFile);
+    comments && formData.append("comments", comments);
 
     categories === "your-pet"
       ? dispatch(addUserPet(formData))
@@ -109,6 +110,7 @@ const AddPetForm = () => {
           setSelectedSex(e.target.value);
           formik.handleChange(e);
         };
+
         return (
           <FormBox className="third">
             <ChooseSection>

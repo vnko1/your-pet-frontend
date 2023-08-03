@@ -26,7 +26,10 @@ import sprite from "../../../../assets/icons.svg";
 
 const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
   const [isShowModal, setIsShowModal] = useState(false);
+  const [userPhoto, setUserPhoto] = useState(null);
+
   const dispatch = useDispatch();
+
   const user = useSelector(authSelectors.selectUser);
   const initialValues = {
     name: user.name,
@@ -37,7 +40,12 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
   };
 
   const handleSubmit = (values) => {
-    dispatch(updateUser(values));
+    const formData = new FormData();
+    formData.append("avatar", userPhoto);
+    Object.entries(values).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    dispatch(updateUser(formData));
     setIsUserUpdate((state) => !state);
   };
 
@@ -49,7 +57,7 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
     <>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <UserFormBody>
-          <AddPhoto isUserUpdate={isUserUpdate} />
+          <AddPhoto isUserUpdate={isUserUpdate} setUserPhoto={setUserPhoto} />
           <UserFormInfo>
             <UserFormList>
               <UserFormItem>
@@ -81,7 +89,7 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
                   name="birthday"
                   id="birthday"
                   autoComplete="off"
-                  placeholder={"00.00.0000"}
+                  placeholder={"00-00-0000"}
                   disabled={isUserUpdate}
                 />
               </UserFormItem>

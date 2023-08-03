@@ -32,7 +32,7 @@ export const FilterBtn = styled.div`
     right: 145px;
     z-index: 1;
 
-    width: 152px;
+    width: 160px;
     gap: 8px;
     background: ${(props) => (props.isExpandedFilter ? "white" : "#fff")};
     color: #54adff;
@@ -67,7 +67,7 @@ export const FilterList = styled.ul`
 export const FilterItem = styled.li`
   display: flex;
   gap: 10px;
-  width: 136px;
+  width: 144px;
   border-radius: 20px;
   background-color: #cce4fb;
   font-family: "Inter";
@@ -86,7 +86,7 @@ export const FilterItem = styled.li`
 export const FilterItemGender = styled.li`
   display: flex;
   gap: 10px;
-  width: 136px;
+  width: 144px;
 
   border-radius: 20px;
   background-color: #cce4fb;

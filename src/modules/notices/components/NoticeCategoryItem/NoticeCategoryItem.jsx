@@ -138,7 +138,9 @@ function NoticesCategoryItem({
             </DeleteIcon>
           </DeleteFromOwn>
         )}
-        <Category>{category}</Category>
+        <Category>
+          {category === "for-free" ? "in good hands" : category}
+        </Category>
         <City>
           <CitySvg>
             <use href={icons + "#location"} stroke="#54ADFF" />

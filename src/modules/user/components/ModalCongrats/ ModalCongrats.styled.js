@@ -54,7 +54,6 @@ export const Title = styled.h2`
   padding: 30px;
   text-align: center;
 
-  font-family: Manrope, sans-serif;
   font-weight: 500;
   font-size: 24px;
 
@@ -77,7 +76,6 @@ export const Text = styled.p`
   margin-bottom: 40px;
   text-align: center;
 
-  font-family: Manrope, sans-serif;
   font-weight: 500;
   font-size: 16px;
 
