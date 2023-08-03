@@ -117,7 +117,7 @@ export const UserFormInput = styled(Field)`
   }
 `;
 
-export const UserFormBtn = styled.button`
+export const UserFormBtn = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
@@ -138,6 +138,9 @@ export const UserFormBtn = styled.button`
 `;
 
 export const Btn = styled.button`
+  align-items: center;
+  display: flex;
+  justify-content: center;
   max-width: 248px;
   flex: 1 1 auto;
   text-align: center;

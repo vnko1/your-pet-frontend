@@ -8,6 +8,17 @@ export const FriendsContainer = styled.div`
     margin-top: 80px;
   }
 `;
+export const Title = styled.h1`
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  cursor: pointer;
+
+  @media ${(props) => props.theme.media.tablet} {
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
+`;
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
