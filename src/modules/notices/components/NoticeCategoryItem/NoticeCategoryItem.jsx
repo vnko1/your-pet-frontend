@@ -36,10 +36,10 @@ import {
   resetCardById,
 } from "../../../../redux/notices/notices-operations";
 import icons from "../../../../assets/icons.svg";
-import { toast } from "react-hot-toast";
 import makeAge from "./utils/makeAge";
 import sliceLocation from "./utils/sliceLocation";
 import ModalApproveAction from "../../../../shared/modals/ModalApproveAction/ModalApproveAction";
+import ModalAttention from "../../../../shared/modals/ModalAttention/ModalAttention";
 
 function NoticesCategoryItem({
   card: { _id, category, date, fileUrl, location, name, sex, title },
@@ -49,6 +49,7 @@ function NoticesCategoryItem({
   const [isDisabledBtn, setIsDisabledBtn] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setModalDeleteOpen] = useState(false);
+  const [isModalAttentionOpen, setIsModalAttentionOpen] = useState(false);
 
   const favList = useSelector(noticesFavoriteList);
   const isLoadingFavorite = useSelector(noticesIsLoadingFavorite);
@@ -71,10 +72,7 @@ function NoticesCategoryItem({
 
   const handleClickHeart = () => {
     if (!isLoggedIn) {
-      toast.error("You need to log in to use this functionality!", {
-        duration: 4000,
-        position: "top-right",
-      });
+      setIsModalAttentionOpen((prev) => !prev);
       return;
     } else {
       if (isFavorite) {
@@ -138,7 +136,9 @@ function NoticesCategoryItem({
             </DeleteIcon>
           </DeleteFromOwn>
         )}
-        <Category>{category}</Category>
+        <Category>
+          {category === "for-free" ? "in good hands" : category}
+        </Category>
         <City>
           <CitySvg>
             <use href={icons + "#location"} stroke="#54ADFF" />
@@ -185,6 +185,11 @@ function NoticesCategoryItem({
         <ModalApproveAction
           onSuccess={successDelete}
           toggleModal={toggleModalDelete}
+        />
+      )}
+      {isModalAttentionOpen && (
+        <ModalAttention
+          toggleModal={() => setIsModalAttentionOpen((prev) => !prev)}
         />
       )}
     </Card>

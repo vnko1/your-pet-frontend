@@ -8,6 +8,8 @@ import {
   registration,
   updateUser,
   refreshToken,
+  addUserPet,
+  deleteUserPet,
 } from "./auth-operations";
 
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
@@ -23,6 +25,8 @@ import {
   userRefreshFulfilled,
   userRefreshRejected,
   refreshTokenFullfilled,
+  addPetFulfilled,
+  deletePet,
 } from "./auth-utils";
 import { axiosPrivate } from "/src/shared/utils/axiosConfig";
 
@@ -31,6 +35,7 @@ const initialState = {
     name: "",
     email: "",
     birthday: "",
+    pets: [],
     city: "",
     phone: "",
     isNewUser: false,
@@ -85,6 +90,10 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, userRefreshRejected)
 
       .addCase(refreshToken.fulfilled, refreshTokenFullfilled)
+
+      .addCase(addUserPet.fulfilled, addPetFulfilled)
+
+      .addCase(deleteUserPet.fulfilled, deletePet)
 
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)

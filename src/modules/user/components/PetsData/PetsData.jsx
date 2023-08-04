@@ -5,7 +5,6 @@ import PetsList from "../PetsList/PetsList";
 
 import authSelectors from "../../../../redux/auth/auth-selectors";
 
-import Loader from "../../../../shared/loader/Loader";
 import {
   UserPetsBody,
   UserPetsTitleWrap,
@@ -16,7 +15,6 @@ import {
 
 const PetsData = () => {
   const { pets } = useSelector(authSelectors.selectUser);
-  const isLoading = useSelector(authSelectors.selectIsLoader);
 
   return (
     <UserPetsBody>
@@ -26,15 +24,13 @@ const PetsData = () => {
           <UserPetsNavBtn>Add Pet +</UserPetsNavBtn>
         </NavLink>
       </UserPetsTitleWrap>
-      {isLoading ? (
-        <Loader loading={isLoading} />
-      ) : !pets || pets.length === 0 ? (
+      {pets && pets.length > 0 ? (
+        <PetsList />
+      ) : (
         <NoUserPets>
           You have not added a pet yet, you have the option to add your furry
           friend!
         </NoUserPets>
-      ) : (
-        <PetsList />
       )}
     </UserPetsBody>
   );

@@ -12,7 +12,7 @@ export const options = [
     label: "lost/found",
   },
   {
-    value: "in-good-hands",
+    value: "for-free",
     label: "in good hands",
   },
 ];
@@ -34,11 +34,9 @@ export const titleChange = (title) => {
       return "Add  pet for sell";
     case "lost-found":
       return "Add lost pet";
-    case "in-good-hands":
+    case "for-free":
       return "Add pet in good hands";
     default:
       return "Add pet";
   }
 };
-
-
