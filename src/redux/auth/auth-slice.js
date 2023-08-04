@@ -25,7 +25,7 @@ import {
   userRefreshFulfilled,
   userRefreshRejected,
   refreshTokenFullfilled,
-  addPet,
+  addPetFulfilled,
   deletePet,
 } from "./auth-utils";
 
@@ -81,7 +81,7 @@ const authSlice = createSlice({
 
       .addCase(refreshToken.fulfilled, refreshTokenFullfilled)
 
-      .addCase(addUserPet.fulfilled, addPet)
+      .addCase(addUserPet.fulfilled, addPetFulfilled)
 
       .addCase(deleteUserPet.fulfilled, deletePet)
 

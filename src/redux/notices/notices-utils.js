@@ -72,15 +72,9 @@ export const handleTakeFavoritesList = (state, action) => {
 };
 
 export const handleResetCardById = (state) => {
-  return {
-    ...state,
-    cardById: {},
-  };
+  state.cardById = {};
 };
 
 export const handleResetFavoriteList = (state) => {
-  return {
-    ...state,
-    favorite: [],
-  };
+  state.favorite = [];
 };

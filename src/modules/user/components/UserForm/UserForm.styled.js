@@ -111,29 +111,30 @@ export const UserFormInput = styled(Field)`
 		max-width: 255px;
 		height: 30px;
 
-		font-size: 16px;
-		letter-spacing: 0.64px;
-	}
-`;
+    font-size: 16px;
+    letter-spacing: 0.64px;
+  }
+ `;
 
 export const UserFormBtn = styled.div`
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	height: 31px;
-	width: 100%;
-	padding: 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 31px;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
 
-	border: none;
+  border: none;
 
-	background: white;
-	color: rgba(136, 136, 136, 1);
-	font-size: 18px;
+  background: white;
+  color: rgba(136, 136, 136, 1);
+  font-size: 18px;
 
-	@media ${(props) => props.theme.media.tablet} {
-		justify-content: end;
-		height: 32px;
-	}
+  @media ${(props) => props.theme.media.tablet} {
+    justify-content: end;
+    height: 32px;
+  }
 `;
 
 export const Btn = styled.button`

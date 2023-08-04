@@ -43,7 +43,9 @@ export const noticesSlice = createSlice({
       .addCase(fetchNotices.rejected, handleRejectedFetchNotices)
 
       .addCase(newPost.pending, handlePendingFetchNotices)
-      .addCase(newPost.fulfilled)
+      .addCase(newPost.fulfilled, (state) => {
+        state.isLoading = false;
+      })
       .addCase(newPost.rejected, handleRejectedFetchNotices)
       // ==========================================
       .addCase(fetchAddFavorite.pending, handlePendingFetchNoticesFavorite)
