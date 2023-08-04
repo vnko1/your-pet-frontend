@@ -33,10 +33,10 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
   const user = useSelector(authSelectors.selectUser);
   const initialValues = {
     name: user.name,
-    birthday: user.birthday,
+    birthday: user.birthday || "",
     email: user.email,
-    city: user.city,
-    phone: user.phone,
+    city: user.city || "",
+    phone: user.phone || "",
   };
 
   const handleSubmit = (values) => {
