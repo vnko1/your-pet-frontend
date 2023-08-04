@@ -31,6 +31,7 @@ const UserForm = ({ isUserUpdate, setIsUserUpdate }) => {
   const dispatch = useDispatch();
 
   const user = useSelector(authSelectors.selectUser);
+
   const initialValues = {
     name: user.name,
     birthday: user.birthday || "",
