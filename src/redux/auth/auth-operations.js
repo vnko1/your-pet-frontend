@@ -134,11 +134,10 @@ export const refreshToken = createAsyncThunk(
 
 export const addUserPet = createAsyncThunk(
   "auth/addUserPet",
-  async (pet, { rejectWithValue, dispatch }) => {
+  async (pet, { rejectWithValue }) => {
     try {
       const { data } = await axiosPrivate.post("/pets/add", pet);
 
-      dispatch(getCurrentUser());
       return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -148,10 +147,9 @@ export const addUserPet = createAsyncThunk(
 
 export const deleteUserPet = createAsyncThunk(
   "auth/deleteUserPet",
-  async (id, { rejectWithValue, dispatch }) => {
+  async (id, { rejectWithValue }) => {
     try {
       await axiosPrivate.delete(`/pets/delete/${id}`);
-      dispatch(getCurrentUser());
       return id;
     } catch (error) {
       return rejectWithValue(error);

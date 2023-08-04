@@ -217,8 +217,16 @@ export const LearnMoreBtn = styled.button`
   color: #54adff;
   background-color: #ffffff;
 
+  svg {
+    display: none;
+  }
+
   &:hover,
   &:focus {
+    svg {
+      display: block;
+      fill: #ffffff;
+    }
     border: transparent;
     color: #fef9f9;
     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);

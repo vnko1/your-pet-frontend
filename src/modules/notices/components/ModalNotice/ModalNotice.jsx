@@ -45,15 +45,16 @@ const ModalNotice = ({
     sex,
     location,
     type,
-    email = "user@qwe.qwe",
-    phone = "+380971234567",
+    owner: { email = "unknown", phone = "unknown" } = {},
   } = useSelector(noticesCardById);
 
   return (
     <ModalNoticeBox>
       <ModalNoticeWrap>
         <Image src={fileUrl} alt={name} />
-        <Category>{category}</Category>
+        <Category>
+          {category === "for-free" ? "in good hands" : category}
+        </Category>
         <div>
           <Title>{title}</Title>
           <ModalNoticeInfoList>
@@ -99,7 +100,18 @@ const ModalNotice = ({
       <div>
         <ContactLink href="tel:+380971234567">Contact</ContactLink>
         <AddBtn disabled={isDisabledBtn} onClick={() => handleClickHeart()}>
-          Add to
+          {isFavorite ? (
+            <span
+              style={{
+                fontSize: 12,
+                letterSpacing: 0.1,
+              }}
+            >
+              Remove from
+            </span>
+          ) : (
+            <span>Add to</span>
+          )}
           <svg width="24" height="24">
             <use
               href={icons + "#heart"}

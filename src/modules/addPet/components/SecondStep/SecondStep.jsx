@@ -59,7 +59,7 @@ const SecondStep = ({ currentRadioChecked, formik }) => {
           id="date"
           autoComplete="off"
           placeholder="Type date of birth"
-          value={formik.values.birthday}
+          value={formik.values.date}
           onChange={formik.handleChange}
           onFocus={handleFocus}
           onBlur={handleFocus}
@@ -73,7 +73,7 @@ const SecondStep = ({ currentRadioChecked, formik }) => {
           name="type"
           id="type"
           autoComplete="off"
-          placeholder="Type date of birth"
+          placeholder="Type of pet"
           value={formik.values.type}
           onChange={formik.handleChange}
           onFocus={handleFocus}

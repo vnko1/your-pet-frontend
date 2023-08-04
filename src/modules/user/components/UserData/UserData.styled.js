@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const UserPageItem = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 18px;
+	gap: 40px;
 	width: 100%;
 	max-width: 320px;
 
@@ -12,6 +12,7 @@ export const UserPageItem = styled.div`
 	}
 
 	@media (${(props) => props.theme.media.desktop}) {
+		width: 395px;
 		max-width: 395px;
 		align-items: flex-start;
 	}

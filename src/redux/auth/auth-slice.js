@@ -8,6 +8,8 @@ import {
   registration,
   updateUser,
   refreshToken,
+  addUserPet,
+  deleteUserPet,
   googleAuth,
 } from "./auth-operations";
 
@@ -24,6 +26,8 @@ import {
   userRefreshFulfilled,
   userRefreshRejected,
   refreshTokenFullfilled,
+  addPetFulfilled,
+  deletePet,
   googleAuthFullfilled,
 } from "./auth-utils";
 
@@ -32,6 +36,7 @@ const initialState = {
     name: "",
     email: "",
     birthday: "",
+    pets: [],
     city: "",
     phone: "",
     isNewUser: false,
@@ -86,6 +91,10 @@ const authSlice = createSlice({
       .addCase(refreshToken.fulfilled, refreshTokenFullfilled)
 
       .addCase(googleAuth.fulfilled, googleAuthFullfilled)
+
+      .addCase(addUserPet.fulfilled, addPetFulfilled)
+
+      .addCase(deleteUserPet.fulfilled, deletePet)
 
       .addMatcher(isAnyOf(...getActions("pending")), handlePending)
       .addMatcher(isAnyOf(...getActions("fulfilled")), handlefulfilled)

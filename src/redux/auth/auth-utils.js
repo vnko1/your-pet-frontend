@@ -36,7 +36,6 @@ export const handlefulfilled = (state) => {
 
 export const handleRejected = (state, action) => {
   state.isLoader = false;
-
   state.error = action.payload.response?.data?.message;
 };
 
@@ -117,4 +116,16 @@ export const refreshTokenFullfilled = (state, { payload }) => {
   state.token = payload.token;
   state.tokenLifeTime = payload.tokenLifeTime;
   state.refreshToken = payload.refreshToken;
+};
+
+export const addPetFulfilled = (state, action) => {
+  const date = formatDate(action.payload.pet.date);
+  const pet = { ...action.payload.pet, date };
+  state.user.pets = [...state.user.pets, pet];
+};
+
+export const deletePet = (state, action) => {
+  state.user.pets = state.user.pets.filter(
+    (item) => item._id !== action.payload
+  );
 };

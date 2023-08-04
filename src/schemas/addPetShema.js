@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 export const addPetShema = Yup.object().shape({
   categories: Yup.string()
-    .oneOf(["sell", "lost-found", "in-good-hands", "your-pet"])
+    .oneOf(["sell", "lost-found", "for-free", "your-pet"])
     .required("Поле categories обов'язкове"),
 
   name: Yup.string()

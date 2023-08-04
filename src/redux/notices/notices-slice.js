@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import {
   fetchNotices,
   newPost,
@@ -43,7 +43,9 @@ export const noticesSlice = createSlice({
       .addCase(fetchNotices.rejected, handleRejectedFetchNotices)
 
       .addCase(newPost.pending, handlePendingFetchNotices)
-      .addCase(newPost.fulfilled, (state, { payload }) => console.log(payload))
+      .addCase(newPost.fulfilled, (state) => {
+        state.isLoading = false;
+      })
       .addCase(newPost.rejected, handleRejectedFetchNotices)
       // ==========================================
       .addCase(fetchAddFavorite.pending, handlePendingFetchNoticesFavorite)

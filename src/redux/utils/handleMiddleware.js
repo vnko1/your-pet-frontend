@@ -38,6 +38,18 @@ const handleMiddleware = (store) => (next) => (action) => {
     });
   }
   if (
+    action.type === "notices/addFavorite/rejected" ||
+    action.type === "notices/deleteFavorite/rejected" ||
+    action.type === "notices/deleteCardById/rejected" ||
+    action.type === "notices/newPost/rejected"
+  ) {
+    toast.error("Sorry, something went wrong, try reload page and try again", {
+      duration: 4000,
+      position: "top-right",
+    });
+  }
+
+  if (
     action.type === "auth/login/fulfilled" ||
     action.type === "auth/refresh/fulfilled"
   ) {
@@ -49,7 +61,9 @@ const handleMiddleware = (store) => (next) => (action) => {
     action.type === "auth/register/rejected" ||
     action.type === "auth/login/rejected" ||
     action.type === "auth/updateUser/rejected" ||
-    action.type === "auth/getCurrentUser/rejected"
+    action.type === "auth/getCurrentUser/rejected" ||
+    action.type === "auth/addUserPet/rejected" ||
+    action.type === "auth/deleteUserPet/rejected"
   ) {
     if (action.payload.response.status === 500)
       notifyError("Oops!! Something went wrong. Try again!");
