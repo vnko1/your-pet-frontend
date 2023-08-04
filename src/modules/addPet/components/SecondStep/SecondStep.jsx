@@ -59,7 +59,7 @@ const SecondStep = ({ currentRadioChecked, formik }) => {
           id="date"
           autoComplete="off"
           placeholder="Type date of birth"
-          value={formik.values.birthday}
+          value={formik.values.date}
           onChange={formik.handleChange}
           onFocus={handleFocus}
           onBlur={handleFocus}

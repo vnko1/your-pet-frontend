@@ -3,7 +3,7 @@ import { theme } from "../../styles/theme";
 import PropTypes from "prop-types";
 
 const defaultCss = {
-  position: "absolute",
+  position: "fixed",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
